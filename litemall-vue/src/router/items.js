@@ -15,10 +15,27 @@ export default [
   {
     path: '/items/search',
     name: 'search',
+      redirect: '/items/search/new',
     meta: {
       keepAlive: true
     },
-    component: () => import('@/views/items/search')
+    component: () => import('@/views/items/search'),
+      children: [
+          {
+              path: 'new',
+              component: () => import('@/components/field'),
+              meta: {
+                  keepAlive: false
+              }
+          },
+          {
+              path: 'comment',
+              component: () => import('@/views/items/search/comment'),
+              meta: {
+                  keepAlive: false
+              }
+          }
+      ]
   },
   {
     path: '/items/detail/:itemId',

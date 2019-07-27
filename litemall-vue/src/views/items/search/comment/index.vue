@@ -7,14 +7,6 @@
                   @search="enterSearch"
                   autofocus />
     </form>
-    <!--<div class="content">-->
-      <!--<router-link to="/items/search/new" tag="div" class="tab-item">-->
-        <!--<span>新鲜的</span>-->
-      <!--</router-link>-->
-      <!--<router-link to="/items/search/comment" tag="div" class="tab-item">-->
-        <!--<span>附近的</span>-->
-      <!--</router-link>-->
-    <!--</div>-->
     <div class="item_search_content">
       <div class="item_search_text clearfix">
         <div class="float-l">历史搜索</div>
@@ -48,7 +40,6 @@
     </van-list>
 
     <is-empty v-if="isEmpty">抱歉,没有找到符合条件商品</is-empty>
-    <!--<router-view></router-view>-->
   </div>
 </template>
 
@@ -158,15 +149,6 @@ export default {
 
 
 <style lang="scss" scoped>
-  .router-link-active{
-    color: #ffda44;
-    font-weight: 700;
-    border-bottom: 2px solid #ffda44
-  }
-
-  a{
-    text-decoration: none
-  }
 .item_search {
   background-color: #fff;
 }
@@ -178,15 +160,7 @@ export default {
   color: $font-color-gray;
   margin-bottom: 20px;
 }
-.content {
-  display :flex;
-  .tab-item {
-    flex: 1;
-    text-align: center;
-    padding: 0.3rem 0;
-    font-size: 1rem
-  }
-}
+
 .item_search_history > span {
   margin-right: 10px;
   margin-bottom: 10px;
