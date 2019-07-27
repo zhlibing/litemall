@@ -53,7 +53,7 @@
 
     <van-goods-action>
       <van-goods-action-icon @click="toCart" icon="cart-o" :info="(cartInfo > 0) ? cartInfo : ''"/>
-      <van-goods-action-icon @click="addCollect" icon="star-o" :style="(goods.userHasCollect !== 0) ? 'color: #f7b444;':''"/>
+      <van-goods-action-icon @click="addCollect" :icon="(goods.userHasCollect != 0) ? 'star':'star-o'"/>
       <van-goods-action-button type="warning" @click="skuClick" text="加入购物车"/>
       <van-goods-action-button type="danger" @click="skuClick" text="立即购买"/>
     </van-goods-action>
