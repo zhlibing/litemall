@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="text">{{comment.content}}</div>
                                 <div class="imgbox"
-                                     v-show="comment.picList.length>0">
+                                     v-show="comment.picList.length>0" @click="previewimage(comment.picList)">
                                     <img alt=""
                                          v-if="comment.picList.length== 1"
                                          :src="comment.picList[0]"
@@ -117,7 +117,7 @@
     import {setLocalStorage} from '@/utils/local-storage';
     import popupProps from './popup-props';
     import _ from 'lodash';
-    import {Tab, Tabs, Panel, Card, List, CouponCell, CouponList} from 'vant';
+    import {Tab, Tabs, Panel, Card, List, CouponCell, CouponList,ImagePreview} from 'vant';
 
     export default {
         props: {
@@ -180,6 +180,9 @@
         },
 
         methods: {
+            previewimage(list){
+                ImagePreview(list);
+            },
             skuClick() {
                 this.showSku = true;
             },
