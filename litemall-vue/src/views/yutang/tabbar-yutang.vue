@@ -84,7 +84,7 @@
                 <p class="title">不可错过的鱼塘</p>
             </div>
             <div class="list" v-for="(item,index) in lists" :key="index">
-                <img src="../../assets/images/avatar_default.png" alt="" class="image">
+                <img src="http://yanxuan.nosdn.127.net/e8bf0cf08cf7eda21606ab191762e35c.png" alt="" class="image">
                 <div class="info">
                     <div class="head">
                         <p class="tit">{{item.title}}</p>
@@ -264,8 +264,9 @@
                 padding-bottom: .3rem;
                 display: flex;
                 .image {
-                    width: 2.5rem;
-                    height: 2.5rem;
+                    width: 4rem;
+                    height: 4rem;
+                    object-fit: cover;
                 }
                 .info {
                     flex: 1;
@@ -276,7 +277,7 @@
                             font-size: 0.8rem;
                             font-weight: 600;
                             flex: 1;
-                            margin-top: 8px;
+                            margin-top: 5px;
                         }
                         .level {
                             font-size: 0.3rem;
