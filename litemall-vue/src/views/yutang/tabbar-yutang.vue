@@ -29,7 +29,7 @@
                     <span class="da">答</span>
                     <div class="text">{{question.answer}}</div>
                     <div class="imgshow" v-if="question.img !== undefined">
-                        <img :src="question.img" alt="">
+                        <img src="http://yanxuan.nosdn.127.net/dae4d6e89ab8a0cd3e8da026e4660137.png" alt="">
                     </div>
                 </div>
                 <div class="bottom">
@@ -404,8 +404,8 @@
                         line-height: 1.2rem;
                     }
                     img {
-                        width: 1.3rem;
-                        height: 1.3rem;
+                        width: 4rem;
+                        height: 4rem;
                         margin-left: 0.3em;
                     }
                 }
