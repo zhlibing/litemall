@@ -353,25 +353,25 @@
             .ask {
                 font-size: 0.8rem;
                 font-weight: 700;
-                background: url('../../assets/images/search.png') no-repeat;
-                background-size: 0.5rem 0.5rem;
+                background: url('../../assets/images/提问.png') no-repeat;
+                background-size: 1rem 1rem;
                 width: 4rem;
-                height: .53rem;
+                height: 1rem;
                 padding-left: 1.2rem;
                 box-sizing: border-box;
             }
             .more {
                 width: 100%;
                 text-align: right;
+                margin-top: 5px;
                 .gomore {
-                    font-size: 0.45rem;
+                    font-size: 0.6rem;
                     font-weight: 700;
-                    background: url('../../assets/images/search.png') right no-repeat;
-                    background-size: 0.5rem 0.5rem;
-                    width: 3rem;
+                    background: url('../../assets/images/更多.png') right no-repeat;
+                    background-size: 1rem 1rem;
+                    width: 5rem;
                     height: .53rem;
-                    padding-left: 1.2rem;
-                    padding-right: 0.7rem;
+                    padding-right: 1.5rem;
                     box-sizing: border-box;
                 }
             }

@@ -31,7 +31,7 @@
         .scanner {
             width: 25px;
             height: 25px;
-            margin-left: 0.5rem;
+            margin-left: 1rem;
             margin-right: 0.5rem;
             box-sizing: border-box;
             display: flex;
@@ -65,7 +65,7 @@
             width: 25px;
             height: 25px;
             margin-left: 0.5rem;
-            margin-right: 0.5rem;
+            margin-right: 1rem;
             display: flex;
             align-items: center;
             img {
