@@ -73,23 +73,24 @@
                                 </div>
                                 <div class="text">{{comment.content}}</div>
                                 <div class="imgbox"
-                                     v-show="comment.picList.length>0" @click="previewimage(comment.picList)">
+                                     v-show="comment.picList.length>0">
                                     <img alt=""
                                          v-if="comment.picList.length== 1"
                                          :src="comment.picList[0]"
-                                         :class="{releaseimgone:true}"/>
+                                         :class="{releaseimgone:true}" @click="previewimage(comment.picList,0)"/>
                                     <img alt=""
                                          v-else-if="comment.picList.length>= 2&&Math.round(comment.picList.length%2)==0"
                                          v-for="(value,imgIndex) in comment.picList"
                                          :key="imgIndex"
                                          :src="value"
-                                         :class="{releaseimgtwo:true}"/>
+                                         :class="{releaseimgtwo:true}" @click="previewimage(comment.picList,imgIndex)"/>
                                     <img alt=""
                                          v-else-if="comment.picList.length>= 2&&Math.round(comment.picList.length%2)!=0"
                                          v-for="(value,imgIndex) in comment.picList"
                                          :key="imgIndex"
                                          :src="value"
-                                         :class="{releaseimgthree:true}"/>
+                                         :class="{releaseimgthree:true}"
+                                         @click="previewimage(comment.picList,imgIndex)"/>
                                 </div>
                                 <div class="time">{{comment.addTime}}</div>
                             </div>
@@ -117,7 +118,7 @@
     import {setLocalStorage} from '@/utils/local-storage';
     import popupProps from './popup-props';
     import _ from 'lodash';
-    import {Tab, Tabs, Panel, Card, List, CouponCell, CouponList,ImagePreview} from 'vant';
+    import {Tab, Tabs, Panel, Card, List, CouponCell, CouponList, ImagePreview} from 'vant';
 
     export default {
         props: {
@@ -180,8 +181,8 @@
         },
 
         methods: {
-            previewimage(list){
-                ImagePreview(list);
+            previewimage(list, index) {
+                ImagePreview(list, index);
             },
             skuClick() {
                 this.showSku = true;
