@@ -120,7 +120,7 @@ public class WxGoodsController {
 
 		// 评论
 		Callable<Map> commentsCallable = () -> {
-			List<LitemallComment> comments = commentService.queryGoodsByGid(id, 0, 2);
+			List<LitemallComment> comments = commentService.queryGoodsByGid(id, 0, 20);
 			List<Map<String, Object>> commentsVo = new ArrayList<>(comments.size());
 			long commentCount = PageInfo.of(comments).getTotal();
 			for (LitemallComment comment : comments) {
