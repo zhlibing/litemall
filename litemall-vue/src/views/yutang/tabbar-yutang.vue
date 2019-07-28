@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <Head></Head>
-        <div class="interest" style="margin-top: 50px">
+        <div class="interest" style="margin-top: 30px">
             <div class="titlebox">
                 <p class="title">你可能感兴趣的鱼塘</p>
             </div>
@@ -233,7 +233,7 @@
             margin-top: 5px;
             background-color: #fff;
             width: 100%;
-            padding: .333rem .511rem;
+            padding: 1rem 1rem;
             box-sizing: border-box;
             .titlebox {
                 box-sizing: border-box;
