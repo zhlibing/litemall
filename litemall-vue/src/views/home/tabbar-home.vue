@@ -58,11 +58,11 @@
                 :origin-price="grouponGood.retailPrice"
                 :price="grouponGood.grouponPrice +'.00'"
                 :thumb="grouponGood.picUrl"
-                @native-click="goDetail(grouponGood.id)">
+                @native-click="goDetail(grouponGood.id)" style="line-height: 2rem">
         <div slot="tags"
              class="card__tags">
           <van-tag plain
-                   type="primary">
+                   type="primary" style="margin-right: 0.3rem">
             {{grouponGood.grouponMember}}人成团
           </van-tag>
           <van-tag plain
