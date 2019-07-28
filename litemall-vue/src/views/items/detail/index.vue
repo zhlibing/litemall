@@ -70,9 +70,27 @@
                             <div class="comment">
                                 <div class="nickname">
                                     <span class="name">{{comment.nickname}}</span>
-                                    <mu-badge :content="`${10}分`" primary slot="after"/>
                                 </div>
                                 <div class="text">{{comment.content}}</div>
+                                <div class="imgbox"
+                                     v-show="comment.picList.length>0">
+                                    <img alt=""
+                                         v-if="comment.picList.length== 1"
+                                         :src="comment.picList[0]"
+                                         :class="{releaseimgone:true}"/>
+                                    <img alt=""
+                                         v-else-if="comment.picList.length>= 2&&Math.round(comment.picList.length%2)==0"
+                                         v-for="(value,imgIndex) in comment.picList"
+                                         :key="imgIndex"
+                                         :src="value"
+                                         :class="{releaseimgtwo:true}"/>
+                                    <img alt=""
+                                         v-else-if="comment.picList.length>= 2&&Math.round(comment.picList.length%2)!=0"
+                                         v-for="(value,imgIndex) in comment.picList"
+                                         :key="imgIndex"
+                                         :src="value"
+                                         :class="{releaseimgthree:true}"/>
+                                </div>
                                 <div class="time">{{comment.addTime}}</div>
                             </div>
                         </div>
@@ -474,6 +492,8 @@
         .comment {
             padding-left: 15px;
             flex: 1;
+            display: flex;
+            flex-direction: column;
             .nickname {
                 padding-top: 5px;
                 padding-bottom: 10px;
@@ -489,7 +509,31 @@
             .text {
                 line-height: 28px;
             }
+            .imgbox {
+                margin-top: 0.1rem;
+                .releaseimgone {
+                    width: 65%;
+                    float: left;
+                    height: auto;
+                    object-fit: contain;
+                }
+                .releaseimgtwo {
+                    width: 47%;
+                    margin-right: 0.1066666667rem;
+                    margin-bottom: 0.1066666667rem;
+                    height: 4rem;
+                    object-fit: contain;
+                }
+                .releaseimgthree {
+                    width: 30%;
+                    margin-right: 0.1066666667rem;
+                    margin-bottom: 0.1066666667rem;
+                    height: 3rem;
+                    object-fit: contain;
+                }
+            }
             .time {
+                margin-top: 0.5rem;
                 line-height: 28px;
                 color: $font-color-gray;
                 text-align: right;
