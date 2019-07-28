@@ -62,9 +62,10 @@ export default {
 
   methods: {
     handleTabClick(index) {
+      console.log('handleTabClick'+index)
       this.categoryId = this.navList[index].id;
       this.$router.replace({
-        name: 'list',
+        name: 'category',
         query: { itemClass: this.categoryId }
       });
       this.init();
@@ -103,6 +104,7 @@ export default {
       });
     },
     itemClick(id) {
+        console.log('itemClick'+id)
       this.$router.push(`/items/detail/${id}`);
     }
   },

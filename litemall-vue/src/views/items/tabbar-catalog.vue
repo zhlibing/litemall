@@ -70,6 +70,7 @@ export default {
       });
     },
     toItemList(id) {
+      console.log('toItemList'+id)
       this.$router.push({
         name: 'category',
         query: { keyword: '', itemClass: id }
