@@ -49,7 +49,8 @@
                 <div class="swiper-wrapper swiper">
                     <div class="swiper-slide item" v-for="(item,index) in tuhao" :key="index" @click="toast">
                         <div class="imgdisplay" v-if="item.img !== undefined">
-                            <img src="http://yanxuan.nosdn.127.net/e8bf0cf08cf7eda21606ab191762e35c.png" alt="" class="imgbig">
+                            <img src="http://yanxuan.nosdn.127.net/e8bf0cf08cf7eda21606ab191762e35c.png" alt=""
+                                 class="imgbig">
                         </div>
                         <div class="name">{{item.title}}</div>
                         <div class="info">
@@ -67,7 +68,8 @@
                 <div class="swiper-wrapper swiper">
                     <div class="swiper-slide item" v-for="(item,index) in china" :key="index" @click="toast">
                         <div class="imgdisplay" v-if="item.img !== undefined">
-                            <img src="http://yanxuan.nosdn.127.net/e8bf0cf08cf7eda21606ab191762e35c.png" alt="" class="imgbig">
+                            <img src="http://yanxuan.nosdn.127.net/e8bf0cf08cf7eda21606ab191762e35c.png" alt=""
+                                 class="imgbig">
                         </div>
                         <div class="name">{{item.title}}</div>
                         <div class="info">
@@ -244,6 +246,7 @@
                     flex: 1;
                     font-size: 0.9rem;
                     font-weight: 600;
+                    margin-top: -2px;
                     &:before {
                         display: inline-block;
                         content: '';
