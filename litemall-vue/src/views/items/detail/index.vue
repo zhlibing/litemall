@@ -507,7 +507,7 @@
                 font-weight: bold;
             }
             .text {
-                line-height: 28px;
+                line-height: 22px;
             }
             .imgbox {
                 margin-top: 0.1rem;
