@@ -48,7 +48,7 @@
             flex: 1;
             display: flex;
             align-items: center;
-            background-color: #efefef;
+            background-color: #F8F9FB;
             border-radius: 5rem;
             /*border: 0.04rem solid #cccccc;*/
             input {
