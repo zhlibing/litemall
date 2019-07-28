@@ -102,6 +102,7 @@ export default {
         justify-content: center;
         align-items: center;
         display: block;
+        background-color:rgba(0,0,0,0.4);
 
         .txt {
           margin-top: 60px;
