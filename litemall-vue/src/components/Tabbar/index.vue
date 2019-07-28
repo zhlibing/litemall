@@ -30,9 +30,9 @@ export default {
           info: ''
         },
         {
-          name: '分类',
-          path: '/items',
-          pathName: 'class',
+          name: '鱼塘',
+          path: '/yutang',
+          pathName: 'yutang',
           icon: 'class-full',
           dot: false,
           info: ''
