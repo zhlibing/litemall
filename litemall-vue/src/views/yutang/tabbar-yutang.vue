@@ -8,7 +8,7 @@
             <div class="swiper-container" ref="swiper">
                 <div class="swiper-wrapper swiper">
                     <div class="swiper-slide item" v-for="(item,index) in interests" :key="index" @click="toast">
-                        <img :src="item.img" alt="" class="img">
+                        <img src="http://yanxuan.nosdn.127.net/dae4d6e89ab8a0cd3e8da026e4660137.png" alt="" class="img">
                         <div class="name">{{item.title}}</div>
                         <div class="info">
                             <p class="desc">{{item.desc}}</p>
@@ -49,7 +49,7 @@
                 <div class="swiper-wrapper swiper">
                     <div class="swiper-slide item" v-for="(item,index) in tuhao" :key="index" @click="toast">
                         <div class="imgdisplay" v-if="item.img !== undefined">
-                            <img :src="item.img" alt="" class="imgbig">
+                            <img src="http://yanxuan.nosdn.127.net/e8bf0cf08cf7eda21606ab191762e35c.png" alt="" class="imgbig">
                         </div>
                         <div class="name">{{item.title}}</div>
                         <div class="info">
@@ -67,7 +67,7 @@
                 <div class="swiper-wrapper swiper">
                     <div class="swiper-slide item" v-for="(item,index) in china" :key="index" @click="toast">
                         <div class="imgdisplay" v-if="item.img !== undefined">
-                            <img :src="item.img" alt="" class="imgbig">
+                            <img src="http://yanxuan.nosdn.127.net/e8bf0cf08cf7eda21606ab191762e35c.png" alt="" class="imgbig">
                         </div>
                         <div class="name">{{item.title}}</div>
                         <div class="info">
@@ -261,8 +261,8 @@
                 padding-bottom: .3rem;
                 display: flex;
                 .image {
-                    width: 1.6rem;
-                    height: 1.6rem;
+                    width: 2.5rem;
+                    height: 2.5rem;
                 }
                 .info {
                     flex: 1;
@@ -270,10 +270,10 @@
                     .head {
                         display: flex;
                         .tit {
-                            font-size: .6rem;
+                            font-size: 0.8rem;
                             font-weight: 600;
                             flex: 1;
-                            margin-top: 4px;
+                            margin-top: 8px;
                         }
                         .level {
                             font-size: 0.3rem;
@@ -290,7 +290,7 @@
                     }
                     .text {
                         margin-top: -15px;
-                        font-size: 0.6rem;
+                        font-size: 0.8rem;
                         font-weight: 200;
                         line-height: 1.2rem;
                     }
@@ -309,17 +309,17 @@
                     box-sizing: border-box;
                     margin-bottom: 0.12rem;
                     text-align: center;
-                    background: #f3f9f8;
+                    background: #ffffff;
                     .imgbig {
                         width: 100%;
-                        height: 1.64rem;
+                        height: 3rem;
                         margin-bottom: 0.2rem;
                     }
                     .name {
                         color: #000000;
-                        font-size: 0.4em;
+                        font-size: 0.6em;
                         font-weight: 600;
-                        margin-bottom: 0.13rem;
+                        margin-bottom: 0.2rem;
                     }
                     .desc {
                         color: #888888;
@@ -331,8 +331,8 @@
                         margin-bottom: 0.2rem;
                     }
                     .img {
-                        width: 1rem;
-                        height: 1rem;
+                        width: 3rem;
+                        height: 3rem;
                         margin-bottom: 0.2em;
                     }
                     .add {
@@ -348,7 +348,7 @@
         .questions {
             background-color: #fff;
             .ask {
-                font-size: 0.45rem;
+                font-size: 0.8rem;
                 font-weight: 700;
                 background: url('../../assets/images/search.png') no-repeat;
                 background-size: 0.5rem 0.5rem;
@@ -381,14 +381,15 @@
                 }
                 .answer {
                     display: flex;
-                    font-size: 0.6rem;
+                    font-size: 0.8rem;
+                    font-weight: 200;
                     margin-top: 0.5rem;
                     color: #666666;
                     .da {
                         background-color: #ffda44;
                         display: inline-block;
-                        width: 1.2rem;
-                        height: 1.2rem;
+                        width: 1.5rem;
+                        height: 1.5rem;
                         display: flex;
                         justify-content: center;
                         align-items: center;
@@ -411,10 +412,10 @@
                 .bottom {
                     display: flex;
                     margin-top: .5rem;
-                    font-size: 0.266rem;
+                    font-size: 0.6rem;
                     .yutang {
                         flex: 1;
-                        color: #888888;
+                        color: #999;
                     }
                     .toanswer {
                         color: #7dc5eb;
