@@ -76,6 +76,7 @@ export default {
     enterSearch() {
       this.reset();
       this.searchGoods();
+      this.pushHistoryTolocal(this.keyword)
     },
     clickSearch(word) {
       this.keyword = word.trim();
@@ -101,6 +102,7 @@ export default {
     },
     getKeyWordHistory() {
       const listWord = window.localStorage.getItem('keyword');
+      console.log(listWord,'>>>>>getKeyWordHistory')
       return listWord ? listWord.split('|') : [];
     },
     clearHistory() {

@@ -15,7 +15,7 @@ export default [
   {
     path: '/items/search',
     name: 'search',
-      redirect: '/items/search/new',
+      // redirect: '/items/search/new',
     meta: {
       keepAlive: true
     },
