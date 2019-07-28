@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <Head></Head>
-        <div class="interest" style="margin-top: 30px">
+        <div class="interest" style="margin-top: 40px">
             <div class="titlebox">
                 <p class="title">你可能感兴趣的鱼塘</p>
             </div>
