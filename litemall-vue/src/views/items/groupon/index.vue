@@ -16,10 +16,10 @@
                 :thumb="item.picUrl"
                 :price="item.retailPrice"
                 :origin-price="item.counterPrice"
-                @click="itemClick(item.id)">
+                @click="itemClick(item.id)" style="line-height: 2rem">
         <div slot="tags">
           <van-tag plain
-                   type="primary">
+                   type="primary" style="margin-right: 0.3rem">
             {{item.grouponMember}}人成团
           </van-tag>
           <van-tag plain
