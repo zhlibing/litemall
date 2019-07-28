@@ -312,7 +312,7 @@
                     background: #ffffff;
                     .imgbig {
                         width: 100%;
-                        height: 3rem;
+                        height: 4rem;
                         margin-bottom: 0.2rem;
                     }
                     .name {
