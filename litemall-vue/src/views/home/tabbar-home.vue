@@ -130,21 +130,21 @@
 
         <div class="swiper-container" ref="swiperBottom" style="margin-bottom: 2rem">
             <div class="swiper-wrapper swiper">
-                <div class="swiper-slide item" v-for="(item,index) in recoms" :key="index">
-                    <div class="title">{{item.title}}</div>
+                <div class="swiper-slide item" v-for="(item,index) in shopInfos.floorGoodsList" :key="index">
+                    <div class="title">{{item.name}}</div>
                     <div class="info">
-                        <span class="fabu">发布数{{item.members}}</span>
-                        <span class="hot">昨日人气 +{{item.num}}</span>
+                        <span class="fabu">{{item.goodsList[0].name}}</span>
+                        <span class="hot">   ￥{{item.goodsList[0].retailPrice}}</span>
                     </div>
                     <div class="desc">
-                        <span class="gonggao">公告</span>
-                        <span class="produ">{{item.produ}}</span>
+                        <span class="gonggao">看点</span>
+                        <span class="produ">{{item.goodsList[0].brief}}</span>
                     </div>
                     <div class="imgbox border-1px">
-                        <img :src="img.img" alt="" v-for="(img,index) in item.images" :key="index">
+                        <img :src="img.picUrl" alt="" v-for="(img,index) in item.goodsList" :key="index">
                     </div>
                     <div class="addr">
-                        <p class="distance">距离你{{item.destance}}米</p>
+                        <p class="distance">编辑推荐</p>
                     </div>
                 </div>
             </div>
@@ -611,7 +611,7 @@
             text-align: left;
             padding-left: 1.2em;
             padding-bottom: 10px;
-            color: #456;
+            color: #999;
             background: url('../../assets/images/search.png') no-repeat;
             background-position: 0 100%;
             background-size: 14px 14px;
