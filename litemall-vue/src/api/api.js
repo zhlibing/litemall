@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import axios from 'axios'
 
 const IndexUrl= 'wx/home/index'; //首页数据接口
 export function getHome() {
@@ -413,6 +414,16 @@ export function couponReceive(data) {
 const CouponExchange='wx/coupon/exchange'; //优惠券兑换
 
 const StorageUpload='wx/storage/upload'; //图片上传,
+export function storageUpload(file) {
+    var formdata = new FormData();// 创建form对象
+    formdata.append('file', file , file.name);// 通过append向form对象添加数据,可以通过append继续添加数据
+    return request({
+        url: StorageUpload,
+        method: 'post',
+        data:formdata,
+        // headers: {'Content-Type':'multipart/form-data;boundary=1111'}//不需要的参数
+    })
+}
 
 const UserIndex='wx/user/index'; //个人页面用户相关信息
 export function userIndex() {
