@@ -137,11 +137,15 @@
                         <span class="hot">   ￥{{item.goodsList[0].retailPrice}}</span>
                     </div>
                     <div class="desc">
-                        <span class="gonggao">看点</span>
+                        <span class="gonggao">精选</span>
                         <span class="produ">{{item.goodsList[0].brief}}</span>
                     </div>
                     <div class="imgbox border-1px">
-                        <img :src="img.picUrl" alt="" v-for="(img,index) in item.goodsList" :key="index">
+                        <router-link :to="{ path: `/items/detail/${img.id}`}"
+                                     v-for="(img,index) in item.goodsList"
+                                     :key="index">
+                            <img :src="img.picUrl" alt="">
+                        </router-link>
                     </div>
                     <div class="addr">
                         <p class="distance">编辑推荐</p>
@@ -236,62 +240,6 @@
             return {
                 shopInfos: [],
                 isLoading: false,
-                recoms: [
-                    {
-                        "title": "长江学院鱼塘",
-                        "members": 393,
-                        "num": 16,
-                        "produ": "想要宝贝置顶的可以私聊我",
-                        "destance": 291,
-                        "images": [
-                            {
-                                "img": "https://tse1-mm.cn.bing.net/th?id=OIP.H606NK3ea7jqqwCwHjlvPgHaEo&w=177&h=110&c=8&rs=1&qlt=90&pid=3.1&rm=2"
-                            },
-                            {
-                                "img": "https://tse1-mm.cn.bing.net/th?id=OIP.H606NK3ea7jqqwCwHjlvPgHaEo&w=177&h=110&c=8&rs=1&qlt=90&pid=3.1&rm=2"
-                            },
-                            {
-                                "img": "https://tse1-mm.cn.bing.net/th?id=OIP.H606NK3ea7jqqwCwHjlvPgHaEo&w=177&h=110&c=8&rs=1&qlt=90&pid=3.1&rm=2"
-                            }
-                        ]
-                    },
-                    {
-                        "title": "华瑞锦城鱼塘",
-                        "members": 60,
-                        "num": 3,
-                        "produ": "[专治各种疑问]鱼塘是什么？",
-                        "destance": 319,
-                        "images": [
-                            {
-                                "img": "https://tse1-mm.cn.bing.net/th?id=OIP.H606NK3ea7jqqwCwHjlvPgHaEo&w=177&h=110&c=8&rs=1&qlt=90&pid=3.1&rm=2"
-                            },
-                            {
-                                "img": "https://tse1-mm.cn.bing.net/th?id=OIP.H606NK3ea7jqqwCwHjlvPgHaEo&w=177&h=110&c=8&rs=1&qlt=90&pid=3.1&rm=2"
-                            },
-                            {
-                                "img": "https://tse1-mm.cn.bing.net/th?id=OIP.H606NK3ea7jqqwCwHjlvPgHaEo&w=177&h=110&c=8&rs=1&qlt=90&pid=3.1&rm=2"
-                            }
-                        ]
-                    },
-                    {
-                        "title": "范家新村鱼塘",
-                        "members": 91,
-                        "num": 6,
-                        "produ": "想要宝贝置顶的可以私聊我",
-                        "destance": 418,
-                        "images": [
-                            {
-                                "img": "https://tse1-mm.cn.bing.net/th?id=OIP.H606NK3ea7jqqwCwHjlvPgHaEo&w=177&h=110&c=8&rs=1&qlt=90&pid=3.1&rm=2"
-                            },
-                            {
-                                "img": "https://tse1-mm.cn.bing.net/th?id=OIP.H606NK3ea7jqqwCwHjlvPgHaEo&w=177&h=110&c=8&rs=1&qlt=90&pid=3.1&rm=2"
-                            },
-                            {
-                                "img": "https://tse1-mm.cn.bing.net/th?id=OIP.H606NK3ea7jqqwCwHjlvPgHaEo&w=177&h=110&c=8&rs=1&qlt=90&pid=3.1&rm=2"
-                            }
-                        ]
-                    }
-                ]
             };
         },
 
