@@ -95,7 +95,7 @@ public class WxAuthController {
 
         // userInfo
         UserInfo userInfo = new UserInfo();
-        userInfo.setNickName(username);
+        userInfo.setNickName(user.getNickname());
         userInfo.setAvatarUrl(user.getAvatar());
 
         // token
@@ -488,7 +488,7 @@ public class WxAuthController {
         }
         String avatar = JacksonUtil.parseString(body, "avatar");
         Byte gender = JacksonUtil.parseByte(body, "gender");
-        String nickname = JacksonUtil.parseString(body, "nickname");
+        String nickname = JacksonUtil.parseString(body, "nickName");
 
         LitemallUser user = userService.findById(userId);
         if(!StringUtils.isEmpty(avatar)){

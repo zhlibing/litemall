@@ -80,16 +80,33 @@
                     console.log(res, '>>>>>storageUpload')
                     if (res.status === 200) {
                         if (res.data.errno == 0) {
-                            this.$toast({
-                                message: '上传成功',
-                                duration: 500
-                            })
+                            authProfile({avatar: res.data.data.url})
+                                .then(res1 => {
+                                    if (res1.status == 200) {
+                                        if (res1.data.errno == 0) {
+                                            this.avatar = res.data.data.url;
+                                            localStorage.setItem('avatar', res.data.data.url);
+                                            return this.$dialog.alert({message: '保存成功'});
+                                        }
+                                    }
+                                })
                         }
                     }
                 });
             },
             onSexConfirm(value, index) {
                 this.showSex = false;
+                authProfile({'gender': index.toString()})
+                    .then(res => {
+                        console.log(res)
+                        if (res.status == 200) {
+                            if (res.data.errno == 0) {
+                                this.gender = index;
+                                localStorage.setItem('gender', index);
+                                return this.$dialog.alert({message: '保存成功'});
+                            }
+                        }
+                    })
             },
             getUserInfo() {
                 authInfo().then(res => {
