@@ -72,6 +72,7 @@ export default {
   img {
     border: 0;
     border-radius: 50%;
+    object-fit: contain;
   }
 }
 </style>
