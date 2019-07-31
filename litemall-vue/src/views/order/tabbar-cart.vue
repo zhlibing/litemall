@@ -29,7 +29,7 @@
     <is-empty v-if="!goods.length">您的购物车空空如也~</is-empty>
 
     <van-submit-bar
-      style="bottom: 50px"
+      style="bottom: 0px"
       :price="totalPrice"
       :disabled="!checkedGoods.length"
       :buttonText="submitBarText"

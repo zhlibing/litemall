@@ -9,7 +9,7 @@ export default [
     },
     components: { 
       default: () => import('@/views/order/tabbar-cart'), 
-      tabbar: Tabbar 
+      // tabbar: Tabbar
     }
   },
   {
