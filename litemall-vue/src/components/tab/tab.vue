@@ -15,17 +15,18 @@
                 <div class="scroll" ref="scroll">
                     <div class="item">
                         <span @click="changeLottery(1)" :class="{selected:lotteryCode==1}">热门</span>
-                        <span @click="changeLottery(2)" :class="{selected:lotteryCode==2}">时时彩</span>
-                        <span @click="changeLottery(3)" :class="{selected:lotteryCode==3}">快三</span>
+                        <span @click="changeLottery(2)" :class="{selected:lotteryCode==2}">附近</span>
+                        <span @click="changeLottery(3)" :class="{selected:lotteryCode==3}">推荐</span>
                     </div>
                     <div class="item">
-                        <span @click="changeLottery(4)" :class="{selected:lotteryCode==4}">11选5</span>
-                        <span @click="changeLottery(5)" :class="{selected:lotteryCode==5}">低频彩</span>
-                        <span @click="changeLottery(6)" :class="{selected:lotteryCode==6}">PK10</span>
+                        <span @click="changeLottery(4)" :class="{selected:lotteryCode==4}">新手村</span>
+                        <span @click="changeLottery(5)" :class="{selected:lotteryCode==5}">入门</span>
+                        <span @click="changeLottery(6)" :class="{selected:lotteryCode==6}">进阶</span>
                     </div>
                     <div class="item">
-                        <span @click="changeLottery(7)" :class="{selected:lotteryCode==7}">PC蛋蛋</span>
-                        <span @click="changeLottery(8)" :class="{selected:lotteryCode==8}">三分彩</span>
+                        <span @click="changeLottery(7)" :class="{selected:lotteryCode==7}">高阶</span>
+                        <span @click="changeLottery(8)" :class="{selected:lotteryCode==8}">SS阶</span>
+                        <span @click="changeLottery(9)" :class="{selected:lotteryCode==9}">SSS阶</span>
                     </div>
                 </div>
             </div>

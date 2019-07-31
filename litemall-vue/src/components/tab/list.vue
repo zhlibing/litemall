@@ -6,7 +6,7 @@
             </div>
             <div class="item-info">
                 <div class="info-row">
-                    <p class="lottery-name">分分时时彩</p>
+                    <p class="lottery-name">春树鱼塘</p>
                     <img src="../../assets/images/right.png" class="arrow-right"/>
                 </div>
                 <div class="nums">
@@ -17,8 +17,8 @@
                     <span>1</span>
                 </div>
                 <div class="info-row">
-                    <span class="issue-no">距离第20170823210期截止还有：</span>
-                    <span class="item-cd">00:00:25</span>
+                    <span class="issue-no">累计奖金：</span>
+                    <span class="item-cd">￥1000.00</span>
                 </div>
             </div>
         </a>
@@ -26,7 +26,7 @@
             <div class="funs-list">
                 <div class="fun">
                     <img src="../../assets/images/trend.png" class="fun-logo"/>
-                    <span>号码走势</span>
+                    <span>头号玩家</span>
                 </div>
                 <div class="fun">
                     <img src="../../assets/images/rule.png" class="fun-logo"/>
@@ -52,7 +52,6 @@
 
     .lobby-item {
         height: 7.8125rem;
-        margin-top: .625rem;
         background-color: #fff;
         display: flex;
         -webkit-box-orient: vertical;
@@ -111,6 +110,7 @@
     }
 
     .lobby-item .item-content .item-info > .info-row {
+        margin-top: 10px;
         display: flex;
         -webkit-flex: 1;
         -ms-flex: 1;
@@ -130,6 +130,7 @@
     }
 
     .lobby-item .item-content .item-info .nums {
+        margin-top: -5px;
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
