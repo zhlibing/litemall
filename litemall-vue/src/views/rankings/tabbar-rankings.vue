@@ -1,7 +1,7 @@
 <template>
     <div class="root">
         <lottery-tab @onTabIndex="toTabIndex"></lottery-tab>
-        <lotteryList @onToLotteryIndex="toLotteryIndex"></lotteryList>
+        <lotteryList @onToLotteryIndex="toLotteryIndex" :itemClass="itemClass"></lotteryList>
     </div>
 </template>
 <script>
@@ -12,7 +12,15 @@
         components: {lotteryList, LotteryTab},
         data() {
             return {
-                a: 1
+                a: 1,
+                itemClass: {
+                    "actorId": 1,
+                    "actor": "吕艳婷",
+                    "actorEn": "Yanting Lv",
+                    "actorImg": "http://img5.mtime.cn/ph/2019/07/16/164144.93834954_1280X720X2.jpg",
+                    "roleName": "儿童哪吒",
+                    "roleImg": ""
+                },
             };
         },
         methods: {
@@ -20,6 +28,7 @@
                 this.$router.push({name: 'buyLotteryIndex', params: {lotteryCode: lotteryCode}})
             },
             toTabIndex(index) {
+                this.itemClass.roleName = this.itemClass.roleName+index;
                 console.log(index, '>>>>toLotteryIndex')
             }
         },

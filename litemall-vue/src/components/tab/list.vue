@@ -2,11 +2,11 @@
     <div class="lobby-item" @click="$emit('onToLotteryIndex',21)">
         <a class="item-content">
             <div class="lottery-logo">
-                <img src="../../assets/images/store_default.png">
+                <img :src="itemClass.actorImg" style="object-fit: cover">
             </div>
             <div class="item-info">
                 <div class="info-row">
-                    <p class="lottery-name">春树鱼塘</p>
+                    <p class="lottery-name">{{itemClass.roleName}}</p>
                     <img src="../../assets/images/right.png" class="arrow-right"/>
                 </div>
                 <div class="nums">
@@ -42,6 +42,9 @@
 </template>
 <script>
     export default {
+        props: {
+            itemClass: Object,
+        },
         methods: {}
     }
 </script>
