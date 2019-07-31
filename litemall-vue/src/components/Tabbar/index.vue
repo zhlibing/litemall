@@ -38,9 +38,9 @@ export default {
           info: ''
         },
         {
-          name: '购物车',
-          path: '/order',
-          pathName: 'cart',
+          name: '荣誉榜',
+          path: '/rankings',
+          pathName: 'rankings',
           icon: 'cart-full',
           dot: false,
           info: ''
