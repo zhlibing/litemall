@@ -51,6 +51,7 @@
     .marquee {
         margin-top: 1rem;
         padding-bottom: 1rem;
+        margin-left: 0.6rem;
     }
 
     .marquee .title {
