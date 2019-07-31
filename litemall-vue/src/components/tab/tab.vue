@@ -2,10 +2,14 @@
     <div class="tab">
         <div class="container">
             <span class="arrow left" @click="left">
-                <Icon type="chevron-left" :class="{'disable':a==0}"></Icon>
+                <img src="../../assets/images/right.png" :class="{'disable':a==0}"
+                     style="-moz-transform: rotate(180deg);
+                            -webkit-transform: rotate(180deg);
+                            transform: rotate(180deg);
+                            filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);">
             </span>
             <span class="arrow right" @click="right">
-                <Icon type="chevron-right" :class="{'disable':a==-200}"></Icon>
+                <img src="../../assets/images/right.png" :class="{'disable':a==-200}">
             </span>
             <div class="wrap">
                 <div class="scroll" ref="scroll">
@@ -82,6 +86,11 @@
                 transition: color .3s ease;
                 .disable {
                     color: rgba(0, 0, 0, .25)
+                }
+                img {
+                    margin-top: 5px;
+                    height: 20px;
+                    width: 10px;
                 }
             }
             .left {
