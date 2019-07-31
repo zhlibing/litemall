@@ -60,6 +60,7 @@
             },
             changeLottery(a) {
                 this.lotteryCode = a;
+                this.$emit('onTabIndex', a);
             }
         }
     }

@@ -1,6 +1,6 @@
 <template>
     <div class="root">
-        <lottery-tab></lottery-tab>
+        <lottery-tab @onTabIndex="toTabIndex"></lottery-tab>
         <lotteryList @onToLotteryIndex="toLotteryIndex"></lotteryList>
     </div>
 </template>
@@ -18,6 +18,9 @@
         methods: {
             toLotteryIndex(lotteryCode) {
                 this.$router.push({name: 'buyLotteryIndex', params: {lotteryCode: lotteryCode}})
+            },
+            toTabIndex(index) {
+                console.log(index, '>>>>toLotteryIndex')
             }
         },
 
