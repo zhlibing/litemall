@@ -9,7 +9,7 @@
                      style="height:230px">
             </van-swipe-item>
         </van-swipe>
-
+        <marquee :winUserListt='shopInfos.channel'></marquee>
         <div class="goods-channel">
             <div class="item"
                  @click="changeTabbar(channel)"
@@ -78,6 +78,16 @@
                 </van-cell-group>
             </div>
         </van-panel>
+
+        <div class="notice-area">
+            <img class="notice-icon" src="../../assets/images/alert_icon.png">
+            <div class="notice">
+                <div class="ui-marquee undefined" style="overflow:hidden">
+                    <span class="span" :style="{right:toright+'px',}" ref="notice">{{noticeContent}}</span>
+                </div>
+            </div>
+            <img class="notice-more" src="../../assets/images/more_icon.png" alt="">
+        </div>
 
         <van-panel>
             <van-grid clickable
@@ -213,6 +223,7 @@
     import Head from '@/components/head/Head'
     import Swiper from 'swiper'
     import 'swiper/dist/css/swiper.min.css'
+    import marquee from '@/components/head/marquee';
 
     import {
         List,
@@ -240,10 +251,16 @@
             return {
                 shopInfos: [],
                 isLoading: false,
+                toright: -300,
+                allright: 0,
+                noticeContent: 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssx'
             };
         },
 
         created() {
+            setInterval(() => {
+                this.toright++;
+            }, 50);
             this.initViews();
             this.$nextTick(() => {
                 let swiperBottom = this.$refs.swiperBottom;
@@ -257,6 +274,17 @@
                     }
                 })
             })
+        },
+
+        mounted() {
+            this.allright = this.$refs.notice.clientWidth;
+        },
+        watch: {
+            toright() {
+                if (this.toright == this.allright) {
+                    this.toright = -300;
+                }
+            }
         },
 
         methods: {
@@ -292,6 +320,7 @@
 
         components: {
             Head,
+            marquee,
             [Row.name]: Row,
             [Col.name]: Col,
             [Card.name]: Card,
@@ -502,6 +531,45 @@
     .van-coupon-item--disabled p,
     .van-coupon-item--disabled span {
         color: #969799;
+    }
+
+    .notice-area {
+        display: flex;
+        height: 2.0625rem;
+        border-bottom: .0625rem solid #ededed;
+        flex-direction: row;
+        align-items: center;
+        padding: 0 .375rem;
+        background-color: #fff;
+        border-radius: .625rem .625rem 0 0;
+    }
+
+    .notice-icon {
+        width: .9375rem;
+        height: .9375rem;
+    }
+
+    .notice {
+        flex: 1;
+        width: 91%;
+        height: 1.5rem;
+        padding: 0 .5rem;
+        display: flex;
+    }
+
+    .notice-more {
+        width: .75rem;
+        height: .75rem;
+    }
+
+    .span {
+        font-size: .8125rem;
+        color: #333;
+        line-height: 1.5rem;
+        white-space: nowrap;
+        position: relative;
+        right: 0;
+        display: inline-block;
     }
 
     .swiper {
