@@ -1,5 +1,6 @@
 <template>
   <div class="user_collect">
+    <appbar titleText="我的收藏"></appbar>
     <van-list v-model="loading"
               :finished="finished"
               :immediate-check="false"
@@ -31,6 +32,7 @@ import { collectList, collectAddOrDelete } from '@/api/api';
 import IsEmpty from '@/components/is-empty/';
 import { Card, Search, List } from 'vant';
 import scrollFixed from '@/mixin/scroll-fixed';
+import appbar from '@/components/head/appbar'
 
 export default {
   mixins: [scrollFixed],
@@ -76,6 +78,7 @@ export default {
   },
 
   components: {
+      appbar,
     [Search.name]: Search,
     [IsEmpty.name]: IsEmpty,
     [List.name]: List,

@@ -1,6 +1,7 @@
 <template>
   <div>
-    <van-nav-bar title="编辑地址" left-text="返回" left-arrow @click-left="goback"/>
+    <!--<van-nav-bar title="编辑地址" left-text="返回" left-arrow @click-left="goback"/>-->
+    <appbar titleText="编辑地址"></appbar>
     <van-address-edit
       style="background-color: #fff;"
       :areaList="areaList"
@@ -18,6 +19,7 @@ import { AddressEdit, NavBar } from 'vant';
 import areaList from './area.json';
 import { addressDetail, addressSave, addressDelete } from '@/api/api';
 import { removeLocalStorage } from '@/utils/local-storage';
+import appbar from '@/components/head/appbar'
 
 export default {
   name: 'address-edit',
@@ -59,6 +61,7 @@ export default {
   },
 
   components: {
+      appbar,
     [NavBar.name]: NavBar,
     [AddressEdit.name]: AddressEdit
   }

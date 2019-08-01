@@ -1,5 +1,6 @@
 <template>
   <div class="refund_list">
+    <appbar titleText="退款"></appbar>
     <van-tabs sticky :active="activeIndex" :swipe-threshold="5" @click="handleTabClick">
       <van-tab v-for="(tab, tabIndex) in tabsItem" :title="tab.name" :key="tabIndex">
         <van-list v-model="loading"
@@ -43,7 +44,7 @@
 
 <script>
 import { REFUND_LIST } from '@/api/api';
-
+import appbar from '@/components/head/appbar'
 import { Tab, Tabs, Panel, Card, List } from 'vant';
 
 const STATUS_TEXT = {
@@ -116,6 +117,7 @@ export default {
     }
   },
   components: {
+      appbar,
     [Tab.name]: Tab,
     [Tabs.name]: Tabs,
     [Panel.name]: Panel,

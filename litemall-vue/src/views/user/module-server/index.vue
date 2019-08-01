@@ -1,5 +1,6 @@
 <template>
   <div>
+    <appbar titleText="服务中心"></appbar>
     <van-cell-group>
       <van-cell title="联系客服" @click="showKefu = true" isLink></van-cell>
       <van-cell title="意见反馈" to="/user/feedback" isLink></van-cell>
@@ -21,6 +22,7 @@
 
 <script>
 import { Popup, Cell, CellGroup } from 'vant';
+import appbar from '@/components/head/appbar'
 
 export default {
   data() {
@@ -30,6 +32,7 @@ export default {
   },
 
   components: {
+      appbar,
     [Popup.name]: Popup,
     [Cell.name]: Cell, 
     [CellGroup.name]: CellGroup    

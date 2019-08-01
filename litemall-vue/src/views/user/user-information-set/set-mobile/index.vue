@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<appbar titleText="修改手机"></appbar>
 		<van-cell-group>
 			<van-field
 				label="登录密码"
@@ -41,7 +42,7 @@
 
 <script>
 import { authCaptcha } from '@/api/api';
-
+import appbar from '@/components/head/appbar'
 import { Field } from 'vant';
 
 export default {
@@ -84,6 +85,7 @@ export default {
   },
 
   components: {
+      appbar,
     [Field.name]: Field
   }
 };

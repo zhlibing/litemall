@@ -1,5 +1,6 @@
 <template>
     <div class="user_information">
+        <appbar titleText="个人信息"></appbar>
         <van-cell-group>
             <van-cell title="头像" class="cell_middle">
                 <van-uploader :afterRead="avatarAfterRead">
@@ -40,6 +41,7 @@
     import {getLocalStorage} from '@/utils/local-storage';
     import {authInfo, authLogout, authProfile, storageUpload} from '@/api/api';
     import {format} from '../../../utils/utime'
+    import appbar from '@/components/head/appbar'
 
     export default {
         data() {
@@ -128,6 +130,7 @@
         },
 
         components: {
+            appbar,
             [Button.name]: Button,
             [Uploader.name]: Uploader,
             [Picker.name]: Picker,

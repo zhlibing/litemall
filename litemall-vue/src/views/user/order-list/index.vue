@@ -1,5 +1,6 @@
 <template>
   <div class="order_list">
+    <appbar titleText="订单"></appbar>
     <van-tabs v-model="activeIndex"
               :swipe-threshold="5"
               @click="handleTabClick">
@@ -71,7 +72,8 @@
 <script>
 import { orderList, orderDelete, orderConfirm, orderCancel, orderRefund } from '@/api/api';
 import _ from 'lodash';
-import { Tab, Tabs, Panel, Card, List, Tag } from 'vant';
+import { Tab, Tabs, Panel, Card, List, Tag } from 'vant'
+import appbar from '@/components/head/appbar'
 
 export default {
   name: 'order-list',
@@ -179,6 +181,7 @@ export default {
     }
   },
   components: {
+      appbar,
     [Tab.name]: Tab,
     [Tabs.name]: Tabs,
     [Panel.name]: Panel,

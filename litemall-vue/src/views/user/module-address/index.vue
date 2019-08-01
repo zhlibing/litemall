@@ -1,6 +1,7 @@
 <template>
   <div>
-    <van-nav-bar title="收货地址" left-text="返回" left-arrow @click-left="goback"/>
+    <!--<van-nav-bar title="收货地址" left-text="返回" left-arrow @click-left="goback"/>-->
+    <appbar titleText="收货地址"></appbar>
     <van-address-list v-model="chosenAddressId" :list="addressList" @add="onAdd" @edit="onEdit" @select="onSelect"/>
   </div>
 </template>
@@ -9,6 +10,7 @@
 import { addressList, addressDetail, addressSave, addressDelete } from '@/api/api';
 import { AddressList, NavBar } from 'vant';
 import { setLocalStorage } from '@/utils/local-storage';
+import appbar from '@/components/head/appbar'
 
 export default {
   data() {
@@ -52,6 +54,7 @@ export default {
   },
 
   components: {
+      appbar,
     [NavBar.name]: NavBar,
     [AddressList.name]: AddressList 
   }

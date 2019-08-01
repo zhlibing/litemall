@@ -1,5 +1,6 @@
 <template>
   <div class="coupon_list">
+    <appbar titleText="优惠券"></appbar>
     <van-tabs v-model="activeIndex"
               type="card"
               sticky
@@ -44,6 +45,7 @@ import { couponMyList } from '@/api/api';
 
 import { Tab, Tabs, Panel, Card, List, CouponCell, CouponList } from 'vant';
 import _ from 'lodash';
+import appbar from '@/components/head/appbar'
 
 export default {
   name: 'coupon-list',
@@ -96,6 +98,7 @@ export default {
     }
   },
   components: {
+      appbar,
     [Tab.name]: Tab,
     [Tabs.name]: Tabs,
     [Panel.name]: Panel,

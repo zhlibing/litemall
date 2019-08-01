@@ -1,5 +1,6 @@
 <template>
     <div class="set_nickname">
+        <appbar titleText="修改昵称"></appbar>
         <van-cell-group>
             <van-field v-model="nickName" label="昵称"/>
         </van-cell-group>
@@ -14,6 +15,7 @@
 <script>
     import {authProfile} from '@/api/api';
     import {Field} from 'vant';
+    import appbar from '@/components/head/appbar'
 
     export default {
         data() {
@@ -49,6 +51,7 @@
         },
 
         components: {
+            appbar,
             [Field.name]: Field
         }
     };

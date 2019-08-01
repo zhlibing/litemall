@@ -1,5 +1,6 @@
 <template>
   <div>
+	  <appbar titleText="修改密码"></appbar>
     <van-cell-group>
 
       <van-field
@@ -38,6 +39,7 @@
 import { authCaptcha, authReset, authLogout } from '@/api/api';
 import { removeLocalStorage } from '@/utils/local-storage';
 import { Field } from 'vant';
+import appbar from '@/components/head/appbar'
 
 export default {
   data: () => ({
@@ -87,6 +89,7 @@ export default {
   },
 
   components: {
+      appbar,
     [Field.name]: Field
   }
 };
