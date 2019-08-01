@@ -5,6 +5,24 @@
             <img :src="avatar" alt="头像" width="55" height="55">
         </div>
         <div class="user_name">{{nickName}}</div>
+        <div class="count">
+            <div class="numbox" @click="">
+                <span class="num">{{'100'}}</span>
+                <span class="numname">访客数</span>
+            </div>
+            <div class="numbox">
+                <span class="num">{{'45'}}</span>
+                <span class="numname">被赞数</span>
+            </div>
+            <div class="numbox">
+                <span class="num">{{'23'}}</span>
+                <span class="numname">关注数</span>
+            </div>
+            <div class="numbox">
+                <span class="num">{{'123'}}</span>
+                <span class="numname">粉丝数</span>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -55,7 +73,7 @@
     .user_header {
         background-repeat: no-repeat;
         background-size: cover;
-        height: 130px;
+        height: 180px;
         text-align: center;
         color: #fff;
         padding-top: 30px;
@@ -84,5 +102,29 @@
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 1;
         overflow: hidden;
+    }
+
+    .count {
+        display: flex;
+        align-items: center;
+        margin-top: 30px;
+        .numbox {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 1.3333rem;
+            .num {
+                color: #ededed;
+                font-weight: 600;
+                font-size: 0.3rem;
+                margin-bottom: 0.06rem;
+            }
+            .numname {
+                color: #ffffff;
+                font-size: 0.3rem;
+            }
+        }
     }
 </style>
