@@ -1,78 +1,88 @@
 <template>
-  <div class="user_header" :style="{backgroundImage: `url(${background_image})`}">
-    <van-icon name="set" class="user_set" @click="toSetting"/>
-    <div class="user_avatar">
-      <img :src="avatar" alt="头像" width="55" height="55">
+    <div class="user_header" :style="{backgroundImage: `url(${background_image})`}">
+        <van-icon name="set" class="user_set" @click="toSetting"/>
+        <div class="user_avatar">
+            <img :src="avatar" alt="头像" width="55" height="55">
+        </div>
+        <div class="user_name">{{nickName}}</div>
     </div>
-    <div>{{nickName}}</div>
-  </div>
 </template>
 
 <script>
-import avatar_default from '@/assets/images/avatar_default.png';
-import bg_default from '@/assets/images/user_head_bg.png';
-import { getLocalStorage } from '@/utils/local-storage';
+    import avatar_default from '@/assets/images/avatar_default.png';
+    import bg_default from '@/assets/images/user_head_bg.png';
+    import {getLocalStorage} from '@/utils/local-storage';
 
-export default {
-  name: 'user-header',
+    export default {
+        name: 'user-header',
 
-  props: {
-    isLogin: {
-      type: Boolean,
-      default: false
-    }
-  },
+        props: {
+            isLogin: {
+                type: Boolean,
+                default: false
+            }
+        },
 
-  data() {
-    return {
-      nickName: '昵称',
-      avatar: avatar_default,
-      background_image: bg_default
+        data() {
+            return {
+                nickName: '昵称',
+                avatar: avatar_default,
+                background_image: bg_default
+            };
+        },
+
+        activated() {
+            this.getUserInfo();
+        },
+
+        methods: {
+            getUserInfo() {
+                const infoData = getLocalStorage(
+                    'nickName',
+                    'avatar'
+                );
+                this.avatar = infoData.avatar || avatar_default;
+                this.nickName = infoData.nickName || '昵称';
+            },
+            toSetting() {
+                this.$router.push({name: 'user-information'});
+            }
+        }
     };
-  },
-
-  activated() {
-    this.getUserInfo();
-  },
-
-  methods: {
-    getUserInfo() {
-      const infoData = getLocalStorage(
-        'nickName',
-        'avatar'
-      );
-      this.avatar = infoData.avatar || avatar_default;
-      this.nickName = infoData.nickName || '昵称';
-    },
-    toSetting() {
-      this.$router.push({ name: 'user-information' });
-    }
-  }
-};
 </script>
 
 <style lang="scss" scoped>
-.user_header {
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 130px;
-  text-align: center;
-  color: #fff;
-  padding-top: 30px;
-}
+    .user_header {
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 130px;
+        text-align: center;
+        color: #fff;
+        padding-top: 30px;
+    }
 
-.user_set {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 24px;
-}
-.user_avatar {
-  margin-bottom: 10px;
-  img {
-    border: 0;
-    border-radius: 50%;
-    object-fit: contain;
-  }
-}
+    .user_set {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+    }
+
+    .user_avatar {
+        margin-bottom: 10px;
+        img {
+            border: 0;
+            border-radius: 50%;
+            object-fit: contain;
+        }
+    }
+
+    .user_name {
+        margin-left: 100px;
+        margin-right: 100px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+    }
 </style>
