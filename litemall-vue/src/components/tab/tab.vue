@@ -70,7 +70,7 @@
         width: 100%;
         height: 2.75rem;
         position: relative;
-        border-bottom: 1px solid #d9d9d9;
+        border-bottom: 1px solid #ededed;
         background-color: #ffffff;
         .container {
             padding: 0 32px;
