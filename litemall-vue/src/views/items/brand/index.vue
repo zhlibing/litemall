@@ -1,5 +1,6 @@
 <template>
   <div class="goods_brand">
+    <appbar titleText="品牌商"></appbar>
     <div class="brand-info">
       <div class="name">
         <img class="img"
@@ -34,6 +35,7 @@
 <script>
 import { brandDetail, goodsList } from '@/api/api';
 import { Card, Row, Col } from 'vant';
+import appbar from '@/components/head/appbar'
 
 export default {
   props: {
@@ -70,6 +72,7 @@ export default {
   },
 
   components: {
+      appbar,
     [Card.name]: Card,
     [Row.name]: Row,
     [Col.name]: Col

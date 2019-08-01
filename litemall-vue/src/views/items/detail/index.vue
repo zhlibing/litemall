@@ -1,5 +1,12 @@
 <template>
     <div class="item_detail">
+        <appbar :titleText="goods.info.name"
+                :left="left_url"
+                :right="right_url"
+                :overrideleftclick="true"
+                @leftclick="goBack"
+                @rightclick="share"
+        ></appbar>
         <van-swipe :autoplay="3000">
             <van-swipe-item v-for="(image, index) in goods.info.gallery" :key="index">
                 <img v-lazy="image" width="100%">
@@ -119,6 +126,9 @@
     import popupProps from './popup-props';
     import _ from 'lodash';
     import {Tab, Tabs, Panel, Card, List, CouponCell, CouponList, ImagePreview} from 'vant';
+    import appbar from '@/components/head/appbar'
+    import goback from '../../../assets/images/返回.png'
+    import share from '../../../assets/images/加.png'
 
     export default {
         props: {
@@ -162,7 +172,9 @@
                     }
                 },
                 propsPopup: false,
-                showSku: false
+                showSku: false,
+                left_url: goback,
+                right_url: share,
             };
         },
 
@@ -181,6 +193,12 @@
         },
 
         methods: {
+            goBack() {
+                this.$router.back(-1)
+            },
+            share() {
+                console.log('share')
+            },
             previewimage(list, index) {
                 ImagePreview(list, index);
             },
@@ -398,6 +416,9 @@
         },
 
         components: {
+            appbar,
+            goback,
+            share,
             [Popup.name]: Popup,
             [Swipe.name]: Swipe,
             [SwipeItem.name]: SwipeItem,
