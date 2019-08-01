@@ -7,7 +7,7 @@
         <div class="winnList">
             <div class="listCon" :style="{marginTop:totop+'px',}" ref="listCon">
                 <div class="list" v-for="(item,index) in winUserListt" :key="index">
-                    <div class="name">{{item.name.slice(0,3)}}***</div>
+                    <div class="name">{{item.name.slice(0, 3)}}***</div>
                     <div style="flex: 1 1 0%;"></div>
                     <div class="lottery">
                         购买<span :lotteryCode="item.name">{{item.name}}</span>
@@ -50,7 +50,7 @@
 <style scoped>
     .marquee {
         margin-top: 1rem;
-        padding-bottom: 1rem;
+        padding-bottom: 0.5rem;
         margin-left: 0.6rem;
         margin-right: 0.6rem;
     }

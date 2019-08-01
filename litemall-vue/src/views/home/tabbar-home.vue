@@ -165,7 +165,7 @@
             <div class="swiper-pagination"></div>
         </div>
 
-        <van-panel>
+        <van-panel style="margin-top: -27px">
             <van-card :thumb-link="goDetail(groupGood.id)"
                       v-for="(groupGood ,index) in shopInfos.hotGoodsList"
                       :key="index"
@@ -348,7 +348,7 @@
     }
 
     .van-panel {
-        margin-top: 20px;
+        margin-top: 5px;
     }
 
     .goods-channel {
@@ -574,8 +574,8 @@
 
     .swiper {
         width: 100%;
-        margin-top: 20px;
-        margin-bottom: -20px;
+        margin-top: 5px;
+        margin-bottom: -00px;
         .item {
             height: auto;
             padding: 0.4rem 1rem;

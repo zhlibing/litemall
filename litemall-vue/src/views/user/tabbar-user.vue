@@ -44,7 +44,7 @@ export default {
 <style scoped lang="scss">
 .tabbar-user {
   > div {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
   &__quit {
     border: 0;
