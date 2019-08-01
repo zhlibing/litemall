@@ -1,5 +1,6 @@
 <template>
   <div class="tab-cart">
+    <appbar titleText="购物车"></appbar>
     <div class="editor_head" v-show="goods.length">
       <van-icon :name="isEditor ? 'success' : 'editor'"/>
       <span @click="isEditor = !isEditor">{{isEditor ? '完成' : '编辑'}}</span>
@@ -46,6 +47,7 @@
 import { Checkbox, CheckboxGroup, Card, SubmitBar, Stepper, Tag } from 'vant';
 import { cartList, cartUpdate, cartChecked, cartDelete} from '@/api/api';
 import { setLocalStorage } from '@/utils/local-storage';
+import appbar from '@/components/head/appbar'
 
 import isEmpty from '@/components/is-empty/';
 import _ from 'lodash';
@@ -207,6 +209,7 @@ export default {
   },
 
   components: {
+      appbar,
     [Card.name]: Card,
     [Tag.name]: Tag,
     [Stepper.name]: Stepper,
