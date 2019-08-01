@@ -1,5 +1,6 @@
 <template>
   <div class="goods_topic">
+    <appbar titleText="专题详情"></appbar>
     <div class="topic-detail"
          v-html="topic.content">
     </div>
@@ -23,6 +24,7 @@
 <script>
 import { topicDetail, topicRelated } from '@/api/api';
 import { Card, Row, Col } from 'vant';
+import appbar from '@/components/head/appbar'
 
 export default {
   props: {
@@ -61,6 +63,7 @@ export default {
   },
 
   components: {
+      appbar,
     [Card.name]: Card,
     [Row.name]: Row,
     [Col.name]: Col

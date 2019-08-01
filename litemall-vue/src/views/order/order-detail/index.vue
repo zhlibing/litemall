@@ -1,5 +1,6 @@
 <template>
   <div class="order_detail">
+    <appbar titleText="订单详情"></appbar>
     <div class="order-goods">
       <van-card v-for="item in orderGoods"
                 :key="item.id"
@@ -93,6 +94,7 @@ import {
   orderCancel,
   orderRefund
 } from '@/api/api';
+import appbar from '@/components/head/appbar'
 
 export default {
   data() {
@@ -177,6 +179,7 @@ export default {
   },
 
   components: {
+      appbar,
     [Dialog.name]: Dialog,
     [CellGroup.name]: CellGroup,
     [Cell.name]: Cell,

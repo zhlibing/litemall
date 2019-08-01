@@ -1,5 +1,6 @@
 <template>
   <div class="goods_hot">
+    <appbar titleText="热门"></appbar>
     <div class="banner">
       <div class="title">大家都在买</div>
     </div>
@@ -27,6 +28,7 @@
 import { goodsList } from '@/api/api';
 import { Card, List } from 'vant';
 import scrollFixed from '@/mixin/scroll-fixed';
+import appbar from '@/components/head/appbar'
 
 export default {
   mixins: [scrollFixed],
@@ -69,6 +71,7 @@ export default {
   },
 
   components: {
+      appbar,
     [List.name]: List,
     [Card.name]: Card
   }

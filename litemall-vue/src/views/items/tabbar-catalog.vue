@@ -1,5 +1,6 @@
 <template>
   <div class="tab_class">
+    <appbar titleText="分类列表"></appbar>
     <div class="tal_class_searchBox">
       <van-search placeholder="点击前往搜索"/>
       <div class="tal_class_searchMask" @click="$router.push({ name: 'search' })"></div>
@@ -37,7 +38,7 @@
 
 <script>
 import { catalogList, catalogCurrent } from '@/api/api';
-
+import appbar from '@/components/head/appbar'
 import { Search } from 'vant';
 
 export default {
@@ -65,7 +66,7 @@ export default {
     changeCatalog(id) {
       catalogCurrent({ id: id}).then(res => {
         let data = res.data.data;
-        this.currentCategory = data.currentCategory;        
+        this.currentCategory = data.currentCategory;
         this.currentSubCategoryList = data.currentSubCategory;
       });
     },
@@ -78,6 +79,7 @@ export default {
     }
   },
   components: {
+      appbar,
     [Search.name]: Search
   }
 };
@@ -93,7 +95,7 @@ export default {
 }
 
 .height-fix {
-  padding-bottom: 42px;
+  padding-bottom: 0px;
 }
 
 .tal_class_searchBox {
@@ -149,7 +151,7 @@ export default {
     background-color: #fff;
     border-left: 2px solid $red;
     color: $red;
-  }  
+  }
 }
 .class_tree_content {
   margin-left: 100px;

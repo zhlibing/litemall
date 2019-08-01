@@ -1,5 +1,6 @@
 <template>
   <div class="goods_groupon">
+    <appbar titleText="团购"></appbar>
     <div class="banner">
       <div class="title">团购列表</div>
     </div>
@@ -38,6 +39,7 @@
 import { grouponList } from '@/api/api';
 import { Card, Tag, List } from 'vant';
 import scrollFixed from '@/mixin/scroll-fixed';
+import appbar from '@/components/head/appbar'
 
 export default {
   mixins: [scrollFixed],
@@ -79,6 +81,7 @@ export default {
   },
 
   components: {
+      appbar,
     [List.name]: List,
     [Tag.name]: Tag,
     [Card.name]: Card

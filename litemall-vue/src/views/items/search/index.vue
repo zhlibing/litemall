@@ -1,5 +1,6 @@
 <template>
   <div class="item_search">
+    <appbar titleText="搜索"></appbar>
     <form action="/search"
           @submit="disabledSubmit">
       <van-search placeholder="请输入商品名称"
@@ -56,6 +57,7 @@
 import { Card, Search, Tag, List } from 'vant';
 import { goodsList } from '@/api/api';
 import IsEmpty from '@/components/is-empty/';
+import appbar from '@/components/head/appbar'
 
 export default {
   data() {
@@ -149,6 +151,7 @@ export default {
     this.wordHistory = this.getKeyWordHistory();
   },
   components: {
+      appbar,
     [Search.name]: Search,
     [Card.name]: Card,
     [Tag.name]: Tag,

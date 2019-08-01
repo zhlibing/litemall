@@ -1,5 +1,6 @@
 <template>
   <div class="goods_topic_list">
+    <appbar titleText="专题列表"></appbar>
     <van-list v-model="loading"
               :finished="finished"
               :immediate-check="false"
@@ -31,6 +32,7 @@
 <script>
 import { topicList } from '@/api/api';
 import { List } from 'vant';
+import appbar from '@/components/head/appbar'
 
 export default {
   data() {
@@ -70,6 +72,7 @@ export default {
   },
 
   components: {
+      appbar,
     [List.name]: List
   }
 };

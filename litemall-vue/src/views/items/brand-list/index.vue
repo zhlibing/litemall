@@ -1,5 +1,6 @@
 <template>
     <div class="goods_brand_list">
+        <appbar titleText="品牌"></appbar>
         <van-pull-refresh v-model="loading" @refresh="onRefresh">
             <van-list v-model="loading"
                       :finished="finished"
@@ -33,6 +34,7 @@
     import {brandList} from '@/api/api';
     import {PullRefresh, List} from 'vant';
     import Vue from 'vue'
+    import appbar from '@/components/head/appbar'
 
     Vue.use(PullRefresh)
     export default {
@@ -79,6 +81,7 @@
         },
 
         components: {
+            appbar,
             [List.name]: List
         }
     };
