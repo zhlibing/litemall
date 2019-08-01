@@ -20,7 +20,7 @@
     </nav>
 </template>
 <script>
-    import goback from '../../assets/images/返回.png'
+    import goback from '../../assets/images/goback.png'
 
     export default {
         props: {

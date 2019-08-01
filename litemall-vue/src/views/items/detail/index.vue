@@ -127,8 +127,8 @@
     import _ from 'lodash';
     import {Tab, Tabs, Panel, Card, List, CouponCell, CouponList, ImagePreview} from 'vant';
     import appbar from '@/components/head/appbar'
-    import goback from '../../../assets/images/返回.png'
-    import share from '../../../assets/images/加.png'
+    import goback from '../../../assets/images/goback.png'
+    import share from '../../../assets/images/add.png'
 
     export default {
         props: {
