@@ -69,7 +69,7 @@ export default {
       this.categoryId = this.navList[index].id;
       this.$router.replace({
         name: 'category',
-        query: { itemClass: this.categoryId }
+        query: { itemClass: this.categoryId ,channelname:this.channelname}
       });
       this.init();
     },
