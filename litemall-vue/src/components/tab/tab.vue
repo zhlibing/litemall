@@ -68,9 +68,10 @@
 <style lang="scss" scoped>
     .tab {
         width: 100%;
-        height: 36px;
+        height: 2.75rem;
         position: relative;
         border-bottom: 1px solid #d9d9d9;
+        background-color: #ffffff;
         .container {
             padding: 0 32px;
             height: 100%;
@@ -90,7 +91,7 @@
                     color: rgba(0, 0, 0, .25)
                 }
                 img {
-                    margin-top: 5px;
+                    margin-top: 10px;
                     height: 20px;
                     width: 10px;
                 }

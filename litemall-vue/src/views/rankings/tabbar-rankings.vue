@@ -37,6 +37,6 @@
 </script>
 <style scoped>
     .root {
-        background: #F5F5F9;
+        background: #f7f7f7;
     }
 </style>

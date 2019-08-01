@@ -182,6 +182,7 @@
         display: flex;
         height: 2.25rem;
         padding: .375rem;
+        background-color: #ffffff;
     }
 
     .lobby-item .funs-wrap .funs-list,
