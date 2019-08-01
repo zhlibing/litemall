@@ -103,7 +103,10 @@
     .titleText {
         font-size: 1.25rem;
         color: #000000;
-        white-space: nowrap;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
     }
 
     .right {
