@@ -99,6 +99,8 @@ export default {
         goodsId: item.goodsId,
         id: item.id,
         productId: item.productId
+      }).then(res => {
+          console.log(res)
       });
     },
     init() {
