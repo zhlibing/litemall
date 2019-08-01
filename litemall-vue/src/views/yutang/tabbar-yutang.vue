@@ -430,7 +430,7 @@
         }
 
         .bottom2 {
-            margin-bottom: 2rem;
+            margin-bottom: 0.1rem;
         }
     }
 </style>
