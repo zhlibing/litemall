@@ -307,7 +307,7 @@
                     let categoryId = res.data.data.currentCategory.id;
                     this.$router.replace({
                         name: 'category',
-                        query: {itemClass: categoryId}
+                        query: {itemClass: categoryId, channelname: o.name}
                     });
                 });
             },

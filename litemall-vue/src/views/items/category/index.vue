@@ -1,5 +1,6 @@
 <template>
   <div class="item_list">
+    <appbar :titleText="channelname"></appbar>
     <van-tabs v-model="navActive"
               @click="handleTabClick">
       <van-tab v-for="(nav, index) in navList"
@@ -32,14 +33,16 @@
 <script>
 import { goodsCategory, goodsList } from '@/api/api';
 import { Card, List, Tab, Tabs } from 'vant';
+import appbar from '@/components/head/appbar'
 
 export default {
   name: 'Item-list',
   props: {
     itemClass: {
       type: [String, Number],
-      default: ''
-    }
+      default: '',
+    },
+      channelname:String
   },
 
   data() {
@@ -110,6 +113,7 @@ export default {
   },
 
   components: {
+      appbar,
     [List.name]: List,
     [Card.name]: Card,
     [Tab.name]: Tab,
