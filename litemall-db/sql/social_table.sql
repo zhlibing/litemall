@@ -290,6 +290,48 @@ CREATE TABLE `litemall_question` (
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='提问表';
 
+INSERT INTO `litemall_question` VALUES (
+'1',
+'1',
+'哪儿有鱼钓',
+'附近找了好久了，都没有发现可以野钓的地方，请问好心人，哪儿可以野钓啊？',
+'0',
+'0',
+'["http://yanxuan.nosdn.127.net/4eb09e08ac9de543d2291d27a6be0b54.jpg", "http://yanxuan.nosdn.127.net/0c9eb81c7594dbe42802ff1ebbece51a.jpg", "http://yanxuan.nosdn.127.net/8cfc7b6bfd28687ab3399da08e5ba61b.jpg", "http://yanxuan.nosdn.127.net/b98cfd7f197b62abd1679321eae253a6.jpg"]',
+'0',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32',
+'0'
+);
+
+INSERT INTO `litemall_question` VALUES (
+'2',
+'1',
+'哪儿有好吃的',
+'我是一个吃货，喜欢看吃货驾到，可是方圆百里都已经吃遍了，有没有更多推荐的好吃的？',
+'0',
+'0',
+'["http://yanxuan.nosdn.127.net/4eb09e08ac9de543d2291d27a6be0b54.jpg", "http://yanxuan.nosdn.127.net/0c9eb81c7594dbe42802ff1ebbece51a.jpg", "http://yanxuan.nosdn.127.net/8cfc7b6bfd28687ab3399da08e5ba61b.jpg", "http://yanxuan.nosdn.127.net/b98cfd7f197b62abd1679321eae253a6.jpg"]',
+'0',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32',
+'0'
+);
+
+INSERT INTO `litemall_question` VALUES (
+'3',
+'1',
+'哪儿有好玩的',
+'我喜欢泡吧、美女、香车，有没有相同兴趣的，加个好友一起hi梵天~快到碗里来~',
+'0',
+'0',
+'["http://yanxuan.nosdn.127.net/4eb09e08ac9de543d2291d27a6be0b54.jpg", "http://yanxuan.nosdn.127.net/0c9eb81c7594dbe42802ff1ebbece51a.jpg", "http://yanxuan.nosdn.127.net/8cfc7b6bfd28687ab3399da08e5ba61b.jpg", "http://yanxuan.nosdn.127.net/b98cfd7f197b62abd1679321eae253a6.jpg"]',
+'0',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32',
+'0'
+);
+
 DROP TABLE IF EXISTS `litemall_question_answer`;
 CREATE TABLE `litemall_question_answer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
