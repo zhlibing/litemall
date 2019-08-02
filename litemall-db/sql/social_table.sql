@@ -263,7 +263,7 @@ CREATE TABLE `litemall_circle` (
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='朋友圈表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='动态/朋友圈表';
 
 DROP TABLE IF EXISTS `litemall_circle_replay`;
 CREATE TABLE `litemall_circle_replay` (
@@ -339,6 +339,18 @@ CREATE TABLE `litemall_ad_cost_time` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='广告时间常量';
 
+DROP TABLE IF EXISTS `litemall_ad_market`;
+CREATE TABLE `litemall_ad_market` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cost_time` int(11) NOT NULL COMMENT '回答内容',
+  `fee` int(11) NOT NULL COMMENT '回答内容',
+  `type` tinyint(3) NOT NULL DEFAULT '0' COMMENT '类型',
+  `status` smallint(6) DEFAULT '0' COMMENT '状态，如果是0则是正常可用；如果是1则是过期; 如果是2则是下架。',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='广告市场';
+
 DROP TABLE IF EXISTS `litemall_ad_rent`;
 CREATE TABLE `litemall_ad_rent` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -355,7 +367,7 @@ CREATE TABLE `litemall_ad_rent` (
   PRIMARY KEY (`id`),
   KEY `target_id` (`target_id`),
   KEY `cost_time_id` (`cost_time_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='渠道逻辑关系';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='广告出租';
 
 DROP TABLE IF EXISTS `litemall_obj_type`;
 CREATE TABLE `litemall_obj_type` (
@@ -365,5 +377,70 @@ CREATE TABLE `litemall_obj_type` (
   `update_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='类型常量';
-
+INSERT INTO `litemall_obj_type` VALUES (
+'1',
+'商品',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32'
+);
+INSERT INTO `litemall_obj_type` VALUES (
+'2',
+'专题',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32'
+);
+INSERT INTO `litemall_obj_type` VALUES (
+'3',
+'用户',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32'
+);
+INSERT INTO `litemall_obj_type` VALUES (
+'4',
+'动态',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32'
+);
+INSERT INTO `litemall_obj_type` VALUES (
+'5',
+'鱼塘',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32'
+);
+INSERT INTO `litemall_obj_type` VALUES (
+'6',
+'问答',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32'
+);
+INSERT INTO `litemall_obj_type` VALUES (
+'7',
+'群组',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32'
+);
+INSERT INTO `litemall_obj_type` VALUES (
+'8',
+'活动',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32'
+);
+INSERT INTO `litemall_obj_type` VALUES (
+'9',
+'品牌',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32'
+);
+INSERT INTO `litemall_obj_type` VALUES (
+'10',
+'订单',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32'
+);
+INSERT INTO `litemall_obj_type` VALUES (
+'11',
+'外链',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32'
+);
 -- ////circle/scatter/ad_rent/擦亮-刷新
