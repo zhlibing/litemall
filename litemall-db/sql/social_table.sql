@@ -75,8 +75,8 @@ CREATE TABLE `litemall_group` (
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='群组表';
 
-DROP TABLE IF EXISTS `litemall_user_group`;
-CREATE TABLE `litemall_user_group` (
+DROP TABLE IF EXISTS `litemall_group_user`;
+CREATE TABLE `litemall_group_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
   `group_id` int(11) NOT NULL DEFAULT '0' COMMENT '群组ID',
@@ -117,14 +117,14 @@ DROP TABLE IF EXISTS `litemall_vote`;
 CREATE TABLE `litemall_vote` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
-  `vote_user_id` int(11) NOT NULL DEFAULT '0' COMMENT '被投票的用户ID',
+  `voted_user_id` int(11) NOT NULL DEFAULT '0' COMMENT '被投票的用户ID',
   `activity_id` int(11) NOT NULL DEFAULT '0' COMMENT '活动ID',
   `type` tinyint(3) NOT NULL DEFAULT '0' COMMENT '类型',
   `vote_time` datetime DEFAULT NULL COMMENT '创建时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
-  KEY `vote_user_id` (`vote_user_id`),
+  KEY `voted_user_id` (`voted_user_id`),
   KEY `activity_id` (`activity_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='投票表';
 
@@ -154,8 +154,8 @@ CREATE TABLE `litemall_activity` (
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='活动表';
 
-DROP TABLE IF EXISTS `litemall_user_activity`;
-CREATE TABLE `litemall_user_activity` (
+DROP TABLE IF EXISTS `litemall_activity_user`;
+CREATE TABLE `litemall_activity_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
   `activity_id` int(11) NOT NULL DEFAULT '0' COMMENT '活动ID',
@@ -192,8 +192,8 @@ CREATE TABLE `litemall_fish_ponds` (
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='鱼塘表';
 
-DROP TABLE IF EXISTS `litemall_user_fish_ponds`;
-CREATE TABLE `litemall_user_fish_ponds` (
+DROP TABLE IF EXISTS `litemall_fish_ponds_user`;
+CREATE TABLE `litemall_fish_ponds_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
   `fish_ponds_id` int(11) NOT NULL DEFAULT '0' COMMENT '活动ID',
@@ -235,8 +235,8 @@ CREATE TABLE `litemall_question_answer` (
   KEY `question_id` (`question_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='回答逻辑表';
 
-DROP TABLE IF EXISTS `litemall_user_reply_answer`;
-CREATE TABLE `litemall_user_reply_answer` (
+DROP TABLE IF EXISTS `litemall_question_reply_answer`;
+CREATE TABLE `litemall_question_reply_answer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
   `answer_id` int(11) NOT NULL DEFAULT '0' COMMENT '活动ID',
