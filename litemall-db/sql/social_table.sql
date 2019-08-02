@@ -329,4 +329,41 @@ CREATE TABLE `litemall_channel_phone` (
   KEY `channel_id` (`channel_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='渠道逻辑关系';
 
--- ////circle/scatter
+DROP TABLE IF EXISTS `litemall_ad_cost_time`;
+CREATE TABLE `litemall_ad_cost_time` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cost_time` int(11) NOT NULL COMMENT '回答内容',
+  `fee` int(11) NOT NULL COMMENT '回答内容',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='广告时间常量';
+
+DROP TABLE IF EXISTS `litemall_ad_rent`;
+CREATE TABLE `litemall_ad_rent` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `target_id` int(11) NOT NULL COMMENT '类型',
+  `cost_time_id` int(11) NOT NULL COMMENT '回答内容',
+  `type` tinyint(3) NOT NULL DEFAULT '0' COMMENT '类型',
+  `content` varchar(100) NOT NULL COMMENT '回答内容',
+  `pic_url` varchar(255) NOT NULL COMMENT '背景图',
+  `link_url` varchar(255) NOT NULL COMMENT '背景图',
+  `position` tinyint(3) NOT NULL COMMENT '回答内容',
+  `status` smallint(6) DEFAULT '0' COMMENT '状态，如果是0则是正常可用；如果是1则是过期; 如果是2则是下架。',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `target_id` (`target_id`),
+  KEY `cost_time_id` (`cost_time_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='渠道逻辑关系';
+
+DROP TABLE IF EXISTS `litemall_obj_type`;
+CREATE TABLE `litemall_obj_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL COMMENT '回答内容',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='广告时间常量';
+
+-- ////circle/scatter/ad_rent/擦亮-刷新
