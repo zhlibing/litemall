@@ -76,6 +76,66 @@ CREATE TABLE `litemall_group` (
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='群组表';
 
+INSERT INTO `litemall_group` VALUES (
+'1',
+'1',
+'20',
+'0',
+'0',
+'1',
+'合肥万达交友群',
+'["http://yanxuan.nosdn.127.net/4eb09e08ac9de543d2291d27a6be0b54.jpg", "http://yanxuan.nosdn.127.net/0c9eb81c7594dbe42802ff1ebbece51a.jpg", "http://yanxuan.nosdn.127.net/8cfc7b6bfd28687ab3399da08e5ba61b.jpg", "http://yanxuan.nosdn.127.net/b98cfd7f197b62abd1679321eae253a6.jpg"]',
+'1',
+'1',
+'0',
+'0',
+'0',
+'1',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32',
+'0'
+);
+
+INSERT INTO `litemall_group` VALUES (
+'2',
+'1',
+'20',
+'0',
+'0',
+'1',
+'上海东方门主群',
+'["http://yanxuan.nosdn.127.net/4eb09e08ac9de543d2291d27a6be0b54.jpg", "http://yanxuan.nosdn.127.net/0c9eb81c7594dbe42802ff1ebbece51a.jpg", "http://yanxuan.nosdn.127.net/8cfc7b6bfd28687ab3399da08e5ba61b.jpg", "http://yanxuan.nosdn.127.net/b98cfd7f197b62abd1679321eae253a6.jpg"]',
+'1',
+'1',
+'0',
+'0',
+'0',
+'1',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32',
+'0'
+);
+
+INSERT INTO `litemall_group` VALUES (
+'3',
+'1',
+'20',
+'0',
+'0',
+'1',
+'北京鸟巢群',
+'["http://yanxuan.nosdn.127.net/4eb09e08ac9de543d2291d27a6be0b54.jpg", "http://yanxuan.nosdn.127.net/0c9eb81c7594dbe42802ff1ebbece51a.jpg", "http://yanxuan.nosdn.127.net/8cfc7b6bfd28687ab3399da08e5ba61b.jpg", "http://yanxuan.nosdn.127.net/b98cfd7f197b62abd1679321eae253a6.jpg"]',
+'1',
+'1',
+'0',
+'0',
+'0',
+'1',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32',
+'0'
+);
+
 DROP TABLE IF EXISTS `litemall_group_user`;
 CREATE TABLE `litemall_group_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -155,6 +215,75 @@ CREATE TABLE `litemall_activity` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='活动表';
+
+INSERT INTO `litemall_activity` VALUES (
+'1',
+'1',
+'7+1鱼王比赛',
+'7条10斤大青鱼+1条20斤鱼王草鱼，钓得者奖励500元。',
+'1',
+'100',
+'20',
+'10',
+'0',
+'0',
+'1',
+'0',
+'["http://yanxuan.nosdn.127.net/4eb09e08ac9de543d2291d27a6be0b54.jpg", "http://yanxuan.nosdn.127.net/0c9eb81c7594dbe42802ff1ebbece51a.jpg", "http://yanxuan.nosdn.127.net/8cfc7b6bfd28687ab3399da08e5ba61b.jpg", "http://yanxuan.nosdn.127.net/b98cfd7f197b62abd1679321eae253a6.jpg"]',
+'1',
+'0',
+'1',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32',
+'0'
+);
+
+INSERT INTO `litemall_activity` VALUES (
+'2',
+'1',
+'儿童节亲子垂钓',
+'儿童节带着家人和宝宝，来这里体验不一样的垂钓和户外亲子乐趣吧',
+'1',
+'100',
+'20',
+'10',
+'0',
+'0',
+'1',
+'0',
+'["http://yanxuan.nosdn.127.net/4eb09e08ac9de543d2291d27a6be0b54.jpg", "http://yanxuan.nosdn.127.net/0c9eb81c7594dbe42802ff1ebbece51a.jpg", "http://yanxuan.nosdn.127.net/8cfc7b6bfd28687ab3399da08e5ba61b.jpg", "http://yanxuan.nosdn.127.net/b98cfd7f197b62abd1679321eae253a6.jpg"]',
+'1',
+'0',
+'1',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32',
+'0'
+);
+
+INSERT INTO `litemall_activity` VALUES (
+'3',
+'1',
+'中秋大鱼海棠',
+'钓得海棠标记的大鱼者，免费带走，不谢~',
+'1',
+'100',
+'20',
+'10',
+'0',
+'0',
+'1',
+'0',
+'["http://yanxuan.nosdn.127.net/4eb09e08ac9de543d2291d27a6be0b54.jpg", "http://yanxuan.nosdn.127.net/0c9eb81c7594dbe42802ff1ebbece51a.jpg", "http://yanxuan.nosdn.127.net/8cfc7b6bfd28687ab3399da08e5ba61b.jpg", "http://yanxuan.nosdn.127.net/b98cfd7f197b62abd1679321eae253a6.jpg"]',
+'1',
+'0',
+'1',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32',
+'0'
+);
 
 DROP TABLE IF EXISTS `litemall_activity_user`;
 CREATE TABLE `litemall_activity_user` (
@@ -375,6 +504,42 @@ CREATE TABLE `litemall_circle` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='动态/朋友圈表';
+
+INSERT INTO `litemall_circle` VALUES (
+'1',
+'1',
+'1',
+'今天好开心啊，工资涨了1000啦，晚上去吃大餐~',
+'["http://yanxuan.nosdn.127.net/4eb09e08ac9de543d2291d27a6be0b54.jpg", "http://yanxuan.nosdn.127.net/0c9eb81c7594dbe42802ff1ebbece51a.jpg", "http://yanxuan.nosdn.127.net/8cfc7b6bfd28687ab3399da08e5ba61b.jpg", "http://yanxuan.nosdn.127.net/b98cfd7f197b62abd1679321eae253a6.jpg"]',
+'0',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32',
+'0'
+);
+
+INSERT INTO `litemall_circle` VALUES (
+'2',
+'1',
+'1',
+'今天被交警罚了200，正不爽啊，有没有在枫林路被坑的呀？',
+'["http://yanxuan.nosdn.127.net/4eb09e08ac9de543d2291d27a6be0b54.jpg", "http://yanxuan.nosdn.127.net/0c9eb81c7594dbe42802ff1ebbece51a.jpg", "http://yanxuan.nosdn.127.net/8cfc7b6bfd28687ab3399da08e5ba61b.jpg", "http://yanxuan.nosdn.127.net/b98cfd7f197b62abd1679321eae253a6.jpg"]',
+'0',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32',
+'0'
+);
+
+INSERT INTO `litemall_circle` VALUES (
+'3',
+'1',
+'1',
+'听说今年股市大涨，该不该下手，懂的人吱声呗？',
+'["http://yanxuan.nosdn.127.net/4eb09e08ac9de543d2291d27a6be0b54.jpg", "http://yanxuan.nosdn.127.net/0c9eb81c7594dbe42802ff1ebbece51a.jpg", "http://yanxuan.nosdn.127.net/8cfc7b6bfd28687ab3399da08e5ba61b.jpg", "http://yanxuan.nosdn.127.net/b98cfd7f197b62abd1679321eae253a6.jpg"]',
+'0',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32',
+'0'
+);
 
 DROP TABLE IF EXISTS `litemall_circle_replay`;
 CREATE TABLE `litemall_circle_replay` (
