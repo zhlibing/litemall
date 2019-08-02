@@ -34,7 +34,7 @@ CREATE TABLE `litemall_impress` (
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='印象表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='印象常量表';
 
 DROP TABLE IF EXISTS `litemall_impress_user`;
 CREATE TABLE `litemall_impress_user` (
@@ -56,14 +56,14 @@ DROP TABLE IF EXISTS `litemall_group`;
 CREATE TABLE `litemall_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
-  `age` varchar(255) DEFAULT NULL,
+  `age` varchar(20) DEFAULT NULL,
   `collectionCount` int(11) NOT NULL,
   `credit` int(11) NOT NULL,
   `current_people` int(11) NOT NULL,
   `description` varchar(100) NOT NULL COMMENT '描述',
   `pic_url` varchar(100) NOT NULL COMMENT '背景图',
   `km` float NOT NULL,
-  `sexType` varchar(255) DEFAULT NULL,
+  `gender` tinyint(3) NOT NULL DEFAULT '0' COMMENT '性别：0 未知， 1男， 1 女',
   `status` int(11) NOT NULL,
   `talkId` bigint(20) NOT NULL,
   `way` varchar(255) DEFAULT NULL,
@@ -117,14 +117,14 @@ DROP TABLE IF EXISTS `litemall_vote`;
 CREATE TABLE `litemall_vote` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
-  `voted_user_id` int(11) NOT NULL DEFAULT '0' COMMENT '被投票的用户ID',
+  `voted_id` int(11) NOT NULL DEFAULT '0' COMMENT '被投票的对象ID',
   `activity_id` int(11) NOT NULL DEFAULT '0' COMMENT '活动ID',
   `type` tinyint(3) NOT NULL DEFAULT '0' COMMENT '类型',
   `vote_time` datetime DEFAULT NULL COMMENT '创建时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
-  KEY `voted_user_id` (`voted_user_id`),
+  KEY `voted_id` (`voted_id`),
   KEY `activity_id` (`activity_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='投票表';
 
