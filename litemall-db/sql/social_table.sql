@@ -359,11 +359,11 @@ CREATE TABLE `litemall_ad_rent` (
 
 DROP TABLE IF EXISTS `litemall_obj_type`;
 CREATE TABLE `litemall_obj_type` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` tinyint(3) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL COMMENT '回答内容',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='广告时间常量';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='类型常量';
 
 -- ////circle/scatter/ad_rent/擦亮-刷新
