@@ -2,34 +2,36 @@ DROP TABLE IF EXISTS `litemall_visit`;
 CREATE TABLE `litemall_visit` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
-  `visit_id` int(11) NOT NULL DEFAULT '0' COMMENT '被访问用户表的用户ID',
+  `visited_id` int(11) NOT NULL DEFAULT '0' COMMENT '被访问用户表的用户ID',
   `visit_time` datetime DEFAULT NULL COMMENT '创建时间',
   `visit_count` varchar(255) DEFAULT '1' COMMENT '访问同一个人的次数',
+  `type` tinyint(3) NOT NULL DEFAULT '0' COMMENT '关注类型，如果type=0，则是用户；如果type=1，则是鱼塘',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
-  KEY `visit_id` (`visit_id`)
+  KEY `visited_id` (`visited_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='访客逻辑表';
 
 DROP TABLE IF EXISTS `litemall_focuse`;
 CREATE TABLE `litemall_focuse` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
-  `focuse_id` int(11) NOT NULL DEFAULT '0' COMMENT '被关注ID',
+  `focused_id` int(11) NOT NULL DEFAULT '0' COMMENT '被关注ID',
   `type` tinyint(3) NOT NULL DEFAULT '0' COMMENT '关注类型，如果type=0，则是用户；如果type=1，则是鱼塘',
   `focuse_time` datetime DEFAULT NULL COMMENT '关注时间',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
-  KEY `focuse_id` (`focuse_id`)
+  KEY `focused_id` (`focused_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='关注逻辑表';
 
 DROP TABLE IF EXISTS `litemall_impress`;
 CREATE TABLE `litemall_impress` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `content` varchar(100) NOT NULL COMMENT '印象',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='印象表';
@@ -248,6 +250,83 @@ CREATE TABLE `litemall_user_reply_answer` (
   KEY `answer_id` (`answer_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='回答回复逻辑表';
 
+DROP TABLE IF EXISTS `litemall_circle`;
+CREATE TABLE `litemall_circle` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
+  `type` tinyint(3) NOT NULL DEFAULT '0' COMMENT '类型',
+  `content` varchar(255) NOT NULL COMMENT '描述',
+  `pic_url` varchar(255) NOT NULL COMMENT '背景图',
+  `status` int(11) NOT NULL,
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='朋友圈表';
 
+DROP TABLE IF EXISTS `litemall_circle_replay`;
+CREATE TABLE `litemall_circle_replay` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
+  `circle_id` int(11) NOT NULL DEFAULT '0' COMMENT '活动ID',
+  `replay_id` int(11) NOT NULL DEFAULT '0' COMMENT '回复的此评论ID和circle_id有且只有一个',
+  `replay` varchar(255) NOT NULL COMMENT '回答内容',
+  `pic_url` varchar(255) NOT NULL COMMENT '背景图',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `circle_id` (`circle_id`),
+  KEY `replay_id` (`replay_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='朋友圈回复表';
 
--- ////
+DROP TABLE IF EXISTS `litemall_circle_zan`;
+CREATE TABLE `litemall_circle_zan` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
+  `circle_id` int(11) NOT NULL DEFAULT '0' COMMENT '活动ID',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `circle_id` (`circle_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='朋友圈赞表';
+
+DROP TABLE IF EXISTS `litemall_scatter`;
+CREATE TABLE `litemall_scatter` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
+  `to_user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户ID',
+  `content` varchar(255) NOT NULL COMMENT '回答内容',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `readed` tinyint(1) DEFAULT '0' COMMENT '是否被查看',
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `to_user_id` (`to_user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='撒网捞鱼/模仿漂流瓶';
+
+DROP TABLE IF EXISTS `litemall_channel`;
+CREATE TABLE `litemall_channel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL COMMENT '回答内容',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='渠道';
+
+DROP TABLE IF EXISTS `litemall_channel_phone`;
+CREATE TABLE `litemall_channel_phone` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ip` varchar(100) NOT NULL COMMENT '回答内容',
+  `imei` varchar(100) NOT NULL COMMENT '回答内容',
+  `channel_id` varchar(100) NOT NULL COMMENT '回答内容',
+  `app_version` varchar(100) NOT NULL COMMENT '回答内容',
+  `app_id` varchar(100) NOT NULL COMMENT '回答内容',
+  `city` varchar(100) NOT NULL COMMENT '回答内容',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `channel_id` (`channel_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='渠道逻辑关系';
+
+-- ////circle/scatter
