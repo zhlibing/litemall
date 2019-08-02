@@ -12,7 +12,7 @@
         v-for="(item, index) in categoryList"
         :key="index"
         :class="{active_nav: currentCategory.id == item.id}"
-        @click="changeCatalog(item.id)"
+        @click="changeCatalog(item.id,item.name)"
       >{{item.name}}</li>
     </ul>
     <div class="class_tree_content">
@@ -23,7 +23,7 @@
         <span>{{currentCategory.desc}}</span>
       </div>
       <div class="class_tree_items_wrap clearfix">
-        <div @click="toItemList(item.id)" :key="i" v-for="(item, i) in currentSubCategoryList">
+        <div @click="toItemList(item.id,item.name)" :key="i" v-for="(item, i) in currentSubCategoryList">
           <div class="class_tree_item_img">
             <img :src="item.picUrl" :alt="item.name">
           </div>
@@ -46,7 +46,8 @@ export default {
     return {
       categoryList: [],
       currentCategory: {},
-      currentSubCategoryList: []
+      currentSubCategoryList: [],
+        name:'居家'
     };
   },
 
@@ -63,18 +64,19 @@ export default {
         this.currentSubCategoryList = data.currentSubCategory;
       });
     },
-    changeCatalog(id) {
+    changeCatalog(id,name) {
+        this.name=name
       catalogCurrent({ id: id}).then(res => {
         let data = res.data.data;
         this.currentCategory = data.currentCategory;
         this.currentSubCategoryList = data.currentSubCategory;
       });
     },
-    toItemList(id) {
-      console.log('toItemList'+id)
+    toItemList(id,name) {
+      console.log('toItemList'+id+name)
       this.$router.push({
         name: 'category',
-        query: { keyword: '', itemClass: id }
+        query: { keyword: '', itemClass: id ,channelname:this.name}
       });
     }
   },
