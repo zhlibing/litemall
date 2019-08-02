@@ -369,75 +369,75 @@ CREATE TABLE `litemall_ad_rent` (
   KEY `cost_time_id` (`cost_time_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='广告出租';
 
-DROP TABLE IF EXISTS `litemall_obj_type`;
-CREATE TABLE `litemall_obj_type` (
+DROP TABLE IF EXISTS `litemall_type_obj`;
+CREATE TABLE `litemall_type_obj` (
   `id` tinyint(3) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL COMMENT '回答内容',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='类型常量';
-INSERT INTO `litemall_obj_type` VALUES (
+INSERT INTO `litemall_type_obj` VALUES (
 '1',
 '商品',
 '2019-06-13 22:49:32',
 '2019-06-13 22:49:32'
 );
-INSERT INTO `litemall_obj_type` VALUES (
+INSERT INTO `litemall_type_obj` VALUES (
 '2',
 '专题',
 '2019-06-13 22:49:32',
 '2019-06-13 22:49:32'
 );
-INSERT INTO `litemall_obj_type` VALUES (
+INSERT INTO `litemall_type_obj` VALUES (
 '3',
 '用户',
 '2019-06-13 22:49:32',
 '2019-06-13 22:49:32'
 );
-INSERT INTO `litemall_obj_type` VALUES (
+INSERT INTO `litemall_type_obj` VALUES (
 '4',
 '动态',
 '2019-06-13 22:49:32',
 '2019-06-13 22:49:32'
 );
-INSERT INTO `litemall_obj_type` VALUES (
+INSERT INTO `litemall_type_obj` VALUES (
 '5',
 '鱼塘',
 '2019-06-13 22:49:32',
 '2019-06-13 22:49:32'
 );
-INSERT INTO `litemall_obj_type` VALUES (
+INSERT INTO `litemall_type_obj` VALUES (
 '6',
 '问答',
 '2019-06-13 22:49:32',
 '2019-06-13 22:49:32'
 );
-INSERT INTO `litemall_obj_type` VALUES (
+INSERT INTO `litemall_type_obj` VALUES (
 '7',
 '群组',
 '2019-06-13 22:49:32',
 '2019-06-13 22:49:32'
 );
-INSERT INTO `litemall_obj_type` VALUES (
+INSERT INTO `litemall_type_obj` VALUES (
 '8',
 '活动',
 '2019-06-13 22:49:32',
 '2019-06-13 22:49:32'
 );
-INSERT INTO `litemall_obj_type` VALUES (
+INSERT INTO `litemall_type_obj` VALUES (
 '9',
 '品牌',
 '2019-06-13 22:49:32',
 '2019-06-13 22:49:32'
 );
-INSERT INTO `litemall_obj_type` VALUES (
+INSERT INTO `litemall_type_obj` VALUES (
 '10',
 '订单',
 '2019-06-13 22:49:32',
 '2019-06-13 22:49:32'
 );
-INSERT INTO `litemall_obj_type` VALUES (
+INSERT INTO `litemall_type_obj` VALUES (
 '11',
 '外链',
 '2019-06-13 22:49:32',
