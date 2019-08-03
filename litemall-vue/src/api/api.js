@@ -56,7 +56,7 @@ export function authProfile(data) {
   return request({
     url: AuthProfile,
     method: 'post',
-    data    
+    data
   })
 }
 const AuthRegister='wx/auth/register'; //账号注册
@@ -65,7 +65,7 @@ export function authReset(data) {
   return request({
     url: AuthReset,
     method: 'post',
-    data    
+    data
   })
 }
 const AuthRegisterCaptcha='wx/auth/regCaptcha'; //注册验证码
@@ -73,7 +73,7 @@ export function authRegisterCaptcha(data) {
   return request({
     url: AuthRegisterCaptcha,
     method: 'post',
-    data    
+    data
   })
 }
 const AuthCaptcha='wx/auth/captcha'; //验证码
@@ -81,7 +81,7 @@ export function authCaptcha(data) {
   return request({
     url: AuthCaptcha,
     method: 'post',
-    data    
+    data
   })
 }
 
@@ -446,6 +446,22 @@ export function getList(api, query) {
     method: 'get',
     params: query
   })
+}
+
+const FishPondsList='wx/fishponds/list'; //鱼塘页取5个鱼塘
+export function fishPondsList() {
+    return request({
+        url: FishPondsList,
+        method: 'get'
+    })
+}
+
+const FishPondsDetail='wx/fishponds/detail'; //鱼塘详细信息
+export function fishPondsDetail() {
+    return request({
+        url: FishPondsDetail,
+        method: 'get'
+    })
 }
 
 export const REFUND_LIST = '';

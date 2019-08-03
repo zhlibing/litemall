@@ -8,10 +8,10 @@
             <div class="swiper-container" ref="swiper">
                 <div class="swiper-wrapper swiper">
                     <div class="swiper-slide item" v-for="(item,index) in interests" :key="index" @click="toast">
-                        <img src="http://yanxuan.nosdn.127.net/dae4d6e89ab8a0cd3e8da026e4660137.png" alt="" class="img">
+                        <img :src="item.picUrls[0]" alt="" class="img">
                         <div class="name">{{item.title}}</div>
                         <div class="info">
-                            <p class="desc">{{item.desc}}</p>
+                            <p class="desc">{{item.description}}</p>
                         </div>
                         <button class="add">+ 加入</button>
                     </div>
@@ -107,6 +107,7 @@
 
 <script>
     import {getInterests, getQuestions, getTuhao, getChina, getLists, ERR_OK} from '@/api/data'
+    import {fishPondsList} from '@/api/api'
     import Swiper from 'swiper'
     import 'swiper/dist/css/swiper.min.css'
     import Head from '@/components/head/Head'
@@ -150,9 +151,9 @@
             console.log('deactivated', '>>>>YUTANG.vue')
         },
         created() {
-            getInterests().then(res => {
-                if (res.status === ERR_OK) {
-                    this.interests = res.data.interests
+            fishPondsList().then(res => {
+                if (res.status === 200) {
+                    this.interests = res.data.data.list
                     // console.log(this.interests)
                     this.$nextTick(() => {
                         let swiper = this.$refs.swiper
@@ -340,6 +341,7 @@
                         margin-bottom: 0.2em;
                     }
                     .add {
+                        margin-top: 5px;
                         width: 100%;
                         height: 1.2rem;
                         background-color: #ffda44;
