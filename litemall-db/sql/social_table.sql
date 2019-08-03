@@ -1,3 +1,4 @@
+-- litemall_footprint逻辑重复
 DROP TABLE IF EXISTS `litemall_visit`;
 CREATE TABLE `litemall_visit` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
