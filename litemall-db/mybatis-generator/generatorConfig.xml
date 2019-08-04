@@ -56,25 +56,25 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="org.linlinjava.litemall.db.dao"
                              targetProject="src/main/java"/>
         <!--表名1-->
-        <!--<table tableName="litemall_fish_ponds">-->
-            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-            <!--<columnOverride column="pic_urls" javaType="java.lang.String[]"-->
-                            <!--typeHandler="org.linlinjava.litemall.db.mybatis.JsonStringArrayTypeHandler"/>-->
-        <!--</table>-->
+        <table tableName="litemall_fish_ponds">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="pic_urls" javaType="java.lang.String[]"
+                            typeHandler="org.linlinjava.litemall.db.mybatis.JsonStringArrayTypeHandler"/>
+        </table>
 
         <!--表名2-->
-        <!--<table tableName="litemall_question">-->
-        <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-        <!--<columnOverride column="pic_urls" javaType="java.lang.String[]"-->
-        <!--typeHandler="org.linlinjava.litemall.db.mybatis.JsonStringArrayTypeHandler"/>-->
-        <!--</table>-->
+        <table tableName="litemall_question">
+        <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        <columnOverride column="pic_urls" javaType="java.lang.String[]"
+        typeHandler="org.linlinjava.litemall.db.mybatis.JsonStringArrayTypeHandler"/>
+        </table>
 
         <!--表名3-->
-        <!--<table tableName="litemall_group">-->
-            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-            <!--<columnOverride column="pic_urls" javaType="java.lang.String[]"-->
-                            <!--typeHandler="org.linlinjava.litemall.db.mybatis.JsonStringArrayTypeHandler"/>-->
-        <!--</table>-->
+        <table tableName="litemall_group">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="pic_urls" javaType="java.lang.String[]"
+                            typeHandler="org.linlinjava.litemall.db.mybatis.JsonStringArrayTypeHandler"/>
+        </table>
 
         <!--表名4-->
         <table tableName="litemall_circle">
