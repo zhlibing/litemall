@@ -541,7 +541,7 @@ INSERT INTO `litemall_circle` VALUES (
 '2019-06-13 22:49:32',
 '0'
 );
-
+-- litemall_comment重复
 DROP TABLE IF EXISTS `litemall_circle_replay`;
 CREATE TABLE `litemall_circle_replay` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
