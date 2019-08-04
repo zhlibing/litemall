@@ -87,7 +87,7 @@
                 <img :src="item.picUrls[0]" alt="" class="image">
                 <div class="info">
                     <div class="head">
-                        <p class="tit">{{item.content}}</p>
+                        <p class="tit">{{item.content.substring(0,8)+'...'}}</p>
                         <span class="level">{{item.status}}</span>
                     </div>
                     <div class="text">
