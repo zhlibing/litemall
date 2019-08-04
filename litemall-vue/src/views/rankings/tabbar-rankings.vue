@@ -5,7 +5,7 @@
     </div>
 </template>
 <script>
-    import lotteryList from '@/components/tab/list';
+    import lotteryList from '@/components/itemadapter/fishponds';
     import LotteryTab from '@/components/tab/tab'
 
     export default {
