@@ -464,4 +464,67 @@ export function fishPondsDetail() {
     })
 }
 
+const QuestionList='wx/question/list'; //鱼塘页取5个鱼塘
+export function questionList() {
+    return request({
+        url: QuestionList,
+        method: 'get'
+    })
+}
+
+const QuestionDetail='wx/question/detail'; //鱼塘详细信息
+export function questionDetail() {
+    return request({
+        url: QuestionDetail,
+        method: 'get'
+    })
+}
+
+const GroupList='wx/group/list'; //鱼塘页取5个鱼塘
+export function groupList() {
+    return request({
+        url: GroupList,
+        method: 'get'
+    })
+}
+
+const GroupDetail='wx/group/detail'; //鱼塘详细信息
+export function groupDetail() {
+    return request({
+        url: GroupDetail,
+        method: 'get'
+    })
+}
+
+const ActivityList='wx/activity/list'; //鱼塘页取5个鱼塘
+export function activityList() {
+    return request({
+        url: ActivityList,
+        method: 'get'
+    })
+}
+
+const ActivityDetail='wx/activity/detail'; //鱼塘详细信息
+export function activityDetail() {
+    return request({
+        url: ActivityDetail,
+        method: 'get'
+    })
+}
+
+const CircleList='wx/circle/list'; //鱼塘页取5个鱼塘
+export function circleList() {
+    return request({
+        url: CircleList,
+        method: 'get'
+    })
+}
+
+const CircleDetail='wx/circle/detail'; //鱼塘详细信息
+export function circleDetail() {
+    return request({
+        url: CircleDetail,
+        method: 'get'
+    })
+}
 export const REFUND_LIST = '';

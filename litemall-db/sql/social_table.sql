@@ -63,7 +63,7 @@ CREATE TABLE `litemall_group` (
   `credit` int(11) NOT NULL,
   `current_people` int(11) NOT NULL,
   `description` varchar(100) NOT NULL COMMENT '描述',
-  `pic_urls` varchar(100) NOT NULL COMMENT '背景图',
+  `pic_urls` varchar(1023) NOT NULL COMMENT '背景图',
   `km` float NOT NULL,
   `gender` tinyint(3) NOT NULL DEFAULT '0' COMMENT '性别：0 未知， 1男， 1 女',
   `status` int(11) NOT NULL,

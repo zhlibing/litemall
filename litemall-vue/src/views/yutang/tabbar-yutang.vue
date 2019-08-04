@@ -27,13 +27,13 @@
                 <div class="title">{{question.title}}</div>
                 <div class="answer">
                     <span class="da">答</span>
-                    <div class="text">{{question.answer}}</div>
-                    <div class="imgshow" v-if="question.img !== undefined">
-                        <img src="http://yanxuan.nosdn.127.net/dae4d6e89ab8a0cd3e8da026e4660137.png" alt="">
+                    <div class="text">{{question.description}}</div>
+                    <div class="imgshow" v-if="question.picUrls !== undefined">
+                        <img :src="question.picUrls[0]" alt="">
                     </div>
                 </div>
                 <div class="bottom">
-                    <div class="yutang">{{question.yutang}}</div>
+                    <div class="yutang">{{question.title}}</div>
                     <div class="toanswer">去回答</div>
                 </div>
             </div>
@@ -48,13 +48,13 @@
             <div class="swiper-container" ref="tuhao">
                 <div class="swiper-wrapper swiper">
                     <div class="swiper-slide item" v-for="(item,index) in tuhao" :key="index" @click="toast">
-                        <div class="imgdisplay" v-if="item.img !== undefined">
-                            <img src="http://yanxuan.nosdn.127.net/e8bf0cf08cf7eda21606ab191762e35c.png" alt=""
+                        <div class="imgdisplay" v-if="item.picUrls !== undefined">
+                            <img :src="item.picUrls[0]" alt=""
                                  class="imgbig">
                         </div>
-                        <div class="name">{{item.title}}</div>
+                        <div class="name">{{'当前人数' + item.currentPeople}}</div>
                         <div class="info">
-                            <p class="desc">{{item.desc}}</p>
+                            <p class="desc">{{item.description}}</p>
                         </div>
                     </div>
                 </div>
@@ -67,13 +67,13 @@
             <div class="swiper-container" ref="china">
                 <div class="swiper-wrapper swiper">
                     <div class="swiper-slide item" v-for="(item,index) in china" :key="index" @click="toast">
-                        <div class="imgdisplay" v-if="item.img !== undefined">
-                            <img src="http://yanxuan.nosdn.127.net/e8bf0cf08cf7eda21606ab191762e35c.png" alt=""
+                        <div class="imgdisplay" v-if="item.picUrls !== undefined">
+                            <img :src="item.picUrls[0]" alt=""
                                  class="imgbig">
                         </div>
                         <div class="name">{{item.title}}</div>
                         <div class="info">
-                            <p class="desc">{{item.desc}}</p>
+                            <p class="desc">{{item.description}}</p>
                         </div>
                     </div>
                 </div>
@@ -84,17 +84,17 @@
                 <p class="title">不可错过的鱼塘</p>
             </div>
             <div class="list" v-for="(item,index) in lists" :key="index">
-                <img src="http://yanxuan.nosdn.127.net/e8bf0cf08cf7eda21606ab191762e35c.png" alt="" class="image">
+                <img :src="item.picUrls[0]" alt="" class="image">
                 <div class="info">
                     <div class="head">
-                        <p class="tit">{{item.title}}</p>
-                        <span class="level">{{item.level}}</span>
+                        <p class="tit">{{item.content}}</p>
+                        <span class="level">{{item.status}}</span>
                     </div>
                     <div class="text">
-                        <p class="desc">{{item.desc}}</p>
+                        <p class="desc">{{item.content}}</p>
                     </div>
                     <div class="hot">
-                        <span>人气{{item.renqi}}·发布{{item.fabu}}</span>
+                        <span>人气{{item.status}}·发布{{item.addTime}}</span>
                     </div>
                 </div>
             </div>
@@ -106,8 +106,7 @@
 </template>
 
 <script>
-    import {getInterests, getQuestions, getTuhao, getChina, getLists, ERR_OK} from '@/api/data'
-    import {fishPondsList} from '@/api/api'
+    import {fishPondsList, questionList, groupList, activityList, circleList} from '@/api/api'
     import Swiper from 'swiper'
     import 'swiper/dist/css/swiper.min.css'
     import Head from '@/components/head/Head'
@@ -173,17 +172,16 @@
             }).catch(err => {
                 console.log(err)
             }),
-                getQuestions().then(res => {
-                    if (res.status === ERR_OK) {
-                        this.questions = res.data.questions
-                        // console.log(this.questions)
+                questionList().then(res => {
+                    if (res.status === 200) {
+                        this.questions = res.data.data.list
                     }
                 }).catch(err => {
                     console.log(err)
                 }),
-                getTuhao().then(res => {
-                    if (res.status === ERR_OK) {
-                        this.tuhao = res.data.tuhao
+                groupList().then(res => {
+                    if (res.status === 200) {
+                        this.tuhao = res.data.data.list
                         this.$nextTick(() => {
                             let tuhao = this.$refs.tuhao
                             let mySwiper = new Swiper(tuhao, {
@@ -199,9 +197,9 @@
                 }).catch(err => {
                     console.log(err)
                 }),
-                getChina().then(res => {
-                    if (res.status === ERR_OK) {
-                        this.china = res.data.chinas
+                activityList().then(res => {
+                    if (res.status === 200) {
+                        this.china = res.data.data.list
                         this.$nextTick(() => {
                             let china = this.$refs.china
                             let mySwiper = new Swiper(china, {
@@ -217,9 +215,9 @@
                 }).catch(err => {
                     console.log(err)
                 }),
-                getLists().then(res => {
-                    if (res.status === ERR_OK) {
-                        this.lists = res.data.lists
+                circleList().then(res => {
+                    if (res.status === 200) {
+                        this.lists = res.data.data.list
                     }
                 }).catch(err => {
                     console.log(err)
