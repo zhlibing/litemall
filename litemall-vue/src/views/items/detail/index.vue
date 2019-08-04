@@ -73,7 +73,7 @@
                     <van-panel style=" padding-bottom: 10px;">
                         <div class="item" v-for="comment in commentList">
                             <div class="header_img"
-                                 :style="`background-image: url(${comment.picList[0]})`"></div>
+                                 :style="`background-image: url(${comment.avatar})`"></div>
                             <div class="comment">
                                 <div class="nickname">
                                     <span class="name">{{comment.nickname}}</span>
@@ -129,6 +129,7 @@
     import appbar from '@/components/head/appbar'
     import goback from '../../../assets/images/goback.png'
     import share from '../../../assets/images/add.png'
+    import avatar from '../../../assets/images/avatar_default.png'
 
     export default {
         props: {
@@ -175,6 +176,7 @@
                 showSku: false,
                 left_url: goback,
                 right_url: share,
+                default_avatar: avatar
             };
         },
 
@@ -419,6 +421,7 @@
             appbar,
             goback,
             share,
+            avatar,
             [Popup.name]: Popup,
             [Swipe.name]: Swipe,
             [SwipeItem.name]: SwipeItem,

@@ -113,7 +113,6 @@
     }
 
     .lobby-item .item-content .item-info > .info-row {
-        margin-top: 10px;
         display: flex;
         -webkit-flex: 1;
         -ms-flex: 1;
