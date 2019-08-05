@@ -1,6 +1,7 @@
 <template>
     <div class="tab_home">
         <Head></Head>
+        <floatbutton></floatbutton>
         <van-swipe :autoplay="3000"
                    indicator-color="white">
             <van-swipe-item v-for="(banner, index) in shopInfos.banner"
@@ -221,6 +222,7 @@
     import scrollFixed from '@/mixin/scroll-fixed';
     import _ from 'lodash';
     import Head from '@/components/head/Head'
+    import floatbutton from '@/components/head/floatbutton'
     import Swiper from 'swiper'
     import 'swiper/dist/css/swiper.min.css'
     import marquee from '@/components/head/marquee';
@@ -321,6 +323,7 @@
         components: {
             Head,
             marquee,
+            floatbutton,
             [Row.name]: Row,
             [Col.name]: Col,
             [Card.name]: Card,
