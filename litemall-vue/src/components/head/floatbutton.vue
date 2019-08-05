@@ -1,5 +1,5 @@
 <template>
-    <div class="header">
+    <div class="float_b">
         <div class="outbox">
             <span class="open" @click=""></span>
         </div>
@@ -9,7 +9,7 @@
     export default {}
 </script>
 <style lang="scss" scoped>
-    .header {
+    .float_b {
         z-index: 200;
         height: 2.75rem;
         width: 2.75rem;
