@@ -101,9 +101,9 @@
                 margin-bottom 0.8rem
             .yutang
                 width 100%
-                height 1rem
+                height 2rem
                 background-color #fff
-                line-height 1rem
+                line-height 2rem
                 text-align left
                 font-size 0.9rem
                 font-weight 500

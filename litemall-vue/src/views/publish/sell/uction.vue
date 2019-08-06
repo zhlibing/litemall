@@ -3,15 +3,15 @@
         <ul class="lists">
             <li class="list">
                 <label for="" class="detail">起拍价</label>
-                <div class="price">0.00</div>
+                <input type="number" placeholder="0.00">
             </li>
             <li class="list">
                 <label for="" class="detail">保证金</label>
-                <div class="price">0.00</div>
+                <input type="number" placeholder="0.00">
             </li>
             <li class="list">
                 <label for="" class="detail">加价幅度</label>
-                <div class="price">0.00</div>
+                <input type="number" placeholder="0.00">
             </li>
             <li class="list">
                 <label for="" class="detail">开拍时间</label>
@@ -62,6 +62,11 @@
             .price
                 margin-left 1rem
                 color #666666
+            input
+                outline none
+                border none
+                margin-left 1rem
+                box-sizing border-box
         .bottom
             width 100%
             height 5rem
@@ -74,9 +79,9 @@
                 margin-bottom 0.8rem
             .yutang
                 width 100%
-                height 1rem
+                height 2rem
                 background-color #fff
-                line-height 1rem
+                line-height 2rem
                 text-align left
                 font-size 0.9rem
                 font-weight 500
