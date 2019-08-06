@@ -8,9 +8,10 @@
 <script>
     import lotteryList from '@/components/itemadapter/fishponds';
     import LotteryTab from '@/components/tab/tab'
+    import floatbutton from '@/components/head/floatbutton'
 
     export default {
-        components: {lotteryList, LotteryTab},
+        components: {lotteryList, LotteryTab,floatbutton},
         data() {
             return {
                 a: 1,

@@ -111,6 +111,7 @@
     import Swiper from 'swiper'
     import 'swiper/dist/css/swiper.min.css'
     import Head from '@/components/head/Head'
+    import floatbutton from '@/components/head/floatbutton'
 
     export default {
         data() {
@@ -133,6 +134,7 @@
         },
         components: {
             Head,
+            floatbutton,
         },
         mounted() {
             window.addEventListener('scroll', this.handleScroll)

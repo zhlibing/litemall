@@ -13,6 +13,7 @@ import userHeader from './tabbar-user-header';
 import orderGroup from './tabbar-user-order';
 import couponGroup from './tabbar-user-coupon';
 import userModule from './tabbar-user-module';
+import floatbutton from '@/components/head/floatbutton'
 
 export default {
   data() {
@@ -33,6 +34,7 @@ export default {
   },
 
   components: {
+      floatbutton,
     [userHeader.name]: userHeader,
     [orderGroup.name]: orderGroup,
     [couponGroup.name]: couponGroup,
@@ -45,7 +47,7 @@ export default {
 <style scoped lang="scss">
 .tabbar-user {
   > div {
-    margin-bottom: 5px;
+    margin-bottom: 0px;
   }
   &__quit {
     border: 0;
