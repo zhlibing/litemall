@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="anim" :class="{'active':active}">
         <div class="head">
             <h2 class="guide">闲鱼赚钱指南</h2>
             <ul class="navbar">
@@ -46,10 +46,13 @@
 <script>
     export default {
         data() {
-            return {}
+            return {
+                active: false
+            }
         },
         computed: {},
         mounted() {
+            this.active = false
         },
         methods: {
             tosell() {
@@ -58,13 +61,33 @@
                 })
             },
             goBack() {
-                this.$router.back(-1)
+                this.active = true
+                setTimeout(()=> {
+                    this.$router.back(-1)
+                },500)
             },
         },
     }
 </script>
 
 <style lang="stylus" scoped>
+.anim
+    animation enter 0.5s
+    &.active
+        animation out 1s
+    @keyframes enter
+        0%
+            transform scale(0)
+            opacity 0
+        100%
+            transform scale(1)
+            opacity 1
+    @keyframes out
+        0%
+            transform scale(1)
+        100%
+            transform scale(0)
+            opacity 0
     .head
         width 100%
         .guide
