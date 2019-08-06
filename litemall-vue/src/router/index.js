@@ -9,11 +9,12 @@ import yutang from './yutang';
 import user from './user';
 import order from './order';
 import login from './login';
+import publish from "./publish";
 
 Vue.use(Router);
 
 const RouterModel = new Router({
-  routes: [...home, ...yutang, ...user, ...order, ...login,...items,...rankings]
+  routes: [...home, ...yutang, ...user, ...order, ...login,...items,...rankings,...publish]
 });
 
 RouterModel.beforeEach((to, from, next) => {

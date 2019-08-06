@@ -1,13 +1,19 @@
 <template>
     <div class="float_b">
         <div class="outbox">
-            <span class="open" @click=""></span>
+            <span class="open" @click="toPublish"></span>
         </div>
         <span class="van-tabbar-item">发布</span>
     </div>
 </template>
 <script>
-    export default {}
+    export default {
+        methods: {
+            toPublish() {
+                this.$router.push('/publish')
+            }
+        }
+    }
 </script>
 <style lang="scss" scoped>
     .float_b {
