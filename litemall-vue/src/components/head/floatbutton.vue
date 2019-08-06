@@ -12,7 +12,7 @@
 <style lang="scss" scoped>
     .float_b {
         z-index: 2999;
-        height: 3rem;
+        height: 3.2rem;
         width: 3rem;
         position: fixed;
         bottom: 20px;
@@ -24,7 +24,7 @@
         flex-direction: column;
         .outbox {
             width: 3rem;
-            height: 3rem;
+            height: 3.2rem;
             border-radius: 50%;
             margin: 0.18rem auto;
             background-color: #ffffff;
@@ -35,7 +35,7 @@
                 height: 2.5rem;
                 display: block;
                 border-radius: 50%;
-                margin: 0.1rem auto;
+                margin: 0.3rem auto;
                 background: #ffda44 url('../../assets/images/add.png') no-repeat;
                 background-size: 1.2rem 1.2rem;
                 background-position: 50% 50%;
