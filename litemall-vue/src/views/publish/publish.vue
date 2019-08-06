@@ -57,7 +57,7 @@
         methods: {
             tosell() {
                 this.$router.push({
-                    path: '/sell'
+                    path: '/publish/sell'
                 })
             },
             goBack() {
