@@ -4,6 +4,7 @@
     <order-group/>
     <coupon-group/>
     <user-module/>
+    <floatbutton></floatbutton>
   </div>
 </template>
 

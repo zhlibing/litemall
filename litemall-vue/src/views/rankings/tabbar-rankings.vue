@@ -2,6 +2,7 @@
     <div class="root">
         <lottery-tab @onTabIndex="toTabIndex"></lottery-tab>
         <lotteryList @onToLotteryIndex="toLotteryIndex" :itemClass="itemClass"></lotteryList>
+        <floatbutton></floatbutton>
     </div>
 </template>
 <script>

@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <Head></Head>
+        <floatbutton></floatbutton>
         <div class="interest" style="margin-top: 40px">
             <div class="titlebox">
                 <p class="title">你可能感兴趣的鱼塘</p>
