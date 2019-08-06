@@ -73,7 +73,7 @@
                 input
                     outline none
                     border none
-                    padding-left 1rem
+                    margin-left 1rem
                     box-sizing border-box
         .categorybox
             width 100%

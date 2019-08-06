@@ -2,11 +2,11 @@
     <div class="container">
         <appbar titleText="发布"></appbar>
         <div class="inputcontainer">
-            <div class="inputdetail border-1px">
+            <div class="inputtitle border-1px">
                 <input type="text" v-model="title" placeholder="标题 品类品牌型号都是买家喜欢搜索的">
             </div>
             <div class="inputdetail border-1px">
-                <input type="text" v-model="desc" placeholder="描述一下你的闲置">
+                <textarea type="text" v-model="desc" placeholder="描述一下你的闲置"></textarea>
             </div>
         </div>
         <div class="image-list">
@@ -188,9 +188,10 @@
         height 100%
         .inputcontainer
             width 100%
-            .inputdetail
+            .inputtitle
                 width 100%
                 border-1px(#f8f8f8)
+                border-bottom: 1px solid #ededed;
                 input
                     border none
                     outline none
@@ -199,21 +200,35 @@
                     padding-left 1rem
                     box-sizing border-box
                     font-size 0.9rem
+            .inputdetail
+                width 100%
+                border-1px(#f8f8f8)
+                border-bottom: 1px solid #ededed;
+                textarea
+                    border none
+                    outline none
+                    width 100%
+                    height 7rem
+                    padding-left 1rem
+                    box-sizing border-box
+                    font-size 0.9rem
+                    rows 6
+                    vertical-align top
         .image-list
             width 100%
             height 100%
             background-color #f8f8f8
             .list-img
                 display flex
-                height 5rem
+                height 7rem
                 flex-direction column
                 align-items center
                 justify-content center
                 img
                     width 3rem
-                    height 4rem
+                    height 3rem
                     display block
-                    margin-bottom 1rem
+                    margin-bottom 0.5rem
                 .choosephoto
                     font-size 0.8rem
                     color #888888
