@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <appbar titleText="发布"></appbar>
         <div class="inputcontainer">
             <div class="inputdetail border-1px">
                 <input type="text" v-model="title" placeholder="标题 品类品牌型号都是买家喜欢搜索的">
@@ -60,6 +61,7 @@
 
 <script>
     import util from '../../../assets/utils/utils.js'
+    import appbar from '@/components/head/appbar'
 
     export default {
         data() {
@@ -167,6 +169,9 @@
             }
         },
         mounted() {
+        },
+        components: {
+            appbar,
         }
     }
 </script>
@@ -205,8 +210,8 @@
                 align-items center
                 justify-content center
                 img
-                    width 4rem
-                    height 4.5rem
+                    width 3rem
+                    height 4rem
                     display block
                     margin-bottom 1rem
                 .choosephoto
