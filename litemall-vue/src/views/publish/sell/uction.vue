@@ -45,7 +45,8 @@
         props: {
             kind: {
                 type: String
-            }
+            },
+            types:Array
         },
         data() {
             return {
@@ -53,7 +54,6 @@
                 newPrice: '',
                 sendPrice: '',
                 showList: false,
-                types: ['商品', '心情', '鱼塘', '群组'],
                 type: ''
             }
         },

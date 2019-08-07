@@ -35,10 +35,9 @@
                     <router-link to="/publish/sell/uction" tag="div" class="item">
                         <span>拍卖</span>
                     </router-link>
-                    <div class="item" @click="noprice">不谈钱</div>
                 </div>
             </div>
-            <router-view :kind="kind" ref="price"></router-view>
+            <router-view :kind="kind" :types="types"></router-view>
         </div>
         <div class="footer">
             <button class="fabu" @click="publish">确定发布</button>
@@ -62,6 +61,7 @@
 <script>
     import util from '../../../assets/utils/utils.js'
     import appbar from '@/components/head/appbar'
+    import {typeObjList} from '@/api/api'
 
     export default {
         data() {
@@ -71,8 +71,8 @@
                 desc: '',
                 hasPhoto: true,
                 imgUrls: [],
-                kind: ''
-
+                kind: '',
+                types: []
             }
         },
         watch: {
@@ -169,6 +169,16 @@
             }
         },
         mounted() {
+            typeObjList().then(res => {
+                if (res.status === 200) {
+                    this.types.clear
+                    for (var i = 0; i < res.data.data.list.length; i++) {
+                        this.types.push(res.data.data.list[i].name)
+                    }
+                }
+            }).catch(err => {
+                console.log(err)
+            })
         },
         components: {
             appbar,

@@ -527,4 +527,12 @@ export function circleDetail() {
         method: 'get'
     })
 }
+
+const TypeObjList='wx/typeobj/list'; //鱼塘页取5个鱼塘
+export function typeObjList() {
+    return request({
+        url: TypeObjList,
+        method: 'get'
+    })
+}
 export const REFUND_LIST = '';
