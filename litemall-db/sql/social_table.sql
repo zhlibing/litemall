@@ -650,6 +650,7 @@ DROP TABLE IF EXISTS `litemall_type_obj`;
 CREATE TABLE `litemall_type_obj` (
   `id` tinyint(3) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL COMMENT '回答内容',
+  `is_show_client` tinyint(3) NOT NULL DEFAULT '0' COMMENT '客户端是否显示',
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
@@ -657,66 +658,77 @@ CREATE TABLE `litemall_type_obj` (
 INSERT INTO `litemall_type_obj` VALUES (
 '1',
 '商品',
+'0',
 '2019-06-13 22:49:32',
 '2019-06-13 22:49:32'
 );
 INSERT INTO `litemall_type_obj` VALUES (
 '2',
 '专题',
+'0',
 '2019-06-13 22:49:32',
 '2019-06-13 22:49:32'
 );
 INSERT INTO `litemall_type_obj` VALUES (
 '3',
 '用户',
+'0',
 '2019-06-13 22:49:32',
 '2019-06-13 22:49:32'
 );
 INSERT INTO `litemall_type_obj` VALUES (
 '4',
 '动态',
+'1',
 '2019-06-13 22:49:32',
 '2019-06-13 22:49:32'
 );
 INSERT INTO `litemall_type_obj` VALUES (
 '5',
 '鱼塘',
+'1',
 '2019-06-13 22:49:32',
 '2019-06-13 22:49:32'
 );
 INSERT INTO `litemall_type_obj` VALUES (
 '6',
 '问答',
+'1',
 '2019-06-13 22:49:32',
 '2019-06-13 22:49:32'
 );
 INSERT INTO `litemall_type_obj` VALUES (
 '7',
 '群组',
+'1',
 '2019-06-13 22:49:32',
 '2019-06-13 22:49:32'
 );
 INSERT INTO `litemall_type_obj` VALUES (
 '8',
 '活动',
+'1',
 '2019-06-13 22:49:32',
 '2019-06-13 22:49:32'
 );
 INSERT INTO `litemall_type_obj` VALUES (
 '9',
 '品牌',
+'0',
 '2019-06-13 22:49:32',
 '2019-06-13 22:49:32'
 );
 INSERT INTO `litemall_type_obj` VALUES (
 '10',
 '订单',
+'0',
 '2019-06-13 22:49:32',
 '2019-06-13 22:49:32'
 );
 INSERT INTO `litemall_type_obj` VALUES (
 '11',
 '外链',
+'1',
 '2019-06-13 22:49:32',
 '2019-06-13 22:49:32'
 );

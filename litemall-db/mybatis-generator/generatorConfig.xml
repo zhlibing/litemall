@@ -89,5 +89,10 @@
             <columnOverride column="pic_urls" javaType="java.lang.String[]"
                             typeHandler="org.linlinjava.litemall.db.mybatis.JsonStringArrayTypeHandler"/>
         </table>
+
+        <!--表名6-->
+        <table tableName="litemall_type_obj">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
     </context>
 </generatorConfiguration>

@@ -21,10 +21,12 @@
                 <label for="" class="detail">结束时间</label>
                 <div class="price">请选择结束时间</div>
             </li>
-            <li class="list">
-                <label for="" class="detail">分类</label>
-                <div class="price">请选择分类</div>
-            </li>
+            <van-cell-group title="分类">
+                <van-cell class="order-coupon" :title="type" is-link arrow-direction="down" @click="showList = true"/>
+            </van-cell-group>
+            <van-popup v-model="showList" position="bottom">
+                <van-picker :columns="types" @change="onType"/>
+            </van-popup>
         </ul>
         <div class="bottom">
             <p class="info">把该宝贝同步到</p>
@@ -37,7 +39,42 @@
 </template>
 
 <script>
-    export default {}
+    import {Field, Picker, Popup, Button} from 'vant';
+
+    export default {
+        props: {
+            kind: {
+                type: String
+            }
+        },
+        data() {
+            return {
+                oldPrice: '',
+                newPrice: '',
+                sendPrice: '',
+                showList: false,
+                types: ['商品', '心情', '鱼塘', '群组'],
+                type: ''
+            }
+        },
+        methods: {
+            tokind() {
+                let category = document.querySelector('.category')
+                console.log(category)
+                category.style.display = 'block'
+            },
+            onType(picker, value, index) {
+                this.type = value
+                this.showList = false
+            },
+        },
+        components: {
+            [Field.name]: Field,
+            [Popup.name]: Popup,
+            [Button.name]: Button,
+            [Picker.name]: Picker
+        }
+    }
 </script>
 
 <style lang="stylus" scoped>
@@ -49,6 +86,8 @@
         .list
             display flex
             height 2rem
+            padding-left 1rem
+            padding-right 1rem
             align-items center
             font-size 0.9rem
             color #000000
@@ -71,11 +110,11 @@
             width 100%
             height 5rem
             background-color #f3f3f3
-            padding 0.0rem
+            padding 1.0rem
             box-sizing border-box
             .info
                 font-size 0.9rem
-                color #888888
+                color #333333
                 margin-bottom 0.8rem
             .yutang
                 width 100%
