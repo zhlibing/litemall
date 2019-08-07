@@ -54,7 +54,7 @@
                 newPrice: '',
                 sendPrice: '',
                 showList: false,
-                type: ''
+                type: '动态'
             }
         },
         methods: {
