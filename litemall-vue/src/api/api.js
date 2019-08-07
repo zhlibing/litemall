@@ -528,6 +528,15 @@ export function circleDetail() {
     })
 }
 
+const CircleSave='wx/circle/save'; //鱼塘详细信息
+export function circleSave(data) {
+    return request({
+        url: CircleSave,
+        method: 'post',
+        data
+    })
+}
+
 const TypeObjList='wx/typeobj/list'; //鱼塘页取5个鱼塘
 export function typeObjList() {
     return request({

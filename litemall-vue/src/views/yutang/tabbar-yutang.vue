@@ -85,7 +85,7 @@
                 <p class="title">不可错过的鱼塘</p>
             </div>
             <div class="list" v-for="(item,index) in lists" :key="index">
-                <img :src="item.picUrls[0]" alt="" class="image">
+                <img :src="item.picUrls!=undefined?item.picUrls[0]:default_avatar" alt="" class="image">
                 <div class="info">
                     <div class="head">
                         <p class="tit">{{item.content.substring(0,8)+'...'}}</p>
@@ -112,6 +112,7 @@
     import 'swiper/dist/css/swiper.min.css'
     import Head from '@/components/head/Head'
     import floatbutton from '@/components/head/floatbutton'
+    import avatar from '../../assets/images/store_default.png'
 
     export default {
         data() {
@@ -121,7 +122,8 @@
                 tuhao: [],
                 china: [],
                 lists: [],
-                scroll: 0
+                scroll: 0,
+                default_avatar: avatar
             }
         },
         methods: {
@@ -135,6 +137,7 @@
         components: {
             Head,
             floatbutton,
+            avatar
         },
         mounted() {
             window.addEventListener('scroll', this.handleScroll)

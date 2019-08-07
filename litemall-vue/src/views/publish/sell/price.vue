@@ -15,7 +15,7 @@
             </div>
         </div>
         <van-cell-group title="分类">
-            <van-cell class="order-coupon" :title="type" is-link arrow-direction="down" @click="showList = true"/>
+            <van-cell class="order-coupon" :title="type" v-model="typeIndex" is-link arrow-direction="down" @click="showList = true"/>
         </van-cell-group>
         <van-popup v-model="showList" position="bottom">
             <van-picker :columns="types" @change="onType"/>
@@ -46,7 +46,8 @@
                 newPrice: '',
                 sendPrice: '',
                 showList: false,
-                type: '动态'
+                type: '动态',
+                typeIndex:'0',
             }
         },
         methods: {
@@ -58,6 +59,7 @@
             onType(picker, value, index) {
                 this.type = value
                 this.showList = false
+                this.typeIndex = index
             },
         },
         components: {

@@ -37,23 +37,10 @@
                     </router-link>
                 </div>
             </div>
-            <router-view :kind="kind" :types="types"></router-view>
+            <router-view :kind="kind" :types="types" ref="price"></router-view>
         </div>
         <div class="footer">
             <button class="fabu" @click="publish">确定发布</button>
-        </div>
-        <div class="category" ref="category">
-            <div class="head">
-                <div class="back" @click="hidden">
-                    <img src="../../../assets/images/X.png" alt="">
-                </div>
-                <div class="title">类目</div>
-            </div>
-            <div class="wrapper">
-                <div class="item border-1px" v-for="(item,index) in category" :key="index" @click="selectItem(item)">
-                    {{item.name}}
-                </div>
-            </div>
         </div>
     </div>
 </template>
@@ -61,18 +48,18 @@
 <script>
     import util from '../../../assets/utils/utils.js'
     import appbar from '@/components/head/appbar'
-    import {typeObjList} from '@/api/api'
+    import {typeObjList, circleSave, storageUpload} from '@/api/api'
 
     export default {
         data() {
             return {
-                category: [],
                 title: '',
                 desc: '',
                 hasPhoto: true,
                 imgUrls: [],
                 kind: '',
-                types: []
+                types: [],
+                orgtypes: []
             }
         },
         watch: {
@@ -83,6 +70,7 @@
                 let oldPrice = this.$refs.price.oldPrice
                 let newPrice = this.$refs.price.newPrice
                 let sendPrice = this.$refs.price.sendPrice
+                let typeIndex = this.$refs.price.typeIndex
                 if (this.title == '') {
                     this.$toast('请输入发布的标题')
                     return
@@ -91,10 +79,10 @@
                     this.$toast('描述一下宝贝吧')
                     return
                 }
-                if (this.imgUrls == '') {
-                    console.log('上传几张宝贝图片吧~~如果无法上传，请确定是否开启拍照权限，如果仍无效果，请移步其他浏览器')
-                    return
-                }
+                // if (this.imgUrls == '') {
+                //     console.log('上传几张宝贝图片吧~~如果无法上传，请确定是否开启拍照权限，如果仍无效果，请移步其他浏览器')
+                //     return
+                // }
                 if (newPrice == '') {
                     this.$toast('请输入价格')
                     return
@@ -107,31 +95,22 @@
                     this.$toast('邮费不能为空')
                     return
                 }
-                if (this.kind == '') {
-                    this.$toast('请选择商品类型')
-                    return
-                }
-                console.log('发布成功，去看看吧！').then(action => {
-                    let obj = {}
-                    obj.title = this.title
-                    obj.desc = this.desc
-                    obj.imgUrls = this.imgUrls
-                    obj.newPrice = newPrice
-                    obj.oldPrice = oldPrice
-                    obj.sendPrice = sendPrice
-                    obj.del = true
-                    obj.kind = this.kind
-                    obj.time = util.formatDate.format(new Date(), 'yyyy-MM-dd hh:mm')
-                    this.$store.dispatch('setFabunum')
-                    this.$store.dispatch('setFabuinfo', obj)
-                    this.$router.push('/my')
-                    this.$store.dispatch('setCurIndex', 4)
-                    console.log(obj)
+                let obj = {}
+                obj.title = this.title
+                obj.content = this.desc
+                obj.picUrls = this.imgUrls
+                obj.newPrice = newPrice
+                obj.oldPrice = oldPrice
+                obj.sendPrice = sendPrice
+                obj.del = true
+                obj.type = this.orgtypes[typeIndex].id
+                obj.time = util.formatDate.format(new Date(), 'yyyy-MM-dd hh:mm')
+                console.log(obj)
+                circleSave(obj).then(res => {
+                    if (res.status === 200) {
+                        this.goBack()
+                    }
                 });
-            },
-            selectItem(item) {
-                this.kind = item.name
-                this.hidden()
             },
             showAddpic() {
                 if (this.imgUrls.length >= 1) {
@@ -143,19 +122,11 @@
             goBack() {
                 this.$router.back(-1)
             },
-            hidden() {
-                let category = this.$refs.category
-                category.style.display = 'none'
-            },
             fileInput(e) {
                 let files = e.target.files
                 if (!files.length) return
-                this.createImage(files, e)
-            },
-            createImage(files, e) {
-                console.log(files, '>>>>')
-                this.imgUrls.push(files[0])
-                console.log(this.imgUrls)
+                console.log(files,'>>>>>>fileinput')
+                this.toUpload(files[0])
             },
             delImage(index) {
                 this.imgUrls.splice(index, 1)
@@ -164,13 +135,22 @@
                 let file = this.$refs.file
                 file.click()
             },
-            noprice() {
-                this.$toast('帖子仅能在鱼塘发布，你附近没有鱼塘，去别的地方转转吧~')
-            }
+            toUpload(file) {
+                console.log(file, '>>>>>toUpload')
+                storageUpload(file).then(res => {
+                    console.log(res, '>>>>>storageUpload')
+                    if (res.status === 200) {
+                        if (res.data.errno == 0) {
+                            this.imgUrls.push(res.data.data.url)
+                        }
+                    }
+                });
+            },
         },
         mounted() {
             typeObjList().then(res => {
                 if (res.status === 200) {
+                    this.orgtypes = res.data.data.list;
                     this.types.clear
                     for (var i = 0; i < res.data.data.list.length; i++) {
                         this.types.push(res.data.data.list[i].name)
@@ -325,30 +305,6 @@
                 border none
                 color #ffffff
                 background-color red
-        .category
-            position fixed
-            top 0
-            left 0
-            right 0
-            bottom 0
-            z-index 100
-            background-color #f7f7f7
-            width 100%
-            height 100%
-            display none
-            .wrapper
-                width 100%
-                height 22rem
-                overflow-y scroll
-                .item
-                    width 100%
-                    padding-left 0.3rem
-                    box-sizing border-box
-                    border-1px(#f1f1f1)
-                    height 1.5rem
-                    line-height 1.5rem
-                    font-size 0.3rem
-                    color #333333
 
     .head
         position relative
