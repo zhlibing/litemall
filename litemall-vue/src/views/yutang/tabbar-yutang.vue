@@ -113,6 +113,7 @@
     import Head from '@/components/head/Head'
     import floatbutton from '@/components/head/floatbutton'
     import avatar from '../../assets/images/store_default.png'
+    import { EventBus } from '../../utils/event-bus'
 
     export default {
         data() {
@@ -132,16 +133,33 @@
             },
             toast() {
                 this.$toast('小哥哥还没做这个功能哦')
-            }
+            },
+            refreshCircle() {
+                circleList().then(res => {
+                    if (res.status === 200) {
+                        this.lists = res.data.data.list
+                    }
+                }).catch(err => {
+                    console.log(err)
+                })
+            },
         },
         components: {
             Head,
             floatbutton,
-            avatar
+            avatar,
+            EventBus
         },
         mounted() {
             window.addEventListener('scroll', this.handleScroll)
             console.log('mounted', '>>>>YUTANG.vue')
+            EventBus.$on("circleSave", ({num, deg}) => {
+                this.refreshCircle()
+                console.log(num,deg,'>>>>refreshCircle')
+                this.$nextTick(() => {
+                    console.log(num,deg,'>>>>refreshCircle_$nextTick')
+                })
+            })
         },
         activated() {
             if (this.scroll >= 0) {
@@ -221,13 +239,7 @@
                 }).catch(err => {
                     console.log(err)
                 }),
-                circleList().then(res => {
-                    if (res.status === 200) {
-                        this.lists = res.data.data.list
-                    }
-                }).catch(err => {
-                    console.log(err)
-                })
+                this.refreshCircle()
         }
 
     }

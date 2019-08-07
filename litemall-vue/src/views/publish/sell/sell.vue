@@ -49,6 +49,7 @@
     import util from '../../../assets/utils/utils.js'
     import appbar from '@/components/head/appbar'
     import {typeObjList, circleSave, storageUpload} from '@/api/api'
+    import { EventBus } from '../../../utils/event-bus'
 
     export default {
         data() {
@@ -109,6 +110,10 @@
                 circleSave(obj).then(res => {
                     if (res.status === 200) {
                         this.goBack()
+                        EventBus.$emit("circleSave", {
+                            num: '99',
+                            deg: '00'
+                        });
                     }
                 });
             },
@@ -125,7 +130,7 @@
             fileInput(e) {
                 let files = e.target.files
                 if (!files.length) return
-                console.log(files,'>>>>>>fileinput')
+                console.log(files, '>>>>>>fileinput')
                 this.toUpload(files[0])
             },
             delImage(index) {
@@ -162,6 +167,7 @@
         },
         components: {
             appbar,
+            EventBus
         }
     }
 </script>
