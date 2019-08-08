@@ -148,7 +148,6 @@
             Head,
             floatbutton,
             avatar,
-            EventBus
         },
         mounted() {
             window.addEventListener('scroll', this.handleScroll)
@@ -160,6 +159,10 @@
                     console.log(num,deg,'>>>>refreshCircle_$nextTick')
                 })
             })
+        },
+        beforeDestroy () {
+            console.log('beforeDestroy', '>>>>YUTANG.vue')
+            EventBus.$off('circleSave')
         },
         activated() {
             if (this.scroll >= 0) {

@@ -167,7 +167,6 @@
         },
         components: {
             appbar,
-            EventBus
         }
     }
 </script>
