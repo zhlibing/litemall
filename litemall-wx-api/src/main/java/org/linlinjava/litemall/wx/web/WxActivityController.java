@@ -156,7 +156,7 @@ public class WxActivityController {
     }
 
     @PostMapping("delete")
-    public Object delete(@LoginUser Integer userId, @RequestBody LitemallQuestion litemallActivity) {
+    public Object delete(@LoginUser Integer userId, @RequestBody LitemallActivity litemallActivity) {
         if (userId == null) {
             return ResponseUtil.unlogin();
         }
