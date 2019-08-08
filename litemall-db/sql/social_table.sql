@@ -206,7 +206,7 @@ CREATE TABLE `litemall_activity` (
   `level` int(11) DEFAULT NULL COMMENT '级别',
   `current_people` int(11) DEFAULT NULL,
   `pic_urls` varchar(1023) DEFAULT NULL COMMENT '背景图',
-  `km` float NOT NULL,
+  `km` float DEFAULT NULL,
   `status` int(11) DEFAULT '0',
   `talkId` bigint(20) DEFAULT NULL,
   `activity_time` datetime DEFAULT NULL COMMENT '活动时间',
