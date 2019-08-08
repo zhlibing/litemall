@@ -48,8 +48,16 @@
 <script>
     import util from '../../../assets/utils/utils.js'
     import appbar from '@/components/head/appbar'
-    import {typeObjList, circleSave, storageUpload} from '@/api/api'
-    import { EventBus } from '../../../utils/event-bus'
+    import {
+        typeObjList,
+        circleSave,
+        storageUpload,
+        activitySave,
+        fishpondsSave,
+        groupSave,
+        questionSave
+    } from '@/api/api'
+    import {EventBus} from '../../../utils/event-bus'
 
     export default {
         data() {
@@ -99,6 +107,10 @@
                 let obj = {}
                 obj.title = this.title
                 obj.content = this.desc
+                obj.description = this.desc
+                obj.collectionCount = '1'
+                obj.limited = '1'
+                obj.km = '1'
                 obj.picUrls = this.imgUrls
                 obj.newPrice = newPrice
                 obj.oldPrice = oldPrice
@@ -106,16 +118,63 @@
                 obj.del = true
                 obj.type = this.orgtypes[typeIndex].id
                 obj.time = util.formatDate.format(new Date(), 'yyyy-MM-dd hh:mm')
-                console.log(obj)
-                circleSave(obj).then(res => {
-                    if (res.status === 200) {
-                        this.goBack()
-                        EventBus.$emit("circleSave", {
-                            num: '99',
-                            deg: '00'
-                        });
-                    }
-                });
+                if (this.orgtypes[typeIndex].id == 4) {
+                    circleSave(obj).then(res => {
+                        if (res.status === 200) {
+                            this.goBack()
+                            EventBus.$emit("circleSave", {
+                                num: '99',
+                                deg: '00'
+                            });
+                        }
+                    });
+                }
+                if (this.orgtypes[typeIndex].id == 5) {
+                    fishpondsSave(obj).then(res => {
+                        if (res.status === 200) {
+                            this.goBack()
+                            EventBus.$emit("circleSave", {
+                                num: '99',
+                                deg: '00'
+                            });
+                        }
+                    });
+                }
+                if (this.orgtypes[typeIndex].id == 6) {
+                    questionSave(obj).then(res => {
+                        if (res.status === 200) {
+                            this.goBack()
+                            EventBus.$emit("circleSave", {
+                                num: '99',
+                                deg: '00'
+                            });
+                        }
+                    });
+                }
+                if (this.orgtypes[typeIndex].id == 7) {
+                    groupSave(obj).then(res => {
+                        if (res.status === 200) {
+                            this.goBack()
+                            EventBus.$emit("circleSave", {
+                                num: '99',
+                                deg: '00'
+                            });
+                        }
+                    });
+                }
+                if (this.orgtypes[typeIndex].id == 8) {
+                    activitySave(obj).then(res => {
+                        if (res.status === 200) {
+                            this.goBack()
+                            EventBus.$emit("circleSave", {
+                                num: '99',
+                                deg: '00'
+                            });
+                        }
+                    });
+                }
+                if (this.orgtypes[typeIndex].id == 11) {
+                }
             },
             showAddpic() {
                 if (this.imgUrls.length >= 1) {

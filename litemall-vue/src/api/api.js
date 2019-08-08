@@ -464,6 +464,24 @@ export function fishPondsDetail() {
     })
 }
 
+const FishpondsSave='wx/fishponds/save'; //保存
+export function fishpondsSave(data) {
+    return request({
+        url: FishpondsSave,
+        method: 'post',
+        data
+    })
+}
+
+const FishpondsDelete='wx/fishponds/delete'; //删除
+export function fishpondsDelete(data) {
+    return request({
+        url: FishpondsDelete,
+        method: 'post',
+        data
+    })
+}
+
 const QuestionList='wx/question/list'; //鱼塘页取5个鱼塘
 export function questionList() {
     return request({
@@ -477,6 +495,24 @@ export function questionDetail() {
     return request({
         url: QuestionDetail,
         method: 'get'
+    })
+}
+
+const QuestionSave='wx/question/save'; //保存
+export function questionSave(data) {
+    return request({
+        url: QuestionSave,
+        method: 'post',
+        data
+    })
+}
+
+const QuestionDelete='wx/question/delete'; //删除
+export function questionDelete(data) {
+    return request({
+        url: QuestionDelete,
+        method: 'post',
+        data
     })
 }
 
@@ -496,6 +532,24 @@ export function groupDetail() {
     })
 }
 
+const GroupSave='wx/group/save'; //保存
+export function groupSave(data) {
+    return request({
+        url: GroupSave,
+        method: 'post',
+        data
+    })
+}
+
+const GroupDelete='wx/group/delete'; //删除
+export function groupDelete(data) {
+    return request({
+        url: GroupDelete,
+        method: 'post',
+        data
+    })
+}
+
 const ActivityList='wx/activity/list'; //鱼塘页取5个鱼塘
 export function activityList() {
     return request({
@@ -509,6 +563,24 @@ export function activityDetail() {
     return request({
         url: ActivityDetail,
         method: 'get'
+    })
+}
+
+const ActivitySave='wx/activity/save'; //保存
+export function activitySave(data) {
+    return request({
+        url: ActivitySave,
+        method: 'post',
+        data
+    })
+}
+
+const ActivityDelete='wx/activity/delete'; //删除
+export function activityDelete(data) {
+    return request({
+        url: ActivityDelete,
+        method: 'post',
+        data
     })
 }
 
@@ -528,10 +600,19 @@ export function circleDetail() {
     })
 }
 
-const CircleSave='wx/circle/save'; //鱼塘详细信息
+const CircleSave='wx/circle/save'; //保存
 export function circleSave(data) {
     return request({
         url: CircleSave,
+        method: 'post',
+        data
+    })
+}
+
+const CircleDelete='wx/circle/delete'; //删除
+export function circleDelete(data) {
+    return request({
+        url: CircleDelete,
         method: 'post',
         data
     })
