@@ -5,17 +5,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.linlinjava.litemall.core.system.SystemConfig;
 import org.linlinjava.litemall.core.util.ResponseUtil;
-import org.linlinjava.litemall.db.domain.LitemallComment;
-import org.linlinjava.litemall.db.domain.LitemallFootprint;
-import org.linlinjava.litemall.db.domain.LitemallActivity;
-import org.linlinjava.litemall.db.domain.LitemallUser;
+import org.linlinjava.litemall.db.domain.*;
 import org.linlinjava.litemall.db.service.*;
 import org.linlinjava.litemall.wx.annotation.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -141,4 +136,36 @@ public class WxActivityController {
         return ResponseUtil.ok(goodsCount);
     }
 
+    @PostMapping("save")
+    public Object save(@LoginUser Integer userId, @RequestBody LitemallActivity litemallActivity) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+
+        if (litemallActivity.getId() == null || litemallActivity.getId().equals(0)) {
+            litemallActivity.setId(null);
+            litemallActivity.setUserId(userId);
+            ActivityService.add(litemallActivity);
+        } else {
+            litemallActivity.setUserId(userId);
+            if (ActivityService.updateById(litemallActivity) == 0) {
+                return ResponseUtil.updatedDataFailed();
+            }
+        }
+        return ResponseUtil.ok(litemallActivity.getId());
+    }
+
+    @PostMapping("delete")
+    public Object delete(@LoginUser Integer userId, @RequestBody LitemallQuestion litemallActivity) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        Integer id = litemallActivity.getId();
+        if (id == null) {
+            return ResponseUtil.badArgument();
+        }
+
+        ActivityService.deleteById(id);
+        return ResponseUtil.ok();
+    }
 }

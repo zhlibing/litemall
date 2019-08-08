@@ -5,17 +5,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.linlinjava.litemall.core.system.SystemConfig;
 import org.linlinjava.litemall.core.util.ResponseUtil;
-import org.linlinjava.litemall.db.domain.LitemallComment;
-import org.linlinjava.litemall.db.domain.LitemallQuestion;
-import org.linlinjava.litemall.db.domain.LitemallFootprint;
-import org.linlinjava.litemall.db.domain.LitemallUser;
+import org.linlinjava.litemall.db.domain.*;
 import org.linlinjava.litemall.db.service.*;
 import org.linlinjava.litemall.wx.annotation.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -141,4 +136,36 @@ public class WxQuestionController {
         return ResponseUtil.ok(goodsCount);
     }
 
+    @PostMapping("save")
+    public Object save(@LoginUser Integer userId, @RequestBody LitemallQuestion litemallQuestion) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+
+        if (litemallQuestion.getId() == null || litemallQuestion.getId().equals(0)) {
+            litemallQuestion.setId(null);
+            litemallQuestion.setUserId(userId);
+            QuestionService.add(litemallQuestion);
+        } else {
+            litemallQuestion.setUserId(userId);
+            if (QuestionService.updateById(litemallQuestion) == 0) {
+                return ResponseUtil.updatedDataFailed();
+            }
+        }
+        return ResponseUtil.ok(litemallQuestion.getId());
+    }
+
+    @PostMapping("delete")
+    public Object delete(@LoginUser Integer userId, @RequestBody LitemallQuestion litemallQuestion) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        Integer id = litemallQuestion.getId();
+        if (id == null) {
+            return ResponseUtil.badArgument();
+        }
+
+        QuestionService.deleteById(id);
+        return ResponseUtil.ok();
+    }
 }

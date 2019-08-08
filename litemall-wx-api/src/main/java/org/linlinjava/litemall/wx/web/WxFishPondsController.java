@@ -10,9 +10,7 @@ import org.linlinjava.litemall.db.service.*;
 import org.linlinjava.litemall.wx.annotation.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -136,6 +134,39 @@ public class WxFishPondsController {
     public Object count() {
         Integer goodsCount = fishPondsService.queryOnActive();
         return ResponseUtil.ok(goodsCount);
+    }
+
+    @PostMapping("save")
+    public Object save(@LoginUser Integer userId, @RequestBody LitemallFishPonds fishPonds) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+
+        if (fishPonds.getId() == null || fishPonds.getId().equals(0)) {
+            fishPonds.setId(null);
+            fishPonds.setUserId(userId);
+            fishPondsService.add(fishPonds);
+        } else {
+            fishPonds.setUserId(userId);
+            if (fishPondsService.updateById(fishPonds) == 0) {
+                return ResponseUtil.updatedDataFailed();
+            }
+        }
+        return ResponseUtil.ok(fishPonds.getId());
+    }
+
+    @PostMapping("delete")
+    public Object delete(@LoginUser Integer userId, @RequestBody LitemallFishPonds fishPonds) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        Integer id = fishPonds.getId();
+        if (id == null) {
+            return ResponseUtil.badArgument();
+        }
+
+        fishPondsService.deleteById(id);
+        return ResponseUtil.ok();
     }
 
 }
