@@ -86,15 +86,15 @@ public class WxCommentController {
      * @param comment 评论内容
      * @return 发表评论操作结果
      */
-    @PostMapping("post")
+    @PostMapping("save")
     public Object post(@LoginUser Integer userId, @RequestBody LitemallComment comment) {
         if (userId == null) {
             return ResponseUtil.unlogin();
         }
-        Object error = validate(comment);
-        if (error != null) {
-            return error;
-        }
+//        Object error = validate(comment);
+//        if (error != null) {
+//            return error;
+//        }
 
         comment.setUserId(userId);
         commentService.save(comment);
