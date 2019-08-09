@@ -102,12 +102,18 @@ public class WxActivityController {
             });
         }
 
+        LitemallUser user = null;
+        if (info != null) {
+            user = userService.findDetailById(info.getUserId());
+        }
+
         Map<String, Object> data = new HashMap<>();
 
         try {
             data.put("info", info);
             data.put("userHasCollect", userHasCollect);
             data.put("share", SystemConfig.isAutoCreateShareImage());
+            data.put("user", user);
         } catch (Exception e) {
             e.printStackTrace();
         }
