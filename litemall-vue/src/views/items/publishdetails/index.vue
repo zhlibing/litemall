@@ -8,7 +8,7 @@
                 </div>
                 <div class="info">
                     <div class="username">{{news.info.content}}</div>
-                    <div class="ta">{{news.info.addTime}}{{news.add}}</div>
+                    <div class="ta">{{news.info.addTime+'>>>>>'}}{{news.info.userId}}</div>
                 </div>
                 <div class="pricebox">
                     <div class="price">{{news.info.type}}</div>
@@ -123,7 +123,7 @@
                     .username
                         color #000000
                         font-size 1rem
-                        font-weight 600
+                        font-weight 500
                         margin-bottom 0.4rem
                     .ta
                         color #777777
