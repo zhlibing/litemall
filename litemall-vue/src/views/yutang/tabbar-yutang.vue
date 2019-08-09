@@ -9,7 +9,7 @@
             <div class="swiper-container" ref="swiper">
                 <div class="swiper-wrapper swiper">
                     <div class="swiper-slide item" v-for="(item,index) in interests" :key="index" @click="toast">
-                        <img :src="item.picUrls[0]" alt="" class="img">
+                        <img :src="item.picUrls[0]" alt="" class="img" @click="itemClick(item.id,item.type)">
                         <div class="name">{{item.title}}</div>
                         <div class="info">
                             <p class="desc">{{item.description}}</p>
@@ -24,17 +24,17 @@
                 <p class="title">鱼塘问答</p>
                 <span class="ask">去提问</span>
             </div>
-            <div class="quesbox" v-for="question in questions" :key="question.id">
-                <div class="title">{{question.title}}</div>
-                <div class="answer">
+            <div class="quesbox" v-for="item in questions" :key="item.id">
+                <div class="title">{{item.title}}</div>
+                <div class="answer" @click="itemClick(item.id,item.type)">
                     <span class="da">答</span>
-                    <div class="text">{{question.description}}</div>
-                    <div class="imgshow" v-if="question.picUrls !== undefined">
-                        <img :src="question.picUrls[0]" alt="">
+                    <div class="text">{{item.description}}</div>
+                    <div class="imgshow" v-if="item.picUrls !== undefined">
+                        <img :src="item.picUrls[0]" alt="">
                     </div>
                 </div>
                 <div class="bottom">
-                    <div class="yutang">{{question.title}}</div>
+                    <div class="yutang">{{item.title}}</div>
                     <div class="toanswer">去回答</div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
             <div class="swiper-container" ref="tuhao">
                 <div class="swiper-wrapper swiper">
                     <div class="swiper-slide item" v-for="(item,index) in tuhao" :key="index" @click="toast">
-                        <div class="imgdisplay" v-if="item.picUrls !== undefined">
+                        <div class="imgdisplay" v-if="item.picUrls !== undefined" @click="itemClick(item.id,item.type)">
                             <img :src="item.picUrls[0]" alt=""
                                  class="imgbig">
                         </div>
@@ -68,7 +68,7 @@
             <div class="swiper-container" ref="china">
                 <div class="swiper-wrapper swiper">
                     <div class="swiper-slide item" v-for="(item,index) in china" :key="index" @click="toast">
-                        <div class="imgdisplay" v-if="item.picUrls !== undefined">
+                        <div class="imgdisplay" v-if="item.picUrls !== undefined" @click="itemClick(item.id,item.type)">
                             <img :src="item.picUrls[0]" alt=""
                                  class="imgbig">
                         </div>
@@ -86,7 +86,7 @@
             </div>
             <div class="list" v-for="(item,index) in lists" :key="index">
                 <img :src="item.picUrls!=undefined?item.picUrls[0]:default_avatar" alt="" class="image">
-                <div class="info" @click="itemClick(item.id)">
+                <div class="info" @click="itemClick(item.id,item.type)">
                     <div class="head">
                         <p class="tit">{{item.content.substring(0,8)+'...'}}</p>
                         <span class="level">{{item.status}}</span>
@@ -143,8 +143,8 @@
                     console.log(err)
                 })
             },
-            itemClick(id) {
-                this.$router.push(`/items/publishdetails/${id}`);
+            itemClick(id, type) {
+                this.$router.push(`/items/publishdetails/${id}/${type}`);
             }
         },
         components: {

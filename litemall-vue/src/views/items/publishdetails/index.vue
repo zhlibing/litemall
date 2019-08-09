@@ -47,11 +47,12 @@
 
 <script>
     import appbar from '@/components/head/appbar'
-    import {circleDetail} from '@/api/api';
+    import {circleDetail, activityDetail, groupDetail, fishPondsDetail, questionDetail} from '@/api/api';
 
     export default {
         props: {
-            itemId: [String, Number]
+            itemId: [String, Number],
+            type: [String, Number],
         },
         data() {
             return {
@@ -69,10 +70,36 @@
         },
         computed: {},
         created() {
-            circleDetail({id: this.itemId}).then(res => {
-                console.log(res, '>>>circleDetail')
-                this.news = res.data.data;
-            });
+            if (this.type == 4) {
+                circleDetail({id: this.itemId}).then(res => {
+                    console.log(res, '>>>circleDetail')
+                    this.news = res.data.data;
+                });
+            }
+            if (this.type == 5) {
+                fishPondsDetail({id: this.itemId}).then(res => {
+                    console.log(res, '>>>circleDetail')
+                    this.news = res.data.data;
+                });
+            }
+            if (this.type == 6) {
+                questionDetail({id: this.itemId}).then(res => {
+                    console.log(res, '>>>circleDetail')
+                    this.news = res.data.data;
+                });
+            }
+            if (this.type == 7) {
+                groupDetail({id: this.itemId}).then(res => {
+                    console.log(res, '>>>circleDetail')
+                    this.news = res.data.data;
+                });
+            }
+            if (this.type == 8) {
+                activityDetail({id: this.itemId}).then(res => {
+                    console.log(res, '>>>circleDetail')
+                    this.news = res.data.data;
+                });
+            }
         },
         mounted() {
             document.documentElement.scrollTop = document.body.scrollTop = 0

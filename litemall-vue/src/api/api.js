@@ -457,10 +457,11 @@ export function fishPondsList() {
 }
 
 const FishPondsDetail='wx/fishponds/detail'; //鱼塘详细信息
-export function fishPondsDetail() {
+export function fishPondsDetail(query) {
     return request({
         url: FishPondsDetail,
-        method: 'get'
+        method: 'get',
+        params: query
     })
 }
 
