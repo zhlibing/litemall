@@ -316,10 +316,17 @@
                         }
                     }
                     .text {
+                        max-height: 50px;
                         margin-top: -15px;
                         font-size: 0.8rem;
                         font-weight: 200;
                         line-height: 1.2rem;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 2;
                     }
                     .hot {
                         margin-top: 0.3rem;

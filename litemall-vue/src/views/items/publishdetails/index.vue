@@ -112,10 +112,17 @@
                     display flex
                     flex-direction column
                     .username
+                        max-height: 50px;
                         color #000000
                         font-size 0.9rem
                         font-weight 600
                         margin-bottom 0.4rem
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 2;
                     .ta
                         color #777777
                         font-size 0.8rem
