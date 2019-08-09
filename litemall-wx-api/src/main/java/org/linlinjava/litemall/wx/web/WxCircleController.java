@@ -49,6 +49,7 @@ public class WxCircleController {
 
     private static ThreadPoolExecutor executorService = new ThreadPoolExecutor(16, 16, 1000, TimeUnit.MILLISECONDS, WORK_QUEUE, HANDLER);
 
+    private int type =4;
     /**
      * 鱼塘详情
      * <p>
@@ -66,7 +67,7 @@ public class WxCircleController {
 
         // 评论
         Callable<Map> commentsCallable = () -> {
-            List<LitemallComment> comments = commentService.queryGoodsByGid(id, 4,0, 20);
+            List<LitemallComment> comments = commentService.queryGoodsByGid(id, type,0, 20);
             List<Map<String, Object>> commentsVo = new ArrayList<>(comments.size());
             long commentCount = PageInfo.of(comments).getTotal();
             for (LitemallComment comment : comments) {
@@ -89,7 +90,7 @@ public class WxCircleController {
         // 用户收藏
         int userHasCollect = 0;
         if (userId != null) {
-            userHasCollect = collectService.count(userId, id);
+            userHasCollect = collectService.count(userId, id,type);
         }
 
         // 记录用户的足迹 异步处理
