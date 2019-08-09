@@ -113,7 +113,7 @@
     import Head from '@/components/head/Head'
     import floatbutton from '@/components/head/floatbutton'
     import avatar from '../../assets/images/store_default.png'
-    import { EventBus } from '../../utils/event-bus'
+    import {EventBus} from '../../utils/event-bus'
 
     export default {
         data() {
@@ -157,13 +157,13 @@
             console.log('mounted', '>>>>YUTANG.vue')
             EventBus.$on("circleSave", ({num, deg}) => {
                 this.refreshCircle()
-                console.log(num,deg,'>>>>refreshCircle')
+                console.log(num, deg, '>>>>refreshCircle')
                 this.$nextTick(() => {
-                    console.log(num,deg,'>>>>refreshCircle_$nextTick')
+                    console.log(num, deg, '>>>>refreshCircle_$nextTick')
                 })
             })
         },
-        beforeDestroy () {
+        beforeDestroy() {
             console.log('beforeDestroy', '>>>>YUTANG.vue')
             EventBus.$off('circleSave')
         },
@@ -293,14 +293,14 @@
                 }
                 .info {
                     flex: 1;
-                    margin-left: 0.3rem;
+                    margin-left: 0.6rem;
                     .head {
                         display: flex;
                         .tit {
                             font-size: 0.8rem;
                             font-weight: 600;
                             flex: 1;
-                            margin-top: 5px;
+                            margin-top: 0px;
                         }
                         .level {
                             font-size: 0.3rem;
