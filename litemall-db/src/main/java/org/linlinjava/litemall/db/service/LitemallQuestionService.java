@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 public class LitemallQuestionService {
-    Column[] columns = new Column[]{Column.id, Column.title, Column.description, Column.picUrls, Column.status, Column.reword};
+    Column[] columns = new Column[]{Column.id, Column.title, Column.description, Column.picUrls, Column.status, Column.reword,Column.type};
     @Resource
     private LitemallQuestionMapper questionMapper;
 

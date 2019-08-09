@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 public class LitemallGroupService {
-    Column[] columns = new Column[]{Column.id, Column.age, Column.description, Column.picUrls, Column.status, Column.currentPeople};
+    Column[] columns = new Column[]{Column.id, Column.age, Column.description, Column.picUrls, Column.status, Column.currentPeople,Column.type};
     @Resource
     private LitemallGroupMapper groupMapper;
 

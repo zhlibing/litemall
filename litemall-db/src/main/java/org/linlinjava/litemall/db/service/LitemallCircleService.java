@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 public class LitemallCircleService {
-    Column[] columns = new Column[]{Column.id, Column.content, Column.picUrls, Column.status, Column.addTime};
+    Column[] columns = new Column[]{Column.id, Column.content, Column.picUrls, Column.status, Column.addTime,Column.type};
     @Resource
     private LitemallCircleMapper circleMapper;
 
