@@ -362,7 +362,20 @@ export function feedbackAdd(data) {
 }
 
 const FootprintList='wx/footprint/list'; //足迹列表
+export function footprintList() {
+    return request({
+        url: FootprintList,
+        method: 'get'
+    })
+}
 const FootprintDelete='wx/footprint/delete'; //删除足迹
+export function footprintDelete(data) {
+    return request({
+        url: FootprintDelete,
+        method: 'post',
+        data
+    })
+}
 
 const UserFormIdCreate='wx/formid/create'; //用户FromId，用于发送模版消息
 
