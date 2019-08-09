@@ -86,7 +86,7 @@
             </div>
             <div class="list" v-for="(item,index) in lists" :key="index">
                 <img :src="item.picUrls!=undefined?item.picUrls[0]:default_avatar" alt="" class="image">
-                <div class="info">
+                <div class="info" @click="itemClick(item.id)">
                     <div class="head">
                         <p class="tit">{{item.content.substring(0,8)+'...'}}</p>
                         <span class="level">{{item.status}}</span>
@@ -143,6 +143,9 @@
                     console.log(err)
                 })
             },
+            itemClick(id) {
+                this.$router.push(`/items/publishdetails/${id}`);
+            }
         },
         components: {
             Head,

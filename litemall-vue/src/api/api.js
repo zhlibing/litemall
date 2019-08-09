@@ -491,10 +491,11 @@ export function questionList() {
 }
 
 const QuestionDetail='wx/question/detail'; //鱼塘详细信息
-export function questionDetail() {
+export function questionDetail(query) {
     return request({
         url: QuestionDetail,
-        method: 'get'
+        method: 'get',
+        params: query
     })
 }
 
@@ -525,10 +526,11 @@ export function groupList() {
 }
 
 const GroupDetail='wx/group/detail'; //鱼塘详细信息
-export function groupDetail() {
+export function groupDetail(query) {
     return request({
         url: GroupDetail,
-        method: 'get'
+        method: 'get',
+        params: query
     })
 }
 
@@ -559,10 +561,11 @@ export function activityList() {
 }
 
 const ActivityDetail='wx/activity/detail'; //鱼塘详细信息
-export function activityDetail() {
+export function activityDetail(query) {
     return request({
         url: ActivityDetail,
-        method: 'get'
+        method: 'get',
+        params: query
     })
 }
 
@@ -593,10 +596,11 @@ export function circleList() {
 }
 
 const CircleDetail='wx/circle/detail'; //鱼塘详细信息
-export function circleDetail() {
+export function circleDetail(query) {
     return request({
         url: CircleDetail,
-        method: 'get'
+        method: 'get',
+        params: query
     })
 }
 
