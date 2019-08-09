@@ -7,6 +7,7 @@ import org.linlinjava.litemall.db.domain.LitemallUserExample;
 import org.linlinjava.litemall.db.domain.UserVo;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.linlinjava.litemall.db.domain.LitemallUser.Column;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
@@ -14,11 +15,16 @@ import java.util.List;
 
 @Service
 public class LitemallUserService {
+    Column[] columns = new Column[]{Column.id, Column.username, Column.nickname, Column.userLevel, Column.addTime,Column.avatar,Column.gender,Column.status};
     @Resource
     private LitemallUserMapper userMapper;
 
     public LitemallUser findById(Integer userId) {
         return userMapper.selectByPrimaryKey(userId);
+    }
+
+    public LitemallUser findDetailById(Integer userId) {
+        return userMapper.selectByPrimaryKeySelective(userId,columns);
     }
 
     public UserVo findUserVoById(Integer userId) {
