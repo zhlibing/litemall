@@ -4,11 +4,11 @@
         <div class="details">
             <div class="top">
                 <div class="avatarbox">
-                    <img :src="news.info.picUrls[0]" alt="" class="avatar">
+                    <img :src="news.user.avatar" alt="" class="avatar">
                 </div>
                 <div class="info">
-                    <div class="username">{{news.info.content}}</div>
-                    <div class="ta">{{news.info.addTime+'>>>>>'}}{{news.info.userId}}</div>
+                    <div class="username">{{news.user.username}}</div>
+                    <div class="ta">{{news.info.addTime+' '}}{{"等级:"+news.user.userLevel}}</div>
                 </div>
                 <div class="pricebox">
                     <div class="price">{{news.info.type}}</div>
