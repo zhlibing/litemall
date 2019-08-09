@@ -35,8 +35,8 @@
                 <img src="../../../assets/images/留言.png" alt="">
                 <span class="leabmsg">留言</span>
             </div>
-            <div class="givestar" @click="star">
-                <img src="../../../assets/images/赞.png" alt="" v-if="show">
+            <div class="givestar" @click="addCollect">
+                <img src="../../../assets/images/赞.png" alt="" v-if="userHasCollect==0">
                 <img src="../../../assets/images/赞1.png" alt="" v-else>
                 <span class="star">点赞</span>
             </div>
@@ -47,7 +47,14 @@
 
 <script>
     import appbar from '@/components/head/appbar'
-    import {circleDetail, activityDetail, groupDetail, fishPondsDetail, questionDetail} from '@/api/api';
+    import {
+        circleDetail,
+        activityDetail,
+        groupDetail,
+        fishPondsDetail,
+        questionDetail,
+        collectAddOrDelete
+    } from '@/api/api';
 
     export default {
         props: {
@@ -56,13 +63,25 @@
         },
         data() {
             return {
-                show: true,
+                userHasCollect: 0,
                 news: {}
             }
         },
         methods: {
-            star() {
-                this.show = !this.show
+            addCollect() {
+                collectAddOrDelete({valueId: this.itemId, type: this.type}).then(res => {
+                    if (this.news.userHasCollect === 1) {
+                        this.news.userHasCollect = 0;
+                        this.userHasCollect = 0;
+                    } else {
+                        this.news.userHasCollect = 1;
+                        this.userHasCollect = 1;
+                        this.$toast({
+                            message: '收藏成功',
+                            duration: 1500
+                        });
+                    }
+                });
             },
             buy() {
 
@@ -77,30 +96,35 @@
                 circleDetail({id: this.itemId}).then(res => {
                     console.log(res, '>>>circleDetail')
                     this.news = res.data.data;
+                    this.userHasCollect = res.data.data.userHasCollect
                 });
             }
             if (this.type == 5) {
                 fishPondsDetail({id: this.itemId}).then(res => {
                     console.log(res, '>>>circleDetail')
                     this.news = res.data.data;
+                    this.userHasCollect = res.data.data.userHasCollect
                 });
             }
             if (this.type == 6) {
                 questionDetail({id: this.itemId}).then(res => {
                     console.log(res, '>>>circleDetail')
                     this.news = res.data.data;
+                    this.userHasCollect = res.data.data.userHasCollect
                 });
             }
             if (this.type == 7) {
                 groupDetail({id: this.itemId}).then(res => {
                     console.log(res, '>>>circleDetail')
                     this.news = res.data.data;
+                    this.userHasCollect = res.data.data.userHasCollect
                 });
             }
             if (this.type == 8) {
                 activityDetail({id: this.itemId}).then(res => {
                     console.log(res, '>>>circleDetail')
                     this.news = res.data.data;
+                    this.userHasCollect = res.data.data.userHasCollect
                 });
             }
         },
