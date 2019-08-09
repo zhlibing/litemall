@@ -16,9 +16,9 @@ public class LitemallCollectService {
     @Resource
     private LitemallCollectMapper collectMapper;
 
-    public int count(int uid, Integer gid) {
+    public int count(int uid, Integer gid, int type) {
         LitemallCollectExample example = new LitemallCollectExample();
-        example.or().andUserIdEqualTo(uid).andValueIdEqualTo(gid).andDeletedEqualTo(false);
+        example.or().andUserIdEqualTo(uid).andTypeEqualTo((byte) type).andValueIdEqualTo(gid).andDeletedEqualTo(false);
         return (int) collectMapper.countByExample(example);
     }
 
