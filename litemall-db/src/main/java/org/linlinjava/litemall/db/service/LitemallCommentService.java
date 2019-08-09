@@ -16,10 +16,10 @@ public class LitemallCommentService {
     @Resource
     private LitemallCommentMapper commentMapper;
 
-    public List<LitemallComment> queryGoodsByGid(Integer id, int offset, int limit) {
+    public List<LitemallComment> queryGoodsByGid(Integer id, int type, int offset, int limit) {
         LitemallCommentExample example = new LitemallCommentExample();
         example.setOrderByClause(LitemallComment.Column.addTime.desc());
-        example.or().andValueIdEqualTo(id).andTypeEqualTo((byte) 0).andDeletedEqualTo(false);
+        example.or().andValueIdEqualTo(id).andTypeEqualTo((byte) type).andDeletedEqualTo(false);
         PageHelper.startPage(offset, limit);
         return commentMapper.selectByExample(example);
     }
