@@ -107,6 +107,10 @@ public class WxCircleController {
             user = userService.findDetailById(info.getUserId());
         }
 
+        FutureTask<Map> commentsCallableTsk = new FutureTask<>(commentsCallable);
+
+        executorService.submit(commentsCallableTsk);
+
         Map<String, Object> data = new HashMap<>();
 
         try {
@@ -114,6 +118,7 @@ public class WxCircleController {
             data.put("userHasCollect", userHasCollect);
             data.put("share", SystemConfig.isAutoCreateShareImage());
             data.put("user", user);
+            data.put("comment", commentsCallableTsk.get());
         } catch (Exception e) {
             e.printStackTrace();
         }
