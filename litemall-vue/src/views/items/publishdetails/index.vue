@@ -18,7 +18,9 @@
                 <p class="desc">{{news.info.content}}</p>
             </div>
             <div class="img">
-                <img :src="news.info.picUrls[0]" alt="">
+                <a href="javascript:;" v-for="picUrl in news.info.picUrls" style="display: inline-block">
+                    <img :src="picUrl" alt="">
+                </a>
             </div>
         </div>
         <div class="messagebox">
@@ -58,22 +60,11 @@
             }
         },
         methods: {
-            goBack() {
-                this.$router.back(-1)
-            },
             star() {
                 this.show = !this.show
             },
             buy() {
-                if (this.login) {
-                    this.$router.push({
-                        path: '/chat'
-                    })
-                } else {
-                    this.$router.push({
-                        path: '/login'
-                    })
-                }
+
             }
         },
         computed: {},
@@ -98,7 +89,7 @@
         background-color #f7f7f7
         .details
             width 100%
-            min-height 100%
+            min-height 50%
             padding 0.5rem 1rem
             box-sizing border-box
             background-color #fff
@@ -122,8 +113,8 @@
                     flex-direction column
                     .username
                         color #000000
-                        font-size 1rem
-                        font-weight 500
+                        font-size 0.9rem
+                        font-weight 600
                         margin-bottom 0.4rem
                     .ta
                         color #777777
@@ -149,7 +140,7 @@
         .messagebox
             margin-top 0.3rem
             background-color #fff
-            padding .3rem .4rem
+            padding .3rem 1rem
             margin-bottom 1.4rem
             .msg
                 font-size 0.9rem
@@ -173,8 +164,8 @@
                 align-items center
                 padding .5rem 0
                 .nomsg
-                    margin-top 0.2rem
-                    font-size 0.4rem
+                    margin-top 1rem
+                    font-size 0.8rem
                     color #888888
         .bottom
             position fixed
