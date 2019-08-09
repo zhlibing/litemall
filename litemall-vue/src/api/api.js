@@ -217,7 +217,14 @@ export function collectAddOrDelete(data) {
 }
 const CommentList='wx/comment/list'; //评论列表
 const CommentCount='wx/comment/count'; //评论总数
-const CommentPost='wx/comment/post'; //发表评论
+const CommentSave='wx/comment/save'; //发表评论
+export function commentSave(data) {
+    return request({
+        url: CommentSave,
+        method: 'post',
+        data
+    })
+}
 
 const TopicList='wx/topic/list'; //专题列表
 export function topicList(query) {

@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="bottom">
-            <div class="message">
+            <div class="message" @click="toPublishComment">
                 <img src="../../../assets/images/留言.png" alt="">
                 <span class="leabmsg">留言</span>
             </div>
@@ -66,6 +66,9 @@
             },
             buy() {
 
+            },
+            toPublishComment() {
+                this.$router.push({name: 'publishcomment', params: {type: this.type, itemId: this.itemId}})
             }
         },
         computed: {},

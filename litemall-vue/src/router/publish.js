@@ -28,5 +28,12 @@ export default [
                 component: () => import('@/views/publish/sell/uction'),
             }
         ]
+    },
+    {
+        path: '/publish/publishcomment',
+        name: 'publishcomment',
+        components: {
+            default: () => import('@/views/publish/sell/publishcomment'),
+        }
     }
 ];
