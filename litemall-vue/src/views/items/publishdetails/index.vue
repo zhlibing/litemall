@@ -126,7 +126,7 @@
                         font-weight 400
             .descbox
                 width 100%
-                margin-top 2rem
+                margin-top 3rem
                 .desc
                     font-size 0.9rem
                     color #000000
