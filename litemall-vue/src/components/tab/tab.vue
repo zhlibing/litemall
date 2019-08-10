@@ -69,9 +69,10 @@
     .tab {
         width: 100%;
         height: 2.75rem;
-        position: relative;
+        position: fixed;
         border-bottom: 1px solid #ededed;
         background-color: #ffffff;
+        z-index: 999;
         .container {
             padding: 0 32px;
             height: 100%;

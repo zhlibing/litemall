@@ -49,188 +49,105 @@
     }
 </script>
 <style lang="scss" scoped>
+    .lobby-item {
+        height: 7.8125rem;
+        background-color: #fff;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .item-content {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        border-bottom: .0625rem solid #ededed;
+        padding: 0 .625rem;
+        .lottery-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+                width: 4rem;
+                height: 4rem;
+                margin-left: 10px;
+            }
+        }
+        .item-info {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            padding: .625rem 0 .625rem .625rem;
+            .info-row {
+                display: flex;
+                flex: 1;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                .lottery-name {
+                    font-size: .9rem;
+                    font-weight: 400;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                    margin-right: 10px;
+                }
+                .arrow-right {
+                    width: .5625rem;
+                    height: .9375rem;
+                    margin-right: 5px;
+                }
+                .issue-no {
+                    font-size: .6875rem;
+                    color: #666;
+                }
+                .item-cd {
+                    font-size: .6875rem;
+                    color: red;
+                    margin-right: 5px;
+                    margin-top: 5px;
+                }
+            }
+            .nums {
+                margin-top: -5px;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                span {
+                    font-size: .875rem;
+                    color: #db3d3c;
+                    padding-right: .1875rem;
+                }
+            }
+        }
+    }
+
     .lobby-item .funs-wrap .funs-list .fun + .fun {
         border-left: .0625rem solid #ededed;
     }
 
-    .lobby-item {
-        height: 7.8125rem;
-        background-color: #fff;
-        display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-        flex-direction: column;
-    }
-
-    .lobby-item .item-content {
-        display: flex;
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-        -webkit-box-flex: 1;
-        -webkit-flex: 1;
-        -ms-flex: 1;
-        flex: 1;
-        -webkit-box-align: stretch;
-        -webkit-align-items: stretch;
-        -ms-flex-align: stretch;
-        align-items: stretch;
-        border-bottom: .0625rem solid #ededed;
-        padding: 0 .625rem;
-    }
-
-    .lobby-item .item-content .lottery-logo {
-        display: flex;
-        -webkit-box-pack: center;
-        -webkit-justify-content: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-        -ms-flex-align: center;
-        align-items: center;
-    }
-
-    .lobby-item .item-content .lottery-logo img {
-        width: 3.75rem;
-        height: 3.75rem;
-        margin-left: 10px;
-    }
-
-    .lobby-item .item-content .item-info {
-        display: flex;
-        -webkit-flex: 1;
-        -ms-flex: 1;
-        flex: 1;
-        -webkit-box-orient: vertical;
-        -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        padding: .625rem 0 .625rem .625rem;
-    }
-
-    .lobby-item .item-content .item-info > .info-row {
-        display: flex;
-        -webkit-flex: 1;
-        -ms-flex: 1;
-        flex: 1;
-        -webkit-box-orient: horizontal;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-        -webkit-box-pack: justify;
-        -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-        -ms-flex-align: center;
-        align-items: center;
-    }
-
-    .lobby-item .item-content .item-info .nums {
-        margin-top: -5px;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-        -webkit-box-pack: start;
-        -webkit-justify-content: flex-start;
-        -ms-flex-pack: start;
-        justify-content: flex-start;
-    }
-
-    .lobby-item .item-content .item-info > .info-row .lottery-name {
-        font-size: .9375rem;
-        color: #000;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        margin-right: 10px;
-    }
-
-    .lobby-item .item-content .item-info > .info-row .arrow-right {
-        width: .5625rem;
-        height: .9375rem;
-        margin-right: 5px;
-    }
-
-    .lobby-item .item-content .item-info .nums > span {
-        font-size: .875rem;
-        color: #db3d3c;
-        padding-right: .1875rem;
-    }
-
-    .lobby-item .item-content .item-info > .info-row .issue-no {
-        font-size: .6875rem;
-        color: #666;
-    }
-
-    .lobby-item .item-content .item-info > .info-row .item-cd {
-        font-size: .6875rem;
-        color: red;
-        margin-right: 5px;
-        margin-top: 5px;
-    }
-
     .lobby-item .funs-wrap {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        height: 2.25rem;
-        padding: .375rem;
+        height: 3rem;
+        padding: .5rem;
         background-color: #ffffff;
+        border-bottom: 5px solid #ededed;
     }
 
     .lobby-item .funs-wrap .funs-list,
     .lobby-item .funs-wrap .funs-list .fun {
-        -webkit-box-flex: 1;
-        -webkit-flex: 1;
-        -ms-flex: 1;
         flex: 1;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-    }
-
-    .lobby-item .funs-wrap .funs-list .fun {
-        -webkit-box-pack: center;
-        -webkit-justify-content: center;
-        -ms-flex-pack: center;
         justify-content: center;
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-        -ms-flex-align: center;
-        align-items: center;
-    }
-
-    .lobby-item .funs-wrap .funs-list .fun .fun-logo {
-        height: .9375rem;
-        width: .9375rem;
-    }
-
-    .lobby-item .funs-wrap .funs-list .fun span {
-        font-size: .75rem;
-        color: #333;
-        padding-left: .5rem;
+        .fun-logo {
+            height: .9375rem;
+            width: .9375rem;
+        }
+        span {
+            font-size: .75rem;
+            color: #333;
+            padding-left: .5rem;
+        }
     }
 </style>

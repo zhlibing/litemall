@@ -1,7 +1,20 @@
 <template>
     <div class="root">
         <lottery-tab @onTabIndex="toTabIndex"></lottery-tab>
-        <lotteryList @onToLotteryIndex="toLotteryIndex" :itemClass="itemClass"></lotteryList>
+        <van-pull-refresh v-model="loading" @refresh="onRefresh" style="margin-top: 10px">
+            <van-list v-model="loading"
+                      :finished="finished"
+                      :immediate-check="false"
+                      finished-text="没有更多了"
+                      @load="getBrandList">
+                <div class="brand-info"
+                     v-for="(brand, index) in list"
+                     :key="index"
+                     @click="itemClick(brand.id)">
+                    <lotteryList @onToLotteryIndex="toLotteryIndex" :itemClass="itemClass"></lotteryList>
+                </div>
+            </van-list>
+        </van-pull-refresh>
         <floatbutton></floatbutton>
     </div>
 </template>
@@ -9,9 +22,12 @@
     import lotteryList from '@/components/itemadapter/fishponds';
     import LotteryTab from '@/components/tab/tab'
     import floatbutton from '@/components/head/floatbutton'
+    import {brandList} from '@/api/api';
+    import {PullRefresh, List} from 'vant';
+    import Vue from 'vue'
 
+    Vue.use(PullRefresh)
     export default {
-        components: {lotteryList, LotteryTab,floatbutton},
         data() {
             return {
                 a: 1,
@@ -23,18 +39,53 @@
                     "roleName": "儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒",
                     "roleImg": ""
                 },
+                list: [],
+                page: 0,
+                limit: 10,
+                loading: false,
+                finished: false
             };
         },
+
+        created() {
+            this.init();
+        },
+
         methods: {
             toLotteryIndex(lotteryCode) {
                 this.$router.push({name: 'buyLotteryIndex', params: {lotteryCode: lotteryCode}})
             },
             toTabIndex(index) {
-                this.itemClass.roleName = this.itemClass.roleName+index;
+                this.itemClass.roleName = this.itemClass.roleName + index;
                 console.log(index, '>>>>toLotteryIndex')
+            },
+            init() {
+                this.page = 0;
+                this.list = [];
+                this.getBrandList();
+            },
+            //下拉刷新
+            onRefresh() {
+                setTimeout(() => {
+                    this.init()
+                }, 500);
+            },
+            getBrandList() {
+                this.page++;
+                brandList({
+                    page: this.page,
+                    limit: this.limit
+                }).then(res => {
+                    this.list.push(...res.data.data.list);
+                    this.loading = false;
+                    this.finished = res.data.data.page >= res.data.data.pages;
+                });
+            },
+            itemClick(id) {
+                this.$router.push(`/items/brand/${id}`);
             }
         },
-
+        components: {lotteryList, LotteryTab, floatbutton, [List.name]: List},
     }
 </script>
 <style scoped>
