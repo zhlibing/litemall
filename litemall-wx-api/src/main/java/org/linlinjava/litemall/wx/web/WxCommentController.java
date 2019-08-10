@@ -153,4 +153,18 @@ public class WxCommentController {
         }
         return ResponseUtil.okList(commentVoList, commentList);
     }
+
+    @PostMapping("delete")
+    public Object delete(@LoginUser Integer userId, @RequestBody LitemallComment litemallComment) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        Integer id = litemallComment.getId();
+        if (id == null) {
+            return ResponseUtil.badArgument();
+        }
+
+        commentService.deleteById(id);
+        return ResponseUtil.ok();
+    }
 }

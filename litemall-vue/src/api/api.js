@@ -226,6 +226,15 @@ export function commentSave(data) {
     })
 }
 
+const CommentDelete='wx/comment/delete'; //发表评论
+export function commentDelete(data) {
+    return request({
+        url: CommentDelete,
+        method: 'post',
+        data
+    })
+}
+
 const TopicList='wx/topic/list'; //专题列表
 export function topicList(query) {
   return request({

@@ -71,9 +71,10 @@
                           finished-text="没有更多了"
                           @load="getCommentList">
                     <van-panel style=" padding-bottom: 10px;">
-                        <div class="list2n" v-for="comment in commentList"
+                        <div class="list2n" v-for="(comment,index) in commentList" :key="index"
                              v-show="commentList!=undefined&&commentList.length>0">
-                            <commentItem :comment="comment"></commentItem>
+                            <commentItem :comment="comment" :userId="userId"
+                                         @deleteComment="deleteComment(index)"></commentItem>
                         </div>
                     </van-panel>
                 </van-list>
@@ -104,6 +105,7 @@
     import share from '../../../assets/images/add.png'
     import avatar from '../../../assets/images/avatar_default.png'
     import commentItem from '../../../components/itemadapter/commentItem.vue'
+    import {getLocalStorage} from '@/utils/local-storage';
 
     export default {
         props: {
@@ -114,6 +116,7 @@
             const isLogin = !!localStorage.getItem('Authorization');
 
             return {
+                userId: '',
                 tabTitles: ['商品详情', '精彩评论'],
                 activeIndex: Number(this.active),
                 commentList: [],
@@ -166,9 +169,21 @@
 
         created() {
             this.initData();
+            this.getUserInfo();
         },
 
         methods: {
+            deleteComment(index) {
+                this.commentList.splice(index, 1)
+                console.log(index, 'deleteComment')
+            },
+            getUserInfo() {
+                const infoData = getLocalStorage(
+                    'userId'
+                );
+                this.userId = infoData.userId || "";
+                console.log(infoData, '>>>>>>userId')
+            },
             goBack() {
                 this.$router.back(-1)
             },

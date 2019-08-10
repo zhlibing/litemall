@@ -28,20 +28,34 @@
                      @click="previewimage(comment.picList,imgIndex)"/>
             </div>
             <div class="time">{{comment.addTime}}</div>
+            <div class="delete" v-show="userId==comment.userId" @click="deleteComment">删除</div>
         </div>
     </div>
 </template>
 <script>
     import {ImagePreview} from 'vant';
+    import {
+        commentDelete
+    } from '@/api/api';
 
     export default {
         props: {
             comment: Object,
+            userId: ''
         },
         methods: {
             previewimage(list, index) {
                 ImagePreview(list, index);
             },
+            deleteComment() {
+                commentDelete({id: this.comment.id}).then(res => {
+                    if (res.status === 200) {
+                        if (res.data.errno == 0) {
+                            this.$emit('deleteComment', {comment: this.comment});
+                        }
+                    }
+                });
+            }
         }
     }
 </script>
@@ -104,6 +118,13 @@
                 margin-top: 0.5rem;
                 line-height: 18px;
                 color: $font-color-gray;
+                text-align: right;
+            }
+            .delete {
+                margin-top: 0.5rem;
+                line-height: 10px;
+                font-size: 0.5rem;
+                color: red;
                 text-align: right;
             }
         }

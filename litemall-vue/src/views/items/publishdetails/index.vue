@@ -25,9 +25,9 @@
         </div>
         <div class="messagebox">
             <p class="msg border-1px">留言</p>
-            <div class="list2n" v-for="comment in news.comment.data"
+            <div class="list2n" v-for="(comment,index) in news.comment.data" :key="index"
                  v-show="news.comment.data!=undefined&&news.comment.data.length>0">
-                <commentItem :comment="comment"></commentItem>
+                <commentItem :comment="comment" :userId="userId" @deleteComment="deleteComment(index)"></commentItem>
             </div>
             <div class="comment" v-show="news.comment.data==undefined||news.comment.data.length==0">
                 <img class="bg" src="../../../assets/images/is_empty.png" alt="">
@@ -60,6 +60,7 @@
         questionDetail,
         collectAddOrDelete
     } from '@/api/api';
+    import {getLocalStorage} from '@/utils/local-storage';
 
     export default {
         props: {
@@ -70,10 +71,22 @@
             return {
                 userHasCollect: 0,
                 news: {},
-                title:'详情'
+                title: '详情',
+                userId: ''
             }
         },
         methods: {
+            deleteComment(index) {
+                this.news.comment.data.splice(index, 1)
+                console.log(index, 'deleteComment')
+            },
+            getUserInfo() {
+                const infoData = getLocalStorage(
+                    'userId'
+                );
+                this.userId = infoData.userId || "";
+                console.log(infoData, '>>>>>>userId')
+            },
             addCollect() {
                 collectAddOrDelete({valueId: this.itemId, type: this.type}).then(res => {
                     if (this.news.userHasCollect === 1) {
@@ -98,6 +111,7 @@
         },
         computed: {},
         created() {
+            this.getUserInfo();
             if (this.type == 4) {
                 circleDetail({id: this.itemId}).then(res => {
                     console.log(res, '>>>circleDetail')

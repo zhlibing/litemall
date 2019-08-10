@@ -73,6 +73,7 @@ public class WxFishPondsController {
             for (LitemallComment comment : comments) {
                 Map<String, Object> c = new HashMap<>();
                 c.put("id", comment.getId());
+                c.put("userId", comment.getUserId());
                 c.put("addTime", comment.getAddTime());
                 c.put("content", comment.getContent());
                 LitemallUser user = userService.findById(comment.getUserId());
