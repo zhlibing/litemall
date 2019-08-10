@@ -539,8 +539,8 @@
     .notice-area {
         display: flex;
         height: 2.0625rem;
-        border-bottom: .0625rem solid #ededed;
-        border-top: .0625rem solid #ededed;
+        border-bottom: .0625rem solid #f7f7f7;
+        border-top: .0625rem solid #f7f7f7;
         flex-direction: row;
         align-items: center;
         padding: 0 .375rem;

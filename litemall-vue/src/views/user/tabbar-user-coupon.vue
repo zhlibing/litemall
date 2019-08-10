@@ -50,6 +50,8 @@ export default {
   text-align: center;
   padding: 10px 0;
   font-size: 12px;
+	border-bottom: 1px solid #f7f7f7;
+	border-top: 1px solid #f7f7f7;
 
   > div {
     @include one-border;

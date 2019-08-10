@@ -73,7 +73,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        border-bottom: 1px solid #ededed;
+        border-bottom: 1px solid #f7f7f7;
     }
 
     .left {

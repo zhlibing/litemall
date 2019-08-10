@@ -70,7 +70,7 @@
         width: 100%;
         height: 2.75rem;
         position: fixed;
-        border-bottom: 1px solid #ededed;
+        border-bottom: 1px solid #f7f7f7;
         background-color: #ffffff;
         z-index: 999;
         .container {

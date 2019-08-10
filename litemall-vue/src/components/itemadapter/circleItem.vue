@@ -38,7 +38,7 @@
         box-sizing: border-box;
         padding-bottom: .5rem;
         display: flex;
-        border-bottom: 1px solid #ededed;
+        border-bottom: 1px solid #f7f7f7;
         .image {
             width: 4rem;
             height: 4rem;

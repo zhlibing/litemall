@@ -61,7 +61,7 @@
         display: flex;
         flex-direction: row;
         flex: 1;
-        border-bottom: .0625rem solid #ededed;
+        border-bottom: .0625rem solid #f7f7f7;
         padding: 0 .625rem;
         .lottery-logo {
             display: flex;
@@ -125,14 +125,14 @@
     }
 
     .lobby-item .funs-wrap .funs-list .fun + .fun {
-        border-left: .0625rem solid #ededed;
+        border-left: .0625rem solid #f7f7f7;
     }
 
     .lobby-item .funs-wrap {
         height: 3rem;
         padding: .5rem;
         background-color: #ffffff;
-        border-bottom: 5px solid #ededed;
+        border-bottom: 5px solid #f7f7f7;
     }
 
     .lobby-item .funs-wrap .funs-list,

@@ -138,7 +138,7 @@
             .inputdetail
                 width 100%
                 border-1px(#f8f8f8)
-                border-bottom: 1px solid #ededed;
+                border-bottom: 1px solid #f7f7f7;
                 textarea
                     border none
                     outline none

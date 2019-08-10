@@ -28,7 +28,7 @@
         top: 0;
         display: flex;
         align-items: center;
-        border-bottom: 1px solid #ededed;
+        border-bottom: 1px solid #f7f7f7;
         .scanner {
             width: 25px;
             height: 25px;

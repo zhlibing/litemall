@@ -35,7 +35,7 @@
     .quesbox {
         padding-top: 0.4rem;
         padding-bottom: 0.4rem;
-        border-bottom: 1px solid #ededed;
+        border-bottom: 1px solid #f7f7f7;
         .title {
             font-size: 0.8rem;
             font-weight: 600;
