@@ -11,7 +11,7 @@
                      v-for="(brand, index) in list"
                      :key="index"
                      @click="itemClick(brand.id)">
-                    <lotteryList @onToLotteryIndex="toLotteryIndex" :itemClass="itemClass"></lotteryList>
+                    <lotteryList @onToLotteryIndex="toLotteryIndex" :itemClass="itemClass" style="margin-bottom: 30px"></lotteryList>
                 </div>
             </van-list>
         </van-pull-refresh>
@@ -35,7 +35,7 @@
                     "actorId": 1,
                     "actor": "吕艳婷",
                     "actorEn": "Yanting Lv",
-                    "actorImg": "http://img5.mtime.cn/ph/2019/07/16/164144.93834954_1280X720X2.jpg",
+                    "actorImg": "http://www.dnzhuti.com/uploads/allimg/170503/95-1F503163525.jpg",
                     "roleName": "儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒",
                     "roleImg": ""
                 },
@@ -53,7 +53,7 @@
 
         methods: {
             toLotteryIndex(lotteryCode) {
-                this.$router.push({name: 'buyLotteryIndex', params: {lotteryCode: lotteryCode}})
+//                this.$router.push({name: 'buyLotteryIndex', params: {lotteryCode: lotteryCode}})
             },
             toTabIndex(index) {
                 this.itemClass.roleName = this.itemClass.roleName + index;
