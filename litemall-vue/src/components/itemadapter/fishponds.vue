@@ -50,7 +50,7 @@
 </script>
 <style lang="scss" scoped>
     .lobby-item .funs-wrap .funs-list .fun + .fun {
-        border-left: .0625rem solid #dbdbdb;
+        border-left: .0625rem solid #ededed;
     }
 
     .lobby-item {
@@ -79,7 +79,7 @@
         -webkit-align-items: stretch;
         -ms-flex-align: stretch;
         align-items: stretch;
-        border-bottom: .0625rem solid #d4d4d4;
+        border-bottom: .0625rem solid #ededed;
         padding: 0 .625rem;
     }
 
@@ -152,11 +152,19 @@
     .lobby-item .item-content .item-info > .info-row .lottery-name {
         font-size: .9375rem;
         color: #000;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        margin-right: 10px;
     }
 
     .lobby-item .item-content .item-info > .info-row .arrow-right {
         width: .5625rem;
         height: .9375rem;
+        margin-right: 5px;
     }
 
     .lobby-item .item-content .item-info .nums > span {
@@ -173,6 +181,8 @@
     .lobby-item .item-content .item-info > .info-row .item-cd {
         font-size: .6875rem;
         color: red;
+        margin-right: 5px;
+        margin-top: 5px;
     }
 
     .lobby-item .funs-wrap {
