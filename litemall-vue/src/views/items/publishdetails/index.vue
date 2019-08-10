@@ -25,7 +25,8 @@
         </div>
         <div class="messagebox">
             <p class="msg border-1px">留言</p>
-            <div class="comment">
+            <commentItem :commentList="news.comment.data" v-show="news.comment.data!=undefined&&news.comment.data.length>0"></commentItem>
+            <div class="comment" v-show="news.comment.data==undefined||news.comment.data.length==0">
                 <img class="bg" src="../../../assets/images/is_empty.png" alt="">
                 <p class="nomsg">还没有人留言，还不快来抢沙发</p>
             </div>
@@ -47,6 +48,7 @@
 
 <script>
     import appbar from '@/components/head/appbar'
+    import commentItem from '../../../components/itemadapter/commentItem.vue'
     import {
         circleDetail,
         activityDetail,
@@ -132,7 +134,8 @@
             document.documentElement.scrollTop = document.body.scrollTop = 0
         },
         components: {
-            appbar
+            appbar,
+            commentItem,
         }
     }
 </script>
