@@ -132,6 +132,7 @@
     .container
         width 100%
         height 100%
+        background-color #ffffff
         .inputcontainer
             width 100%
             .inputdetail
@@ -178,15 +179,15 @@
                 flex-wrap wrap
                 li
                     width 25%
-                    height 2rem
+                    height 4rem
                     position relative
                     margin-bottom 1rem
                     img
-                        width 2rem
-                        height 2rem
+                        width 4rem
+                        height 4rem
                     .cancelimg
-                        width 0.66rem
-                        height 0.66rem
+                        width 1.5rem
+                        height 1.5rem
                         border-radius 50%
                         display block
                         background url('../../../assets/images/X.png') no-repeat
