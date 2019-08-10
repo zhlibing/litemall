@@ -78,7 +78,7 @@
                 font-weight: 300;
             }
             .imgbox {
-                margin-top: 0.1rem;
+                margin-top: 0.5rem;
                 .releaseimgone {
                     width: 65%;
                     float: left;
@@ -102,7 +102,7 @@
             }
             .time {
                 margin-top: 0.5rem;
-                line-height: 28px;
+                line-height: 18px;
                 color: $font-color-gray;
                 text-align: right;
             }

@@ -208,7 +208,6 @@
             margin-top 0.3rem
             background-color #fff
             padding .3rem 0rem
-            margin-bottom 1.4rem
             .msg
                 font-size 0.9rem
                 color #000000
@@ -248,7 +247,7 @@
             height 2.6rem
             display flex
             align-items center
-            background-color #f8f8f8
+            background-color #ffffff
             z-index 100
             box-sizing border-box
             .message, .givestar, .buy
