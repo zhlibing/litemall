@@ -98,6 +98,7 @@
     .lobby-item .item-content .lottery-logo img {
         width: 3.75rem;
         height: 3.75rem;
+        margin-left: 10px;
     }
 
     .lobby-item .item-content .item-info {
