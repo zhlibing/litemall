@@ -1,0 +1,89 @@
+<template>
+    <div>
+        <div class="quesbox" v-for="item in questions" :key="item.id">
+            <div class="title">{{item.title}}</div>
+            <div class="answer" @click="itemClick(item.id,item.type)">
+                <span class="da">答</span>
+                <div class="text">{{item.description}}</div>
+                <div class="imgshow" v-if="item.picUrls !== undefined">
+                    <img :src="item.picUrls[0]" alt="">
+                </div>
+            </div>
+            <div class="bottom">
+                <div class="yutang">{{item.title}}</div>
+                <div class="toanswer">去回答</div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    import {ImagePreview} from 'vant';
+
+    export default {
+        props: {
+            questions: Array,
+        },
+        methods: {
+            previewimage(list, index) {
+                ImagePreview(list, index);
+            },
+            itemClick(id, type) {
+                this.$router.push(`/items/publishdetails/${id}/${type}`);
+            }
+        }
+    }
+</script>
+<style lang="scss" scoped>
+    .quesbox {
+        padding-top: 0.4rem;
+        padding-bottom: 0.4rem;
+        border-bottom: 1px solid #ededed;
+        .title {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .answer {
+            display: flex;
+            font-size: 0.8rem;
+            font-weight: 200;
+            margin-top: 0.5rem;
+            color: #666666;
+            .da {
+                background-color: #ffda44;
+                display: inline-block;
+                width: 1.5rem;
+                height: 1.5rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: 600;
+                margin-right: 0.3rem;
+                color: #333333;
+            }
+            .text {
+                vertical-align: middle;
+                flex: 1;
+                font-weight: 500;
+                line-height: 1.2rem;
+            }
+            img {
+                width: 4rem;
+                height: 4rem;
+                margin-left: 0.3em;
+            }
+        }
+        .bottom {
+            display: flex;
+            margin-top: .5rem;
+            font-size: 0.6rem;
+            .yutang {
+                flex: 1;
+                color: #999;
+            }
+            .toanswer {
+                color: #7dc5eb;
+                font-weight: 700;
+            }
+        }
+    }
+</style>
