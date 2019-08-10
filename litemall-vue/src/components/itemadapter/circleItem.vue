@@ -5,7 +5,7 @@
             <div class="info" @click="itemClick(item.id,item.type)">
                 <div class="head">
                     <p class="tit">{{item.content.substring(0, 8) + '...'}}</p>
-                    <span class="level">{{item.status}}</span>
+                    <span class="level">{{item.status + '级'}}</span>
                 </div>
                 <div class="text">
                     <p class="desc">{{item.content}}</p>
@@ -60,13 +60,13 @@
                 .level {
                     font-size: 0.3rem;
                     width: 2rem;
-                    height: 1.2rem;
-                    line-height: 1.2rem;
+                    height: 1.4rem;
+                    line-height: 1.4rem;
                     background: url('../../assets/images/标签.png') no-repeat;
                     background-size: cover;
-                    background-position: 110% 50%;
+                    background-position: 110% 10%;
+                    padding-left: 0.5rem;
                     box-sizing: border-box;
-                    margin-right: 10px;
                     color: #888;
                 }
             }

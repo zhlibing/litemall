@@ -240,7 +240,6 @@
             .titlebox {
                 box-sizing: border-box;
                 width: 100%;
-                margin-bottom: 0.3rem;
                 display: flex;
                 .title {
                     flex: 1;
@@ -307,12 +306,12 @@
             background-color: #fff;
             .ask {
                 font-size: 0.8rem;
-                font-weight: 700;
+                font-weight: 600;
                 background: url('../../assets/images/提问.png') no-repeat;
-                background-size: 1rem 1rem;
+                background-size: 1.1rem 1.1rem;
                 width: 4rem;
                 height: 1rem;
-                padding-left: 1.2rem;
+                padding-left: 1.4rem;
                 box-sizing: border-box;
             }
             .more {
