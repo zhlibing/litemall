@@ -236,7 +236,7 @@
             bottom 0
             left 0
             right 0
-            height 2.4rem
+            height 2.6rem
             display flex
             align-items center
             background-color #f8f8f8
@@ -248,14 +248,14 @@
             .message
                 flex 1
                 align-items center
-                font-size 0.9rem
+                font-size 0.8rem
                 font-weight 500
                 img
                     width 1.2rem
                     height 1.2rem
             .givestar
                 flex 2
-                font-size 0.9rem
+                font-size 0.8rem
                 font-weight 500
                 img
                     width 1.2rem
