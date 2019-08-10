@@ -197,7 +197,7 @@
                             let tuhao = this.$refs.tuhao
                             let mySwiper = new Swiper(tuhao, {
                                 effect: 'coverflow',
-                                slidesPerView: 3,
+                                slidesPerView: 2,
                                 centeredSlides: true,
                                 observer: true,
                                 observeParents: true,
@@ -215,7 +215,7 @@
                             let china = this.$refs.china
                             let mySwiper = new Swiper(china, {
                                 effect: 'coverflow',
-                                slidesPerView: 3,
+                                slidesPerView: 2,
                                 centeredSlides: true,
                                 observer: true,
                                 observeParents: true,
@@ -274,6 +274,7 @@
                         width: 100%;
                         height: 4rem;
                         margin-bottom: 0.2rem;
+                        object-fit: cover;
                     }
                     .name {
                         color: #000000;
@@ -291,9 +292,10 @@
                         margin-bottom: 0.2rem;
                     }
                     .img {
-                        width: 3rem;
-                        height: 3rem;
+                        width: 100%;
+                        height: 4rem;
                         margin-bottom: 0.2em;
+                        object-fit: cover;
                     }
                     .add {
                         margin-top: 5px;

@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <appbar :titleText="news.info.content"></appbar>
+        <appbar :titleText="news.info.content!=undefined?news.info.content:title"></appbar>
         <div class="details">
             <div class="top">
                 <div class="avatarbox">
@@ -69,7 +69,8 @@
         data() {
             return {
                 userHasCollect: 0,
-                news: {}
+                news: {},
+                title:'详情'
             }
         },
         methods: {
