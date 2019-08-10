@@ -8,7 +8,7 @@
                 </div>
                 <div class="info">
                     <div class="username">{{news.user.username}}</div>
-                    <div class="ta">{{news.info.addTime+' '}}{{"等级:"+news.user.userLevel}}</div>
+                    <div class="ta">{{news.info.addTime + ' '}}{{"等级:" + news.user.userLevel}}</div>
                 </div>
                 <div class="pricebox">
                     <div class="price">{{news.info.type}}</div>
@@ -25,7 +25,10 @@
         </div>
         <div class="messagebox">
             <p class="msg border-1px">留言</p>
-            <commentItem :commentList="news.comment.data" v-show="news.comment.data!=undefined&&news.comment.data.length>0"></commentItem>
+            <div class="list2n" v-for="comment in news.comment.data"
+                 v-show="news.comment.data!=undefined&&news.comment.data.length>0">
+                <commentItem :comment="comment"></commentItem>
+            </div>
             <div class="comment" v-show="news.comment.data==undefined||news.comment.data.length==0">
                 <img class="bg" src="../../../assets/images/is_empty.png" alt="">
                 <p class="nomsg">还没有人留言，还不快来抢沙发</p>
@@ -204,12 +207,13 @@
         .messagebox
             margin-top 0.3rem
             background-color #fff
-            padding .3rem 1rem
+            padding .3rem 0rem
             margin-bottom 1.4rem
             .msg
                 font-size 0.9rem
                 color #000000
                 font-weight 600
+                padding-left 1rem
                 height 1rem
                 line-height 1rem
                 border-1px(#f8f8f8)
@@ -221,6 +225,11 @@
                     background-color #ffda44
                     margin-right 0.5rem
                     vertical-align baseline
+            .list2n {
+                &:nth-child(2n) {
+                    background-color: #f5f5f5;
+                }
+            }
             .comment
                 width 100%
                 display flex

@@ -1,18 +1,16 @@
 <template>
-    <div>
-        <div class="list" v-for="(item,index) in lists" :key="index">
-            <img :src="item.picUrls!=undefined?item.picUrls[0]:default_avatar" alt="" class="image">
-            <div class="info" @click="itemClick(item.id,item.type)">
-                <div class="head">
-                    <p class="tit">{{item.content.substring(0, 8) + '...'}}</p>
-                    <span class="level">{{item.status + '级'}}</span>
-                </div>
-                <div class="text">
-                    <p class="desc">{{item.content}}</p>
-                </div>
-                <div class="hot">
-                    <span>人气{{item.status}}·发布{{item.addTime}}</span>
-                </div>
+    <div class="list">
+        <img :src="item.picUrls!=undefined?item.picUrls[0]:default_avatar" alt="" class="image">
+        <div class="info" @click="itemClick(item.id,item.type)">
+            <div class="head">
+                <p class="tit">{{item.content.substring(0, 8) + '...'}}</p>
+                <span class="level">{{item.status + '级'}}</span>
+            </div>
+            <div class="text">
+                <p class="desc">{{item.content}}</p>
+            </div>
+            <div class="hot">
+                <span>人气{{item.status}}·发布{{item.addTime}}</span>
             </div>
         </div>
     </div>
@@ -22,7 +20,7 @@
 
     export default {
         props: {
-            lists: Array,
+            item: Object,
         },
         methods: {
             previewimage(list, index) {

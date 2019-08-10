@@ -71,7 +71,10 @@
                           finished-text="没有更多了"
                           @load="getCommentList">
                     <van-panel style=" padding-bottom: 10px;">
-                        <commentItem :commentList="commentList"></commentItem>
+                        <div class="list2n" v-for="comment in commentList"
+                             v-show="commentList!=undefined&&commentList.length>0">
+                            <commentItem :comment="comment"></commentItem>
+                        </div>
                     </van-panel>
                 </van-list>
             </van-tab>
@@ -471,5 +474,11 @@
         @include one-border;
         padding: 10px 0;
         text-align: center;
+    }
+
+    .list2n {
+        &:nth-child(2n) {
+            background-color: #f5f5f5;
+        }
     }
 </style>

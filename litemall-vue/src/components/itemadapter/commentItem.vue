@@ -1,35 +1,33 @@
 <template>
-    <div>
-        <div class="item" v-for="comment in commentList">
-            <div class="header_img"
-                 :style="`background-image: url(${comment.avatar})`"></div>
-            <div class="comment">
-                <div class="nickname">
-                    <span class="name">{{comment.nickname}}</span>
-                </div>
-                <div class="text">{{comment.content}}</div>
-                <div class="imgbox"
-                     v-show="comment.picList.length>0">
-                    <img alt=""
-                         v-if="comment.picList.length== 1"
-                         :src="comment.picList[0]"
-                         :class="{releaseimgone:true}" @click="previewimage(comment.picList,0)"/>
-                    <img alt=""
-                         v-else-if="comment.picList.length>= 2&&Math.round(comment.picList.length%2)==0"
-                         v-for="(value,imgIndex) in comment.picList"
-                         :key="imgIndex"
-                         :src="value"
-                         :class="{releaseimgtwo:true}" @click="previewimage(comment.picList,imgIndex)"/>
-                    <img alt=""
-                         v-else-if="comment.picList.length>= 2&&Math.round(comment.picList.length%2)!=0"
-                         v-for="(value,imgIndex) in comment.picList"
-                         :key="imgIndex"
-                         :src="value"
-                         :class="{releaseimgthree:true}"
-                         @click="previewimage(comment.picList,imgIndex)"/>
-                </div>
-                <div class="time">{{comment.addTime}}</div>
+    <div class="item">
+        <div class="header_img"
+             :style="`background-image: url(${comment.avatar})`"></div>
+        <div class="comment">
+            <div class="nickname">
+                <span class="name">{{comment.nickname}}</span>
             </div>
+            <div class="text">{{comment.content}}</div>
+            <div class="imgbox"
+                 v-show="comment.picList.length>0">
+                <img alt=""
+                     v-if="comment.picList.length== 1"
+                     :src="comment.picList[0]"
+                     :class="{releaseimgone:true}" @click="previewimage(comment.picList,0)"/>
+                <img alt=""
+                     v-else-if="comment.picList.length>= 2&&Math.round(comment.picList.length%2)==0"
+                     v-for="(value,imgIndex) in comment.picList"
+                     :key="imgIndex"
+                     :src="value"
+                     :class="{releaseimgtwo:true}" @click="previewimage(comment.picList,imgIndex)"/>
+                <img alt=""
+                     v-else-if="comment.picList.length>= 2&&Math.round(comment.picList.length%2)!=0"
+                     v-for="(value,imgIndex) in comment.picList"
+                     :key="imgIndex"
+                     :src="value"
+                     :class="{releaseimgthree:true}"
+                     @click="previewimage(comment.picList,imgIndex)"/>
+            </div>
+            <div class="time">{{comment.addTime}}</div>
         </div>
     </div>
 </template>
@@ -38,7 +36,7 @@
 
     export default {
         props: {
-            commentList: Array,
+            comment: Object,
         },
         methods: {
             previewimage(list, index) {
@@ -52,12 +50,9 @@
         padding: 15px;
         display: flex;
         border-bottom: dashed 1px #eee;
-        &:nth-child(2n) {
-            background-color: #f5f5f5;
-        }
         .header_img {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background-size: 100%;
         }
@@ -71,7 +66,7 @@
                 padding-bottom: 10px;
                 .name {
                     padding-right: 10px;
-                    font-weight: bold;
+                    font-weight: 400;
                 }
             }
             .comment_title {
@@ -80,6 +75,7 @@
             }
             .text {
                 line-height: 22px;
+                font-weight: 300;
             }
             .imgbox {
                 margin-top: 0.1rem;

@@ -1,18 +1,16 @@
 <template>
-    <div>
-        <div class="quesbox" v-for="item in questions" :key="item.id">
-            <div class="title">{{item.title}}</div>
-            <div class="answer" @click="itemClick(item.id,item.type)">
-                <span class="da">答</span>
-                <div class="text">{{item.description}}</div>
-                <div class="imgshow" v-if="item.picUrls !== undefined">
-                    <img :src="item.picUrls[0]" alt="">
-                </div>
+    <div class="quesbox">
+        <div class="title">{{item.title}}</div>
+        <div class="answer" @click="itemClick(item.id,item.type)">
+            <span class="da">答</span>
+            <div class="text">{{item.description}}</div>
+            <div class="imgshow" v-if="item.picUrls !== undefined">
+                <img :src="item.picUrls[0]" alt="">
             </div>
-            <div class="bottom">
-                <div class="yutang">{{item.title}}</div>
-                <div class="toanswer">去回答</div>
-            </div>
+        </div>
+        <div class="bottom">
+            <div class="yutang">{{item.title}}</div>
+            <div class="toanswer">去回答</div>
         </div>
     </div>
 </template>
@@ -21,7 +19,7 @@
 
     export default {
         props: {
-            questions: Array,
+            item: Object,
         },
         methods: {
             previewimage(list, index) {

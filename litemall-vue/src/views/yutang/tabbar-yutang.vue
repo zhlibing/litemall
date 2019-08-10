@@ -24,7 +24,9 @@
                 <p class="title">鱼塘问答</p>
                 <span class="ask">去提问</span>
             </div>
-            <question :questions="questions"></question>
+            <div v-for="(item,index) in questions" :key="index">
+                <question :item="item"></question>
+            </div>
             <div class="more">
                 <span class="gomore">更多</span>
             </div>
@@ -71,7 +73,9 @@
             <div class="titlebox">
                 <p class="title">不可错过的鱼塘</p>
             </div>
-            <circleItem :lists="lists"></circleItem>
+            <div v-for="(item,index) in lists" :key="index">
+                <circleItem :item="item"></circleItem>
+            </div>
             <div class="more">
                 <span class="gomore">更多</span>
             </div>
