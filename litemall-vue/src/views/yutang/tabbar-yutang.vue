@@ -24,7 +24,7 @@
                 <p class="title">鱼塘问答</p>
                 <span class="ask">去提问</span>
             </div>
-                <question :questions="questions"></question>
+            <question :questions="questions"></question>
             <div class="more">
                 <span class="gomore">更多</span>
             </div>
@@ -71,21 +71,7 @@
             <div class="titlebox">
                 <p class="title">不可错过的鱼塘</p>
             </div>
-            <div class="list" v-for="(item,index) in lists" :key="index">
-                <img :src="item.picUrls!=undefined?item.picUrls[0]:default_avatar" alt="" class="image">
-                <div class="info" @click="itemClick(item.id,item.type)">
-                    <div class="head">
-                        <p class="tit">{{item.content.substring(0,8)+'...'}}</p>
-                        <span class="level">{{item.status}}</span>
-                    </div>
-                    <div class="text">
-                        <p class="desc">{{item.content}}</p>
-                    </div>
-                    <div class="hot">
-                        <span>人气{{item.status}}·发布{{item.addTime}}</span>
-                    </div>
-                </div>
-            </div>
+            <circleItem :lists="lists"></circleItem>
             <div class="more">
                 <span class="gomore">更多</span>
             </div>
@@ -102,6 +88,7 @@
     import avatar from '../../assets/images/store_default.png'
     import {EventBus} from '../../utils/event-bus'
     import question from '../../components/itemadapter/questionItem.vue'
+    import circleItem from '../../components/itemadapter/circleItem.vue'
 
     export default {
         data() {
@@ -139,7 +126,8 @@
             Head,
             floatbutton,
             avatar,
-            question
+            question,
+            circleItem
         },
         mounted() {
             window.addEventListener('scroll', this.handleScroll)
@@ -267,60 +255,6 @@
                         background-color: #ffda44;
                         vertical-align: top;
                         margin-right: 0.5rem;
-                    }
-                }
-            }
-            .list {
-                padding-top: .4rem;
-                box-sizing: border-box;
-                padding-bottom: .3rem;
-                display: flex;
-                .image {
-                    width: 4rem;
-                    height: 4rem;
-                    object-fit: cover;
-                }
-                .info {
-                    flex: 1;
-                    margin-left: 0.6rem;
-                    .head {
-                        display: flex;
-                        .tit {
-                            font-size: 0.8rem;
-                            font-weight: 600;
-                            flex: 1;
-                            margin-top: 0px;
-                        }
-                        .level {
-                            font-size: 0.3rem;
-                            width: 2rem;
-                            height: 1.2rem;
-                            line-height: 1.2rem;
-                            background: url('../../assets/images/标签.png') no-repeat;
-                            background-size: cover;
-                            background-position: 110% 50%;
-                            box-sizing: border-box;
-                            margin-right: 10px;
-                            color: #888;
-                        }
-                    }
-                    .text {
-                        max-height: 50px;
-                        margin-top: -15px;
-                        font-size: 0.8rem;
-                        font-weight: 200;
-                        line-height: 1.2rem;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        display: -webkit-box;
-                        -webkit-line-clamp: 2;
-                        -webkit-box-orient: vertical;
-                        -webkit-line-clamp: 2;
-                    }
-                    .hot {
-                        margin-top: 0.3rem;
-                        font-size: 0.33rem;
-                        color: #666666;
                     }
                 }
             }
