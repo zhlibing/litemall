@@ -4,11 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.linlinjava.litemall.core.util.ResponseUtil;
-import org.linlinjava.litemall.db.domain.LitemallComment;
-import org.linlinjava.litemall.db.service.LitemallCommentService;
-import org.linlinjava.litemall.db.service.LitemallGoodsService;
-import org.linlinjava.litemall.db.service.LitemallTopicService;
-import org.linlinjava.litemall.db.service.LitemallUserService;
+import org.linlinjava.litemall.db.domain.*;
+import org.linlinjava.litemall.db.service.*;
 import org.linlinjava.litemall.wx.annotation.LoginUser;
 import org.linlinjava.litemall.wx.dto.UserInfo;
 import org.linlinjava.litemall.wx.service.UserInfoService;
@@ -39,6 +36,16 @@ public class WxCommentController {
     private UserInfoService userInfoService;
     @Autowired
     private LitemallGoodsService goodsService;
+    @Autowired
+    private LitemallCircleService circleService;
+    @Autowired
+    private LitemallActivityService activityService;
+    @Autowired
+    private LitemallQuestionService questionService;
+    @Autowired
+    private LitemallGroupService groupService;
+    @Autowired
+    private LitemallFishPondsService fishPondsService;
     @Autowired
     private LitemallTopicService topicService;
 
@@ -125,7 +132,7 @@ public class WxCommentController {
      * @param valueId  商品或专题ID。如果type是0，则是商品ID；如果type是1，则是专题ID。
      * @param showType 显示类型。如果是0，则查询全部；如果是1，则查询有图片的评论。
      * @param page     分页页数
-     * @param limit     分页大小
+     * @param limit    分页大小
      * @return 评论列表
      */
     @GetMapping("list")
@@ -148,6 +155,56 @@ public class WxCommentController {
 
             String reply = commentService.queryReply(comment.getId());
             commentVo.put("reply", reply);
+
+            commentVoList.add(commentVo);
+        }
+        return ResponseUtil.okList(commentVoList, commentList);
+    }
+
+    @GetMapping("listall")
+    public Object listall(@RequestParam(defaultValue = "1") Integer page,
+                          @RequestParam(defaultValue = "10") Integer limit) {
+        List<LitemallComment> commentList = commentService.queryAll(page, limit);
+
+        List<Map<String, Object>> commentVoList = new ArrayList<>(commentList.size());
+        for (LitemallComment comment : commentList) {
+            Map<String, Object> commentVo = new HashMap<>();
+            commentVo.put("addTime", comment.getAddTime());
+            commentVo.put("content", comment.getContent());
+            commentVo.put("picList", comment.getPicUrls());
+
+            UserInfo userInfo = userInfoService.getInfo(comment.getUserId());
+            commentVo.put("userInfo", userInfo);
+
+            String reply = commentService.queryReply(comment.getId());
+            commentVo.put("reply", reply);
+
+            switch (comment.getType()){
+                case 0:
+                    LitemallGoods litemallGoods = goodsService.findByIdVO(comment.getValueId());
+                    commentVo.put("info",litemallGoods);
+                    break;
+                case 4:
+                    LitemallCircle litemallCircle = circleService.findByIdVO(comment.getValueId());
+                    commentVo.put("info",litemallCircle);
+                    break;
+                case 5:
+                    LitemallFishPonds litemallFishPonds = fishPondsService.findByIdVO(comment.getValueId());
+                    commentVo.put("info",litemallFishPonds);
+                    break;
+                case 6:
+                    LitemallQuestion litemallQuestion = questionService.findByIdVO(comment.getValueId());
+                    commentVo.put("info",litemallQuestion);
+                    break;
+                case 7:
+                    LitemallGroup litemallGroup = groupService.findByIdVO(comment.getValueId());
+                    commentVo.put("info",litemallGroup);
+                    break;
+                case 8:
+                    LitemallActivity litemallActivity = activityService.findByIdVO(comment.getValueId());
+                    commentVo.put("info",litemallActivity);
+                    break;
+            }
 
             commentVoList.add(commentVo);
         }

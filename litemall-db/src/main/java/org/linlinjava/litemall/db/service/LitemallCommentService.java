@@ -38,6 +38,14 @@ public class LitemallCommentService {
         return commentMapper.selectByExample(example);
     }
 
+    public List<LitemallComment> queryAll(Integer offset, Integer limit) {
+        LitemallCommentExample example = new LitemallCommentExample();
+        example.setOrderByClause(LitemallComment.Column.addTime.desc());
+        example.or().andDeletedEqualTo(false);
+        PageHelper.startPage(offset, limit);
+        return commentMapper.selectByExample(example);
+    }
+
     public int count(Byte type, Integer valueId, Integer showType) {
         LitemallCommentExample example = new LitemallCommentExample();
         if (showType == 0) {
