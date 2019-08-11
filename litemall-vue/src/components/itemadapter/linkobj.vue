@@ -4,7 +4,7 @@
         <div class="answer" @click="itemClick(item.id,item.type)">
             <span class="da">{{(item.content || item.description || item.brief).substring(0, 1)}}</span>
             <div class="text">{{item.content || item.description || item.brief}}</div>
-            <div class="imgshow" v-if="item.picUrls !== undefined||item.picUrl!=undefined">
+            <div class="imgshow" v-if="item.picUrls !== undefined&&item.picUrls.length>0||item.picUrl!=undefined">
                 <img :src="item.picUrl||item.picUrls[0]" alt="">
             </div>
         </div>

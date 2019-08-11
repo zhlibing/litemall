@@ -1,10 +1,10 @@
 <template>
     <div class="quesbox">
-        <div class="title">{{item.title||"暂无标题"}}</div>
+        <div class="title">{{item.title || "暂无标题"}}</div>
         <div class="answer" @click="itemClick(item.id,item.type)">
             <span class="da">答</span>
             <div class="text">{{item.content || item.description}}</div>
-            <div class="imgshow" v-if="item.picUrls !== undefined">
+            <div class="imgshow" v-if="item.picUrls !== undefined&&item.picUrls.length>0">
                 <img :src="item.picUrls[0]" alt="">
             </div>
         </div>
