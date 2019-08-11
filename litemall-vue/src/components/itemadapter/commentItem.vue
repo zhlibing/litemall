@@ -1,10 +1,10 @@
 <template>
     <div class="item">
         <div class="header_img"
-             :style="`background-image: url(${comment.avatar})`"></div>
+             :style="`background-image: url(${comment.avatar||comment.userInfo.avatarUrl})`"></div>
         <div class="comment">
             <div class="nickname">
-                <span class="name">{{comment.nickname}}</span>
+                <span class="name">{{comment.nickname||comment.userInfo.nickName}}</span>
             </div>
             <div class="text">{{comment.content}}</div>
             <div class="imgbox"
@@ -28,7 +28,7 @@
                      @click="previewimage(comment.picList,imgIndex)"/>
             </div>
             <div class="time">{{comment.addTime}}</div>
-            <div class="delete" v-show="userId==comment.userId" @click="deleteComment">删除</div>
+            <div class="delete" v-show="userId==comment.userId&&userId!=undefined" @click="deleteComment">删除</div>
         </div>
     </div>
 </template>

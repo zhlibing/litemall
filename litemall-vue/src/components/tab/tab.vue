@@ -14,19 +14,19 @@
             <div class="wrap">
                 <div class="scroll" ref="scroll">
                     <div class="item">
+                        <span @click="changeLottery(0)" :class="{selected:lotteryCode==0}">附近</span>
                         <span @click="changeLottery(1)" :class="{selected:lotteryCode==1}">热门</span>
-                        <span @click="changeLottery(2)" :class="{selected:lotteryCode==2}">附近</span>
-                        <span @click="changeLottery(3)" :class="{selected:lotteryCode==3}">推荐</span>
+                        <span @click="changeLottery(2)" :class="{selected:lotteryCode==2}">推荐</span>
                     </div>
                     <div class="item">
-                        <span @click="changeLottery(4)" :class="{selected:lotteryCode==4}">新手村</span>
-                        <span @click="changeLottery(5)" :class="{selected:lotteryCode==5}">入门</span>
-                        <span @click="changeLottery(6)" :class="{selected:lotteryCode==6}">进阶</span>
+                        <span @click="changeLottery(3)" :class="{selected:lotteryCode==3}">新手村</span>
+                        <span @click="changeLottery(4)" :class="{selected:lotteryCode==4}">入门</span>
+                        <span @click="changeLottery(5)" :class="{selected:lotteryCode==5}">进阶</span>
                     </div>
                     <div class="item">
-                        <span @click="changeLottery(7)" :class="{selected:lotteryCode==7}">高阶</span>
-                        <span @click="changeLottery(8)" :class="{selected:lotteryCode==8}">SS阶</span>
-                        <span @click="changeLottery(9)" :class="{selected:lotteryCode==9}">SSS阶</span>
+                        <span @click="changeLottery(6)" :class="{selected:lotteryCode==6}">高阶</span>
+                        <span @click="changeLottery(7)" :class="{selected:lotteryCode==7}">SS阶</span>
+                        <span @click="changeLottery(8)" :class="{selected:lotteryCode==8}">SSS阶</span>
                     </div>
                 </div>
             </div>
@@ -38,7 +38,7 @@
         data() {
             return {
                 a: 0,
-                lotteryCode: 1
+                lotteryCode: 0
             }
         },
         methods: {

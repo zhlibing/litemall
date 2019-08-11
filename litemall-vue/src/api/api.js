@@ -235,6 +235,15 @@ export function commentDelete(data) {
     })
 }
 
+const CommentListall='wx/comment/listall'; //专题列表
+export function commentListall(query) {
+    return request({
+        url: CommentListall,
+        method: 'get',
+        params: query
+    })
+}
+
 const TopicList='wx/topic/list'; //专题列表
 export function topicList(query) {
   return request({

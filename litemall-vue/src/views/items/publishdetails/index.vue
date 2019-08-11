@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="descbox">
-                <p class="desc">{{news.info.content}}</p>
+                <p class="desc">{{news.info.content||news.info.description}}</p>
             </div>
             <div class="img">
                 <a href="javascript:;" v-for="picUrl in news.info.picUrls" style="display: inline-block">
