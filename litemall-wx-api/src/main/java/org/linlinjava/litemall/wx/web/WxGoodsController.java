@@ -157,6 +157,7 @@ public class WxGoodsController {
 				LitemallFootprint footprint = new LitemallFootprint();
 				footprint.setUserId(userId);
 				footprint.setGoodsId(id);
+				footprint.setType((byte) type);
 				footprintService.add(footprint);
 			});
 		}
