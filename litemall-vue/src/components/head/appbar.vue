@@ -8,7 +8,7 @@
             </slot>
             <slot name='title'>
                 <div class="title">
-                    <span class="titleText">{{titleText}}</span>
+                    <span class="titleText">{{titleText.length > 8 ? titleText.substring(0, 8) + '...' : titleText}}</span>
                 </div>
             </slot>
             <slot name='right'>
