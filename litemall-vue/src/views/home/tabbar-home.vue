@@ -301,7 +301,11 @@
             },
             getCoupon(id) {
                 couponReceive({couponId: id}).then(res => {
-                    Toast.success('领取成功');
+                    if (res.data.errno==0){
+                        Toast.success('领取成功');
+                    }else{
+                        Toast.fail(res.data.errmsg);
+                    }
                 });
             },
             changeTabbar(o) {
