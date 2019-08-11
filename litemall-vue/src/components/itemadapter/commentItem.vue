@@ -81,6 +81,7 @@
                 .name {
                     padding-right: 10px;
                     font-weight: 400;
+                    color: #1e6abc;
                 }
             }
             .comment_title {
