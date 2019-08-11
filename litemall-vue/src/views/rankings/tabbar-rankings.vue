@@ -9,7 +9,7 @@
                       @load="getBrandList" v-show="index==0">
                 <div v-for="(brand, index) in list"
                      :key="index"
-                     @click="itemClick(brand.id)">
+                     @click="itemClick0(brand.id)">
                     <lotteryList :itemClass="itemClass" style="margin-bottom: 30px"></lotteryList>
                 </div>
             </van-list>
@@ -22,12 +22,13 @@
                       @load="getCommentListall" v-show="index==1" style="margin-top: 30px">
                 <div v-for="(comment, index) in list1"
                      :key="index"
-                     @click="itemClick(comment.id)" style="background-color: #ffffff;margin-top: 5px">
+                     @click="itemClick1(comment.info.id,comment.info.type)"
+                     style="background-color: #ffffff;margin-top: 5px">
                     <commentItem :comment="comment"></commentItem>
                 </div>
             </van-list>
         </van-pull-refresh>
-        <is-empty v-if="index>1">空的</is-empty>
+        <is-empty v-if="index>1">暂无内容</is-empty>
         <floatbutton></floatbutton>
     </div>
 </template>
@@ -122,8 +123,15 @@
                     this.finished1 = res.data.data.page >= res.data.data.pages;
                 });
             },
-            itemClick(id) {
+            itemClick0(id) {
                 this.$router.push(`/items/brand/${id}`);
+            },
+            itemClick1(id, type) {
+                if (type != undefined) {
+                    this.$router.push(`/items/publishdetails/${id}/${type}`);
+                } else {
+                    this.$router.push(`/items/detail/${id}`);
+                }
             }
         },
         components: {lotteryList, LotteryTab, floatbutton, [List.name]: List, commentItem, [IsEmpty.name]: IsEmpty,},

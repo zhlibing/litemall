@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <appbar :titleText="news.info.content!=undefined?news.info.content:title"></appbar>
+        <appbar :titleText="news.info.content||news.info.description||title"></appbar>
         <div class="details">
             <div class="top">
                 <div class="avatarbox">
@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="descbox">
-                <p class="desc">{{news.info.content||news.info.description}}</p>
+                <p class="desc">{{news.info.content || news.info.description}}</p>
             </div>
             <div class="img">
                 <a href="javascript:;" v-for="picUrl in news.info.picUrls" style="display: inline-block">
