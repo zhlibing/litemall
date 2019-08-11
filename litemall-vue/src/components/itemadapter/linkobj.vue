@@ -1,11 +1,11 @@
 <template>
     <div class="quesbox">
-        <div class="title">{{item.title}}</div>
+        <div class="title">{{item.title || item.name}}</div>
         <div class="answer" @click="itemClick(item.id,item.type)">
-            <span class="da">{{(item.content || item.description).substring(0, 1)}}</span>
-            <div class="text">{{item.content || item.description}}</div>
-            <div class="imgshow" v-if="item.picUrls !== undefined">
-                <img :src="item.picUrls[0]" alt="">
+            <span class="da">{{(item.content || item.description || item.brief).substring(0, 1)}}</span>
+            <div class="text">{{item.content || item.description || item.brief}}</div>
+            <div class="imgshow" v-if="item.picUrls !== undefined||item.picUrl!=undefined">
+                <img :src="item.picUrl||item.picUrls[0]" alt="">
             </div>
         </div>
         <div class="bottom">
@@ -26,7 +26,11 @@
                 ImagePreview(list, index);
             },
             itemClick(id, type) {
-                this.$router.push(`/items/publishdetails/${id}/${type}`);
+                if (type != undefined) {
+                    this.$router.push(`/items/publishdetails/${id}/${type}`);
+                } else {
+                    this.$router.push(`/items/detail/${id}`);
+                }
             }
         }
     }

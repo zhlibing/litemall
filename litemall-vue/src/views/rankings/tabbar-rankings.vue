@@ -9,7 +9,7 @@
                       @load="getBrandList" v-show="index==0">
                 <div v-for="(brand, index) in list"
                      :key="index"
-                     @click="itemClick0(brand.id)">
+                     @click="itemClick(brand.id)">
                     <lotteryList :itemClass="itemClass" style="margin-bottom: 30px"></lotteryList>
                 </div>
             </van-list>
@@ -124,16 +124,9 @@
                     this.finished1 = res.data.data.page >= res.data.data.pages;
                 });
             },
-            itemClick0(id) {
+            itemClick(id) {
                 this.$router.push(`/items/brand/${id}`);
             },
-            itemClick1(id, type) {
-                if (type != undefined) {
-                    this.$router.push(`/items/publishdetails/${id}/${type}`);
-                } else {
-                    this.$router.push(`/items/detail/${id}`);
-                }
-            }
         },
         components: {
             lotteryList,
