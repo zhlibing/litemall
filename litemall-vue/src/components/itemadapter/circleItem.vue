@@ -50,8 +50,8 @@
             .head {
                 display: flex;
                 .tit {
-                    font-size: 0.8rem;
-                    font-weight: 600;
+                    font-size: 0.9rem;
+                    font-weight: 400;
                     flex: 1;
                     margin-top: 0px;
                 }

@@ -22,9 +22,9 @@
                       @load="getCommentListall" v-show="index==1" style="margin-top: 30px">
                 <div v-for="(comment, index) in list1"
                      :key="index"
-                     @click="itemClick1(comment.info.id,comment.info.type)"
                      style="background-color: #ffffff;margin-top: 5px">
                     <commentItem :comment="comment"></commentItem>
+                    <linkobj :item="comment.info"></linkobj>
                 </div>
             </van-list>
         </van-pull-refresh>
@@ -40,6 +40,7 @@
     import {PullRefresh, List} from 'vant';
     import Vue from 'vue'
     import commentItem from '../../components/itemadapter/commentItem.vue'
+    import linkobj from '../../components/itemadapter/linkobj.vue'
     import IsEmpty from '@/components/is-empty/';
 
     Vue.use(PullRefresh)
@@ -134,7 +135,15 @@
                 }
             }
         },
-        components: {lotteryList, LotteryTab, floatbutton, [List.name]: List, commentItem, [IsEmpty.name]: IsEmpty,},
+        components: {
+            lotteryList,
+            LotteryTab,
+            floatbutton,
+            [List.name]: List,
+            commentItem,
+            [IsEmpty.name]: IsEmpty,
+            linkobj
+        },
     }
 </script>
 <style scoped>

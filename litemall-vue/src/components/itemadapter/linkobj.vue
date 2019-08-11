@@ -1,16 +1,16 @@
 <template>
     <div class="quesbox">
-        <div class="title">{{item.title||"暂无标题"}}</div>
+        <div class="title">{{item.title}}</div>
         <div class="answer" @click="itemClick(item.id,item.type)">
-            <span class="da">答</span>
+            <span class="da">{{(item.content || item.description).substring(0, 1)}}</span>
             <div class="text">{{item.content || item.description}}</div>
             <div class="imgshow" v-if="item.picUrls !== undefined">
                 <img :src="item.picUrls[0]" alt="">
             </div>
         </div>
         <div class="bottom">
-            <div class="yutang">{{item.title}}</div>
-            <div class="toanswer">去回答</div>
+            <div class="yutang">{{"关联"}}</div>
+            <div class="toanswer">去瞅一下</div>
         </div>
     </div>
 </template>
@@ -35,14 +35,16 @@
     .quesbox {
         padding-top: 0.4rem;
         padding-bottom: 0.4rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
         border-bottom: 1px solid #f7f7f7;
         .title {
-            font-size: 0.9rem;
+            font-size: 0.7rem;
             font-weight: 400;
         }
         .answer {
             display: flex;
-            font-size: 0.8rem;
+            font-size: 0.6rem;
             font-weight: 200;
             margin-top: 0.5rem;
             color: #666666;
@@ -65,8 +67,8 @@
                 line-height: 1.2rem;
             }
             img {
-                width: 4rem;
-                height: 4rem;
+                width: 3rem;
+                height: 3rem;
                 margin-left: 0.3em;
             }
         }
