@@ -1,5 +1,5 @@
 <template>
-    <div class="item">
+    <div class="item" v-if="comment!==undefined">
         <div class="header_img"
              :style="`background-image: url(${comment.avatar||comment.userInfo.avatarUrl})`"></div>
         <div class="comment">

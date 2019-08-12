@@ -1,5 +1,5 @@
 <template>
-    <div class="quesbox">
+    <div class="quesbox" v-if="item!==undefined">
         <div class="title">{{item.title || "暂无标题"}}</div>
         <div class="answer" @click="itemClick(item.id,item.type)">
             <span class="da">答</span>

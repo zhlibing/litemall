@@ -1,5 +1,5 @@
 <template>
-    <div class="list">
+    <div class="list" v-if="item!==undefined">
         <img :src="item.picUrls!=undefined?item.picUrls[0]:default_avatar" alt="" class="image">
         <div class="info" @click="itemClick(item.id,item.type)">
             <div class="head">

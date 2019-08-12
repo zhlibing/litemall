@@ -1,5 +1,5 @@
 <template>
-    <div class="lobby-item" @click="$emit('onToLotteryIndex',21)">
+    <div class="lobby-item" @click="$emit('onToLotteryIndex',21)" v-if="itemClass!==undefined">
         <a class="item-content">
             <div class="lottery-logo">
                 <img :src="itemClass.actorImg" style="object-fit: cover">

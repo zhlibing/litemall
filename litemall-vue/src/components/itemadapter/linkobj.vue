@@ -1,5 +1,5 @@
 <template>
-    <div class="quesbox">
+    <div class="quesbox" v-if="item!==undefined">
         <div class="title">{{item.title || item.name}}</div>
         <div class="answer" @click="itemClick(item.id,item.type)">
             <span class="da">{{(item.content || item.description || item.brief).substring(0, 1)}}</span>

@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" v-if="news!==undefined&&news.info!==undefined">
         <appbar :titleText="news.info.content||news.info.description||title"></appbar>
         <div class="details">
             <div class="top">
