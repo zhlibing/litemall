@@ -174,14 +174,19 @@
         border-left: .0625rem solid #f7f7f7;
     }
 
-    .lobby-item .funs-wrap {
+    .funs-wrap {
         padding: .5rem;
         background-color: #ffffff;
-        /*border-bottom: 5px solid #f7f7f7;*/
+        border-bottom: 5px solid #f7f7f7;
     }
 
-    .lobby-item .funs-wrap .funs-list,
-    .lobby-item .funs-wrap .funs-list .fun {
+    .funs-list {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+    }
+
+    .fun {
         flex: 1;
         display: flex;
         justify-content: center;
@@ -198,7 +203,7 @@
 
     .fun-info {
         background-color: #f7f7f7;
-        padding: 0px 20px;
+        padding: 5px 20px;
         font-size: .9rem;
         font-weight: 400;
         line-height: 25px;

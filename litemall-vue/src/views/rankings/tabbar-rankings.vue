@@ -6,12 +6,11 @@
                       :finished="finished"
                       :immediate-check="false"
                       finished-text="没有更多了"
-                      @load="getBrandList" v-show="index==0">
+                      @load="getBrandList" v-show="index==0" style="margin-top: 30px">
                 <div v-for="(brand, index) in list"
                      :key="index"
                      @click="itemClick(brand.id)">
-                    <lotteryList :itemClass="itemClass" @onShowClick="onShowClick"
-                                 style="margin-bottom: 30px;margin-top: 30px"></lotteryList>
+                    <lotteryList :itemClass="itemClass" @onShowClick="onShowClick"></lotteryList>
                 </div>
             </van-list>
         </van-pull-refresh>
