@@ -10,7 +10,7 @@
                 <div v-for="(brand, index) in list"
                      :key="index"
                      @click="itemClick(brand.id)">
-                    <lotteryList :itemClass="itemClass" @onShowClick="onShowClick"></lotteryList>
+                    <lotteryList :itemClass="itemClass" @onShowClick="onShowClick" style="margin-top: 5px"></lotteryList>
                 </div>
             </van-list>
         </van-pull-refresh>

@@ -38,6 +38,19 @@
                 </div>
             </div>
         </div>
+        <div class="arrow-wrap">
+            <div class="arrow-list">
+                <div class="arrow">
+                    <img src="../../assets/images/下箭头red.png" class="fun-logo" v-show="isShowOne"/>
+                </div>
+                <div class="arrow">
+                    <img src="../../assets/images/下箭头red.png" class="fun-logo" v-show="isShowTwo"/>
+                </div>
+                <div class="arrow">
+                    <img src="../../assets/images/下箭头red.png" class="fun-logo" v-show="isShowThree"/>
+                </div>
+            </div>
+        </div>
         <div class="fun-info" v-show="isShowOne">
             <span>规则说明规则说明规则说明规则说明规则说明规则说明规则说明规则说明规则说明规则说明规则说明规则说明</span>
         </div>
@@ -177,7 +190,6 @@
     .funs-wrap {
         padding: .5rem;
         background-color: #ffffff;
-        border-bottom: 5px solid #f7f7f7;
     }
 
     .funs-list {
@@ -198,6 +210,26 @@
             font-size: .75rem;
             color: #333;
             padding-left: .5rem;
+        }
+    }
+
+    .arrow-wrap {
+        background-color: #f7f7f7;
+    }
+
+    .arrow-list {
+        flex: 1;
+        display: flex;
+    }
+
+    .arrow {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        .fun-logo {
+            padding: 0;
+            height: 1rem;
+            width: 1rem;
         }
     }
 
