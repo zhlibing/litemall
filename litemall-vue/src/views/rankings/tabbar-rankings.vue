@@ -10,11 +10,12 @@
                 <div v-for="(brand, index) in list"
                      :key="index"
                      @click="itemClick(brand.id)">
-                    <lotteryList :itemClass="itemClass" style="margin-bottom: 30px"></lotteryList>
+                    <lotteryList :itemClass="itemClass" @onShowClick="onShowClick"
+                                 style="margin-bottom: 30px;margin-top: 30px"></lotteryList>
                 </div>
             </van-list>
         </van-pull-refresh>
-        <van-pull-refresh v-model="loading1" @refresh="onRefresh" style="margin-top: 10px">
+        <van-pull-refresh v-model="loading1" @refresh="onRefresh" style="margin-top: 0px">
             <van-list v-model="loading1"
                       :finished="finished1"
                       :immediate-check="false"
@@ -77,6 +78,9 @@
         },
 
         methods: {
+            onShowClick() {
+                console.log('>>>>onShowClick')
+            },
             toTabIndex(index) {
                 this.index = index
                 console.log(index, '>>>>toLotteryIndex')
@@ -125,7 +129,7 @@
                 });
             },
             itemClick(id) {
-                this.$router.push(`/items/brand/${id}`);
+                // this.$router.push(`/items/brand/${id}`);
             },
         },
         components: {

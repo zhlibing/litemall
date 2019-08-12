@@ -1,5 +1,5 @@
 <template>
-    <div class="lobby-item" @click="$emit('onToLotteryIndex',21)" v-if="itemClass!==undefined">
+    <div class="lobby-item" v-if="itemClass!==undefined">
         <a class="item-content">
             <div class="lottery-logo">
                 <img :src="itemClass.actorImg" style="object-fit: cover">
@@ -24,19 +24,28 @@
         </a>
         <div class="funs-wrap">
             <div class="funs-list">
-                <div class="fun">
+                <div class="fun" @click="showOne">
                     <img src="../../assets/images/trend.png" class="fun-logo"/>
                     <span>头号玩家</span>
                 </div>
-                <div class="fun">
+                <div class="fun" @click="showTwo">
                     <img src="../../assets/images/rule.png" class="fun-logo"/>
                     <span>玩法规则</span>
                 </div>
-                <div class="fun">
+                <div class="fun" @click="showThree">
                     <img src="../../assets/images/shouCang.png" class="fun-logo"/>
                     <span>加入收藏</span>
                 </div>
             </div>
+        </div>
+        <div class="fun-info" v-show="isShowOne">
+            <span>规则说明规则说明规则说明规则说明规则说明规则说明规则说明规则说明规则说明规则说明规则说明规则说明</span>
+        </div>
+        <div class="fun-info" v-show="isShowTwo">
+            <span>玩法介绍玩法介绍玩法介绍玩法介绍玩法介绍玩法介绍玩法介绍玩法介绍玩法介绍玩法介绍</span>
+        </div>
+        <div class="fun-info" v-show="isShowThree">
+            <span>排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜</span>
         </div>
     </div>
 </template>
@@ -45,14 +54,51 @@
         props: {
             itemClass: Object,
         },
-        methods: {}
+        data() {
+            return {
+                isShowOne: false,
+                isShowTwo: false,
+                isShowThree: false,
+            };
+        },
+        methods: {
+            showOne() {
+                this.$emit('onShowClick')
+                if (this.isShowOne) {
+                    this.isShowOne = false
+                } else {
+                    this.isShowOne = true
+                    this.isShowTwo = false
+                    this.isShowThree = false
+                }
+            },
+            showTwo() {
+                this.$emit('onShowClick')
+                if (this.isShowTwo) {
+                    this.isShowTwo = false
+                } else {
+                    this.isShowOne = false
+                    this.isShowTwo = true
+                    this.isShowThree = false
+                }
+            },
+            showThree() {
+                this.$emit('onShowClick')
+                if (this.isShowThree) {
+                    this.isShowThree = false
+                } else {
+                    this.isShowOne = false
+                    this.isShowTwo = false
+                    this.isShowThree = true
+                }
+            },
+        }
     }
 </script>
 <style lang="scss" scoped>
     .lobby-item {
-        height: 7.8125rem;
+        /*min-height: 7.8125rem;*/
         background-color: #fff;
-        margin-top: 20px;
         display: flex;
         flex-direction: column;
     }
@@ -129,10 +175,9 @@
     }
 
     .lobby-item .funs-wrap {
-        height: 3rem;
         padding: .5rem;
         background-color: #ffffff;
-        border-bottom: 5px solid #f7f7f7;
+        /*border-bottom: 5px solid #f7f7f7;*/
     }
 
     .lobby-item .funs-wrap .funs-list,
@@ -149,5 +194,14 @@
             color: #333;
             padding-left: .5rem;
         }
+    }
+
+    .fun-info {
+        background-color: #f7f7f7;
+        padding: 0px 20px;
+        font-size: .9rem;
+        font-weight: 400;
+        line-height: 25px;
+        z-index: 99;
     }
 </style>
