@@ -6,11 +6,12 @@
                       :finished="finished"
                       :immediate-check="false"
                       finished-text="没有更多了"
-                      @load="getBrandList" v-show="index==0" style="margin-top: 30px">
+                      @load="getActivityListall" v-show="index==0" style="margin-top: 30px">
                 <div v-for="(brand, index) in list"
                      :key="index"
                      @click="itemClick(brand.id)">
-                    <lotteryList :itemClass="itemClass" @onShowClick="onShowClick" style="margin-top: 5px"></lotteryList>
+                    <lotteryList :itemClass="itemClass" @onShowClick="onShowClick"
+                                 style="margin-top: 5px"></lotteryList>
                 </div>
             </van-list>
         </van-pull-refresh>
@@ -36,7 +37,7 @@
     import lotteryList from '@/components/itemadapter/fishponds';
     import LotteryTab from '@/components/tab/tab'
     import floatbutton from '@/components/head/floatbutton'
-    import {brandList, commentListall} from '@/api/api';
+    import {activityListall, commentListall} from '@/api/api';
     import {PullRefresh, List} from 'vant';
     import Vue from 'vue'
     import commentItem from '../../components/itemadapter/commentItem.vue'
@@ -87,7 +88,7 @@
             init() {
                 this.page = 0;
                 this.list = [];
-                this.getBrandList();
+                this.getActivityListall();
             },
             init1() {
                 this.page1 = 0;
@@ -105,9 +106,9 @@
                     }
                 }, 500);
             },
-            getBrandList() {
+            getActivityListall() {
                 this.page++;
-                brandList({
+                activityListall({
                     page: this.page,
                     limit: this.limit
                 }).then(res => {

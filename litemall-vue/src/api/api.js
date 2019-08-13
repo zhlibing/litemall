@@ -599,6 +599,33 @@ export function activityList() {
     })
 }
 
+const ActivityListall='wx/activity/listall'; //专题列表
+export function activityListall(query) {
+    return request({
+        url: ActivityListall,
+        method: 'get',
+        params: query
+    })
+}
+
+const ActivityJoin='wx/activity/join'; //保存
+export function activityJoin(data) {
+    return request({
+        url: ActivityJoin,
+        method: 'post',
+        data
+    })
+}
+
+const ActivityQuit='wx/activity/quit'; //保存
+export function activityQuit(data) {
+    return request({
+        url: ActivityQuit,
+        method: 'post',
+        data
+    })
+}
+
 const ActivityDetail='wx/activity/detail'; //鱼塘详细信息
 export function activityDetail(query) {
     return request({

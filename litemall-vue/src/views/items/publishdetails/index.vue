@@ -44,7 +44,8 @@
                 <img src="../../../assets/images/赞1.png" alt="" v-else>
                 <span class="star">点赞</span>
             </div>
-            <div class="buy" @click="buy">我想要</div>
+            <div class="buy" @click="join" v-if="userHasJoin==0">加入</div>
+            <div class="buy" @click="join" v-else>退出</div>
         </div>
     </div>
 </template>
@@ -58,7 +59,9 @@
         groupDetail,
         fishPondsDetail,
         questionDetail,
-        collectAddOrDelete
+        collectAddOrDelete,
+        activityJoin,
+        activityQuit,
     } from '@/api/api';
     import {getLocalStorage} from '@/utils/local-storage';
 
@@ -70,6 +73,7 @@
         data() {
             return {
                 userHasCollect: 0,
+                userHasJoin: 0,
                 news: {},
                 title: '详情',
                 userId: ''
@@ -102,8 +106,34 @@
                     }
                 });
             },
-            buy() {
-
+            join() {
+                if (this.type == 8) {
+                    let obj = {}
+                    obj.id = this.itemId
+                    if (this.userHasJoin == 0) {
+                        activityJoin(obj).then(res => {
+                            console.log(res, '>>>activityJoin')
+                            if (res.status === 200 && res.data.errno == 0) {
+                                this.userHasJoin = 1
+                                this.$toast({
+                                    message: '加入成功',
+                                    duration: 1500
+                                });
+                            }
+                        });
+                    } else {
+                        activityQuit(obj).then(res => {
+                            console.log(res, '>>>activityQuit')
+                            if (res.status === 200 && res.data.errno == 0) {
+                                this.userHasJoin = 0
+                                this.$toast({
+                                    message: '退出成功',
+                                    duration: 1500
+                                });
+                            }
+                        });
+                    }
+                }
             },
             toPublishComment() {
                 this.$router.push({name: 'publishcomment', params: {type: this.type, itemId: this.itemId}})
@@ -117,6 +147,7 @@
                     console.log(res, '>>>circleDetail')
                     this.news = res.data.data;
                     this.userHasCollect = res.data.data.userHasCollect
+                    this.userHasJoin = res.data.data.userHasJoin
                 });
             }
             if (this.type == 5) {
@@ -124,6 +155,7 @@
                     console.log(res, '>>>circleDetail')
                     this.news = res.data.data;
                     this.userHasCollect = res.data.data.userHasCollect
+                    this.userHasJoin = res.data.data.userHasJoin
                 });
             }
             if (this.type == 6) {
@@ -131,6 +163,7 @@
                     console.log(res, '>>>circleDetail')
                     this.news = res.data.data;
                     this.userHasCollect = res.data.data.userHasCollect
+                    this.userHasJoin = res.data.data.userHasJoin
                 });
             }
             if (this.type == 7) {
@@ -138,6 +171,7 @@
                     console.log(res, '>>>circleDetail')
                     this.news = res.data.data;
                     this.userHasCollect = res.data.data.userHasCollect
+                    this.userHasJoin = res.data.data.userHasJoin
                 });
             }
             if (this.type == 8) {
@@ -145,6 +179,7 @@
                     console.log(res, '>>>circleDetail')
                     this.news = res.data.data;
                     this.userHasCollect = res.data.data.userHasCollect
+                    this.userHasJoin = res.data.data.userHasJoin
                 });
             }
         },
