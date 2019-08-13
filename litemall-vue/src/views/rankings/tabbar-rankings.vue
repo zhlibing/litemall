@@ -7,10 +7,9 @@
                       :immediate-check="false"
                       finished-text="没有更多了"
                       @load="getActivityListall" v-show="index==0" style="margin-top: 30px">
-                <div v-for="(brand, index) in list"
-                     :key="index"
-                     @click="itemClick(brand.id)">
-                    <lotteryList :itemClass="itemClass" @onShowClick="onShowClick"
+                <div v-for="(item, index) in list"
+                     :key="index">
+                    <lotteryList :item="item" @onShowClick="onShowClick"
                                  style="margin-top: 5px"></lotteryList>
                 </div>
             </van-list>
@@ -49,14 +48,6 @@
         data() {
             return {
                 a: 1,
-                itemClass: {
-                    "actorId": 1,
-                    "actor": "吕艳婷",
-                    "actorEn": "Yanting Lv",
-                    "actorImg": "http://www.dnzhuti.com/uploads/allimg/170503/95-1F503163525.jpg",
-                    "roleName": "儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒儿童哪吒",
-                    "roleImg": ""
-                },
                 index: '',
                 limit: 10,
 
@@ -128,8 +119,8 @@
                     this.finished1 = res.data.data.page >= res.data.data.pages;
                 });
             },
-            itemClick(id) {
-                // this.$router.push(`/items/brand/${id}`);
+            itemClick(id, type) {
+                this.$router.push(`/items/publishdetails/${id}/${type}`);
             },
         },
         components: {

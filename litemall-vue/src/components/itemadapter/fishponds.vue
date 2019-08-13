@@ -1,24 +1,20 @@
 <template>
-    <div class="lobby-item" v-if="itemClass!==undefined">
-        <a class="item-content">
+    <div class="lobby-item" v-if="item!==undefined">
+        <a class="item-content" @click="itemClick(item.activityInfo.id,item.activityInfo.type)">
             <div class="lottery-logo">
-                <img :src="itemClass.actorImg" style="object-fit: cover">
+                <img :src="item.activityInfo.picUrls[0]" style="object-fit: cover">
             </div>
             <div class="item-info">
                 <div class="info-row">
-                    <p class="lottery-name">{{itemClass.roleName}}</p>
+                    <p class="lottery-name">{{item.activityInfo.title}}</p>
                     <img src="../../assets/images/right.png" class="arrow-right"/>
                 </div>
                 <div class="nums">
-                    <span>1</span>
-                    <span>6</span>
-                    <span>5</span>
-                    <span>1</span>
-                    <span>1</span>
+                    <span>{{item.activityInfo.description}}</span>
                 </div>
                 <div class="info-row">
-                    <span class="issue-no">累计奖金：</span>
-                    <span class="item-cd">￥1000.00</span>
+                    <span class="issue-no">奖金：</span>
+                    <span class="item-cd">{{'￥'+item.activityInfo.reword}}</span>
                 </div>
             </div>
         </a>
@@ -65,7 +61,7 @@
 <script>
     export default {
         props: {
-            itemClass: Object,
+            item: Object,
         },
         data() {
             return {
@@ -75,6 +71,9 @@
             };
         },
         methods: {
+            itemClick(id, type) {
+                this.$router.push(`/items/publishdetails/${id}/${type}`);
+            },
             showOne() {
                 this.$emit('onShowClick')
                 if (this.isShowOne) {
@@ -143,8 +142,9 @@
                 flex-direction: row;
                 justify-content: space-between;
                 align-items: center;
+                margin-top: 5px;
                 .lottery-name {
-                    font-size: .9rem;
+                    font-size: .94rem;
                     font-weight: 400;
                     overflow: hidden;
                     text-overflow: ellipsis;
@@ -159,11 +159,11 @@
                     margin-right: 5px;
                 }
                 .issue-no {
-                    font-size: .6875rem;
+                    font-size: .7875rem;
                     color: #666;
                 }
                 .item-cd {
-                    font-size: .6875rem;
+                    font-size: .7875rem;
                     color: red;
                     margin-right: 5px;
                     margin-top: 5px;
@@ -175,8 +175,8 @@
                 flex-direction: row;
                 justify-content: flex-start;
                 span {
-                    font-size: .875rem;
-                    color: #db3d3c;
+                    font-size: .9rem;
+                    color: #888;
                     padding-right: .1875rem;
                 }
             }
