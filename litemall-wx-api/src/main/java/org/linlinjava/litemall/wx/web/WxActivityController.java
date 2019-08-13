@@ -181,7 +181,7 @@ public class WxActivityController {
             return ResponseUtil.badArgument();
         }
         LitemallActivityUser litemallActivityUser = activityUserService.findByIdVO(userId, id);
-        if (activityUserService == null) {
+        if (litemallActivityUser == null) {
             litemallActivityUser.setUserId(userId);
             litemallActivityUser.setActivityId(id);
             activityUserService.add(litemallActivityUser);
@@ -200,11 +200,11 @@ public class WxActivityController {
         if (id == null) {
             return ResponseUtil.badArgument();
         }
-        LitemallActivityUser litemallActivityUser = activityUserService.findByIdVO(userId, litemallActivity.getId());
+        LitemallActivityUser litemallActivityUser = activityUserService.findByIdVO(userId, id);
         if (litemallActivityUser == null) {
             return ResponseUtil.fail(1002, "不在该组织内");
         } else {
-            activityUserService.deleteById(litemallActivityUser.getId());
+            activityUserService.deleteById(id);
             return ResponseUtil.ok();
         }
     }
