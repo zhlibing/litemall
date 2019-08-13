@@ -28,15 +28,43 @@
                 </div>
             </van-list>
         </van-pull-refresh>
-        <is-empty v-if="index>1">暂无内容</is-empty>
+        <van-pull-refresh v-model="loading2" @refresh="onRefresh" style="margin-top: 10px">
+            <van-list v-model="loading2"
+                      :finished="finished2"
+                      :immediate-check="false"
+                      finished-text="没有更多了"
+                      @load="getFishpondsListall" v-show="index==2" style="margin-top: 30px">
+                <div v-for="(item, index) in list2"
+                     :key="index">
+                    <fishpondsItem :item="item" @onShowClick="onShowClick"
+                                 style="margin-top: 5px"></fishpondsItem>
+                </div>
+            </van-list>
+        </van-pull-refresh>
+        <van-pull-refresh v-model="loading3" @refresh="onRefresh" style="margin-top: 10px">
+            <van-list v-model="loading3"
+                      :finished="finished3"
+                      :immediate-check="false"
+                      finished-text="没有更多了"
+                      @load="getGroupListall" v-show="index==3" style="margin-top: 30px">
+                <div v-for="(item, index) in list3"
+                     :key="index">
+                    <groupItem :item="item" @onShowClick="onShowClick"
+                                 style="margin-top: 5px"></groupItem>
+                </div>
+            </van-list>
+        </van-pull-refresh>
+        <is-empty v-if="index>3">暂无内容</is-empty>
         <floatbutton></floatbutton>
     </div>
 </template>
 <script>
     import lotteryList from '@/components/itemadapter/fishponds';
+    import fishpondsItem from '@/components/itemadapter/fishpondsItem';
+    import groupItem from '@/components/itemadapter/groupItem';
     import LotteryTab from '@/components/tab/tab'
     import floatbutton from '@/components/head/floatbutton'
-    import {activityListall, commentListall} from '@/api/api';
+    import {activityListall, groupListall, fishpondsListall, commentListall} from '@/api/api';
     import {PullRefresh, List} from 'vant';
     import Vue from 'vue'
     import commentItem from '../../components/itemadapter/commentItem.vue'
@@ -60,12 +88,24 @@
                 page1: 0,
                 loading1: false,
                 finished1: false,
+
+                list2: [],
+                page2: 0,
+                loading2: false,
+                finished2: false,
+
+                list3: [],
+                page3: 0,
+                loading3: false,
+                finished3: false,
             };
         },
 
         created() {
             this.init();
             this.init1();
+            this.init2();
+            this.init3();
         },
 
         methods: {
@@ -86,6 +126,16 @@
                 this.list1 = [];
                 this.getCommentListall();
             },
+            init2() {
+                this.page2 = 0;
+                this.list2 = [];
+                this.getFishpondsListall();
+            },
+            init3() {
+                this.page3 = 0;
+                this.list3 = [];
+                this.getGroupListall();
+            },
             //下拉刷新
             onRefresh() {
                 setTimeout(() => {
@@ -94,6 +144,12 @@
                     }
                     if (this.index == 1) {
                         this.init1()
+                    }
+                    if (this.index == 2) {
+                        this.init2()
+                    }
+                    if (this.index == 3) {
+                        this.init3()
                     }
                 }, 500);
             },
@@ -106,6 +162,28 @@
                     this.list.push(...res.data.data.list);
                     this.loading = false;
                     this.finished = res.data.data.page >= res.data.data.pages;
+                });
+            },
+            getFishpondsListall() {
+                this.page2++;
+                fishpondsListall({
+                    page: this.page2,
+                    limit: this.limit
+                }).then(res => {
+                    this.list2.push(...res.data.data.list);
+                    this.loading2 = false;
+                    this.finished2 = res.data.data.page >= res.data.data.pages;
+                });
+            },
+            getGroupListall() {
+                this.page3++;
+                groupListall({
+                    page: this.page3,
+                    limit: this.limit
+                }).then(res => {
+                    this.list3.push(...res.data.data.list);
+                    this.loading3 = false;
+                    this.finished3 = res.data.data.page >= res.data.data.pages;
                 });
             },
             getCommentListall() {
@@ -125,6 +203,8 @@
         },
         components: {
             lotteryList,
+            fishpondsItem,
+            groupItem,
             LotteryTab,
             floatbutton,
             [List.name]: List,
