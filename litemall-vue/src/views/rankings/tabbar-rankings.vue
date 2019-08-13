@@ -130,7 +130,7 @@
             [List.name]: List,
             commentItem,
             [IsEmpty.name]: IsEmpty,
-            linkobj
+            linkobj,
         },
     }
 </script>

@@ -1,0 +1,106 @@
+<template>
+    <div class="box" v-if="item!==undefined">
+        <div class="answer" @click="itemClick(item.id,item.type)">
+            <div class="imgshow">
+                <img :src="item.avatar" alt="">
+            </div>
+            <div class="content">
+                <div class="name">{{item.nickname || item.nickname}}</div>
+                <div class="score" v-if="item.key==undefined">{{'10战8胜 胜率80% 王者'}}</div>
+                <div class="score" v-else>{{'成功举办10场活动'}}</div>
+            </div>
+            <span class="da" v-if="item.key!=undefined">{{"发起人"}}</span>
+        </div>
+        <div class="bottom">
+            <div class="yutang">{{"人气666"}}</div>
+            <div class="toanswer" v-if="item.key==undefined">支持一下</div>
+        </div>
+    </div>
+</template>
+<script>
+    import {ImagePreview} from 'vant';
+
+    export default {
+        props: {
+            item: Object,
+        },
+        methods: {
+            previewimage(list, index) {
+                ImagePreview(list, index);
+            },
+            itemClick(id, type) {
+                if (type != undefined) {
+                    this.$router.push(`/items/publishdetails/${id}/${type}`);
+                } else {
+                    this.$router.push(`/items/detail/${id}`);
+                }
+            }
+        }
+    }
+</script>
+<style lang="scss" scoped>
+    .box {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        border-bottom: 1px solid #f7f7f7;
+        .answer {
+            display: flex;
+            font-size: 0.6rem;
+            font-weight: 200;
+            color: #666666;
+            justify-content: center;
+            .imgshow {
+                img {
+                    width: 2rem;
+                    height: 2rem;
+                    border-radius: 50%;
+                }
+            }
+            .content {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                .name {
+                    font-weight: 500;
+                    margin-left: 10px;
+                    line-height: 1.2rem;
+                    font-size: 0.9rem;
+                    color: #7dc5eb;
+                }
+                .score {
+                    margin-top: 5px;
+                    font-weight: 500;
+                    margin-left: 10px;
+                    line-height: 1.2rem;
+                    font-size: 0.9rem;
+                    color: #555555;
+                }
+            }
+            .da {
+                background-color: #ffda44;
+                border-radius: 10%;
+                display: inline-block;
+                width: 3rem;
+                height: 1rem;
+                display: flex;
+                margin-top: 5px;
+                justify-content: center;
+                align-items: center;
+                font-weight: 400;
+                color: #333333;
+            }
+        }
+        .bottom {
+            display: flex;
+            font-size: 0.6rem;
+            .yutang {
+                flex: 1;
+                color: #999;
+            }
+            .toanswer {
+                color: #7dc5eb;
+                font-weight: 700;
+            }
+        }
+    }
+</style>

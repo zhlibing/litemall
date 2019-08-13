@@ -48,7 +48,9 @@
             </div>
         </div>
         <div class="fun-info" v-show="isShowOne">
-            <span>规则说明规则说明规则说明规则说明规则说明规则说明规则说明规则说明规则说明规则说明规则说明规则说明</span>
+            <div v-for="(itemc,index) in users" :key="index">
+                <linkuser :item="itemc"></linkuser>
+            </div>
         </div>
         <div class="fun-info" v-show="isShowTwo">
             <span>玩法介绍玩法介绍玩法介绍玩法介绍玩法介绍玩法介绍玩法介绍玩法介绍玩法介绍玩法介绍</span>
@@ -59,6 +61,8 @@
     </div>
 </template>
 <script>
+    import linkuser from '../../components/itemadapter/linkuser'
+
     export default {
         props: {
             item: Object,
@@ -68,7 +72,15 @@
                 isShowOne: false,
                 isShowTwo: false,
                 isShowThree: false,
+                users: []
             };
+        },
+        mounted() {
+            let keyUser = {}
+            keyUser = this.item.userInfo
+            keyUser.key=true;
+            this.users.push(keyUser);
+            this.users.push(...this.item.joinUsers);
         },
         methods: {
             itemClick(id, type) {
@@ -104,6 +116,9 @@
                     this.isShowThree = true
                 }
             },
+        },
+        components: {
+            linkuser,
         }
     }
 </script>
@@ -214,7 +229,7 @@
     }
 
     .arrow-wrap {
-        background-color: #f7f7f7;
+        background-color: #ffffff;
     }
 
     .arrow-list {
@@ -234,7 +249,6 @@
     }
 
     .fun-info {
-        background-color: #f7f7f7;
         padding: 5px 20px;
         font-size: .9rem;
         font-weight: 400;
