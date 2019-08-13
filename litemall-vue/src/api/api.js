@@ -626,6 +626,60 @@ export function activityQuit(data) {
     })
 }
 
+const GroupListall='wx/group/listall'; //专题列表
+export function groupListall(query) {
+    return request({
+        url: GroupListall,
+        method: 'get',
+        params: query
+    })
+}
+
+const GroupJoin='wx/group/join'; //保存
+export function groupJoin(data) {
+    return request({
+        url: GroupJoin,
+        method: 'post',
+        data
+    })
+}
+
+const GroupQuit='wx/group/quit'; //保存
+export function groupQuit(data) {
+    return request({
+        url: GroupQuit,
+        method: 'post',
+        data
+    })
+}
+
+const FishpondsListall='wx/fishponds/listall'; //专题列表
+export function fishpondsListall(query) {
+    return request({
+        url: FishpondsListall,
+        method: 'get',
+        params: query
+    })
+}
+
+const FishpondsJoin='wx/fishponds/join'; //保存
+export function fishpondsJoin(data) {
+    return request({
+        url: FishpondsJoin,
+        method: 'post',
+        data
+    })
+}
+
+const FishpondsQuit='wx/fishponds/quit'; //保存
+export function fishpondsQuit(data) {
+    return request({
+        url: FishpondsQuit,
+        method: 'post',
+        data
+    })
+}
+
 const ActivityDetail='wx/activity/detail'; //鱼塘详细信息
 export function activityDetail(query) {
     return request({

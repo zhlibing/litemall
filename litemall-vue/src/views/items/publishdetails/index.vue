@@ -44,7 +44,8 @@
                 <img src="../../../assets/images/赞1.png" alt="" v-else>
                 <span class="star">点赞</span>
             </div>
-            <div class="buy" @click="join" v-if="userHasJoin==0">加入</div>
+            <div class="buy" @click="join" v-if="userHasJoin==-1">帮他擦一擦</div>
+            <div class="buy" @click="join" v-else-if="userHasJoin==0">加入</div>
             <div class="buy" @click="join" v-else>退出</div>
         </div>
     </div>
@@ -62,6 +63,10 @@
         collectAddOrDelete,
         activityJoin,
         activityQuit,
+        groupJoin,
+        groupQuit,
+        fishpondsJoin,
+        fishpondsQuit,
     } from '@/api/api';
     import {getLocalStorage} from '@/utils/local-storage';
 
@@ -73,7 +78,7 @@
         data() {
             return {
                 userHasCollect: 0,
-                userHasJoin: 0,
+                userHasJoin: -1,
                 news: {},
                 title: '详情',
                 userId: ''
@@ -107,6 +112,60 @@
                 });
             },
             join() {
+                if (this.type == 5) {
+                    let obj = {}
+                    obj.id = this.itemId
+                    if (this.userHasJoin == 0) {
+                        fishpondsJoin(obj).then(res => {
+                            console.log(res, '>>>fishpondsJoin')
+                            if (res.status === 200 && res.data.errno == 0) {
+                                this.userHasJoin = 1
+                                this.$toast({
+                                    message: '加入成功',
+                                    duration: 1500
+                                });
+                            }
+                        });
+                    } else {
+                        fishpondsQuit(obj).then(res => {
+                            console.log(res, '>>>fishpondsQuit')
+                            if (res.status === 200 && res.data.errno == 0) {
+                                this.userHasJoin = 0
+                                this.$toast({
+                                    message: '退出成功',
+                                    duration: 1500
+                                });
+                            }
+                        });
+                    }
+                }
+                if (this.type == 7) {
+                    let obj = {}
+                    obj.id = this.itemId
+                    if (this.userHasJoin == 0) {
+                        groupJoin(obj).then(res => {
+                            console.log(res, '>>>groupJoin')
+                            if (res.status === 200 && res.data.errno == 0) {
+                                this.userHasJoin = 1
+                                this.$toast({
+                                    message: '加入成功',
+                                    duration: 1500
+                                });
+                            }
+                        });
+                    } else {
+                        groupQuit(obj).then(res => {
+                            console.log(res, '>>>groupQuit')
+                            if (res.status === 200 && res.data.errno == 0) {
+                                this.userHasJoin = 0
+                                this.$toast({
+                                    message: '退出成功',
+                                    duration: 1500
+                                });
+                            }
+                        });
+                    }
+                }
                 if (this.type == 8) {
                     let obj = {}
                     obj.id = this.itemId
@@ -147,7 +206,7 @@
                     console.log(res, '>>>circleDetail')
                     this.news = res.data.data;
                     this.userHasCollect = res.data.data.userHasCollect
-                    this.userHasJoin = res.data.data.userHasJoin
+                    this.userHasJoin = -1
                 });
             }
             if (this.type == 5) {
@@ -163,7 +222,7 @@
                     console.log(res, '>>>circleDetail')
                     this.news = res.data.data;
                     this.userHasCollect = res.data.data.userHasCollect
-                    this.userHasJoin = res.data.data.userHasJoin
+                    this.userHasJoin = -1
                 });
             }
             if (this.type == 7) {
