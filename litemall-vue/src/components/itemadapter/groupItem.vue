@@ -9,12 +9,12 @@
             <div class="item-info">
                 <div class="info-row">
                     <p class="lottery-name">
-                        {{item.GroupInfo.currentPeople}}
+                        {{item.GroupInfo.description}}
                     </p>
                     <img src="../../assets/images/right.png" class="arrow-right"/>
                 </div>
                 <div class="nums">
-                    <span>{{item.GroupInfo.description}}</span>
+                    <span>{{"当前人数："+item.GroupInfo.currentPeople}}</span>
                 </div>
                 <div class="info-row">
                     <span class="issue-no">奖金：</span>
@@ -85,6 +85,9 @@
             keyUser.key = true;
             this.users.push(keyUser);
             this.users.push(...this.item.joinUsers);
+            if (this.item.joinUsers.length > 0) {
+                this.isShowOne = true
+            }
         },
         methods: {
             itemClick(id, type) {
