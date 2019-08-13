@@ -6,7 +6,7 @@
                       :finished="finished"
                       :immediate-check="false"
                       finished-text="没有更多了"
-                      @load="getActivityListall" v-show="index==0" style="margin-top: 30px">
+                      @load="getActivityListall" v-show="index==0" style="margin-top: 20px">
                 <div v-for="(item, index) in list"
                      :key="index">
                     <lotteryList :item="item" @onShowClick="onShowClick"
@@ -33,11 +33,11 @@
                       :finished="finished2"
                       :immediate-check="false"
                       finished-text="没有更多了"
-                      @load="getFishpondsListall" v-show="index==2" style="margin-top: 30px">
+                      @load="getFishpondsListall" v-show="index==2" style="margin-top: 5px">
                 <div v-for="(item, index) in list2"
                      :key="index">
                     <fishpondsItem :item="item" @onShowClick="onShowClick"
-                                 style="margin-top: 5px"></fishpondsItem>
+                                   style="margin-top: 5px"></fishpondsItem>
                 </div>
             </van-list>
         </van-pull-refresh>
@@ -46,11 +46,11 @@
                       :finished="finished3"
                       :immediate-check="false"
                       finished-text="没有更多了"
-                      @load="getGroupListall" v-show="index==3" style="margin-top: 30px">
+                      @load="getGroupListall" v-show="index==3" style="margin-top: 5px">
                 <div v-for="(item, index) in list3"
                      :key="index">
                     <groupItem :item="item" @onShowClick="onShowClick"
-                                 style="margin-top: 5px"></groupItem>
+                               style="margin-top: 5px"></groupItem>
                 </div>
             </van-list>
         </van-pull-refresh>
