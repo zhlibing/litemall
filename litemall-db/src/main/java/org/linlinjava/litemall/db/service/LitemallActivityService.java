@@ -14,7 +14,10 @@ import java.util.List;
 
 @Service
 public class LitemallActivityService {
-    Column[] columns = new Column[]{Column.id, Column.title, Column.description, Column.picUrls, Column.status, Column.reword,Column.type};
+    Column[] columns = new Column[]{
+            Column.id, Column.title, Column.description, Column.picUrls, Column.status,
+            Column.reword, Column.type, Column.userId, Column.addTime, Column.activityTime, Column.reword, Column.currentPeople,
+            Column.collectioncount, Column.fee};
     @Resource
     private LitemallActivityMapper activityMapper;
 
