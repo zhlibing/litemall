@@ -95,9 +95,9 @@ public class LitemallActivityUserService {
     /**
      * @return
      */
-    public int count() {
+    public int count(Integer userId, Integer activityId) {
         LitemallActivityUserExample example = new LitemallActivityUserExample();
-        example.or().andDeletedEqualTo(false);
+        example.or().andDeletedEqualTo(false).andUserIdEqualTo(userId).andActivityIdEqualTo(activityId);
         return (int) ActivityUserMapper.countByExample(example);
     }
 
