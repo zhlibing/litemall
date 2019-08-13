@@ -32,6 +32,9 @@ public class WxActivityController {
     private LitemallActivityService ActivityService;
 
     @Autowired
+    private LitemallActivityUserService activityUserService;
+
+    @Autowired
     private LitemallCommentService commentService;
 
     @Autowired
@@ -49,7 +52,8 @@ public class WxActivityController {
 
     private static ThreadPoolExecutor executorService = new ThreadPoolExecutor(16, 16, 1000, TimeUnit.MILLISECONDS, WORK_QUEUE, HANDLER);
 
-    private int type =8;
+    private int type = 8;
+
     /**
      * 鱼塘详情
      * <p>
@@ -67,7 +71,7 @@ public class WxActivityController {
 
         // 评论
         Callable<Map> commentsCallable = () -> {
-            List<LitemallComment> comments = commentService.queryGoodsByGid(id, type,0, 20);
+            List<LitemallComment> comments = commentService.queryGoodsByGid(id, type, 0, 20);
             List<Map<String, Object>> commentsVo = new ArrayList<>(comments.size());
             long commentCount = PageInfo.of(comments).getTotal();
             for (LitemallComment comment : comments) {
@@ -91,7 +95,7 @@ public class WxActivityController {
         // 用户收藏
         int userHasCollect = 0;
         if (userId != null) {
-            userHasCollect = collectService.count(userId, id,type);
+            userHasCollect = collectService.count(userId, id, type);
         }
 
         // 记录用户的足迹 异步处理
@@ -139,6 +143,70 @@ public class WxActivityController {
         Map<String, Object> entity = new HashMap<>();
         entity.put("list", Activity);
         return ResponseUtil.ok(entity);
+    }
+
+    @GetMapping("listall")
+    public Object listall(@RequestParam(defaultValue = "1") Integer page,
+                          @RequestParam(defaultValue = "10") Integer limit) {
+        List<LitemallActivity> activityList = ActivityService.queryActivity(page, limit);
+
+        List<Map<String, Object>> activityVoList = new ArrayList<>(activityList.size());
+        for (LitemallActivity activity : activityList) {
+            Map<String, Object> activityVo = new HashMap<>();
+            activityVo.put("activityInfo", activity);
+
+            LitemallUser user = userService.findDetailById(activity.getUserId());
+            activityVo.put("userInfo", user);
+
+            List<LitemallActivityUser> litemallActivityUsers = activityUserService.queryActivityUser(activity.getId(), 0, 100);
+            List<LitemallUser> users = new ArrayList<>();
+            for (LitemallActivityUser litemallActivityUser : litemallActivityUsers) {
+                LitemallUser ActivityUser = userService.findDetailById(litemallActivityUser.getUserId());
+                users.add(ActivityUser);
+            }
+            activityVo.put("joinUsers", users);
+
+            activityVoList.add(activityVo);
+        }
+        return ResponseUtil.okList(activityVoList, activityList);
+    }
+
+    @PostMapping("join")
+    public Object join(@LoginUser Integer userId, @RequestBody LitemallActivity litemallActivity) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        Integer id = litemallActivity.getId();
+        if (id == null) {
+            return ResponseUtil.badArgument();
+        }
+        LitemallActivityUser litemallActivityUser = activityUserService.findByIdVO(userId, id);
+        if (activityUserService == null) {
+            litemallActivityUser.setUserId(userId);
+            litemallActivityUser.setActivityId(id);
+            activityUserService.add(litemallActivityUser);
+            return ResponseUtil.ok(litemallActivityUser.getId());
+        } else {
+            return ResponseUtil.fail(1001, "不能重复加入");
+        }
+    }
+
+    @PostMapping("quite")
+    public Object quite(@LoginUser Integer userId, @RequestBody LitemallActivity litemallActivity) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        Integer id = litemallActivity.getId();
+        if (id == null) {
+            return ResponseUtil.badArgument();
+        }
+        LitemallActivityUser litemallActivityUser = activityUserService.findByIdVO(userId, litemallActivity.getId());
+        if (litemallActivityUser == null) {
+            return ResponseUtil.fail(1002, "不在该组织内");
+        } else {
+            activityUserService.deleteById(litemallActivityUser.getId());
+            return ResponseUtil.ok();
+        }
     }
 
     /**

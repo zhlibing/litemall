@@ -94,5 +94,10 @@
         <table tableName="litemall_type_obj">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
+
+        <!--表名7-->
+        <table tableName="litemall_activity_user">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
     </context>
 </generatorConfiguration>

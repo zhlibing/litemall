@@ -34,6 +34,7 @@ CREATE TABLE `litemall_impress` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `content` varchar(100) NOT NULL COMMENT '印象',
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '创建时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='印象常量表';
@@ -147,6 +148,7 @@ CREATE TABLE `litemall_group_user` (
   `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
   `group_id` int(11) NOT NULL DEFAULT '0' COMMENT '群组ID',
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '创建时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
@@ -162,6 +164,7 @@ CREATE TABLE `litemall_report` (
   `content` varchar(1023) DEFAULT NULL COMMENT '举报内容',
   `pic_urls` varchar(1023) DEFAULT NULL COMMENT '背景图',
   `add_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `update_time` datetime DEFAULT NULL COMMENT '创建时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
@@ -176,6 +179,7 @@ CREATE TABLE `litemall_announce` (
   `content` varchar(1023) NOT NULL COMMENT '公告内容',
   `status` smallint(6) DEFAULT '0' COMMENT '状态，如果是0则是正常可用；如果是1则是过期; 如果是2则是下架。',
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '创建时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='公告表';
@@ -188,6 +192,7 @@ CREATE TABLE `litemall_vote` (
   `activity_id` int(11) NOT NULL DEFAULT '0' COMMENT '活动ID',
   `type` tinyint(3) NOT NULL DEFAULT '0' COMMENT '类型',
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '创建时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
@@ -300,6 +305,7 @@ CREATE TABLE `litemall_activity_user` (
   `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
   `activity_id` int(11) NOT NULL DEFAULT '0' COMMENT '活动ID',
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '创建时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
@@ -409,6 +415,7 @@ CREATE TABLE `litemall_fish_ponds_user` (
   `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
   `fish_ponds_id` int(11) NOT NULL DEFAULT '0' COMMENT '活动ID',
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '创建时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
@@ -486,6 +493,7 @@ CREATE TABLE `litemall_question_answer` (
   `answer` varchar(1023) NOT NULL COMMENT '回答',
   `pic_urls` varchar(1023) DEFAULT NULL COMMENT '背景图',
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '创建时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
@@ -501,6 +509,7 @@ CREATE TABLE `litemall_question_reply_answer` (
   `pic_urls` varchar(1023) DEFAULT NULL COMMENT '背景图',
   `useful` tinyint(1) DEFAULT '0' COMMENT '是否对于我有用',
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '创建时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
@@ -567,6 +576,7 @@ CREATE TABLE `litemall_circle_replay` (
   `replay` varchar(1023) NOT NULL COMMENT '回答内容',
   `pic_urls` varchar(1023) DEFAULT NULL COMMENT '背景图',
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '创建时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
@@ -580,6 +590,8 @@ CREATE TABLE `litemall_circle_zan` (
   `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
   `circle_id` int(11) NOT NULL DEFAULT '0' COMMENT '活动ID',
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `circle_id` (`circle_id`)
@@ -592,7 +604,9 @@ CREATE TABLE `litemall_scatter` (
   `to_user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户ID',
   `content` varchar(1023) NOT NULL COMMENT '回答内容',
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '创建时间',
   `readed` tinyint(1) DEFAULT '0' COMMENT '是否被查看',
+  `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `to_user_id` (`to_user_id`)
@@ -604,6 +618,7 @@ CREATE TABLE `litemall_channel` (
   `name` varchar(100) NOT NULL COMMENT '回答内容',
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='渠道';
 
@@ -618,6 +633,7 @@ CREATE TABLE `litemall_channel_phone` (
   `city` varchar(100) DEFAULT NULL COMMENT '回答内容',
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `channel_id` (`channel_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='渠道逻辑关系';
@@ -629,6 +645,7 @@ CREATE TABLE `litemall_ad_cost_time` (
   `fee` int(11) NOT NULL COMMENT '回答内容',
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='广告时间常量';
 
@@ -641,6 +658,7 @@ CREATE TABLE `litemall_ad_market` (
   `status` smallint(6) DEFAULT '0' COMMENT '状态，如果是0则是正常可用；如果是1则是过期; 如果是2则是下架。',
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='广告市场';
 
@@ -657,6 +675,7 @@ CREATE TABLE `litemall_ad_rent` (
   `status` smallint(6) DEFAULT '0' COMMENT '状态，如果是0则是正常可用；如果是1则是过期; 如果是2则是下架。',
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `target_id` (`target_id`),
   KEY `cost_time_id` (`cost_time_id`)
@@ -669,6 +688,7 @@ CREATE TABLE `litemall_type_obj` (
   `is_show_client` tinyint(1) NOT NULL DEFAULT '0' COMMENT '客户端是否显示',
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='类型常量';
 INSERT INTO `litemall_type_obj` VALUES (
@@ -676,76 +696,87 @@ INSERT INTO `litemall_type_obj` VALUES (
 '商品',
 '0',
 '2019-06-13 22:49:32',
-'2019-06-13 22:49:32'
+'2019-06-13 22:49:32',
+'0'
 );
 INSERT INTO `litemall_type_obj` VALUES (
 '2',
 '专题',
 '0',
 '2019-06-13 22:49:32',
-'2019-06-13 22:49:32'
+'2019-06-13 22:49:32',
+'0'
 );
 INSERT INTO `litemall_type_obj` VALUES (
 '3',
 '用户',
 '0',
 '2019-06-13 22:49:32',
-'2019-06-13 22:49:32'
+'2019-06-13 22:49:32',
+'0'
 );
 INSERT INTO `litemall_type_obj` VALUES (
 '4',
 '动态',
 '1',
 '2019-06-13 22:49:32',
-'2019-06-13 22:49:32'
+'2019-06-13 22:49:32',
+'0'
 );
 INSERT INTO `litemall_type_obj` VALUES (
 '5',
 '鱼塘',
 '1',
 '2019-06-13 22:49:32',
-'2019-06-13 22:49:32'
+'2019-06-13 22:49:32',
+'0'
 );
 INSERT INTO `litemall_type_obj` VALUES (
 '6',
 '问答',
 '1',
 '2019-06-13 22:49:32',
-'2019-06-13 22:49:32'
+'2019-06-13 22:49:32',
+'0'
 );
 INSERT INTO `litemall_type_obj` VALUES (
 '7',
 '群组',
 '1',
 '2019-06-13 22:49:32',
-'2019-06-13 22:49:32'
+'2019-06-13 22:49:32',
+'0'
 );
 INSERT INTO `litemall_type_obj` VALUES (
 '8',
 '活动',
 '1',
 '2019-06-13 22:49:32',
-'2019-06-13 22:49:32'
+'2019-06-13 22:49:32',
+'0'
 );
 INSERT INTO `litemall_type_obj` VALUES (
 '9',
 '品牌',
 '0',
 '2019-06-13 22:49:32',
-'2019-06-13 22:49:32'
+'2019-06-13 22:49:32',
+'0'
 );
 INSERT INTO `litemall_type_obj` VALUES (
 '10',
 '订单',
 '0',
 '2019-06-13 22:49:32',
-'2019-06-13 22:49:32'
+'2019-06-13 22:49:32',
+'0'
 );
 INSERT INTO `litemall_type_obj` VALUES (
 '11',
 '外链',
 '1',
 '2019-06-13 22:49:32',
-'2019-06-13 22:49:32'
+'2019-06-13 22:49:32',
+'0'
 );
 -- ////circle/scatter/ad_rent/擦亮-刷新
