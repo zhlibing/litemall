@@ -14,17 +14,16 @@
                 </div>
             </van-list>
         </van-pull-refresh>
-        <van-pull-refresh v-model="loading1" @refresh="onRefresh" style="margin-top: 0px">
+        <van-pull-refresh v-model="loading1" @refresh="onRefresh" style="margin-top: 10px">
             <van-list v-model="loading1"
                       :finished="finished1"
                       :immediate-check="false"
                       finished-text="没有更多了"
-                      @load="getCommentListall" v-show="index==1" style="margin-top: 30px">
-                <div v-for="(comment, index) in list1"
-                     :key="index"
-                     style="background-color: #ffffff;margin-top: 5px">
-                    <commentItem :comment="comment"></commentItem>
-                    <linkobj :item="comment.info"></linkobj>
+                      @load="getFishpondsListall" v-show="index==1" style="margin-top: 10px">
+                <div v-for="(item, index) in list1"
+                     :key="index">
+                    <fishpondsItem :item="item" @onShowClick="onShowClick"
+                                   style="margin-top: 5px"></fishpondsItem>
                 </div>
             </van-list>
         </van-pull-refresh>
@@ -33,24 +32,25 @@
                       :finished="finished2"
                       :immediate-check="false"
                       finished-text="没有更多了"
-                      @load="getFishpondsListall" v-show="index==2" style="margin-top: 5px">
+                      @load="getGroupListall" v-show="index==2" style="margin-top: 10px">
                 <div v-for="(item, index) in list2"
                      :key="index">
-                    <fishpondsItem :item="item" @onShowClick="onShowClick"
-                                   style="margin-top: 5px"></fishpondsItem>
+                    <groupItem :item="item" @onShowClick="onShowClick"
+                               style="margin-top: 5px"></groupItem>
                 </div>
             </van-list>
         </van-pull-refresh>
-        <van-pull-refresh v-model="loading3" @refresh="onRefresh" style="margin-top: 10px">
+        <van-pull-refresh v-model="loading3" @refresh="onRefresh" style="margin-top: 0px">
             <van-list v-model="loading3"
                       :finished="finished3"
                       :immediate-check="false"
                       finished-text="没有更多了"
-                      @load="getGroupListall" v-show="index==3" style="margin-top: 5px">
-                <div v-for="(item, index) in list3"
-                     :key="index">
-                    <groupItem :item="item" @onShowClick="onShowClick"
-                               style="margin-top: 5px"></groupItem>
+                      @load="getCommentListall" v-show="index==3" style="margin-top: 30px">
+                <div v-for="(comment, index) in list3"
+                     :key="index"
+                     style="background-color: #ffffff;margin-top: 5px">
+                    <commentItem :comment="comment"></commentItem>
+                    <linkobj :item="comment.info"></linkobj>
                 </div>
             </van-list>
         </van-pull-refresh>
@@ -124,17 +124,17 @@
             init1() {
                 this.page1 = 0;
                 this.list1 = [];
-                this.getCommentListall();
+                this.getFishpondsListall();
             },
             init2() {
                 this.page2 = 0;
                 this.list2 = [];
-                this.getFishpondsListall();
+                this.getGroupListall();
             },
             init3() {
                 this.page3 = 0;
                 this.list3 = [];
-                this.getGroupListall();
+                this.getCommentListall();
             },
             //下拉刷新
             onRefresh() {
@@ -165,8 +165,19 @@
                 });
             },
             getFishpondsListall() {
-                this.page2++;
+                this.page1++;
                 fishpondsListall({
+                    page: this.page1,
+                    limit: this.limit
+                }).then(res => {
+                    this.list1.push(...res.data.data.list);
+                    this.loading1 = false;
+                    this.finished1 = res.data.data.page >= res.data.data.pages;
+                });
+            },
+            getGroupListall() {
+                this.page2++;
+                groupListall({
                     page: this.page2,
                     limit: this.limit
                 }).then(res => {
@@ -175,26 +186,15 @@
                     this.finished2 = res.data.data.page >= res.data.data.pages;
                 });
             },
-            getGroupListall() {
+            getCommentListall() {
                 this.page3++;
-                groupListall({
+                commentListall({
                     page: this.page3,
                     limit: this.limit
                 }).then(res => {
                     this.list3.push(...res.data.data.list);
                     this.loading3 = false;
                     this.finished3 = res.data.data.page >= res.data.data.pages;
-                });
-            },
-            getCommentListall() {
-                this.page1++;
-                commentListall({
-                    page: this.page1,
-                    limit: this.limit
-                }).then(res => {
-                    this.list1.push(...res.data.data.list);
-                    this.loading1 = false;
-                    this.finished1 = res.data.data.page >= res.data.data.pages;
                 });
             },
             itemClick(id, type) {
