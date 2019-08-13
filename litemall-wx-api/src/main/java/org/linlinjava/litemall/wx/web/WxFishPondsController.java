@@ -32,6 +32,9 @@ public class WxFishPondsController {
     private LitemallFishPondsService fishPondsService;
 
     @Autowired
+    private LitemallFishPondsUserService FishPondsUserService;
+
+    @Autowired
     private LitemallCommentService commentService;
 
     @Autowired
@@ -49,7 +52,8 @@ public class WxFishPondsController {
 
     private static ThreadPoolExecutor executorService = new ThreadPoolExecutor(16, 16, 1000, TimeUnit.MILLISECONDS, WORK_QUEUE, HANDLER);
 
-    private int type =5;
+    private int type = 5;
+
     /**
      * 鱼塘详情
      * <p>
@@ -67,7 +71,7 @@ public class WxFishPondsController {
 
         // 评论
         Callable<Map> commentsCallable = () -> {
-            List<LitemallComment> comments = commentService.queryGoodsByGid(id, type,0, 20);
+            List<LitemallComment> comments = commentService.queryGoodsByGid(id, type, 0, 20);
             List<Map<String, Object>> commentsVo = new ArrayList<>(comments.size());
             long commentCount = PageInfo.of(comments).getTotal();
             for (LitemallComment comment : comments) {
@@ -91,7 +95,13 @@ public class WxFishPondsController {
         // 用户收藏
         int userHasCollect = 0;
         if (userId != null) {
-            userHasCollect = collectService.count(userId, id,type);
+            userHasCollect = collectService.count(userId, id, type);
+        }
+
+        // 用户加入
+        int userHasJoin = 0;
+        if (userId != null) {
+            userHasJoin = FishPondsUserService.count(userId, id);
         }
 
         // 记录用户的足迹 异步处理
@@ -119,6 +129,7 @@ public class WxFishPondsController {
         try {
             data.put("info", info);
             data.put("userHasCollect", userHasCollect);
+            data.put("userHasJoin", userHasJoin);
             data.put("share", SystemConfig.isAutoCreateShareImage());
             data.put("user", user);
             data.put("comment", commentsCallableTsk.get());
@@ -139,6 +150,71 @@ public class WxFishPondsController {
         Map<String, Object> entity = new HashMap<>();
         entity.put("list", fishPonds);
         return ResponseUtil.ok(entity);
+    }
+
+    @GetMapping("listall")
+    public Object listall(@RequestParam(defaultValue = "1") Integer page,
+                          @RequestParam(defaultValue = "10") Integer limit) {
+        List<LitemallFishPonds> FishPondsList = fishPondsService.queryFishPonds(page, limit);
+
+        List<Map<String, Object>> FishPondsVoList = new ArrayList<>(FishPondsList.size());
+        for (LitemallFishPonds FishPonds : FishPondsList) {
+            Map<String, Object> FishPondsVo = new HashMap<>();
+            FishPondsVo.put("FishPondsInfo", FishPonds);
+
+            LitemallUser user = userService.findDetailById(FishPonds.getUserId());
+            FishPondsVo.put("userInfo", user);
+
+            List<LitemallFishPondsUser> litemallFishPondsUsers = FishPondsUserService.queryFishPondsUser(FishPonds.getId(), 0, 100);
+            List<LitemallUser> users = new ArrayList<>();
+            for (LitemallFishPondsUser litemallFishPondsUser : litemallFishPondsUsers) {
+                LitemallUser FishPondsUser = userService.findDetailById(litemallFishPondsUser.getUserId());
+                users.add(FishPondsUser);
+            }
+            FishPondsVo.put("joinUsers", users);
+
+            FishPondsVoList.add(FishPondsVo);
+        }
+        return ResponseUtil.okList(FishPondsVoList, FishPondsList);
+    }
+
+    @PostMapping("join")
+    public Object join(@LoginUser Integer userId, @RequestBody LitemallFishPonds litemallFishPonds) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        Integer id = litemallFishPonds.getId();
+        if (id == null) {
+            return ResponseUtil.badArgument();
+        }
+        LitemallFishPondsUser litemallFishPondsUser = FishPondsUserService.findByIdVO(userId, id);
+        if (litemallFishPondsUser == null) {
+            litemallFishPondsUser = new LitemallFishPondsUser();
+            litemallFishPondsUser.setUserId(userId);
+            litemallFishPondsUser.setFishPondsId(id);
+            FishPondsUserService.add(litemallFishPondsUser);
+            return ResponseUtil.ok(litemallFishPondsUser.getId());
+        } else {
+            return ResponseUtil.fail(1001, "不能重复加入");
+        }
+    }
+
+    @PostMapping("quit")
+    public Object quit(@LoginUser Integer userId, @RequestBody LitemallFishPonds litemallFishPonds) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        Integer id = litemallFishPonds.getId();
+        if (id == null) {
+            return ResponseUtil.badArgument();
+        }
+        LitemallFishPondsUser litemallFishPondsUser = FishPondsUserService.findByIdVO(userId, id);
+        if (litemallFishPondsUser == null) {
+            return ResponseUtil.fail(1002, "不在该组织内");
+        } else {
+            FishPondsUserService.deleteById(litemallFishPondsUser.getId());
+            return ResponseUtil.ok();
+        }
     }
 
     /**

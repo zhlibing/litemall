@@ -98,6 +98,12 @@ public class WxActivityController {
             userHasCollect = collectService.count(userId, id, type);
         }
 
+        // 用户加入
+        int userHasJoin = 0;
+        if (userId != null) {
+            userHasJoin = activityUserService.count(userId, id);
+        }
+
         // 记录用户的足迹 异步处理
         if (userId != null) {
             executorService.execute(() -> {
@@ -123,6 +129,7 @@ public class WxActivityController {
         try {
             data.put("info", info);
             data.put("userHasCollect", userHasCollect);
+            data.put("userHasJoin", userHasJoin);
             data.put("share", SystemConfig.isAutoCreateShareImage());
             data.put("user", user);
             data.put("comment", commentsCallableTsk.get());
@@ -182,6 +189,7 @@ public class WxActivityController {
         }
         LitemallActivityUser litemallActivityUser = activityUserService.findByIdVO(userId, id);
         if (litemallActivityUser == null) {
+            litemallActivityUser = new LitemallActivityUser();
             litemallActivityUser.setUserId(userId);
             litemallActivityUser.setActivityId(id);
             activityUserService.add(litemallActivityUser);
@@ -191,8 +199,8 @@ public class WxActivityController {
         }
     }
 
-    @PostMapping("quite")
-    public Object quite(@LoginUser Integer userId, @RequestBody LitemallActivity litemallActivity) {
+    @PostMapping("quit")
+    public Object quit(@LoginUser Integer userId, @RequestBody LitemallActivity litemallActivity) {
         if (userId == null) {
             return ResponseUtil.unlogin();
         }
@@ -204,7 +212,7 @@ public class WxActivityController {
         if (litemallActivityUser == null) {
             return ResponseUtil.fail(1002, "不在该组织内");
         } else {
-            activityUserService.deleteById(id);
+            activityUserService.deleteById(litemallActivityUser.getId());
             return ResponseUtil.ok();
         }
     }

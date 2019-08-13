@@ -64,9 +64,9 @@
 
         <!--表名2-->
         <table tableName="litemall_question">
-        <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-        <columnOverride column="pic_urls" javaType="java.lang.String[]"
-        typeHandler="org.linlinjava.litemall.db.mybatis.JsonStringArrayTypeHandler"/>
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="pic_urls" javaType="java.lang.String[]"
+                            typeHandler="org.linlinjava.litemall.db.mybatis.JsonStringArrayTypeHandler"/>
         </table>
 
         <!--表名3-->
@@ -97,6 +97,16 @@
 
         <!--表名7-->
         <table tableName="litemall_activity_user">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+        <!--表名8-->
+        <table tableName="litemall_group_user">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+        <!--表名9-->
+        <table tableName="litemall_fish_ponds_user">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
     </context>

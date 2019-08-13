@@ -32,6 +32,9 @@ public class WxGroupController {
     private LitemallGroupService GroupService;
 
     @Autowired
+    private LitemallGroupUserService GroupUserService;
+
+    @Autowired
     private LitemallCommentService commentService;
 
     @Autowired
@@ -49,7 +52,8 @@ public class WxGroupController {
 
     private static ThreadPoolExecutor executorService = new ThreadPoolExecutor(16, 16, 1000, TimeUnit.MILLISECONDS, WORK_QUEUE, HANDLER);
 
-    private int type =7;
+    private int type = 7;
+
     /**
      * 鱼塘详情
      * <p>
@@ -67,7 +71,7 @@ public class WxGroupController {
 
         // 评论
         Callable<Map> commentsCallable = () -> {
-            List<LitemallComment> comments = commentService.queryGoodsByGid(id,type, 0, 20);
+            List<LitemallComment> comments = commentService.queryGoodsByGid(id, type, 0, 20);
             List<Map<String, Object>> commentsVo = new ArrayList<>(comments.size());
             long commentCount = PageInfo.of(comments).getTotal();
             for (LitemallComment comment : comments) {
@@ -91,7 +95,13 @@ public class WxGroupController {
         // 用户收藏
         int userHasCollect = 0;
         if (userId != null) {
-            userHasCollect = collectService.count(userId, id,type);
+            userHasCollect = collectService.count(userId, id, type);
+        }
+
+        // 用户加入
+        int userHasJoin = 0;
+        if (userId != null) {
+            userHasJoin = GroupUserService.count(userId, id);
         }
 
         // 记录用户的足迹 异步处理
@@ -119,6 +129,7 @@ public class WxGroupController {
         try {
             data.put("info", info);
             data.put("userHasCollect", userHasCollect);
+            data.put("userHasJoin", userHasJoin);
             data.put("share", SystemConfig.isAutoCreateShareImage());
             data.put("user", user);
             data.put("comment", commentsCallableTsk.get());
@@ -139,6 +150,71 @@ public class WxGroupController {
         Map<String, Object> entity = new HashMap<>();
         entity.put("list", Group);
         return ResponseUtil.ok(entity);
+    }
+
+    @GetMapping("listall")
+    public Object listall(@RequestParam(defaultValue = "1") Integer page,
+                          @RequestParam(defaultValue = "10") Integer limit) {
+        List<LitemallGroup> GroupList = GroupService.queryGroup(page, limit);
+
+        List<Map<String, Object>> GroupVoList = new ArrayList<>(GroupList.size());
+        for (LitemallGroup Group : GroupList) {
+            Map<String, Object> GroupVo = new HashMap<>();
+            GroupVo.put("GroupInfo", Group);
+
+            LitemallUser user = userService.findDetailById(Group.getUserId());
+            GroupVo.put("userInfo", user);
+
+            List<LitemallGroupUser> litemallGroupUsers = GroupUserService.queryGroupUser(Group.getId(), 0, 100);
+            List<LitemallUser> users = new ArrayList<>();
+            for (LitemallGroupUser litemallGroupUser : litemallGroupUsers) {
+                LitemallUser GroupUser = userService.findDetailById(litemallGroupUser.getUserId());
+                users.add(GroupUser);
+            }
+            GroupVo.put("joinUsers", users);
+
+            GroupVoList.add(GroupVo);
+        }
+        return ResponseUtil.okList(GroupVoList, GroupList);
+    }
+
+    @PostMapping("join")
+    public Object join(@LoginUser Integer userId, @RequestBody LitemallGroup litemallGroup) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        Integer id = litemallGroup.getId();
+        if (id == null) {
+            return ResponseUtil.badArgument();
+        }
+        LitemallGroupUser litemallGroupUser = GroupUserService.findByIdVO(userId, id);
+        if (litemallGroupUser == null) {
+            litemallGroupUser = new LitemallGroupUser();
+            litemallGroupUser.setUserId(userId);
+            litemallGroupUser.setGroupId(id);
+            GroupUserService.add(litemallGroupUser);
+            return ResponseUtil.ok(litemallGroupUser.getId());
+        } else {
+            return ResponseUtil.fail(1001, "不能重复加入");
+        }
+    }
+
+    @PostMapping("quit")
+    public Object quit(@LoginUser Integer userId, @RequestBody LitemallGroup litemallGroup) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        Integer id = litemallGroup.getId();
+        if (id == null) {
+            return ResponseUtil.badArgument();
+        }
+        LitemallGroupUser litemallGroupUser = GroupUserService.findByIdVO(userId, id);
+        if (litemallGroupUser == null) {
+            return ResponseUtil.fail(1002, "不在该组织内");
+        } else {
+            GroupUserService.deleteById(litemallGroupUser.getId());
+            return ResponseUtil.ok();
+        }
     }
 
     /**
