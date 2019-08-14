@@ -1,7 +1,7 @@
 <template>
     <div class="user_header" :style="{backgroundImage: `url(${background_image})`}">
         <van-icon name="set" class="user_set" @click="toSetting"/>
-        <div class="user_avatar" @click="goDetails">
+        <div class="user_avatar" @click="goUserDetails(userId)">
             <img :src="avatar" alt="头像" width="55" height="55">
         </div>
         <div class="user_name">{{nickName}}</div>
@@ -68,8 +68,8 @@
             toSetting() {
                 this.$router.push({name: 'user-information'});
             },
-            goDetails() {
-                this.$router.push(`/items/userdetails/${this.userId}`);
+            goUserDetails(id) {
+                this.$router.push(`/items/userdetails/${id}`);
             }
         }
     };

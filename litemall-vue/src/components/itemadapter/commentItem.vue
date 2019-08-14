@@ -1,7 +1,8 @@
 <template>
     <div class="item" v-if="comment!==undefined">
         <div class="header_img"
-             :style="`background-image: url(${comment.avatar||comment.userInfo.avatarUrl})`"></div>
+             :style="`background-image: url(${comment.avatar||comment.userInfo.avatarUrl})`"
+             @click="goUserDetails(comment.userId||comment.userInfo.id)"></div>
         <div class="comment">
             <div class="nickname">
                 <span class="name">{{comment.nickname||comment.userInfo.nickName}}</span>
@@ -55,6 +56,9 @@
                         }
                     }
                 });
+            },
+            goUserDetails(id) {
+                this.$router.push(`/items/userdetails/${id}`);
             }
         }
     }

@@ -3,7 +3,7 @@
         <appbar :titleText="news.info.content||news.info.description||title"></appbar>
         <div class="details">
             <div class="top">
-                <div class="avatarbox">
+                <div class="avatarbox" @click="goUserDetails(news.user.id)">
                     <img :src="news.user.avatar" alt="" class="avatar">
                 </div>
                 <div class="info">
@@ -87,6 +87,9 @@
             }
         },
         methods: {
+            goUserDetails(id) {
+                this.$router.push(`/items/userdetails/${id}`);
+            },
             deleteComment(index) {
                 this.news.comment.data.splice(index, 1)
                 console.log(index, 'deleteComment')
