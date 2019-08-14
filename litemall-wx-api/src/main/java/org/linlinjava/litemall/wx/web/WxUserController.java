@@ -4,6 +4,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.linlinjava.litemall.core.util.ResponseUtil;
 import org.linlinjava.litemall.db.service.LitemallOrderService;
+import org.linlinjava.litemall.db.service.LitemallUserService;
 import org.linlinjava.litemall.wx.annotation.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -26,6 +27,9 @@ public class WxUserController {
     @Autowired
     private LitemallOrderService orderService;
 
+    @Autowired
+    private LitemallUserService litemallUserService;
+
     /**
      * 用户个人页面数据
      * <p>
@@ -45,4 +49,14 @@ public class WxUserController {
         return ResponseUtil.ok(data);
     }
 
+    @GetMapping("details")
+    public Object details(@LoginUser Integer userId) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+
+        Map<Object, Object> data = new HashMap<Object, Object>();
+        data.put("user", litemallUserService.findDetailById(userId));
+        return ResponseUtil.ok(data);
+    }
 }
