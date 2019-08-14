@@ -182,4 +182,22 @@ public class WxQuestionController {
         QuestionService.deleteById(id);
         return ResponseUtil.ok();
     }
+
+    @PostMapping("refresh")
+    public Object refresh(@LoginUser Integer userId, @RequestBody LitemallQuestion question) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+
+        Integer id = question.getId();
+        if (id == null) {
+            return ResponseUtil.badArgument();
+        } else {
+            if (QuestionService.refreshUpdateTime(question) == 0) {
+                return ResponseUtil.updatedDataFailed();
+            } else {
+                return ResponseUtil.ok();
+            }
+        }
+    }
 }

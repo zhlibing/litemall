@@ -2,6 +2,8 @@ package org.linlinjava.litemall.db.service;
 
 import com.github.pagehelper.PageHelper;
 import org.linlinjava.litemall.db.dao.LitemallQuestionMapper;
+import org.linlinjava.litemall.db.domain.LitemallCircle;
+import org.linlinjava.litemall.db.domain.LitemallCircleExample;
 import org.linlinjava.litemall.db.domain.LitemallQuestion;
 import org.linlinjava.litemall.db.domain.LitemallQuestion.Column;
 import org.linlinjava.litemall.db.domain.LitemallQuestionExample;
@@ -14,7 +16,7 @@ import java.util.List;
 
 @Service
 public class LitemallQuestionService {
-    Column[] columns = new Column[]{Column.id, Column.title, Column.description, Column.picUrls, Column.status, Column.reword,Column.type};
+    Column[] columns = new Column[]{Column.id, Column.title, Column.description, Column.picUrls, Column.status, Column.reword, Column.type};
     @Resource
     private LitemallQuestionMapper questionMapper;
 
@@ -26,7 +28,7 @@ public class LitemallQuestionService {
     public List<LitemallQuestion> queryQuestion(int offset, int limit) {
         LitemallQuestionExample example = new LitemallQuestionExample();
         example.or().andDeletedEqualTo(false);
-        example.setOrderByClause("add_time desc");
+        example.setOrderByClause("update_time desc");
         PageHelper.startPage(offset, limit);
         return questionMapper.selectByExampleSelective(example, columns);
     }
@@ -63,6 +65,13 @@ public class LitemallQuestionService {
     public int updateById(LitemallQuestion Question) {
         Question.setUpdateTime(LocalDateTime.now());
         return questionMapper.updateByPrimaryKeySelective(Question);
+    }
+
+    public int refreshUpdateTime(LitemallQuestion question) {
+        question.setUpdateTime(LocalDateTime.now());
+        LitemallQuestionExample litemallQuestionExample = new LitemallQuestionExample();
+        litemallQuestionExample.or().andIdEqualTo(question.getId());
+        return questionMapper.updateByExampleSelective(question, litemallQuestionExample);
     }
 
     public void deleteById(Integer id) {

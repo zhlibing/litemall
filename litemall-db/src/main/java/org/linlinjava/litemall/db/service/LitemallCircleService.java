@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 public class LitemallCircleService {
-    Column[] columns = new Column[]{Column.id, Column.content, Column.picUrls, Column.status, Column.addTime,Column.type};
+    Column[] columns = new Column[]{Column.id, Column.content, Column.picUrls, Column.status, Column.addTime, Column.type};
     @Resource
     private LitemallCircleMapper circleMapper;
 
@@ -26,7 +26,7 @@ public class LitemallCircleService {
     public List<LitemallCircle> queryCircle(int offset, int limit) {
         LitemallCircleExample example = new LitemallCircleExample();
         example.or().andDeletedEqualTo(false);
-        example.setOrderByClause("add_time desc");
+        example.setOrderByClause("update_time desc");
         PageHelper.startPage(offset, limit);
         return circleMapper.selectByExampleSelective(example, columns);
     }
@@ -63,6 +63,13 @@ public class LitemallCircleService {
     public int updateById(LitemallCircle Circle) {
         Circle.setUpdateTime(LocalDateTime.now());
         return circleMapper.updateByPrimaryKeySelective(Circle);
+    }
+
+    public int refreshUpdateTime(LitemallCircle circle) {
+        circle.setUpdateTime(LocalDateTime.now());
+        LitemallCircleExample litemallCircleExample = new LitemallCircleExample();
+        litemallCircleExample.or().andIdEqualTo(circle.getId());
+        return circleMapper.updateByExampleSelective(circle, litemallCircleExample);
     }
 
     public void deleteById(Integer id) {
