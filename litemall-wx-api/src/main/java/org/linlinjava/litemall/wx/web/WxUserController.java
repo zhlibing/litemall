@@ -3,8 +3,7 @@ package org.linlinjava.litemall.wx.web;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.linlinjava.litemall.core.util.ResponseUtil;
-import org.linlinjava.litemall.db.service.LitemallOrderService;
-import org.linlinjava.litemall.db.service.LitemallUserService;
+import org.linlinjava.litemall.db.service.*;
 import org.linlinjava.litemall.wx.annotation.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -29,6 +28,21 @@ public class WxUserController {
 
     @Autowired
     private LitemallUserService litemallUserService;
+
+    @Autowired
+    private LitemallActivityService litemallActivityService;
+
+    @Autowired
+    private LitemallFishPondsService litemallFishPondsService;
+
+    @Autowired
+    private LitemallQuestionService litemallQuestionService;
+
+    @Autowired
+    private LitemallCircleService litemallCircleService;
+
+    @Autowired
+    private LitemallGroupService litemallGroupService;
 
     /**
      * 用户个人页面数据
@@ -57,6 +71,8 @@ public class WxUserController {
 
         Map<Object, Object> data = new HashMap<Object, Object>();
         data.put("user", litemallUserService.findDetailById(userId));
+        data.put("activitys", litemallActivityService.queryActivityByUser(userId, 0, 10));
+        data.put("circles", litemallCircleService.queryCircleByUser(userId, 0, 10));
         return ResponseUtil.ok(data);
     }
 }

@@ -34,6 +34,14 @@ public class LitemallActivityService {
         return activityMapper.selectByExampleSelective(example, columns);
     }
 
+    public List<LitemallActivity> queryActivityByUser(Integer id,int offset, int limit) {
+        LitemallActivityExample example = new LitemallActivityExample();
+        example.or().andDeletedEqualTo(false).andUserIdEqualTo(id);
+        example.setOrderByClause("add_time desc");
+        PageHelper.startPage(offset, limit);
+        return activityMapper.selectByExampleSelective(example, columns);
+    }
+
     /**
      * @param id
      * @return

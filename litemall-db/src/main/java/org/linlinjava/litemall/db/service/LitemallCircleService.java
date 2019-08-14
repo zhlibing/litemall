@@ -2,6 +2,8 @@ package org.linlinjava.litemall.db.service;
 
 import com.github.pagehelper.PageHelper;
 import org.linlinjava.litemall.db.dao.LitemallCircleMapper;
+import org.linlinjava.litemall.db.domain.LitemallActivity;
+import org.linlinjava.litemall.db.domain.LitemallActivityExample;
 import org.linlinjava.litemall.db.domain.LitemallCircle;
 import org.linlinjava.litemall.db.domain.LitemallCircle.Column;
 import org.linlinjava.litemall.db.domain.LitemallCircleExample;
@@ -30,6 +32,14 @@ public class LitemallCircleService {
         PageHelper.startPage(offset, limit);
         return circleMapper.selectByExampleSelective(example, columns);
     }
+    public List<LitemallCircle> queryCircleByUser(Integer id, int offset, int limit) {
+        LitemallCircleExample example = new LitemallCircleExample();
+        example.or().andDeletedEqualTo(false).andUserIdEqualTo(id);
+        example.setOrderByClause("update_time desc");
+        PageHelper.startPage(offset, limit);
+        return circleMapper.selectByExampleSelective(example, columns);
+    }
+
 
     /**
      * @param id
