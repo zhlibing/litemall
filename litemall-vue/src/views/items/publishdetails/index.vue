@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="messagebox">
-            <p class="msg border-1px">留言</p>
+            <p class="msg border-1px">{{'留言 '+news.comment.data.length+' 条'}}</p>
             <div class="list2n" v-for="(comment,index) in news.comment.data" :key="index"
                  v-show="news.comment.data!=undefined&&news.comment.data.length>0">
                 <commentItem :comment="comment" :userId="userId" @deleteComment="deleteComment(index)"></commentItem>

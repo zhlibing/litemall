@@ -6,6 +6,10 @@
         <div class="comment">
             <div class="nickname">
                 <span class="name">{{comment.nickname||comment.userInfo.nickName}}</span>
+                <div class="zan">
+                    <img src="../../assets/images/prise_no.png"/>
+                    <span></span>
+                </div>
             </div>
             <div class="text">{{comment.content}}</div>
             <div class="imgbox"
@@ -80,12 +84,25 @@
             display: flex;
             flex-direction: column;
             .nickname {
+                display: flex;
                 padding-top: 5px;
                 padding-bottom: 10px;
+                justify-content: space-between;
                 .name {
                     padding-right: 10px;
                     font-weight: 400;
                     color: #7dc5eb;
+                }
+                .zan {
+                    display: flex;
+                    height: 20px;
+                    img {
+                        width: 20px;
+                        height: 20px;
+                    }
+                    span {
+                        margin-left: 5px;
+                    }
                 }
             }
             .comment_title {
