@@ -1,7 +1,7 @@
 <template>
     <div class="user_header" :style="{backgroundImage: `url(${background_image})`}">
         <van-icon name="set" class="user_set" @click="toSetting"/>
-        <div class="user_avatar">
+        <div class="user_avatar" @click="goDetails">
             <img :src="avatar" alt="头像" width="55" height="55">
         </div>
         <div class="user_name">{{nickName}}</div>
@@ -45,6 +45,7 @@
             return {
                 nickName: '昵称',
                 avatar: avatar_default,
+                userId: '',
                 background_image: bg_default
             };
         },
@@ -57,13 +58,18 @@
             getUserInfo() {
                 const infoData = getLocalStorage(
                     'nickName',
-                    'avatar'
+                    'avatar',
+                    'userId'
                 );
                 this.avatar = infoData.avatar || avatar_default;
                 this.nickName = infoData.nickName || '昵称';
+                this.userId = infoData.userId || '';
             },
             toSetting() {
                 this.$router.push({name: 'user-information'});
+            },
+            goDetails() {
+                this.$router.push(`/items/userdetails/${this.userId}`);
             }
         }
     };
