@@ -163,10 +163,10 @@ public class WxCommentController {
             int random = rand.nextInt(9999) + 9999;
             int userHasCollect = 0;
             int collectCount = 0;
-            if (comment.getId() != null) {
+            if (comment.getId() != null & userId != null) {
                 userHasCollect = collectService.count(userId, comment.getId(), this.type);
-                collectCount = collectService.countCollect(comment.getId(), this.type);
             }
+            collectCount = collectService.countCollect(comment.getId(), this.type);
             commentVo.put("userHasCollect", userHasCollect);
             commentVo.put("collectCount", collectCount + random);
 
@@ -199,10 +199,10 @@ public class WxCommentController {
             int random = rand.nextInt(9999) + 9999;
             int userHasCollect = 0;
             int collectCount = 0;
-            if (comment.getId() != null) {
+            if (comment.getId() != null & userId != null) {
                 userHasCollect = collectService.count(userId, comment.getId(), this.type);
-                collectCount = collectService.countCollect(comment.getId(), this.type);
             }
+            collectCount = collectService.countCollect(comment.getId(), this.type);
             commentVo.put("userHasCollect", userHasCollect);
             commentVo.put("collectCount", collectCount + random);
 

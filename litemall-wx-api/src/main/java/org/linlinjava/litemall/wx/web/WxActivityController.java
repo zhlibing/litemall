@@ -86,10 +86,10 @@ public class WxActivityController {
                 int random = rand.nextInt(9999) + 9999;
                 int userHasCollect = 0;
                 int collectCount = 0;
-                if (comment.getId() != null) {
+                if (comment.getId() != null & userId != null) {
                     userHasCollect = collectService.count(userId, comment.getId(), 9);
-                    collectCount = collectService.countCollect(comment.getId(), 9);
                 }
+                collectCount = collectService.countCollect(comment.getId(), 9);
                 c.put("userHasCollect", userHasCollect);
                 c.put("collectCount", collectCount + random);
                 commentsVo.add(c);
@@ -184,10 +184,10 @@ public class WxActivityController {
                 int random = rand.nextInt(9999) + 9999;
                 int userHasCollect = 0;
                 int collectCount = 0;
-                if (ActivityUser.getId() != null) {
+                if (ActivityUser.getId() != null & userId != null) {
                     userHasCollect = collectService.count(userId, ActivityUser.getId(), 10);
-                    collectCount = collectService.countCollect(ActivityUser.getId(), 10);
                 }
+                collectCount = collectService.countCollect(ActivityUser.getId(), 10);
                 c.put("userHasCollect", userHasCollect);
                 c.put("collectCount", collectCount + random);
                 usersVo.add(c);

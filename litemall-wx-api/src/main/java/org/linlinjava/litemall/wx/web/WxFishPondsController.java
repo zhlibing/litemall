@@ -86,10 +86,10 @@ public class WxFishPondsController {
                 int random = rand.nextInt(9999) + 9999;
                 int userHasCollect = 0;
                 int collectCount = 0;
-                if (comment.getId() != null) {
+                if (comment.getId() != null & userId != null) {
                     userHasCollect = collectService.count(userId, comment.getId(), 9);
-                    collectCount = collectService.countCollect(comment.getId(), 9);
                 }
+                collectCount = collectService.countCollect(comment.getId(), 9);
                 c.put("userHasCollect", userHasCollect);
                 c.put("collectCount", collectCount + random);
                 commentsVo.add(c);
@@ -184,10 +184,10 @@ public class WxFishPondsController {
                 int random = rand.nextInt(9999) + 9999;
                 int userHasCollect = 0;
                 int collectCount = 0;
-                if (FishPondsUser.getId() != null) {
+                if (FishPondsUser.getId() != null & userId != null) {
                     userHasCollect = collectService.count(userId, FishPondsUser.getId(), 10);
-                    collectCount = collectService.countCollect(FishPondsUser.getId(), 10);
                 }
+                collectCount = collectService.countCollect(FishPondsUser.getId(), 10);
                 c.put("userHasCollect", userHasCollect);
                 c.put("collectCount", collectCount + random);
                 usersVo.add(c);

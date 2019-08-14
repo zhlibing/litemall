@@ -309,7 +309,11 @@ UNLOCK TABLES;
 
 LOCK TABLES `litemall_user` WRITE;
 /*!40000 ALTER TABLE `litemall_user` DISABLE KEYS */;
-INSERT INTO `litemall_user` VALUES (1,'user123','$2a$10$lTu9qi0hr19OC800Db.eludFr0AXuJUSrMHi/iPYhKRlPFeqJxlye',1,NULL,'2019-04-20 22:17:43','0:0:0:0:0:0:0:1',0,'user123','','','','',0,'2019-04-20 22:17:43','2019-04-20 22:17:43',0);
+INSERT INTO `litemall_user` VALUES
+(1,'user123','$2a$10$lTu9qi0hr19OC800Db.eludFr0AXuJUSrMHi/iPYhKRlPFeqJxlye',1,NULL,'2019-04-20 22:17:43','0:0:0:0:0:0:0:1',0,'user123','','','','',0,'2019-04-20 22:17:43','2019-04-20 22:17:43',0),
+(2,'user456','$2a$10$lTu9qi0hr19OC800Db.eludFr0AXuJUSrMHi/iPYhKRlPFeqJxlye',1,NULL,'2019-04-20 22:17:43','0:0:0:0:0:0:0:1',0,'user456','','','','',0,'2019-04-20 22:17:43','2019-04-20 22:17:43',0),
+(3,'user789','$2a$10$lTu9qi0hr19OC800Db.eludFr0AXuJUSrMHi/iPYhKRlPFeqJxlye',1,NULL,'2019-04-20 22:17:43','0:0:0:0:0:0:0:1',0,'user789','','','','',0,'2019-04-20 22:17:43','2019-04-20 22:17:43',0),
+(4,'user111','$2a$10$lTu9qi0hr19OC800Db.eludFr0AXuJUSrMHi/iPYhKRlPFeqJxlye',1,NULL,'2019-04-20 22:17:43','0:0:0:0:0:0:0:1',0,'user111','','','','',0,'2019-04-20 22:17:43','2019-04-20 22:17:43',0);
 /*!40000 ALTER TABLE `litemall_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
