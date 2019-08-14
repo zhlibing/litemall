@@ -12,6 +12,9 @@
                 <img :src="user.avatar" alt="" class="avatar">
             </div>
         </div>
+        <div v-for="(item,index) in circles" :key="index" style="margin-left: 20px;margin-right: 20px">
+            <circleItem :item="item"></circleItem>
+        </div>
     </div>
 </template>
 
@@ -21,6 +24,7 @@
         userDetails,
     } from '@/api/api';
     import {getLocalStorage} from '@/utils/local-storage';
+    import circleItem from '../../../components/itemadapter/circleItem.vue'
 
     export default {
         props: {
@@ -30,7 +34,8 @@
             return {
                 user: {},
                 title: '个人空间',
-                loginUserId: ''
+                loginUserId: '',
+                circles: []
             }
         },
         methods: {
@@ -48,6 +53,7 @@
             userDetails({id: this.userId}).then(res => {
                 console.log(res, '>>>userDetails')
                 this.user = res.data.data.user;
+                this.circles = res.data.data.circles
             });
         },
         mounted() {
@@ -55,6 +61,7 @@
         },
         components: {
             appbar,
+            circleItem
         }
     }
 </script>
@@ -77,6 +84,7 @@
             align-items center
             margin-top -25px
             padding-right 10px
+            margin-bottom 20px
             .avatarbox
                 width 4rem
                 height 4rem
