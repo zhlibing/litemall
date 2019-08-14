@@ -83,7 +83,7 @@
                 .avatar
                     width 4rem
                     height 4rem
-                    border-radius 50%
+                    border-radius 10%
             .info
                 margin-right 0.6rem
                 flex 1
@@ -103,5 +103,5 @@
                     -webkit-box-orient: vertical;
                 .ta
                     color #666666
-                    font-size 0.8rem
+                    font-size 0.9rem
 </style>
