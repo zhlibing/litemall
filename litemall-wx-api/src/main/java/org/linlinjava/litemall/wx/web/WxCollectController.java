@@ -9,8 +9,10 @@ import org.linlinjava.litemall.core.validator.Order;
 import org.linlinjava.litemall.core.validator.Sort;
 import org.linlinjava.litemall.db.domain.LitemallCollect;
 import org.linlinjava.litemall.db.domain.LitemallGoods;
+import org.linlinjava.litemall.db.domain.LitemallUser;
 import org.linlinjava.litemall.db.service.LitemallCollectService;
 import org.linlinjava.litemall.db.service.LitemallGoodsService;
+import org.linlinjava.litemall.db.service.LitemallUserService;
 import org.linlinjava.litemall.wx.annotation.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -35,6 +37,8 @@ public class WxCollectController {
     private LitemallCollectService collectService;
     @Autowired
     private LitemallGoodsService goodsService;
+    @Autowired
+    private LitemallUserService litemallUserService;
 
     /**
      * 用户收藏列表
@@ -42,7 +46,7 @@ public class WxCollectController {
      * @param userId 用户ID
      * @param type   类型，如果是0则是商品收藏，如果是1则是专题收藏
      * @param page   分页页数
-     * @param limit   分页大小
+     * @param limit  分页大小
      * @return 用户收藏列表
      */
     @GetMapping("list")
@@ -65,11 +69,14 @@ public class WxCollectController {
             c.put("type", collect.getType());
             c.put("valueId", collect.getValueId());
 
-            LitemallGoods goods = goodsService.findById(collect.getValueId());
-            c.put("name", goods.getName());
-            c.put("brief", goods.getBrief());
-            c.put("picUrl", goods.getPicUrl());
-            c.put("retailPrice", goods.getRetailPrice());
+            if (type == 0) {
+                LitemallGoods goods = goodsService.findById(collect.getValueId());
+                c.put("goods", goods);
+            }
+            if (type == 10) {
+                LitemallUser user = litemallUserService.findById(collect.getValueId());
+                c.put("user", user);
+            }
 
             collects.add(c);
         }

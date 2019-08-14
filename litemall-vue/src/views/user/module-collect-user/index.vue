@@ -1,6 +1,6 @@
 <template>
   <div class="user_collect">
-    <appbar titleText="我的收藏"></appbar>
+    <appbar titleText="我的关注"></appbar>
     <van-list v-model="loading"
               :finished="finished"
               :immediate-check="false"
@@ -9,11 +9,11 @@
       <van-card v-for="(item, i) in list"
                 :key="i"
                 :desc="item.brief"
-                :title="item.goods.name"
-                :thumb="item.goods.picUrl"
-                :price="item.goods.retailPrice"
-                :origin-price="item.goods.counterPrice"
-                @click="itemClick(item.goods.id)">
+                :title="item.user.nickname"
+                :thumb="item.user.avatar"
+                :price="item.user.status"
+                :origin-price="item.user.username"
+                @click="itemClick(item.user.id)">
         <div slot="footer">
           <van-button size="mini"
                       icon="lajitong"
@@ -22,7 +22,7 @@
       </van-card>
     </van-list>
 
-    <is-empty v-if="list.length === 0">没有商品收藏</is-empty>
+    <is-empty v-if="list.length === 0">没有关注</is-empty>
 
   </div>
 </template>
@@ -59,21 +59,22 @@ export default {
     },
     getCollectList() {
       this.page++;
-      collectList({ type: 0, page: this.page, limit: this.limit }).then(res => {
+      collectList({ type: 10, page: this.page, limit: this.limit }).then(res => {
         this.list.push(...res.data.data.list);
         this.loading = false;
         this.finished = res.data.data.page >= res.data.data.pages;
       });
     },
     cancelCollect(event, i, item) {
-      this.$dialog.confirm({ message: '是否取消收藏该商品' }).then(() => {
-        collectAddOrDelete({ valueId: item.valueId, type: 0 }).then(res => {
+      this.$dialog.confirm({ message: '是否取消关注' }).then(() => {
+        collectAddOrDelete({ valueId: item.valueId, type: 10 }).then(res => {
           this.list.splice(i, 1);
         });
       });
     },
     itemClick(id) {
-      this.$router.push(`/items/detail/${id}`);
+        console.log(id,'userdetails')
+      this.$router.push(`/items/userdetails/${id}`);
     }
   },
 

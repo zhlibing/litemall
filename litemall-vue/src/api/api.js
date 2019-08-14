@@ -472,10 +472,11 @@ export function userIndex() {
 }
 
 const UserDetails='wx/user/details'; //个人页面用户相关信息
-export function userDetails() {
+export function userDetails(query) {
     return request({
         url: UserDetails,
-        method: 'get'
+        method: 'get',
+        params: query
     })
 }
 

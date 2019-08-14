@@ -6,7 +6,7 @@
         </div>
         <div class="user_name">{{nickName}}</div>
         <div class="count">
-            <div class="numbox" @click="">
+            <div class="numbox">
                 <span class="num">{{'100'}}</span>
                 <span class="numname">访客数</span>
             </div>
@@ -14,7 +14,7 @@
                 <span class="num">{{'45'}}</span>
                 <span class="numname">被赞数</span>
             </div>
-            <div class="numbox">
+            <div class="numbox" @click="toCollectUser(userId)">
                 <span class="num">{{'23'}}</span>
                 <span class="numname">关注数</span>
             </div>
@@ -70,6 +70,9 @@
             },
             goUserDetails(id) {
                 this.$router.push(`/items/userdetails/${id}`);
+            },
+            toCollectUser(id){
+                this.$router.push(`/user/collectUser/${id}`);
             }
         }
     };

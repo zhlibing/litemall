@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,15 +65,11 @@ public class WxUserController {
     }
 
     @GetMapping("details")
-    public Object details(@LoginUser Integer userId) {
-        if (userId == null) {
-            return ResponseUtil.unlogin();
-        }
-
+    public Object details(@NotNull Integer id) {
         Map<Object, Object> data = new HashMap<Object, Object>();
-        data.put("user", litemallUserService.findDetailById(userId));
-        data.put("activitys", litemallActivityService.queryActivityByUser(userId, 0, 10));
-        data.put("circles", litemallCircleService.queryCircleByUser(userId, 0, 10));
+        data.put("user", litemallUserService.findDetailById(id));
+        data.put("activitys", litemallActivityService.queryActivityByUser(id, 0, 10));
+        data.put("circles", litemallCircleService.queryCircleByUser(id, 0, 10));
         return ResponseUtil.ok(data);
     }
 }

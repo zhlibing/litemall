@@ -43,12 +43,13 @@
                 const infoData = getLocalStorage(
                     'userId'
                 );
-                this.loginUserId = infoData.loginUserId || "";
+                this.loginUserId = infoData.userId || "";
                 console.log(infoData, '>>>>>>loginUserId')
             },
         },
         computed: {},
         created() {
+            console.log(this.userId, '>>>>>>loginUserId')
             this.getUserInfo();
             userDetails({id: this.userId}).then(res => {
                 console.log(res, '>>>userDetails')
