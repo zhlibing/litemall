@@ -36,6 +36,7 @@
 </script>
 <style lang="scss" scoped>
     .box {
+        margin-top: 0.5rem;
         margin-left: 1rem;
         margin-right: 1rem;
         border-bottom: 1px solid #f7f7f7;
@@ -89,6 +90,7 @@
         .bottom {
             display: flex;
             font-size: 0.6rem;
+            margin-top: 0.2rem;
             .yutang {
                 flex: 1;
                 color: #999;
