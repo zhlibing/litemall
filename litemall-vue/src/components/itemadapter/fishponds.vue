@@ -81,7 +81,7 @@
         },
         mounted() {
             let keyUser = {}
-            keyUser = this.item.userInfo
+            keyUser.user = this.item.userInfo
             keyUser.key = true;
             this.users.push(keyUser);
             this.users.push(...this.item.joinUsers);

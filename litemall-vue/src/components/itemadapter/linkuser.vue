@@ -1,24 +1,30 @@
 <template>
     <div class="box" v-if="item!==undefined">
-        <div class="answer" @click="itemClick(item.id)">
+        <div class="answer" @click="itemClick(item.user.id)">
             <div class="imgshow">
-                <img :src="item.avatar" alt="">
+                <img :src="item.user.avatar" alt="">
             </div>
             <div class="content">
-                <div class="name">{{item.nickname || item.nickname}}</div>
+                <div class="name">{{item.user.nickname || item.user.nickname}}</div>
                 <div class="score" v-if="item.key==undefined">{{'10战8胜 胜率80% 王者'}}</div>
                 <div class="score" v-else>{{'成功举办10场活动'}}</div>
             </div>
             <span class="da" v-if="item.key!=undefined">{{"发起人"}}</span>
         </div>
         <div class="bottom">
-            <div class="yutang">{{"人气666"}}</div>
-            <div class="toanswer" v-if="item.key==undefined">支持一下</div>
+            <div class="yutang">{{"人气"+item.collectCount}}</div>
+            <div class="toanswer" v-if="item.key==undefined" @click="addCollect">
+                <span v-if="item.userHasCollect==0">支持一下</span>
+                <span v-else>已支持</span>
+            </div>
         </div>
     </div>
 </template>
 <script>
     import {ImagePreview} from 'vant';
+    import {
+        collectAddOrDelete,
+    } from '@/api/api';
 
     export default {
         props: {
@@ -30,7 +36,20 @@
             },
             itemClick(id) {
                 this.$router.push(`/items/userdetails/${id}`);
-            }
+            },
+            addCollect() {
+                collectAddOrDelete({valueId: this.item.user.id, type: '10'}).then(res => {
+                    if (this.item.userHasCollect === 1) {
+                        this.item.userHasCollect = 0;
+                    } else {
+                        this.item.userHasCollect = 1;
+                        this.$toast({
+                            message: '支持成功',
+                            duration: 1500
+                        });
+                    }
+                });
+            },
         }
     }
 </script>
