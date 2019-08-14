@@ -174,12 +174,25 @@ public class WxActivityController {
             activityVo.put("userInfo", user);
 
             List<LitemallActivityUser> litemallActivityUsers = activityUserService.queryActivityUser(activity.getId(), 0, 100);
-            List<LitemallUser> users = new ArrayList<>();
+            List<Map<String, Object>> usersVo = new ArrayList<>(litemallActivityUsers.size());
             for (LitemallActivityUser litemallActivityUser : litemallActivityUsers) {
                 LitemallUser ActivityUser = userService.findDetailById(litemallActivityUser.getUserId());
-                users.add(ActivityUser);
+                Map<String, Object> c = new HashMap<>();
+                c.put("user", ActivityUser);
+                // 用户收藏
+                Random rand = new Random();
+                int random = rand.nextInt(9999) + 9999;
+                int userHasCollect = 0;
+                int collectCount = 0;
+                if (litemallActivityUser.getUserId() != null) {
+                    userHasCollect = collectService.count(litemallActivityUser.getUserId(), ActivityUser.getId(), 10);
+                    collectCount = collectService.countCollect(user.getId(), 10);
+                }
+                c.put("userHasCollect", userHasCollect);
+                c.put("collectCount", collectCount + random);
+                usersVo.add(c);
             }
-            activityVo.put("joinUsers", users);
+            activityVo.put("joinUsers", usersVo);
 
             activityVoList.add(activityVo);
         }

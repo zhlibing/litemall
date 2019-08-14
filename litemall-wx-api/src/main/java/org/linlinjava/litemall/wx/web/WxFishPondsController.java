@@ -174,12 +174,25 @@ public class WxFishPondsController {
             FishPondsVo.put("userInfo", user);
 
             List<LitemallFishPondsUser> litemallFishPondsUsers = FishPondsUserService.queryFishPondsUser(FishPonds.getId(), 0, 100);
-            List<LitemallUser> users = new ArrayList<>();
+            List<Map<String, Object>> usersVo = new ArrayList<>(litemallFishPondsUsers.size());
             for (LitemallFishPondsUser litemallFishPondsUser : litemallFishPondsUsers) {
                 LitemallUser FishPondsUser = userService.findDetailById(litemallFishPondsUser.getUserId());
-                users.add(FishPondsUser);
+                Map<String, Object> c = new HashMap<>();
+                c.put("user", FishPondsUser);
+                // 用户收藏
+                Random rand = new Random();
+                int random = rand.nextInt(9999) + 9999;
+                int userHasCollect = 0;
+                int collectCount = 0;
+                if (litemallFishPondsUser.getUserId() != null) {
+                    userHasCollect = collectService.count(user.getId(), FishPondsUser.getId(), 10);
+                    collectCount = collectService.countCollect(user.getId(), 10);
+                }
+                c.put("userHasCollect", userHasCollect);
+                c.put("collectCount", collectCount + random);
+                usersVo.add(c);
             }
-            FishPondsVo.put("joinUsers", users);
+            FishPondsVo.put("joinUsers", usersVo);
 
             FishPondsVoList.add(FishPondsVo);
         }

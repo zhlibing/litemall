@@ -174,12 +174,25 @@ public class WxGroupController {
             GroupVo.put("userInfo", user);
 
             List<LitemallGroupUser> litemallGroupUsers = GroupUserService.queryGroupUser(Group.getId(), 0, 100);
-            List<LitemallUser> users = new ArrayList<>();
+            List<Map<String, Object>> usersVo = new ArrayList<>(litemallGroupUsers.size());
             for (LitemallGroupUser litemallGroupUser : litemallGroupUsers) {
                 LitemallUser GroupUser = userService.findDetailById(litemallGroupUser.getUserId());
-                users.add(GroupUser);
+                Map<String, Object> c = new HashMap<>();
+                c.put("user", GroupUser);
+                // 用户收藏
+                Random rand = new Random();
+                int random = rand.nextInt(9999) + 9999;
+                int userHasCollect = 0;
+                int collectCount = 0;
+                if (litemallGroupUser.getUserId() != null) {
+                    userHasCollect = collectService.count(litemallGroupUser.getUserId(), GroupUser.getId(), 10);
+                    collectCount = collectService.countCollect(user.getId(), 10);
+                }
+                c.put("userHasCollect", userHasCollect);
+                c.put("collectCount", collectCount + random);
+                usersVo.add(c);
             }
-            GroupVo.put("joinUsers", users);
+            GroupVo.put("joinUsers", usersVo);
 
             GroupVoList.add(GroupVo);
         }
