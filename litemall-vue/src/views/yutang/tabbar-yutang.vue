@@ -21,7 +21,7 @@
         </div>
         <div class="questions">
             <div class="titlebox">
-                <p class="title">鱼塘问答</p>
+                <p class="title">有问题问一问</p>
                 <span class="ask">去提问</span>
             </div>
             <div v-for="(item,index) in questions" :key="index">
@@ -52,7 +52,7 @@
         </div>
         <div class="interest">
             <div class="titlebox">
-                <p class="title">厉害了我的中国风</p>
+                <p class="title">热门人气活动</p>
             </div>
             <div class="swiper-container" ref="china">
                 <div class="swiper-wrapper swiper">
@@ -71,7 +71,7 @@
         </div>
         <div class="interest bottom2 questions">
             <div class="titlebox">
-                <p class="title">不可错过的鱼塘</p>
+                <p class="title">渔儿都在说</p>
             </div>
             <div v-for="(item,index) in lists" :key="index">
                 <circleItem :item="item"></circleItem>
