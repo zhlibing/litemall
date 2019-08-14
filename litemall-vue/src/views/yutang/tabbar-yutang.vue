@@ -8,7 +8,7 @@
             </div>
             <div class="swiper-container" ref="swiper">
                 <div class="swiper-wrapper swiper">
-                    <div class="swiper-slide item" v-for="(item,index) in interests" :key="index" @click="toast">
+                    <div class="swiper-slide item" v-for="(item,index) in interests" :key="index">
                         <img :src="item.picUrls[0]" alt="" class="img" @click="itemClick(item.id,item.type)">
                         <div class="name">{{item.title}}</div>
                         <div class="info">
@@ -37,7 +37,7 @@
             </div>
             <div class="swiper-container" ref="tuhao">
                 <div class="swiper-wrapper swiper">
-                    <div class="swiper-slide item" v-for="(item,index) in tuhao" :key="index" @click="toast">
+                    <div class="swiper-slide item" v-for="(item,index) in tuhao" :key="index">
                         <div class="imgdisplay" v-if="item.picUrls !== undefined" @click="itemClick(item.id,item.type)">
                             <img :src="item.picUrls[0]" alt=""
                                  class="imgbig">
@@ -56,7 +56,7 @@
             </div>
             <div class="swiper-container" ref="china">
                 <div class="swiper-wrapper swiper">
-                    <div class="swiper-slide item" v-for="(item,index) in china" :key="index" @click="toast">
+                    <div class="swiper-slide item" v-for="(item,index) in china" :key="index">
                         <div class="imgdisplay" v-if="item.picUrls !== undefined" @click="itemClick(item.id,item.type)">
                             <img :src="item.picUrls[0]" alt=""
                                  class="imgbig">
@@ -109,9 +109,6 @@
         methods: {
             handleScroll() {
                 this.scroll = document.documentElement && document.documentElement.scrollTop
-            },
-            toast() {
-                this.$toast('小哥哥还没做这个功能哦')
             },
             refreshCircle() {
                 circleList().then(res => {
