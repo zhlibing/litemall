@@ -470,6 +470,15 @@ export function userIndex() {
     method: 'get'
   })
 }
+
+const UserDetails='wx/user/details'; //个人页面用户相关信息
+export function userDetails() {
+    return request({
+        url: UserDetails,
+        method: 'get'
+    })
+}
+
 const IssueList='wx/issue/list'; //帮助信息
 export function issueList() {
   return request({

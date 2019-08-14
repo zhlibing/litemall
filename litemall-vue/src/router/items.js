@@ -49,6 +49,12 @@ export default [
         props: true,
         component: () => import('@/views/items/publishdetails')
     },
+    {
+        path: '/items/userdetails/:userId',
+        name: 'userdetails',
+        props: true,
+        component: () => import('@/views/items/userdetails')
+    },
   {
     path: '/items/category',
     name: 'category',

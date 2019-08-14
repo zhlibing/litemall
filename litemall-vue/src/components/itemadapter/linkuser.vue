@@ -1,6 +1,6 @@
 <template>
     <div class="box" v-if="item!==undefined">
-        <div class="answer" @click="itemClick(item.id,item.type)">
+        <div class="answer" @click="itemClick(item.id)">
             <div class="imgshow">
                 <img :src="item.avatar" alt="">
             </div>
@@ -28,12 +28,8 @@
             previewimage(list, index) {
                 ImagePreview(list, index);
             },
-            itemClick(id, type) {
-                if (type != undefined) {
-                    this.$router.push(`/items/publishdetails/${id}/${type}`);
-                } else {
-                    this.$router.push(`/items/detail/${id}`);
-                }
+            itemClick(id) {
+                this.$router.push(`/items/userdetails/${id}`);
             }
         }
     }
