@@ -82,8 +82,8 @@ public class WxQuestionController {
                 int random = rand.nextInt(9999) + 9999;
                 int userHasCollect = 0;
                 int collectCount = 0;
-                if (comment.getUserId() != null) {
-                    userHasCollect = collectService.count(comment.getUserId(), comment.getId(), 9);
+                if (comment.getId() != null) {
+                    userHasCollect = collectService.count(userId, comment.getId(), 9);
                     collectCount = collectService.countCollect(comment.getId(), 9);
                 }
                 c.put("userHasCollect", userHasCollect);

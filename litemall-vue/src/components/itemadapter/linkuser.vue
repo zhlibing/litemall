@@ -12,10 +12,10 @@
             <span class="da" v-if="item.key!=undefined">{{"发起人"}}</span>
         </div>
         <div class="bottom">
-            <div class="yutang">{{"人气"+item.collectCount}}</div>
+            <div class="yutang">{{"人气" + item.collectCount}}</div>
             <div class="toanswer" v-if="item.key==undefined" @click="addCollect">
-                <span v-if="item.userHasCollect==0">支持一下</span>
-                <span v-else>已支持</span>
+                <span v-if="item.userHasCollect==0">关注一下</span>
+                <span v-else>已关注</span>
             </div>
         </div>
     </div>

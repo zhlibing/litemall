@@ -40,12 +40,12 @@
                 </div>
             </van-list>
         </van-pull-refresh>
-        <van-pull-refresh v-model="loading3" @refresh="onRefresh" style="margin-top: 0px">
+        <van-pull-refresh v-model="loading3" @refresh="onRefresh" style="margin-top: 10px">
             <van-list v-model="loading3"
                       :finished="finished3"
                       :immediate-check="false"
                       finished-text="没有更多了"
-                      @load="getCommentListall" v-show="index==3" style="margin-top: 30px">
+                      @load="getCommentListall" v-show="index==3" style="margin-top: 0px">
                 <div v-for="(comment, index) in list3"
                      :key="index"
                      style="background-color: #ffffff;margin-top: 5px">

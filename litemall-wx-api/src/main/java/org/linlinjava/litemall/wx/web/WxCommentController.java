@@ -137,7 +137,7 @@ public class WxCommentController {
      * @return 评论列表
      */
     @GetMapping("list")
-    public Object list(@NotNull Byte type,
+    public Object list(@LoginUser Integer userId, @NotNull Byte type,
                        @NotNull Integer valueId,
                        @NotNull Integer showType,
                        @RequestParam(defaultValue = "1") Integer page,
@@ -163,8 +163,8 @@ public class WxCommentController {
             int random = rand.nextInt(9999) + 9999;
             int userHasCollect = 0;
             int collectCount = 0;
-            if (comment.getUserId() != null) {
-                userHasCollect = collectService.count(comment.getUserId(), comment.getId(), this.type);
+            if (comment.getId() != null) {
+                userHasCollect = collectService.count(userId, comment.getId(), this.type);
                 collectCount = collectService.countCollect(comment.getId(), this.type);
             }
             commentVo.put("userHasCollect", userHasCollect);
@@ -176,7 +176,7 @@ public class WxCommentController {
     }
 
     @GetMapping("listall")
-    public Object listall(@RequestParam(defaultValue = "1") Integer page,
+    public Object listall(@LoginUser Integer userId, @RequestParam(defaultValue = "1") Integer page,
                           @RequestParam(defaultValue = "10") Integer limit) {
         List<LitemallComment> commentList = commentService.queryAll(page, limit);
 
@@ -199,8 +199,8 @@ public class WxCommentController {
             int random = rand.nextInt(9999) + 9999;
             int userHasCollect = 0;
             int collectCount = 0;
-            if (comment.getUserId() != null) {
-                userHasCollect = collectService.count(comment.getUserId(), comment.getId(), this.type);
+            if (comment.getId() != null) {
+                userHasCollect = collectService.count(userId, comment.getId(), this.type);
                 collectCount = collectService.countCollect(comment.getId(), this.type);
             }
             commentVo.put("userHasCollect", userHasCollect);

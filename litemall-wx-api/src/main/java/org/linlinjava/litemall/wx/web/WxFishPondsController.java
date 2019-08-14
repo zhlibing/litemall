@@ -86,8 +86,8 @@ public class WxFishPondsController {
                 int random = rand.nextInt(9999) + 9999;
                 int userHasCollect = 0;
                 int collectCount = 0;
-                if (comment.getUserId() != null) {
-                    userHasCollect = collectService.count(comment.getUserId(), comment.getId(), 9);
+                if (comment.getId() != null) {
+                    userHasCollect = collectService.count(userId, comment.getId(), 9);
                     collectCount = collectService.countCollect(comment.getId(), 9);
                 }
                 c.put("userHasCollect", userHasCollect);
@@ -161,7 +161,7 @@ public class WxFishPondsController {
     }
 
     @GetMapping("listall")
-    public Object listall(@RequestParam(defaultValue = "1") Integer page,
+    public Object listall(@LoginUser Integer userId, @RequestParam(defaultValue = "1") Integer page,
                           @RequestParam(defaultValue = "10") Integer limit) {
         List<LitemallFishPonds> FishPondsList = fishPondsService.queryFishPonds(page, limit);
 
@@ -184,9 +184,9 @@ public class WxFishPondsController {
                 int random = rand.nextInt(9999) + 9999;
                 int userHasCollect = 0;
                 int collectCount = 0;
-                if (litemallFishPondsUser.getUserId() != null) {
-                    userHasCollect = collectService.count(user.getId(), FishPondsUser.getId(), 10);
-                    collectCount = collectService.countCollect(user.getId(), 10);
+                if (FishPondsUser.getId() != null) {
+                    userHasCollect = collectService.count(userId, FishPondsUser.getId(), 10);
+                    collectCount = collectService.countCollect(FishPondsUser.getId(), 10);
                 }
                 c.put("userHasCollect", userHasCollect);
                 c.put("collectCount", collectCount + random);

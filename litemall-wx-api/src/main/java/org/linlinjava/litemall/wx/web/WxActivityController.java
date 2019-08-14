@@ -86,8 +86,8 @@ public class WxActivityController {
                 int random = rand.nextInt(9999) + 9999;
                 int userHasCollect = 0;
                 int collectCount = 0;
-                if (comment.getUserId() != null) {
-                    userHasCollect = collectService.count(comment.getUserId(), comment.getId(), 9);
+                if (comment.getId() != null) {
+                    userHasCollect = collectService.count(userId, comment.getId(), 9);
                     collectCount = collectService.countCollect(comment.getId(), 9);
                 }
                 c.put("userHasCollect", userHasCollect);
@@ -161,7 +161,7 @@ public class WxActivityController {
     }
 
     @GetMapping("listall")
-    public Object listall(@RequestParam(defaultValue = "1") Integer page,
+    public Object listall(@LoginUser Integer userId, @RequestParam(defaultValue = "1") Integer page,
                           @RequestParam(defaultValue = "10") Integer limit) {
         List<LitemallActivity> activityList = ActivityService.queryActivity(page, limit);
 
@@ -184,9 +184,9 @@ public class WxActivityController {
                 int random = rand.nextInt(9999) + 9999;
                 int userHasCollect = 0;
                 int collectCount = 0;
-                if (litemallActivityUser.getUserId() != null) {
-                    userHasCollect = collectService.count(litemallActivityUser.getUserId(), ActivityUser.getId(), 10);
-                    collectCount = collectService.countCollect(user.getId(), 10);
+                if (ActivityUser.getId() != null) {
+                    userHasCollect = collectService.count(userId, ActivityUser.getId(), 10);
+                    collectCount = collectService.countCollect(ActivityUser.getId(), 10);
                 }
                 c.put("userHasCollect", userHasCollect);
                 c.put("collectCount", collectCount + random);
