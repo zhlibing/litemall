@@ -43,7 +43,7 @@
         margin-right: 1rem;
         border-bottom: 1px solid #f7f7f7;
         .title {
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             font-weight: 400;
         }
         .answer {
