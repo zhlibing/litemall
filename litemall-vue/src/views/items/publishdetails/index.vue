@@ -67,6 +67,8 @@
         groupQuit,
         fishpondsJoin,
         fishpondsQuit,
+        circleRefresh,
+        questionRefresh
     } from '@/api/api';
     import {getLocalStorage} from '@/utils/local-storage';
 
@@ -112,6 +114,19 @@
                 });
             },
             join() {
+                if (this.type == 4) {
+                    let obj = {}
+                    obj.id = this.itemId
+                    circleRefresh(obj).then(res => {
+                        console.log(res, '>>>circleRefresh')
+                        if (res.status === 200 && res.data.errno == 0) {
+                            this.$toast({
+                                message: '擦亮成功',
+                                duration: 1500
+                            });
+                        }
+                    });
+                }
                 if (this.type == 5) {
                     let obj = {}
                     obj.id = this.itemId
@@ -138,6 +153,19 @@
                             }
                         });
                     }
+                }
+                if (this.type == 6) {
+                    let obj = {}
+                    obj.id = this.itemId
+                    questionRefresh(obj).then(res => {
+                        console.log(res, '>>>questionRefresh')
+                        if (res.status === 200 && res.data.errno == 0) {
+                            this.$toast({
+                                message: '擦亮成功',
+                                duration: 1500
+                            });
+                        }
+                    });
                 }
                 if (this.type == 7) {
                     let obj = {}

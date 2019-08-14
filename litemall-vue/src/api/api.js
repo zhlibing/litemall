@@ -556,6 +556,15 @@ export function questionDelete(data) {
     })
 }
 
+const QuestionRefresh='wx/question/refresh'; //删除
+export function questionRefresh(data) {
+    return request({
+        url: QuestionRefresh,
+        method: 'post',
+        data
+    })
+}
+
 const GroupList='wx/group/list'; //鱼塘页取5个鱼塘
 export function groupList() {
     return request({
@@ -737,6 +746,15 @@ const CircleDelete='wx/circle/delete'; //删除
 export function circleDelete(data) {
     return request({
         url: CircleDelete,
+        method: 'post',
+        data
+    })
+}
+
+const CircleRefresh='wx/circle/refresh'; //删除
+export function circleRefresh(data) {
+    return request({
+        url: CircleRefresh,
         method: 'post',
         data
     })
