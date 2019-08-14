@@ -6,9 +6,10 @@
         <div class="comment">
             <div class="nickname">
                 <span class="name">{{comment.nickname||comment.userInfo.nickName}}</span>
-                <div class="zan">
-                    <img src="../../assets/images/prise_no.png"/>
-                    <span></span>
+                <div class="zan" @click="addCollect">
+                    <img src="../../assets/images/prise_no.png" v-if="comment.userHasCollect==0"/>
+                    <img src="../../assets/images/prise.png" v-else/>
+                    <span>{{comment.collectCount}}</span>
                 </div>
             </div>
             <div class="text">{{comment.content}}</div>
@@ -40,7 +41,8 @@
 <script>
     import {ImagePreview} from 'vant';
     import {
-        commentDelete
+        commentDelete,
+        collectAddOrDelete,
     } from '@/api/api';
 
     export default {
@@ -63,7 +65,20 @@
             },
             goUserDetails(id) {
                 this.$router.push(`/items/userdetails/${id}`);
-            }
+            },
+            addCollect() {
+                collectAddOrDelete({valueId: this.comment.id, type: '9'}).then(res => {
+                    if (this.comment.userHasCollect === 1) {
+                        this.comment.userHasCollect = 0;
+                    } else {
+                        this.comment.userHasCollect = 1;
+                        this.$toast({
+                            message: '点赞成功',
+                            duration: 1500
+                        });
+                    }
+                });
+            },
         }
     }
 </script>
@@ -97,8 +112,8 @@
                     display: flex;
                     height: 20px;
                     img {
-                        width: 20px;
-                        height: 20px;
+                        width: 17px;
+                        height: 17px;
                     }
                     span {
                         margin-left: 5px;
