@@ -1,6 +1,11 @@
 <template>
     <div class="list" v-if="item!==undefined">
-        <img :src="item.picUrls!=undefined?item.picUrls[0]:default_avatar" alt="" class="image">
+        <div class="layer">
+            <img :src="item.picUrls!=undefined?item.picUrls[0]:default_avatar" alt="" class="image">
+            <div class="layerchird">
+                <span>{{'+'+item.picUrls.length}}</span>
+            </div>
+        </div>
         <div class="info" @click="itemClick(item.id,item.type)">
             <div class="head">
                 <p class="tit">{{item.content.substring(0, 8) + '...'}}</p>
@@ -39,14 +44,34 @@
         padding-bottom: .5rem;
         display: flex;
         border-bottom: 1px solid #f7f7f7;
-        .image {
-            width: 4rem;
-            height: 4rem;
-            object-fit: cover;
+        .layer {
+            position: relative;
+            .image {
+                width: 4rem;
+                height: 4rem;
+                object-fit: cover;
+                position: absolute;
+            }
+            .layerchird {
+                width: 4rem;
+                height: 4rem;
+                background-color: #000;
+                filter: Alpha(Opacity=60);
+                opacity: 0.6;
+                position: absolute;
+                text-align: center;
+                span {
+                    height: 4rem;
+                    color: white;
+                    line-height: 4rem;
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                }
+            }
         }
         .info {
             flex: 1;
-            margin-left: 0.6rem;
+            margin-left: 4.6rem;
             .head {
                 display: flex;
                 .tit {
