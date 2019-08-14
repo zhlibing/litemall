@@ -14,10 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 用户评论服务
@@ -48,6 +45,10 @@ public class WxCommentController {
     private LitemallFishPondsService fishPondsService;
     @Autowired
     private LitemallTopicService topicService;
+    @Autowired
+    private LitemallCollectService collectService;
+
+    private static int type = 9;
 
     private Object validate(LitemallComment comment) {
         String content = comment.getContent();
@@ -149,12 +150,25 @@ public class WxCommentController {
             commentVo.put("addTime", comment.getAddTime());
             commentVo.put("content", comment.getContent());
             commentVo.put("picList", comment.getPicUrls());
+            commentVo.put("id", comment.getId());
 
             UserInfo userInfo = userInfoService.getInfo(comment.getUserId());
             commentVo.put("userInfo", userInfo);
 
             String reply = commentService.queryReply(comment.getId());
             commentVo.put("reply", reply);
+
+            // 用户收藏
+            Random rand = new Random();
+            int random = rand.nextInt(9999) + 9999;
+            int userHasCollect = 0;
+            int collectCount = 0;
+            if (comment.getUserId() != null) {
+                userHasCollect = collectService.count(comment.getUserId(), comment.getId(), this.type);
+                collectCount = collectService.countCollect(comment.getId(), this.type);
+            }
+            commentVo.put("userHasCollect", userHasCollect);
+            commentVo.put("collectCount", collectCount + random);
 
             commentVoList.add(commentVo);
         }
@@ -172,6 +186,7 @@ public class WxCommentController {
             commentVo.put("addTime", comment.getAddTime());
             commentVo.put("content", comment.getContent());
             commentVo.put("picList", comment.getPicUrls());
+            commentVo.put("id", comment.getId());
 
             UserInfo userInfo = userInfoService.getInfo(comment.getUserId());
             commentVo.put("userInfo", userInfo);
@@ -179,30 +194,42 @@ public class WxCommentController {
             String reply = commentService.queryReply(comment.getId());
             commentVo.put("reply", reply);
 
-            switch (comment.getType()){
+            // 用户收藏
+            Random rand = new Random();
+            int random = rand.nextInt(9999) + 9999;
+            int userHasCollect = 0;
+            int collectCount = 0;
+            if (comment.getUserId() != null) {
+                userHasCollect = collectService.count(comment.getUserId(), comment.getId(), this.type);
+                collectCount = collectService.countCollect(comment.getId(), this.type);
+            }
+            commentVo.put("userHasCollect", userHasCollect);
+            commentVo.put("collectCount", collectCount + random);
+
+            switch (comment.getType()) {
                 case 0:
                     LitemallGoods litemallGoods = goodsService.findByIdVO(comment.getValueId());
-                    commentVo.put("info",litemallGoods);
+                    commentVo.put("info", litemallGoods);
                     break;
                 case 4:
                     LitemallCircle litemallCircle = circleService.findByIdVO(comment.getValueId());
-                    commentVo.put("info",litemallCircle);
+                    commentVo.put("info", litemallCircle);
                     break;
                 case 5:
                     LitemallFishPonds litemallFishPonds = fishPondsService.findByIdVO(comment.getValueId());
-                    commentVo.put("info",litemallFishPonds);
+                    commentVo.put("info", litemallFishPonds);
                     break;
                 case 6:
                     LitemallQuestion litemallQuestion = questionService.findByIdVO(comment.getValueId());
-                    commentVo.put("info",litemallQuestion);
+                    commentVo.put("info", litemallQuestion);
                     break;
                 case 7:
                     LitemallGroup litemallGroup = groupService.findByIdVO(comment.getValueId());
-                    commentVo.put("info",litemallGroup);
+                    commentVo.put("info", litemallGroup);
                     break;
                 case 8:
                     LitemallActivity litemallActivity = activityService.findByIdVO(comment.getValueId());
-                    commentVo.put("info",litemallActivity);
+                    commentVo.put("info", litemallActivity);
                     break;
             }
 

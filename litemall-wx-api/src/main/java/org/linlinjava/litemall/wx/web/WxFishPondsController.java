@@ -13,10 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.*;
 
 /**
@@ -84,6 +81,17 @@ public class WxFishPondsController {
                 c.put("nickname", user == null ? "" : user.getNickname());
                 c.put("avatar", user == null ? "" : user.getAvatar());
                 c.put("picList", comment.getPicUrls());
+                // 用户收藏
+                Random rand = new Random();
+                int random = rand.nextInt(9999) + 9999;
+                int userHasCollect = 0;
+                int collectCount = 0;
+                if (comment.getUserId() != null) {
+                    userHasCollect = collectService.count(comment.getUserId(), comment.getId(), 9);
+                    collectCount = collectService.countCollect(comment.getId(), 9);
+                }
+                c.put("userHasCollect", userHasCollect);
+                c.put("collectCount", collectCount + random);
                 commentsVo.add(c);
             }
             Map<String, Object> commentList = new HashMap<>();

@@ -22,6 +22,12 @@ public class LitemallCollectService {
         return (int) collectMapper.countByExample(example);
     }
 
+    public int countCollect(Integer gid, int type) {
+        LitemallCollectExample example = new LitemallCollectExample();
+        example.or().andTypeEqualTo((byte) type).andValueIdEqualTo(gid).andDeletedEqualTo(false);
+        return (int) collectMapper.countByExample(example);
+    }
+
     public List<LitemallCollect> queryByType(Integer userId, Byte type, Integer page, Integer limit, String sort, String order) {
         LitemallCollectExample example = new LitemallCollectExample();
         LitemallCollectExample.Criteria criteria = example.createCriteria();
