@@ -3,12 +3,12 @@
         <appbar :titleText="news.info.content||news.info.description||title"></appbar>
         <div class="details">
             <div class="top">
-                <div class="avatarbox" @click="goUserDetails(news.user.id)">
-                    <img :src="news.user.avatar" alt="" class="avatar">
+                <div class="avatarbox" @click="goUserDetails(news.publishUser.user.id)">
+                    <img :src="news.publishUser.user.avatar" alt="" class="avatar">
                 </div>
                 <div class="info">
-                    <div class="username">{{news.user.username}}</div>
-                    <div class="ta">{{news.info.addTime + ' '}}{{"等级:" + news.user.userLevel}}</div>
+                    <div class="username">{{news.publishUser.user.username}}</div>
+                    <div class="ta">{{news.info.addTime + ' '}}{{"等级:" + news.publishUser.user.userLevel}}</div>
                 </div>
                 <div class="pricebox">
                     <div class="price">{{news.info.type}}</div>
