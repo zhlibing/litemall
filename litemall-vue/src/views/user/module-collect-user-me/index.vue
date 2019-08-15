@@ -6,17 +6,9 @@
                   :immediate-check="false"
                   finished-text="没有更多了"
                   @load="getCollectMeList">
-            <van-card v-for="(item, i) in list"
-                      :key="i"
-                      :desc="item.brief"
-                      :title="item.user.nickname"
-                      :thumb="item.user.avatar"
-                      :price="item.user.status"
-                      :origin-price="item.user.username"
-                      @click="itemClick(item.user.id)">
-                <div slot="footer">
-                </div>
-            </van-card>
+            <div v-for="(itemc,index) in list" :key="index" style="margin: 15px">
+                <linkuser :item="itemc"></linkuser>
+            </div>
         </van-list>
 
         <is-empty v-if="list.length === 0">没有粉丝关注呢</is-empty>
@@ -30,6 +22,7 @@
     import {Card, Search, List} from 'vant';
     import scrollFixed from '@/mixin/scroll-fixed';
     import appbar from '@/components/head/appbar'
+    import linkuser from '../../../components/itemadapter/linkuser'
 
     export default {
         mixins: [scrollFixed],
@@ -73,7 +66,8 @@
             [Search.name]: Search,
             [IsEmpty.name]: IsEmpty,
             [List.name]: List,
-            [Card.name]: Card
+            [Card.name]: Card,
+            linkuser
         }
     };
 </script>

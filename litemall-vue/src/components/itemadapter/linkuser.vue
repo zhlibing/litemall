@@ -2,7 +2,8 @@
     <div class="box" v-if="item!==undefined">
         <div class="answer" @click="itemClick(item.user.id)">
             <div class="imgshow">
-                <img :src="item.user.avatar" alt="">
+                <img :src="item.user.avatar" alt="" v-if="item.key==undefined" style="margin-left: 30px">
+                <img :src="item.user.avatar" alt="" v-else>
             </div>
             <div class="content">
                 <div class="name">{{item.user.nickname || item.user.nickname}}</div>
@@ -56,8 +57,8 @@
 <style lang="scss" scoped>
     .box {
         margin-top: 0.5rem;
-        margin-left: 1rem;
-        margin-right: 1rem;
+        margin-left: 0.2rem;
+        margin-right: 0.2rem;
         border-bottom: 1px solid #f7f7f7;
         .answer {
             display: flex;
