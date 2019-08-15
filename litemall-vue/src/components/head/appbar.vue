@@ -1,5 +1,5 @@
 <template>
-    <nav class="header">
+    <nav class="header" v-if="titleText!==undefined">
         <div class="fixedcontent">
             <slot name='left' v-show="left!=null">
                 <div class="left" @click='leftclick'>
