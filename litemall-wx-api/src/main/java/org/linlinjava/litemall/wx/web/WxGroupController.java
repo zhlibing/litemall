@@ -77,10 +77,15 @@ public class WxGroupController {
                 c.put("userId", comment.getUserId());
                 c.put("addTime", comment.getAddTime());
                 c.put("content", comment.getContent());
-                LitemallUser user = userService.findById(comment.getUserId());
-                c.put("nickname", user == null ? "" : user.getNickname());
-                c.put("avatar", user == null ? "" : user.getAvatar());
                 c.put("picList", comment.getPicUrls());
+                Map<String, Object> userVo = new HashMap<>();
+                LitemallUser user = userService.findDetailById(comment.getUserId());
+                userVo.put("user", user);
+                if (userId != null) {
+                    userVo.put("userHasCollect", collectService.count(userId, user.getId(), 10));
+                }
+                userVo.put("collectCount", collectService.countCollect(user.getId(), 10));
+                c.put("publishUser", userVo);
                 // 用户收藏
                 Random rand = new Random();
                 int random = rand.nextInt(9999) + 9999;
@@ -91,7 +96,7 @@ public class WxGroupController {
                 }
                 collectCount = collectService.countCollect(comment.getId(), 9);
                 c.put("userHasCollect", userHasCollect);
-                c.put("collectCount", collectCount + random);
+                c.put("collectCount", collectCount + 0);
                 commentsVo.add(c);
             }
             Map<String, Object> commentList = new HashMap<>();
@@ -137,6 +142,7 @@ public class WxGroupController {
         try {
             data.put("info", info);
             data.put("userHasCollect", userHasCollect);
+            data.put("collectCount", collectService.countCollect(id, this.type));
             data.put("userHasJoin", userHasJoin);
             data.put("share", SystemConfig.isAutoCreateShareImage());
             data.put("user", user);
@@ -169,9 +175,19 @@ public class WxGroupController {
         for (LitemallGroup Group : GroupList) {
             Map<String, Object> GroupVo = new HashMap<>();
             GroupVo.put("GroupInfo", Group);
+            if (userId != null) {
+                GroupVo.put("userHasCollect", collectService.count(userId, Group.getId(), this.type));
+            }
+            GroupVo.put("collectCount", collectService.countCollect(Group.getId(), this.type));
 
+            Map<String, Object> userVo = new HashMap<>();
             LitemallUser user = userService.findDetailById(Group.getUserId());
-            GroupVo.put("userInfo", user);
+            userVo.put("user", user);
+            if (userId != null) {
+                userVo.put("userHasCollect", collectService.count(userId, user.getId(), 10));
+            }
+            userVo.put("collectCount", collectService.countCollect(user.getId(), 10));
+            GroupVo.put("publishUser", userVo);
 
             List<LitemallGroupUser> litemallGroupUsers = GroupUserService.queryGroupUser(Group.getId(), 0, 100);
             List<Map<String, Object>> usersVo = new ArrayList<>(litemallGroupUsers.size());
@@ -189,7 +205,7 @@ public class WxGroupController {
                 }
                 collectCount = collectService.countCollect(GroupUser.getId(), 10);
                 c.put("userHasCollect", userHasCollect);
-                c.put("collectCount", collectCount + random);
+                c.put("collectCount", collectCount + 0);
                 usersVo.add(c);
             }
             GroupVo.put("joinUsers", usersVo);

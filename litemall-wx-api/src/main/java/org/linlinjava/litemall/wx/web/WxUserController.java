@@ -45,6 +45,9 @@ public class WxUserController {
     @Autowired
     private LitemallGroupService litemallGroupService;
 
+    @Autowired
+    private LitemallCollectService litemallCollectService;
+
     /**
      * 用户个人页面数据
      * <p>
@@ -65,11 +68,15 @@ public class WxUserController {
     }
 
     @GetMapping("details")
-    public Object details(@NotNull Integer id) {
+    public Object details(@LoginUser Integer userId, @NotNull Integer id) {
         Map<Object, Object> data = new HashMap<Object, Object>();
         data.put("user", litemallUserService.findDetailById(id));
         data.put("activitys", litemallActivityService.queryActivityByUser(id, 0, 10));
         data.put("circles", litemallCircleService.queryCircleByUser(id, 0, 10));
+        data.put("collectCount", litemallCollectService.countCollect(id, 10));
+        if (userId != null) {
+            data.put("userHasCollect", litemallCollectService.count(userId, id, 10));
+        }
         return ResponseUtil.ok(data);
     }
 }

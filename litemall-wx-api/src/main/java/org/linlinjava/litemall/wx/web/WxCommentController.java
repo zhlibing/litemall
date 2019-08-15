@@ -7,8 +7,6 @@ import org.linlinjava.litemall.core.util.ResponseUtil;
 import org.linlinjava.litemall.db.domain.*;
 import org.linlinjava.litemall.db.service.*;
 import org.linlinjava.litemall.wx.annotation.LoginUser;
-import org.linlinjava.litemall.wx.dto.UserInfo;
-import org.linlinjava.litemall.wx.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -28,9 +26,7 @@ public class WxCommentController {
     @Autowired
     private LitemallCommentService commentService;
     @Autowired
-    private LitemallUserService userService;
-    @Autowired
-    private UserInfoService userInfoService;
+    private LitemallUserService litemallUserService;
     @Autowired
     private LitemallGoodsService goodsService;
     @Autowired
@@ -152,8 +148,14 @@ public class WxCommentController {
             commentVo.put("picList", comment.getPicUrls());
             commentVo.put("id", comment.getId());
 
-            UserInfo userInfo = userInfoService.getInfo(comment.getUserId());
-            commentVo.put("userInfo", userInfo);
+            Map<String, Object> userVo = new HashMap<>();
+            LitemallUser litemallUser = litemallUserService.findDetailById(comment.getUserId());
+            userVo.put("user", litemallUser);
+            if (userId != null) {
+                userVo.put("userHasCollect", collectService.count(userId, litemallUser.getId(), 10));
+            }
+            userVo.put("collectCount", collectService.countCollect(litemallUser.getId(), 10));
+            commentVo.put("publishUser", userVo);
 
             String reply = commentService.queryReply(comment.getId());
             commentVo.put("reply", reply);
@@ -168,7 +170,7 @@ public class WxCommentController {
             }
             collectCount = collectService.countCollect(comment.getId(), this.type);
             commentVo.put("userHasCollect", userHasCollect);
-            commentVo.put("collectCount", collectCount + random);
+            commentVo.put("collectCount", collectCount + 0);
 
             commentVoList.add(commentVo);
         }
@@ -188,8 +190,14 @@ public class WxCommentController {
             commentVo.put("picList", comment.getPicUrls());
             commentVo.put("id", comment.getId());
 
-            UserInfo userInfo = userInfoService.getInfo(comment.getUserId());
-            commentVo.put("userInfo", userInfo);
+            Map<String, Object> userVo = new HashMap<>();
+            LitemallUser litemallUser = litemallUserService.findDetailById(comment.getUserId());
+            userVo.put("user", litemallUser);
+            if (userId != null) {
+                userVo.put("userHasCollect", collectService.count(userId, litemallUser.getId(), 10));
+            }
+            userVo.put("collectCount", collectService.countCollect(litemallUser.getId(), 10));
+            commentVo.put("publishUser", userVo);
 
             String reply = commentService.queryReply(comment.getId());
             commentVo.put("reply", reply);
@@ -204,7 +212,7 @@ public class WxCommentController {
             }
             collectCount = collectService.countCollect(comment.getId(), this.type);
             commentVo.put("userHasCollect", userHasCollect);
-            commentVo.put("collectCount", collectCount + random);
+            commentVo.put("collectCount", collectCount + 0);
 
             switch (comment.getType()) {
                 case 0:

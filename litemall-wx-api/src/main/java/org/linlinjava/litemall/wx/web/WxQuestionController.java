@@ -46,7 +46,8 @@ public class WxQuestionController {
 
     private static ThreadPoolExecutor executorService = new ThreadPoolExecutor(16, 16, 1000, TimeUnit.MILLISECONDS, WORK_QUEUE, HANDLER);
 
-    private int type =6;
+    private int type = 6;
+
     /**
      * 鱼塘详情
      * <p>
@@ -64,7 +65,7 @@ public class WxQuestionController {
 
         // 评论
         Callable<Map> commentsCallable = () -> {
-            List<LitemallComment> comments = commentService.queryGoodsByGid(id, type,0, 20);
+            List<LitemallComment> comments = commentService.queryGoodsByGid(id, type, 0, 20);
             List<Map<String, Object>> commentsVo = new ArrayList<>(comments.size());
             long commentCount = PageInfo.of(comments).getTotal();
             for (LitemallComment comment : comments) {
@@ -73,10 +74,15 @@ public class WxQuestionController {
                 c.put("userId", comment.getUserId());
                 c.put("addTime", comment.getAddTime());
                 c.put("content", comment.getContent());
-                LitemallUser user = userService.findById(comment.getUserId());
-                c.put("nickname", user == null ? "" : user.getNickname());
-                c.put("avatar", user == null ? "" : user.getAvatar());
                 c.put("picList", comment.getPicUrls());
+                Map<String, Object> userVo = new HashMap<>();
+                LitemallUser user = userService.findDetailById(comment.getUserId());
+                userVo.put("user", user);
+                if (userId != null) {
+                    userVo.put("userHasCollect", collectService.count(userId, user.getId(), 10));
+                }
+                userVo.put("collectCount", collectService.countCollect(user.getId(), 10));
+                c.put("publishUser", userVo);
                 // 用户收藏
                 Random rand = new Random();
                 int random = rand.nextInt(9999) + 9999;
@@ -87,7 +93,7 @@ public class WxQuestionController {
                 }
                 collectCount = collectService.countCollect(comment.getId(), 9);
                 c.put("userHasCollect", userHasCollect);
-                c.put("collectCount", collectCount + random);
+                c.put("collectCount", collectCount + 0);
                 commentsVo.add(c);
             }
             Map<String, Object> commentList = new HashMap<>();
@@ -99,7 +105,7 @@ public class WxQuestionController {
         // 用户收藏
         int userHasCollect = 0;
         if (userId != null) {
-            userHasCollect = collectService.count(userId, id,type);
+            userHasCollect = collectService.count(userId, id, type);
         }
 
         // 记录用户的足迹 异步处理
@@ -127,6 +133,7 @@ public class WxQuestionController {
         try {
             data.put("info", info);
             data.put("userHasCollect", userHasCollect);
+            data.put("collectCount", collectService.countCollect(id, this.type));
             data.put("share", SystemConfig.isAutoCreateShareImage());
             data.put("user", user);
             data.put("comment", commentsCallableTsk.get());
