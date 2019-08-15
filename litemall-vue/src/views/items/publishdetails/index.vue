@@ -12,7 +12,9 @@
                 </div>
                 <div class="focuseinfobox">
                     <div class="focuseinfo">{{"粉丝："+news.publishUser.collectCount}}</div>
-                    <div class="focuse" v-if="news.publishUser.userHasCollect==0">关注</div>
+                    <div class="focuse"
+                         v-if="news.publishUser.userHasCollect==0||news.publishUser.userHasCollect==undefined">关注
+                    </div>
                     <div class="focuse" v-else>已关注</div>
                 </div>
             </div>
