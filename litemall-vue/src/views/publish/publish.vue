@@ -158,16 +158,15 @@
             opacity 0
     .head
         width 100%
-        padding-bottom 2rem
+        padding-bottom 1rem
         .guide
-            margin-top 2rem
             font-size 1rem
             width 100%
             color #000000
             padding-left 1rem
             box-sizing border-box
         .navbar
-            margin-top 1rem
+            margin-top 0rem
             width 100%
             padding-left 1rem
             display flex
