@@ -15,6 +15,7 @@
         <div v-for="(item,index) in circles" :key="index" style="margin-left: 20px;margin-right: 20px">
             <circleItem :item="item"></circleItem>
         </div>
+        <is-empty v-if="circles.length === 0">TA很懒，啥都没写~</is-empty>
     </div>
 </template>
 
@@ -25,6 +26,7 @@
     } from '@/api/api';
     import {getLocalStorage} from '@/utils/local-storage';
     import circleItem from '../../../components/itemadapter/circleItem.vue'
+    import IsEmpty from '@/components/is-empty/';
 
     export default {
         props: {
@@ -62,7 +64,8 @@
         },
         components: {
             appbar,
-            circleItem
+            circleItem,
+            [IsEmpty.name]: IsEmpty,
         }
     }
 </script>
