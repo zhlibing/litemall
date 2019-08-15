@@ -2,16 +2,18 @@
     <div class="container" v-if="news!==undefined&&news.info!==undefined">
         <appbar :titleText="news.info.content||news.info.description||title"></appbar>
         <div class="details">
-            <div class="top">
-                <div class="avatarbox" @click="goUserDetails(news.publishUser.user.id)">
+            <div class="top" @click="goUserDetails(news.publishUser.user.id)">
+                <div class="avatarbox">
                     <img :src="news.publishUser.user.avatar" alt="" class="avatar">
                 </div>
                 <div class="info">
                     <div class="username">{{news.publishUser.user.username}}</div>
                     <div class="ta">{{news.info.addTime + ' '}}{{"等级:" + news.publishUser.user.userLevel}}</div>
                 </div>
-                <div class="pricebox">
-                    <div class="price">{{news.info.type}}</div>
+                <div class="focuseinfobox">
+                    <div class="focuseinfo">{{"粉丝："+news.publishUser.collectCount}}</div>
+                    <div class="focuse" v-if="news.publishUser.userHasCollect==0">关注</div>
+                    <div class="focuse" v-else>已关注</div>
                 </div>
             </div>
             <div class="descbox">
@@ -335,11 +337,20 @@
                     .ta
                         color #777777
                         font-size 0.8rem
-                .pricebox
-                    .price
+                .focuseinfobox
+                    display flex
+                    flex-direction column
+                    .focuseinfo
                         color red
                         font-size 0.8rem
                         font-weight 400
+                        margin-bottom 0.4rem
+                    .focuse
+                        text-align center
+                        color: #7dc5eb
+                        font-weight: 500;
+                        padding: 0 5px;
+                        border: 0.04rem solid #7dc5eb;
             .descbox
                 width 100%
                 margin-top 3rem

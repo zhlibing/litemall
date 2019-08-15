@@ -117,7 +117,9 @@
             }
             .toanswer {
                 color: #7dc5eb;
-                font-weight: 700;
+                font-weight: 500;
+                padding: 0 5px;
+                border: 0.04rem solid #7dc5eb;
             }
         }
     }
