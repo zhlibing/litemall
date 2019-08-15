@@ -1,15 +1,22 @@
 <template>
-    <div class="container" v-if="user!==undefined">
-        <appbar :titleText="user.nickname||user.username||title"></appbar>
+    <div class="container" v-if="user.user!==undefined">
+        <appbar :titleText="user.user.nickname||user.user.username||title"></appbar>
         <div class="details">
+            <div class="focuseinfobox">
+                <div class="focuse"
+                     v-if="user.userHasCollect==0||user.userHasCollect==undefined">关注
+                </div>
+                <div class="focuse" v-else>已关注</div>
+                <div class="focuseinfo">{{"粉丝："+user.collectCount}}</div>
+            </div>
         </div>
         <div class="top">
             <div class="info">
-                <div class="username">{{user.username}}</div>
-                <div class="ta">{{user.addTime + ' '}}{{"等级:" + user.userLevel}}</div>
+                <div class="username">{{user.user.username}}</div>
+                <div class="ta">{{user.user.addTime + ' '}}{{"等级:" + user.user.userLevel}}</div>
             </div>
             <div class="avatarbox">
-                <img :src="user.avatar" alt="" class="avatar">
+                <img :src="user.user.avatar" alt="" class="avatar">
             </div>
         </div>
         <div v-for="(item,index) in circles" :key="index" style="margin-left: 20px;margin-right: 20px">
@@ -55,7 +62,7 @@
             this.getUserInfo();
             userDetails({id: this.userId}).then(res => {
                 console.log(res, '>>>userDetails')
-                this.user = res.data.data.user;
+                this.user = res.data.data;
                 this.circles = res.data.data.circles
             });
         },
@@ -76,11 +83,26 @@
         background-color #f7f7f7
         .details
             width 100%
-            min-height 35%
+            height 35%
             padding 1rem 1rem
             box-sizing border-box
             background url('../../../assets/images/grzx.jpg') no-repeat
             background-size: cover;
+            .focuseinfobox
+                display flex
+                flex-direction column
+                .focuse
+                    width 100px
+                    text-align center
+                    color: #fff
+                    font-weight: 500;
+                    padding: 0 5px;
+                    border: 0.04rem solid #fff;
+                .focuseinfo
+                    color red
+                    font-size 0.8rem
+                    font-weight 400
+                    margin-top 0.4rem
         .top
             width 100%
             height 3rem
