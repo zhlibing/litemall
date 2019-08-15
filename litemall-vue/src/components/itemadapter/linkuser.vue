@@ -6,7 +6,7 @@
                 <img :src="item.user.avatar" alt="" v-else>
             </div>
             <div class="content">
-                <div class="name">{{item.user.nickname || item.user.nickname}}</div>
+                <div class="name">{{item.user.nickname || item.user.username}}</div>
                 <div class="score" v-if="item.key==undefined">{{'10战8胜 胜率80% 王者'}}</div>
                 <div class="score" v-else>{{'成功举办10场活动'}}</div>
             </div>

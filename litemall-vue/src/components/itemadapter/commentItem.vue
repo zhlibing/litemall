@@ -1,11 +1,11 @@
 <template>
     <div class="item" v-if="comment!==undefined">
         <div class="header_img"
-             :style="`background-image: url(${comment.avatar||comment.userInfo.avatarUrl})`"
-             @click="goUserDetails(comment.userId||comment.userInfo.id)"></div>
+             :style="`background-image: url(${comment.avatar||comment.publishUser.user.avatar})`"
+             @click="goUserDetails(comment.userId||comment.publishUser.user.id)"></div>
         <div class="comment">
             <div class="nickname">
-                <span class="name">{{comment.nickname||comment.userInfo.nickName}}</span>
+                <span class="name">{{comment.nickname||comment.publishUser.user.nickname||comment.publishUser.user.username}}</span>
                 <div class="zan" @click="addCollect">
                     <img src="../../assets/images/prise_no.png" v-if="comment.userHasCollect==0"/>
                     <img src="../../assets/images/prise.png" v-else/>
