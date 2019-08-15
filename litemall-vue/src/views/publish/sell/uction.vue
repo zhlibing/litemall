@@ -65,7 +65,6 @@
             },
             onType(picker, value, index) {
                 this.type = value
-                this.showList = false
             },
         },
         components: {

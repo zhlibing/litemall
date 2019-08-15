@@ -1,40 +1,68 @@
 <template>
     <div class="anim" :class="{'active':active}">
         <div class="head">
-            <h2 class="guide">闲鱼赚钱指南</h2>
+            <h2 class="guide">渔者赚钱指南</h2>
             <ul class="navbar">
                 <li class="li">
-                    <p class="title">卖什么更赚</p>
-                    <p class="tip">教你卖什么更赚钱</p>
+                    <p class="title">一键发布</p>
+                    <p class="tip">发布活动、渔场、心情、问答、战队等，自由组合搭配</p>
                 </li>
                 <li class="li">
-                    <p class="title">拍照相机</p>
-                    <p class="tip">看看家里的东西值多少钱</p>
+                    <p class="title">自由参加</p>
+                    <p class="tip">玩法多样，资源丰富，自由参与</p>
                 </li>
                 <li class="li">
-                    <p class="title">淘宝一键转卖</p>
-                    <p class="tip">剁手多了回回血</p>
+                    <p class="title">智能公证</p>
+                    <p class="tip">诚信比赛，信用系统一路伴您</p>
                 </li>
             </ul>
         </div>
         <div class="content">
-            <div class="type" @click="tosell">
+            <div class="type" @click="tosell(0)">
                 <div class="image">
                     <img src="../../assets/images/收纳盒.png" alt="">
                 </div>
-                <p class="explain">卖闲置</p>
+                <p class="explain">自由场</p>
             </div>
-            <div class="type">
+            <div class="type" @click="tosell(1)">
                 <div class="image">
                     <img src="../../assets/images/房子.png" alt="">
                 </div>
-                <p class="explain">出租房屋</p>
+                <p class="explain">PK赛</p>
             </div>
-            <div class="type">
+            <div class="type" @click="tosell(2)">
                 <div class="image">
                     <img src="../../assets/images/头像.png" alt="">
                 </div>
-                <p class="explain">发布服务</p>
+                <p class="explain">挑战赛</p>
+            </div>
+        </div>
+        <div class="content">
+            <div class="type" @click="tosell(3)">
+                <div class="image">
+                    <img src="../../assets/images/收纳盒.png" alt="">
+                </div>
+                <p class="explain">渔场</p>
+            </div>
+            <div class="type" @click="tosell(4)">
+                <div class="image">
+                    <img src="../../assets/images/房子.png" alt="">
+                </div>
+                <p class="explain">心情</p>
+            </div>
+            <div class="type" @click="tosell(5)">
+                <div class="image">
+                    <img src="../../assets/images/头像.png" alt="">
+                </div>
+                <p class="explain">问答</p>
+            </div>
+        </div>
+        <div class="content">
+            <div class="type" @click="tosell(6)">
+                <div class="image">
+                    <img src="../../assets/images/收纳盒.png" alt="">
+                </div>
+                <p class="explain">战队</p>
             </div>
         </div>
         <div class="closebox">
@@ -55,10 +83,22 @@
             this.active = false
         },
         methods: {
-            tosell() {
-                this.$router.push({
-                    path: '/publish/sell'
-                })
+            tosell(type) {
+                if (type==0){
+                    this.$router.push({
+                        path: '/publish/sell/price'
+                    })
+                }
+                if (type==1){
+                    this.$router.push({
+                        path: '/publish/sell/uction'
+                    })
+                }
+                if (type==2){
+                    this.$router.push({
+                        path: ''
+                    })
+                }
             },
             goBack() {
                 this.active = true
@@ -90,6 +130,7 @@
             opacity 0
     .head
         width 100%
+        padding-bottom 2rem
         .guide
             margin-top 2rem
             font-size 1rem
@@ -129,7 +170,7 @@
     .content
         width 100%
         display flex
-        margin-top 5rem
+        margin-top 0rem
         transition all .7s ease-in
         .type
             flex 1

@@ -27,16 +27,6 @@
             </ul>
         </div>
         <div class="goodinfo">
-            <div class="border">
-                <div class="topname">
-                    <router-link to="/publish/sell/price" tag="div" class="item">
-                        <span>开个价</span>
-                    </router-link>
-                    <router-link to="/publish/sell/uction" tag="div" class="item">
-                        <span>拍卖</span>
-                    </router-link>
-                </div>
-            </div>
             <router-view :kind="kind" :types="types" ref="price"></router-view>
         </div>
         <div class="footer">
@@ -304,6 +294,7 @@
                     img
                         width 4rem
                         height 4rem
+                        object-fit cover
                     .cancelimg
                         width 1.5rem
                         height 1.5rem
