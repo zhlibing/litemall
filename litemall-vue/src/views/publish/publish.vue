@@ -86,37 +86,44 @@
             tosell(type) {
                 if (type==0){
                     this.$router.push({
-                        path: '/publish/sell/batfree/8'
+                        path: '/publish/sell/batfree/8',
+                        params: {index: type}
                     })
                 }
                 if (type==1){
                     this.$router.push({
-                        path: '/publish/sell/batpk/8'
+                        path: '/publish/sell/batpk/8',
+                        params: {index: type}
                     })
                 }
                 if (type==2){
                     this.$router.push({
-                        path: '/publish/sell/batpk/8'
+                        path: '/publish/sell/batchallenge/8',
+                        params: {index: type}
                     })
                 }
                 if (type==3){
                     this.$router.push({
-                        path: '/publish/sell/batpk/5'
+                        path: '/publish/sell/batpk/5',
+                        params: {index: type}
                     })
                 }
                 if (type==4){
                     this.$router.push({
-                        path: '/publish/sell/batpk/4'
+                        path: '/publish/sell/batpk/4',
+                        params: {index: type}
                     })
                 }
                 if (type==5){
                     this.$router.push({
-                        path: '/publish/sell/batpk/6'
+                        path: '/publish/sell/batpk/6',
+                        params: {index: type}
                     })
                 }
                 if (type==6){
                     this.$router.push({
-                        path: '/publish/sell/batpk/7'
+                        path: '/publish/sell/batpk/7',
+                        params: {index: type}
                     })
                 }
 

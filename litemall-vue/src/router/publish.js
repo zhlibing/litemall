@@ -28,7 +28,12 @@ export default [
                 path: 'batpk/:type',
                 props: true,
                 component: () => import('@/views/publish/sell/batpk'),
-            }
+            },
+            {
+                path: 'batchallenge/:type',
+                props: true,
+                component: () => import('@/views/publish/sell/batchallenge'),
+            },
         ]
     },
     {

@@ -27,8 +27,9 @@
             </ul>
         </div>
         <div class="goodinfo">
-            <router-view :type="type" ref="batfree"></router-view>
-            <router-view :type="type" ref="uction"></router-view>
+            <router-view :type="type" ref="batfree" v-if="index==0"></router-view>
+            <router-view :type="type" ref="batpk" v-if="index==1"></router-view>
+            <router-view :type="type" ref="batchallenge" v-if="index==2"></router-view>
         </div>
         <div class="footer">
             <button class="fabu" @click="publish">确定发布</button>
@@ -48,6 +49,7 @@
         questionSave
     } from '@/api/api'
     import {EventBus} from '../../../utils/event-bus'
+    import _ from 'lodash';
 
     export default {
         data() {
@@ -57,6 +59,7 @@
                 hasPhoto: true,
                 imgUrls: [],
                 type: '',
+                index: ''
             }
         },
         watch: {
@@ -81,7 +84,8 @@
                 obj.km = '1'
                 obj.picUrls = this.imgUrls
                 obj.type = this.$refs.batfree.type
-                    || this.$refs.uction.type
+                    || this.$refs.batpk.type
+                    || this.$refs.batchallenge.type
                 if (obj.type == 4) {
                     circleSave(obj).then(res => {
                         if (res.status === 200) {
@@ -187,6 +191,9 @@
             }).catch(err => {
                 console.log(err)
             })
+            if (_.has(this.$route.params, 'index')) {
+                this.index = this.$route.params.index;
+            }
         },
         components: {
             appbar,

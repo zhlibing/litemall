@@ -2,7 +2,7 @@
     <div class="wrapper">
         <ul class="lists">
             <li class="list">
-                <label for="" class="detail">起拍价0</label>
+                <label for="" class="detail">起拍价1</label>
                 <input type="number" placeholder="0.00">
             </li>
             <li class="list">
@@ -41,7 +41,7 @@
         },
         data() {
             return {
-
+                
             }
         },
         methods: {},
