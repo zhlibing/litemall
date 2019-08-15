@@ -34,6 +34,26 @@ export default [
                 props: true,
                 component: () => import('@/views/publish/sell/batchallenge'),
             },
+            {
+                path: 'publishgroup/:type',
+                props: true,
+                component: () => import('@/views/publish/sell/publishgroup'),
+            },
+            {
+                path: 'publishcircle/:type',
+                props: true,
+                component: () => import('@/views/publish/sell/publishcircle'),
+            },
+            {
+                path: 'publishfishponds/:type',
+                props: true,
+                component: () => import('@/views/publish/sell/publishfishponds'),
+            },
+            {
+                path: 'publishquestion/:type',
+                props: true,
+                component: () => import('@/views/publish/sell/publishquestion'),
+            },
         ]
     },
     {

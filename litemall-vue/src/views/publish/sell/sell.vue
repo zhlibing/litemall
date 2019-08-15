@@ -30,6 +30,10 @@
             <router-view :type="type" ref="batfree" v-if="index==0"></router-view>
             <router-view :type="type" ref="batpk" v-if="index==1"></router-view>
             <router-view :type="type" ref="batchallenge" v-if="index==2"></router-view>
+            <router-view :type="type" ref="publishfishponds" v-if="index==3"></router-view>
+            <router-view :type="type" ref="publishcircle" v-if="index==4"></router-view>
+            <router-view :type="type" ref="publishquestion" v-if="index==5"></router-view>
+            <router-view :type="type" ref="publishgroup" v-if="index==6"></router-view>
         </div>
         <div class="footer">
             <button class="fabu" @click="publish">确定发布</button>
@@ -86,6 +90,10 @@
                 obj.type = this.$refs.batfree.type
                     || this.$refs.batpk.type
                     || this.$refs.batchallenge.type
+                    || this.$refs.publishquestion.type
+                    || this.$refs.publishcircle.type
+                    || this.$refs.publishgroup.type
+                    || this.$refs.publishfishponds.type
                 if (obj.type == 4) {
                     circleSave(obj).then(res => {
                         if (res.status === 200) {
