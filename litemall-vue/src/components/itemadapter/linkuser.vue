@@ -44,7 +44,7 @@
                     } else {
                         this.item.userHasCollect = 1;
                         this.$toast({
-                            message: '支持成功',
+                            message: '关注成功',
                             duration: 1500
                         });
                     }

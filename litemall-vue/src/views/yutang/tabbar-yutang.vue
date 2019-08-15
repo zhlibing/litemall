@@ -4,7 +4,7 @@
         <floatbutton></floatbutton>
         <div class="interest" style="margin-top: 40px">
             <div class="titlebox">
-                <p class="title">你可能感兴趣的鱼塘</p>
+                <p class="title">你可能感兴趣的鱼场</p>
             </div>
             <div class="swiper-container" ref="swiper">
                 <div class="swiper-wrapper swiper">
@@ -33,7 +33,7 @@
         </div>
         <div class="interest">
             <div class="titlebox">
-                <p class="title">土豪圈儿都在玩</p>
+                <p class="title">土豪圈儿战队</p>
             </div>
             <div class="swiper-container" ref="tuhao">
                 <div class="swiper-wrapper swiper">
