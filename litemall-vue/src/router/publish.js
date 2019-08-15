@@ -25,9 +25,9 @@ export default [
                 component: () => import('@/views/publish/sell/batfree'),
             },
             {
-                path: 'uction/:type',
+                path: 'batpk/:type',
                 props: true,
-                component: () => import('@/views/publish/sell/uction'),
+                component: () => import('@/views/publish/sell/batpk'),
             }
         ]
     },

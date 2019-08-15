@@ -5,7 +5,7 @@
             <ul class="navbar">
                 <li class="li">
                     <p class="title">一键发布</p>
-                    <p class="tip">发布活动、渔场、心情、问答、战队等，自由组合搭配</p>
+                    <p class="tip">发布活动资源等，自由组合搭配</p>
                 </li>
                 <li class="li">
                     <p class="title">自由参加</p>
@@ -91,32 +91,32 @@
                 }
                 if (type==1){
                     this.$router.push({
-                        path: '/publish/sell/batfree/8'
+                        path: '/publish/sell/batpk/8'
                     })
                 }
                 if (type==2){
                     this.$router.push({
-                        path: '/publish/sell/batfree/8'
+                        path: '/publish/sell/batpk/8'
                     })
                 }
                 if (type==3){
                     this.$router.push({
-                        path: '/publish/sell/uction/5'
+                        path: '/publish/sell/batpk/5'
                     })
                 }
                 if (type==4){
                     this.$router.push({
-                        path: '/publish/sell/uction/4'
+                        path: '/publish/sell/batpk/4'
                     })
                 }
                 if (type==5){
                     this.$router.push({
-                        path: '/publish/sell/uction/6'
+                        path: '/publish/sell/batpk/6'
                     })
                 }
                 if (type==6){
                     this.$router.push({
-                        path: '/publish/sell/uction/7'
+                        path: '/publish/sell/batpk/7'
                     })
                 }
 
