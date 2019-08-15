@@ -74,7 +74,38 @@ public class WxCollectController {
                 c.put("goods", goods);
             }
             if (type == 10) {
-                LitemallUser user = litemallUserService.findById(collect.getValueId());
+                LitemallUser user = litemallUserService.findDetailById(collect.getValueId());
+                c.put("user", user);
+            }
+
+            collects.add(c);
+        }
+
+        return ResponseUtil.okList(collects, collectList);
+    }
+
+    @GetMapping("listme")
+    public Object listme(@LoginUser Integer userId,
+                       @NotNull Byte type,
+                       @RequestParam(defaultValue = "1") Integer page,
+                       @RequestParam(defaultValue = "10") Integer limit,
+                       @Sort @RequestParam(defaultValue = "add_time") String sort,
+                       @Order @RequestParam(defaultValue = "desc") String order) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+
+        List<LitemallCollect> collectList = collectService.querymeByType(userId, type, page, limit, sort, order);
+
+        List<Object> collects = new ArrayList<>(collectList.size());
+        for (LitemallCollect collect : collectList) {
+            Map<String, Object> c = new HashMap<String, Object>();
+            c.put("id", collect.getId());
+            c.put("type", collect.getType());
+            c.put("userId", collect.getUserId());
+
+            if (type == 10) {
+                LitemallUser user = litemallUserService.findDetailById(collect.getUserId());
                 c.put("user", user);
             }
 
