@@ -13,18 +13,20 @@ export default [
     },
     {
         path: '/publish/sell',
-        redirect: '/publish/sell/price',
+        redirect: '/publish/sell/batfree',
         name: 'sell',
         components: {
             default: () => import('@/views/publish/sell/sell'),
         },
         children: [
             {
-                path: 'price',
-                component: () => import('@/views/publish/sell/price'),
+                path: 'batfree/:type',
+                props: true,
+                component: () => import('@/views/publish/sell/batfree'),
             },
             {
-                path: 'uction',
+                path: 'uction/:type',
+                props: true,
                 component: () => import('@/views/publish/sell/uction'),
             }
         ]

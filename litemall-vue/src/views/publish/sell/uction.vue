@@ -21,12 +21,6 @@
                 <label for="" class="detail">结束时间</label>
                 <div class="price">请选择结束时间</div>
             </li>
-            <van-cell-group title="分类">
-                <van-cell class="order-coupon" :title="type" is-link arrow-direction="down" @click="showList = true"/>
-            </van-cell-group>
-            <van-popup v-model="showList" position="bottom">
-                <van-picker :columns="types" @change="onType"/>
-            </van-popup>
         </ul>
         <div class="bottom">
             <p class="info">把该宝贝同步到</p>
@@ -43,30 +37,14 @@
 
     export default {
         props: {
-            kind: {
-                type: String
-            },
-            types:Array
+            type: String
         },
         data() {
             return {
-                oldPrice: '',
-                newPrice: '',
-                sendPrice: '',
-                showList: false,
-                type: '动态'
+                
             }
         },
-        methods: {
-            tokind() {
-                let category = document.querySelector('.category')
-                console.log(category)
-                category.style.display = 'block'
-            },
-            onType(picker, value, index) {
-                this.type = value
-            },
-        },
+        methods: {},
         components: {
             [Field.name]: Field,
             [Popup.name]: Popup,

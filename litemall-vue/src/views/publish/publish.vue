@@ -86,19 +86,40 @@
             tosell(type) {
                 if (type==0){
                     this.$router.push({
-                        path: '/publish/sell/price'
+                        path: '/publish/sell/batfree/8'
                     })
                 }
                 if (type==1){
                     this.$router.push({
-                        path: '/publish/sell/uction'
+                        path: '/publish/sell/batfree/8'
                     })
                 }
                 if (type==2){
                     this.$router.push({
-                        path: ''
+                        path: '/publish/sell/batfree/8'
                     })
                 }
+                if (type==3){
+                    this.$router.push({
+                        path: '/publish/sell/uction/5'
+                    })
+                }
+                if (type==4){
+                    this.$router.push({
+                        path: '/publish/sell/uction/4'
+                    })
+                }
+                if (type==5){
+                    this.$router.push({
+                        path: '/publish/sell/uction/6'
+                    })
+                }
+                if (type==6){
+                    this.$router.push({
+                        path: '/publish/sell/uction/7'
+                    })
+                }
+
             },
             goBack() {
                 this.active = true

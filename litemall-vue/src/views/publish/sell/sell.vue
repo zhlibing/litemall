@@ -6,7 +6,7 @@
                 <input type="text" v-model="title" placeholder="标题 品类品牌型号都是买家喜欢搜索的">
             </div>
             <div class="inputdetail border-1px">
-                <textarea type="text" v-model="desc" placeholder="描述一下你的闲置"></textarea>
+                <textarea type="text" v-model="desc" placeholder="内容 描述一下你的闲置"></textarea>
             </div>
         </div>
         <div class="image-list">
@@ -27,7 +27,8 @@
             </ul>
         </div>
         <div class="goodinfo">
-            <router-view :kind="kind" :types="types" ref="price"></router-view>
+            <router-view :type="type" ref="batfree"></router-view>
+            <router-view :type="type" ref="uction"></router-view>
         </div>
         <div class="footer">
             <button class="fabu" @click="publish">确定发布</button>
@@ -36,7 +37,6 @@
 </template>
 
 <script>
-    import util from '../../../assets/utils/utils.js'
     import appbar from '@/components/head/appbar'
     import {
         typeObjList,
@@ -56,9 +56,7 @@
                 desc: '',
                 hasPhoto: true,
                 imgUrls: [],
-                kind: '',
-                types: [],
-                orgtypes: []
+                type: '',
             }
         },
         watch: {
@@ -66,32 +64,12 @@
         },
         methods: {
             publish() {
-                let oldPrice = this.$refs.price.oldPrice
-                let newPrice = this.$refs.price.newPrice
-                let sendPrice = this.$refs.price.sendPrice
-                let typeIndex = this.$refs.price.typeIndex
                 if (this.title == '') {
                     this.$toast('请输入发布的标题')
                     return
                 }
                 if (this.desc == '') {
                     this.$toast('描述一下宝贝吧')
-                    return
-                }
-                // if (this.imgUrls == '') {
-                //     console.log('上传几张宝贝图片吧~~如果无法上传，请确定是否开启拍照权限，如果仍无效果，请移步其他浏览器')
-                //     return
-                // }
-                if (newPrice == '') {
-                    this.$toast('请输入价格')
-                    return
-                }
-                if (oldPrice == '') {
-                    this.$toast('请输入原价')
-                    return
-                }
-                if (sendPrice == '') {
-                    this.$toast('邮费不能为空')
                     return
                 }
                 let obj = {}
@@ -102,13 +80,9 @@
                 obj.limited = '1'
                 obj.km = '1'
                 obj.picUrls = this.imgUrls
-                obj.newPrice = newPrice
-                obj.oldPrice = oldPrice
-                obj.sendPrice = sendPrice
-                obj.del = true
-                obj.type = this.orgtypes[typeIndex].id
-                obj.time = util.formatDate.format(new Date(), 'yyyy-MM-dd hh:mm')
-                if (this.orgtypes[typeIndex].id == 4) {
+                obj.type = this.$refs.batfree.type
+                    || this.$refs.uction.type
+                if (obj.type == 4) {
                     circleSave(obj).then(res => {
                         if (res.status === 200) {
                             this.goBack()
@@ -119,7 +93,7 @@
                         }
                     });
                 }
-                if (this.orgtypes[typeIndex].id == 5) {
+                if (obj.type == 5) {
                     fishpondsSave(obj).then(res => {
                         if (res.status === 200) {
                             this.goBack()
@@ -130,7 +104,7 @@
                         }
                     });
                 }
-                if (this.orgtypes[typeIndex].id == 6) {
+                if (obj.type == 6) {
                     questionSave(obj).then(res => {
                         if (res.status === 200) {
                             this.goBack()
@@ -141,7 +115,7 @@
                         }
                     });
                 }
-                if (this.orgtypes[typeIndex].id == 7) {
+                if (obj.type == 7) {
                     groupSave(obj).then(res => {
                         if (res.status === 200) {
                             this.goBack()
@@ -152,7 +126,7 @@
                         }
                     });
                 }
-                if (this.orgtypes[typeIndex].id == 8) {
+                if (obj.type == 8) {
                     activitySave(obj).then(res => {
                         if (res.status === 200) {
                             this.goBack()
@@ -163,7 +137,7 @@
                         }
                     });
                 }
-                if (this.orgtypes[typeIndex].id == 11) {
+                if (obj.type == 11) {
                 }
             },
             showAddpic() {
@@ -204,11 +178,11 @@
         mounted() {
             typeObjList().then(res => {
                 if (res.status === 200) {
-                    this.orgtypes = res.data.data.list;
-                    this.types.clear
-                    for (var i = 0; i < res.data.data.list.length; i++) {
-                        this.types.push(res.data.data.list[i].name)
-                    }
+                    // this.orgtypes = res.data.data.list;
+                    // this.types.clear
+                    // for (var i = 0; i < res.data.data.list.length; i++) {
+                    //     this.types.push(res.data.data.list[i].name)
+                    // }
                 }
             }).catch(err => {
                 console.log(err)

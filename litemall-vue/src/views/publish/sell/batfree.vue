@@ -14,12 +14,6 @@
                 <input type="number" v-model="sendPrice" placeholder="0.00">
             </div>
         </div>
-        <van-cell-group title="分类">
-            <van-cell class="order-coupon" :title="type" v-model="typeIndex" is-link arrow-direction="down" @click="showList = true"/>
-        </van-cell-group>
-        <van-popup v-model="showList" position="bottom">
-            <van-picker :columns="types" @change="onType"/>
-        </van-popup>
         <div class="bottom">
             <p class="info">把该宝贝同步到</p>
             <div class="yutang">
@@ -35,32 +29,16 @@
 
     export default {
         props: {
-            kind: {
-                type: String
-            },
-            types: Array
+            type: String
         },
         data() {
             return {
                 oldPrice: '',
                 newPrice: '',
                 sendPrice: '',
-                showList: false,
-                type: '动态',
-                typeIndex:'0',
             }
         },
-        methods: {
-            tokind() {
-                let category = document.querySelector('.category')
-                console.log(category)
-                category.style.display = 'block'
-            },
-            onType(picker, value, index) {
-                this.type = value
-                this.typeIndex = index
-            },
-        },
+        methods: {},
         components: {
             [Field.name]: Field,
             [Popup.name]: Popup,
