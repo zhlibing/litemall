@@ -22,6 +22,15 @@
                     <img :src="picUrl" alt="">
                 </a>
             </div>
+            <div class="collect" v-if="news.collectCount>0">
+                <div>{{"人气："+news.collectCount}}</div>
+                <img src="../../../assets/images/赞1.png">
+                <div class="collect" v-for="(item,index) in news.collect.data" :key="index"
+                     @click="goUserDetails(item.user.id)">
+                    <img :src="item.user.avatar">
+                </div>
+                <img src="../../../assets/images/省略号.png" style="margin-left: 10px">
+            </div>
         </div>
         <div class="messagebox">
             <p class="msg border-1px">{{'留言 '+news.comment.data.length+' 条'}}</p>
@@ -344,6 +353,16 @@
                 margin-top 0.4rem
                 img
                     width 100%
+            .collect
+                margin-top 0.4rem
+                display inline-block
+                span
+                    color #666
+                    padding-top -10px
+                img
+                    width 25px
+                    height 25px
+                    border-radius 50%
         .messagebox
             margin-top 0.3rem
             background-color #fff
