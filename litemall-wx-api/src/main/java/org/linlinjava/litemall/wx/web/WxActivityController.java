@@ -128,10 +128,16 @@ public class WxActivityController {
             });
         }
 
+        Map<String, Object> userVo = new HashMap<>();
         LitemallUser user = null;
         if (info != null) {
             user = userService.findDetailById(info.getUserId());
         }
+        userVo.put("user", user);
+        if (userId != null) {
+            userVo.put("userHasCollect", collectService.count(userId, user.getId(), 10));
+        }
+        userVo.put("collectCount", collectService.countCollect(user.getId(), 10));
 
         FutureTask<Map> commentsCallableTsk = new FutureTask<>(commentsCallable);
 
@@ -145,7 +151,7 @@ public class WxActivityController {
             data.put("collectCount", collectService.countCollect(id, this.type));
             data.put("userHasJoin", userHasJoin);
             data.put("share", SystemConfig.isAutoCreateShareImage());
-            data.put("user", user);
+            data.put("publishUser", userVo);
             data.put("comment", commentsCallableTsk.get());
         } catch (Exception e) {
             e.printStackTrace();
