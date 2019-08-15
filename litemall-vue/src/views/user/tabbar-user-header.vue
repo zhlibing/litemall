@@ -18,7 +18,7 @@
                 <span class="num">{{'23'}}</span>
                 <span class="numname">关注数</span>
             </div>
-            <div class="numbox">
+            <div class="numbox" @click="toCollectUserMe(userId)">
                 <span class="num">{{'123'}}</span>
                 <span class="numname">粉丝数</span>
             </div>
@@ -73,6 +73,9 @@
             },
             toCollectUser(id){
                 this.$router.push(`/user/collectUser/${id}`);
+            },
+            toCollectUserMe(id){
+                this.$router.push(`/user/collectUserMe/${id}`);
             }
         }
     };

@@ -1,6 +1,7 @@
 const tab_user = () => import('@/views/user/tabbar-user');
 const UserCollect = () => import('@/views/user/module-collect');
 const UserCollectUser = () => import('@/views/user/module-collect-user');
+const UserCollectUserMe = () => import('@/views/user/module-collect-user-me');
 const UserAddress = () => import('@/views/user/module-address');
 const UserAddressEdit = () => import('@/views/user/module-address-edit');
 const UserServer = () => import('@/views/user/module-server');
@@ -42,6 +43,14 @@ export default [
             login: true
         },
         component: UserCollectUser
+    },
+    {
+        path: '/user/collectUserMe/:userId',
+        name: 'collectUserMe',
+        meta: {
+            login: true
+        },
+        component: UserCollectUserMe
     },
   {
     path: '/user/address',

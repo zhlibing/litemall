@@ -207,6 +207,16 @@ export function collectList(query) {
     params: query
   })
 }
+
+const CollectmeList='wx/collect/listme'; //收藏列表
+export function collectmeList(query) {
+    return request({
+        url: CollectmeList,
+        method: 'get',
+        params: query
+    })
+}
+
 const CollectAddOrDelete='wx/collect/addordelete'; //添加或取消收藏
 export function collectAddOrDelete(data) {
   return request({
