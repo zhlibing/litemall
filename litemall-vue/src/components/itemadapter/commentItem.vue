@@ -70,8 +70,10 @@
                 collectAddOrDelete({valueId: this.comment.id, type: '9'}).then(res => {
                     if (this.comment.userHasCollect === 1) {
                         this.comment.userHasCollect = 0;
+                        this.comment.collectCount -= 1;
                     } else {
                         this.comment.userHasCollect = 1;
+                        this.comment.collectCount += 1;
                         this.$toast({
                             message: '点赞成功',
                             duration: 1500

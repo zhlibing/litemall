@@ -51,9 +51,9 @@
                 <span class="leabmsg">留言</span>
             </div>
             <div class="givestar" @click="addCollect">
-                <img src="../../../assets/images/赞.png" alt="" v-if="userHasCollect==0">
+                <img src="../../../assets/images/赞.png" alt="" v-if="news.userHasCollect==0">
                 <img src="../../../assets/images/赞1.png" alt="" v-else>
-                <span class="star">点赞</span>
+                <span class="star">收藏</span>
             </div>
             <div class="buy" @click="join" v-if="userHasJoin==-1">帮他擦一擦</div>
             <div class="buy" @click="join" v-else-if="userHasJoin==0">加入</div>
@@ -90,7 +90,6 @@
         },
         data() {
             return {
-                userHasCollect: 0,
                 userHasJoin: -1,
                 news: {},
                 title: '详情',
@@ -116,10 +115,10 @@
                 collectAddOrDelete({valueId: this.itemId, type: this.type}).then(res => {
                     if (this.news.userHasCollect === 1) {
                         this.news.userHasCollect = 0;
-                        this.userHasCollect = 0;
+                        this.news.collectCount -= 1;
                     } else {
                         this.news.userHasCollect = 1;
-                        this.userHasCollect = 1;
+                        this.news.collectCount += 1;
                         this.$toast({
                             message: '收藏成功',
                             duration: 1500

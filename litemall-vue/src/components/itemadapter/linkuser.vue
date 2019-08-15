@@ -42,8 +42,10 @@
                 collectAddOrDelete({valueId: this.item.user.id, type: '10'}).then(res => {
                     if (this.item.userHasCollect === 1) {
                         this.item.userHasCollect = 0;
+                        this.item.collectCount -= 1
                     } else {
                         this.item.userHasCollect = 1;
+                        this.item.collectCount += 1;
                         this.$toast({
                             message: '关注成功',
                             duration: 1500
