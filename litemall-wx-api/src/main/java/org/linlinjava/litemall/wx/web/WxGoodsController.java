@@ -156,6 +156,23 @@ public class WxGoodsController {
             return commentList;
         };
 
+        // 收藏列表
+        Callable<Map> collectListCallable = () -> {
+            List<LitemallCollect> collectList = collectService.queryListByType(id, (byte) type, 1, 20, "add_time", "desc");
+            List<Map<String, Object>> collectVo = new ArrayList<>(collectList.size());
+            long commentCount = PageInfo.of(collectList).getTotal();
+            for (LitemallCollect litemallCollect : collectList) {
+                Map<String, Object> c = new HashMap<>();
+                LitemallUser user = userService.findDetailById(litemallCollect.getUserId());
+                c.put("user", user);
+                collectVo.add(c);
+            }
+            Map<String, Object> collectListVo = new HashMap<>();
+            collectListVo.put("count", commentCount);
+            collectListVo.put("data", collectVo);
+            return collectListVo;
+        };
+
         //团购信息
         Callable<List> grouponRulesCallable = () -> rulesService.queryByGoodsId(id);
 
@@ -182,6 +199,7 @@ public class WxGoodsController {
         FutureTask<Map> commentsCallableTsk = new FutureTask<>(commentsCallable);
         FutureTask<LitemallBrand> brandCallableTask = new FutureTask<>(brandCallable);
         FutureTask<List> grouponRulesCallableTask = new FutureTask<>(grouponRulesCallable);
+        FutureTask<Map> collectListCallableTsk = new FutureTask<>(collectListCallable);
 
         executorService.submit(goodsAttributeListTask);
         executorService.submit(objectCallableTask);
@@ -190,6 +208,7 @@ public class WxGoodsController {
         executorService.submit(commentsCallableTsk);
         executorService.submit(brandCallableTask);
         executorService.submit(grouponRulesCallableTask);
+        executorService.submit(collectListCallableTsk);
 
         Map<String, Object> data = new HashMap<>();
 
@@ -206,7 +225,7 @@ public class WxGoodsController {
             data.put("groupon", grouponRulesCallableTask.get());
             //SystemConfig.isAutoCreateShareImage()
             data.put("share", SystemConfig.isAutoCreateShareImage());
-
+            data.put("collect", collectListCallableTsk.get());
         } catch (Exception e) {
             e.printStackTrace();
         }

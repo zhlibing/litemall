@@ -46,6 +46,24 @@ public class LitemallCollectService {
         return collectMapper.selectByExample(example);
     }
 
+    public List<LitemallCollect> queryListByType(Integer valueId, Byte type, Integer page, Integer limit, String sort, String order) {
+        LitemallCollectExample example = new LitemallCollectExample();
+        LitemallCollectExample.Criteria criteria = example.createCriteria();
+
+        if (type != null) {
+            criteria.andTypeEqualTo(type);
+        }
+        criteria.andValueIdEqualTo(valueId);
+        criteria.andDeletedEqualTo(false);
+
+        if (!StringUtils.isEmpty(sort) && !StringUtils.isEmpty(order)) {
+            example.setOrderByClause(sort + " " + order);
+        }
+
+        PageHelper.startPage(page, limit);
+        return collectMapper.selectByExample(example);
+    }
+
     public List<LitemallCollect> querymeByType(Integer userId, Byte type, Integer page, Integer limit, String sort, String order) {
         LitemallCollectExample example = new LitemallCollectExample();
         LitemallCollectExample.Criteria criteria = example.createCriteria();

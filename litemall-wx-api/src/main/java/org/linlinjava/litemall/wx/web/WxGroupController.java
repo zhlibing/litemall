@@ -105,6 +105,23 @@ public class WxGroupController {
             return commentList;
         };
 
+        // 收藏列表
+        Callable<Map> collectListCallable = () -> {
+            List<LitemallCollect> collectList = collectService.queryListByType(id, (byte) type, 1, 20, "add_time", "desc");
+            List<Map<String, Object>> collectVo = new ArrayList<>(collectList.size());
+            long commentCount = PageInfo.of(collectList).getTotal();
+            for (LitemallCollect litemallCollect : collectList) {
+                Map<String, Object> c = new HashMap<>();
+                LitemallUser user = userService.findDetailById(litemallCollect.getUserId());
+                c.put("user", user);
+                collectVo.add(c);
+            }
+            Map<String, Object> collectListVo = new HashMap<>();
+            collectListVo.put("count", commentCount);
+            collectListVo.put("data", collectVo);
+            return collectListVo;
+        };
+
         // 用户收藏
         int userHasCollect = 0;
         if (userId != null) {
@@ -140,8 +157,10 @@ public class WxGroupController {
         userVo.put("collectCount", collectService.countCollect(user.getId(), 10));
 
         FutureTask<Map> commentsCallableTsk = new FutureTask<>(commentsCallable);
+        FutureTask<Map> collectListCallableTsk = new FutureTask<>(collectListCallable);
 
         executorService.submit(commentsCallableTsk);
+        executorService.submit(collectListCallableTsk);
 
         Map<String, Object> data = new HashMap<>();
 
@@ -153,6 +172,7 @@ public class WxGroupController {
             data.put("share", SystemConfig.isAutoCreateShareImage());
             data.put("publishUser", userVo);
             data.put("comment", commentsCallableTsk.get());
+            data.put("collect", collectListCallableTsk.get());
         } catch (Exception e) {
             e.printStackTrace();
         }
