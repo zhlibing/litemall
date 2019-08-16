@@ -204,6 +204,7 @@ DROP TABLE IF EXISTS `litemall_activity`;
 CREATE TABLE `litemall_activity` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
+  `fishponds_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
   `title` varchar(255) NOT NULL,
   `description` varchar(1023) NOT NULL COMMENT '描述',
   `type` tinyint(3) NOT NULL DEFAULT '8' COMMENT '类型',
@@ -224,10 +225,12 @@ CREATE TABLE `litemall_activity` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`)
+  KEY `user_id` (`user_id`),
+  KEY `fishponds_id` (`fishponds_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='活动表';
 
 INSERT INTO `litemall_activity` VALUES (
+'1',
 '1',
 '1',
 '7+1鱼王比赛',
@@ -254,6 +257,7 @@ INSERT INTO `litemall_activity` VALUES (
 INSERT INTO `litemall_activity` VALUES (
 '2',
 '1',
+'1',
 '儿童节亲子垂钓',
 '儿童节带着家人和宝宝，来这里体验不一样的垂钓和户外亲子乐趣吧',
 '8',
@@ -277,6 +281,7 @@ INSERT INTO `litemall_activity` VALUES (
 
 INSERT INTO `litemall_activity` VALUES (
 '3',
+'1',
 '1',
 '中秋大鱼海棠',
 '钓得海棠标记的大鱼者，免费带走，不谢~',
