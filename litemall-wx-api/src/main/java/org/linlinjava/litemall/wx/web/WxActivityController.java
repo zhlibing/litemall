@@ -29,6 +29,9 @@ public class WxActivityController {
     private LitemallActivityService ActivityService;
 
     @Autowired
+    private LitemallActivityFishpondsService litemallActivityFishpondsService;
+
+    @Autowired
     private LitemallActivityUserService activityUserService;
 
     @Autowired
@@ -304,6 +307,9 @@ public class WxActivityController {
                 return ResponseUtil.updatedDataFailed();
             }
         }
+//        LitemallActivityFishponds litemallActivityFishponds = new LitemallActivityFishponds();
+//        litemallActivityFishponds.setActivityId(litemallActivity.getId());
+//        litemallActivityFishpondsService.add(litemallActivityFishponds);
         return ResponseUtil.ok(litemallActivity.getId());
     }
 
