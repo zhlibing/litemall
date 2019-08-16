@@ -109,5 +109,10 @@
         <table tableName="litemall_fish_ponds_user">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
+
+        <!--表名9-->
+        <table tableName="litemall_activity_fishponds">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
     </context>
 </generatorConfiguration>

@@ -312,6 +312,19 @@ CREATE TABLE `litemall_activity_user` (
   KEY `activity_id` (`activity_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='活动逻辑表';
 
+DROP TABLE IF EXISTS `litemall_activity_fishponds`;
+CREATE TABLE `litemall_activity_fishponds` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `activity_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
+  `fishponds_id` int(11) NOT NULL DEFAULT '0' COMMENT '群组ID',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
+  PRIMARY KEY (`id`),
+  KEY `activity_id` (`activity_id`),
+  KEY `fishponds_id` (`fishponds_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='鱼塘比赛活动关系表';
+
 DROP TABLE IF EXISTS `litemall_fish_ponds`;
 CREATE TABLE `litemall_fish_ponds` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
