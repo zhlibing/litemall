@@ -45,7 +45,8 @@
         mounted() {
             EventBus.$on("selectItem", ({item}) => {
                 this.$nextTick(() => {
-                    this.item = Object.assign(this.item, item)
+                    Object.assign(this.item, item)//浅拷贝
+                    // this.item = JSON.parse(JSON.stringify(item))//深拷贝
                     console.log(this.item)
                 })
             })
