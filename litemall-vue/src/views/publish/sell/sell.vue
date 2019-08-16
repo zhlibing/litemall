@@ -93,7 +93,9 @@
                     this.$toast('请选择一个鱼塘吧')
                     return
                 }
-                obj.fishpondsId = this.item.FishPondsInfo.id
+                if (this.item.FishPondsInfo!=undefined){
+                    obj.fishpondsId = this.item.FishPondsInfo.id
+                }
                 obj.type = this.$refs.batfree.type
                     || this.$refs.batpk.type
                     || this.$refs.batchallenge.type
