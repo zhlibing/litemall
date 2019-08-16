@@ -2,13 +2,6 @@
     <div class="container" v-if="user.user!==undefined">
         <appbar :titleText="user.user.nickname||user.user.username||title"></appbar>
         <div class="details">
-            <div class="focuseinfobox">
-                <div class="focuse"
-                     v-if="user.userHasCollect==0||user.userHasCollect==undefined">关注
-                </div>
-                <div class="focuse" v-else>已关注</div>
-                <div class="focuseinfo">{{"粉丝："+user.collectCount}}</div>
-            </div>
         </div>
         <div class="top">
             <div class="info">
@@ -19,7 +12,14 @@
                 <img :src="user.user.avatar" alt="" class="avatar">
             </div>
         </div>
-        <div v-for="(item,index) in circles" :key="index" style="margin-left: 20px;margin-right: 20px">
+        <div class="focuseinfobox" @click="addCollect">
+            <div class="focuse"
+                 v-if="user.userHasCollect==0||user.userHasCollect==undefined">关注
+            </div>
+            <div class="focuse" v-else>已关注</div>
+            <div class="focuseinfo">{{"粉丝："+user.collectCount}}</div>
+        </div>
+        <div v-for="(item,index) in circles" :key="index" style="margin-left: 20px;margin-right: 20px;margin-top: 20px">
             <circleItem :item="item"></circleItem>
         </div>
         <is-empty v-if="circles.length === 0">TA很懒，啥都没写~</is-empty>
@@ -30,6 +30,7 @@
     import appbar from '@/components/head/appbar'
     import {
         userDetails,
+        collectAddOrDelete,
     } from '@/api/api';
     import {getLocalStorage} from '@/utils/local-storage';
     import circleItem from '../../../components/itemadapter/circleItem.vue'
@@ -54,6 +55,21 @@
                 );
                 this.loginUserId = infoData.userId || "";
                 console.log(infoData, '>>>>>>loginUserId')
+            },
+            addCollect() {
+                collectAddOrDelete({valueId: this.user.user.id, type: '10'}).then(res => {
+                    if (this.user.userHasCollect === 1) {
+                        this.user.userHasCollect = 0;
+                        this.user.collectCount -= 1
+                    } else {
+                        this.user.userHasCollect = 1;
+                        this.user.collectCount += 1;
+                        this.$toast({
+                            message: '关注成功',
+                            duration: 1500
+                        });
+                    }
+                });
             },
         },
         computed: {},
@@ -86,23 +102,8 @@
             height 35%
             padding 1rem 1rem
             box-sizing border-box
-            background url('../../../assets/images/grzx.jpg') no-repeat
+            background url('../../../assets/images/grzx2.jpg') no-repeat
             background-size: cover;
-            .focuseinfobox
-                display flex
-                flex-direction column
-                .focuse
-                    width 100px
-                    text-align center
-                    color: #fff
-                    font-weight: 500;
-                    padding: 0 5px;
-                    border: 0.04rem solid #fff;
-                .focuseinfo
-                    color red
-                    font-size 0.8rem
-                    font-weight 400
-                    margin-top 0.4rem
         .top
             width 100%
             height 3rem
@@ -138,4 +139,22 @@
                 .ta
                     color #666666
                     font-size 0.9rem
+        .focuseinfobox
+            display flex
+            flex-direction column
+            margin-top -70px
+            margin-left 10px
+            .focuse
+                width 100px
+                text-align center
+                color: #fff
+                font-weight: 500;
+                padding: 2px 5px;
+                background-color #7dc5eb
+                border: 0.04rem solid #7dc5eb;
+            .focuseinfo
+                color red
+                font-size 0.8rem
+                font-weight 400
+                margin-top 0.6rem
 </style>
