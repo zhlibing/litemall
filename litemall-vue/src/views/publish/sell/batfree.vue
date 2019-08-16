@@ -26,6 +26,7 @@
 
 <script>
     import {Field, Picker, Popup, Button} from 'vant';
+    import {EventBus} from '../../../utils/event-bus'
 
     export default {
         props: {
@@ -38,10 +39,23 @@
                 sendPrice: '',
             }
         },
+        mounted() {
+            EventBus.$on("selectItem", ({item}) => {
+                this.$nextTick(() => {
+                    console.log(item, '>>>>selectItem')
+                })
+            })
+        },
+        beforeDestroy() {
+            console.log("beforeDestroy")
+        },
         methods: {
             goSelectFishponds() {
                 this.$router.push("/items/fishpondsSelect-list")
-            }
+            },
+            onItemSelect(item, index) {
+                console.log(item, index)
+            },
         },
         components: {
             [Field.name]: Field,

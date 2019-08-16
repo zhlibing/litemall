@@ -1,6 +1,8 @@
 <template>
     <div class="goods_brand_list">
-        <appbar titleText="选择鱼塘"></appbar>
+        <appbar titleText="选择鱼塘"
+                :right="right_url"
+                @rightclick="confirm"></appbar>
         <van-pull-refresh v-model="loading" @refresh="onRefresh">
             <van-list v-model="loading"
                       :finished="finished"
@@ -23,6 +25,9 @@
     import Vue from 'vue'
     import appbar from '@/components/head/appbar'
     import fishpondsSelectItem from '@/components/itemadapter/fishpondsSelectItem';
+    import add from '../../../assets/images/add.png'
+    import confirm from '../../../assets/images/confirm.png'
+    import {EventBus} from '../../../utils/event-bus'
 
     Vue.use(PullRefresh)
     export default {
@@ -33,7 +38,9 @@
                 limit: 10,
                 loading: false,
                 finished: false,
-                selectedIndex: -1
+                selectedIndex: -1,
+                right_url: add,
+                item: {}
             };
         },
 
@@ -65,8 +72,33 @@
                 });
             },
             onItemSelect(item, index) {
-                this.selectedIndex = index
-            }
+                console.log(item, index)
+                this.item = item
+                if (this.selectedIndex != index) {
+                    this.selectedIndex = index
+                    this.right_url = confirm
+                } else {
+                    this.selectedIndex = -1
+                    this.right_url = add
+                }
+            },
+            confirm() {
+                if (this.selectedIndex != -1) {
+                    console.log("已选择")
+                    EventBus.$emit("selectItem", {
+                        item: this.item
+                    });
+                    this.goBack()
+                } else {
+                    this.$router.push({
+                        path: '/publish/sell/publishfishponds/5',
+                        params: {index: 3}
+                    })
+                }
+            },
+            goBack() {
+                this.$router.back(-1)
+            },
         },
 
         components: {
