@@ -3,7 +3,7 @@
         <a class="item-content"
            @click="itemClick(item.activityInfo.id||item.FishPondsInfo.id||item.GroupInfo.id,item.activityInfo.type||item.FishPondsInfo.type||item.GroupInfo.type)">
             <div class="lottery-logo">
-                <img :src="item.activityInfo.picUrls[0]||item.FishPondsInfo.picUrls[0]||item.GroupInfo.picUrls[0]"
+                <img :src="item.activityInfo.picUrls[0]"
                      style="object-fit: cover">
             </div>
             <div class="item-info">
