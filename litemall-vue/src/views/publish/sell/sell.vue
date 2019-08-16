@@ -63,6 +63,7 @@
                 hasPhoto: true,
                 imgUrls: [],
                 type: '',
+                fishpondsId: '',
                 index: ''
             }
         },
@@ -87,6 +88,8 @@
                 obj.limited = '1'
                 obj.km = '1'
                 obj.picUrls = this.imgUrls
+                obj.fishpondsId = this.fishpondsId
+                console.log(this.fishpondsId, '>>>>>kkkkk')
                 obj.type = this.$refs.batfree.type
                     || this.$refs.batpk.type
                     || this.$refs.batchallenge.type
