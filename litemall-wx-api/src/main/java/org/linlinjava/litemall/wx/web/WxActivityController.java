@@ -307,9 +307,10 @@ public class WxActivityController {
                 return ResponseUtil.updatedDataFailed();
             }
         }
-//        LitemallActivityFishponds litemallActivityFishponds = new LitemallActivityFishponds();
-//        litemallActivityFishponds.setActivityId(litemallActivity.getId());
-//        litemallActivityFishpondsService.add(litemallActivityFishponds);
+        LitemallActivityFishponds litemallActivityFishponds = new LitemallActivityFishponds();
+        litemallActivityFishponds.setActivityId(litemallActivity.getId());
+        litemallActivityFishponds.setFishpondsId(litemallActivity.getFishpondsId());
+        litemallActivityFishpondsService.add(litemallActivityFishponds);
         return ResponseUtil.ok(litemallActivity.getId());
     }
 
