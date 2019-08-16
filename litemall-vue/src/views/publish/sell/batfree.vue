@@ -19,7 +19,8 @@
             <div class="yutang" v-if="item.FishPondsInfo==undefined">
                 <span class="little">钓鱼比赛需要选择鱼塘进行哦</span>
             </div>
-            <fishpondsSelectItem :item="item" v-if="item.FishPondsInfo!=undefined"></fishpondsSelectItem>
+            <fishpondsSelectItem :item="item" v-if="item.FishPondsInfo!=undefined"
+                                 style="background-color: white;margin-bottom: 20px"></fishpondsSelectItem>
         </div>
     </div>
 </template>
@@ -44,8 +45,7 @@
         mounted() {
             EventBus.$on("selectItem", ({item}) => {
                 this.$nextTick(() => {
-                    this.item = item
-                    this.$set(this.item)
+                    this.item = Object.assign(this.item, item)
                     console.log(this.item)
                 })
             })
