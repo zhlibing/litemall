@@ -1,5 +1,5 @@
 <template>
-    <div class="list" v-if="item!==undefined">
+    <div class="list" v-if="item!==undefined&&item.FishPondsInfo!=undefined">
         <div class="layer">
             <img :src="item.FishPondsInfo.picUrls!=undefined?item.FishPondsInfo.picUrls[0]:default_avatar" alt=""
                  class="image">

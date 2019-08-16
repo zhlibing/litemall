@@ -64,7 +64,8 @@
                 imgUrls: [],
                 type: '',
                 fishpondsId: '',
-                index: ''
+                index: '',
+                item: Object
             }
         },
         watch: {
@@ -88,8 +89,11 @@
                 obj.limited = '1'
                 obj.km = '1'
                 obj.picUrls = this.imgUrls
-                obj.fishpondsId = this.fishpondsId
-                console.log(this.fishpondsId, '>>>>>kkkkk')
+                if (this.item.FishPondsInfo==undefined){
+                    this.$toast('请选择一个鱼塘吧')
+                    return
+                }
+                obj.fishpondsId = this.item.FishPondsInfo.id
                 obj.type = this.$refs.batfree.type
                     || this.$refs.batpk.type
                     || this.$refs.batchallenge.type
@@ -205,6 +209,13 @@
             if (_.has(this.$route.params, 'index')) {
                 this.index = this.$route.params.index;
             }
+            EventBus.$on("selectItem", ({item}) => {
+                this.$nextTick(() => {
+                    Object.assign(this.item, item)//浅拷贝
+                    // this.item = JSON.parse(JSON.stringify(this.item))//深拷贝
+                    console.log(this.item)
+                })
+            })
         },
         components: {
             appbar,
