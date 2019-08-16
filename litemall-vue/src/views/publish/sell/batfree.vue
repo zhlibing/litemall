@@ -15,11 +15,11 @@
             </div>
         </div>
         <div class="bottom" @click="goSelectFishponds">
-            <p class="info">把该宝贝同步到</p>
-            <div class="yutang">
-                <span class="big">鱼塘</span>
-                <span class="little">:加入鱼塘，更多曝光</span>
+            <p class="info">请选择或者添加鱼塘</p>
+            <div class="yutang" v-if="item.FishPondsInfo==undefined">
+                <span class="little">钓鱼比赛需要选择鱼塘进行哦</span>
             </div>
+            <fishpondsSelectItem :item="item" v-if="item.FishPondsInfo!=undefined"></fishpondsSelectItem>
         </div>
     </div>
 </template>
@@ -27,6 +27,7 @@
 <script>
     import {Field, Picker, Popup, Button} from 'vant';
     import {EventBus} from '../../../utils/event-bus'
+    import fishpondsSelectItem from '@/components/itemadapter/fishpondsSelectItem';
 
     export default {
         props: {
@@ -37,12 +38,15 @@
                 oldPrice: '',
                 newPrice: '',
                 sendPrice: '',
+                item: Object
             }
         },
         mounted() {
             EventBus.$on("selectItem", ({item}) => {
                 this.$nextTick(() => {
-                    console.log(item, '>>>>selectItem')
+                    this.item = item
+                    this.$set(this.item)
+                    console.log(this.item)
                 })
             })
         },
@@ -53,15 +57,13 @@
             goSelectFishponds() {
                 this.$router.push("/items/fishpondsSelect-list")
             },
-            onItemSelect(item, index) {
-                console.log(item, index)
-            },
         },
         components: {
             [Field.name]: Field,
             [Popup.name]: Popup,
             [Button.name]: Button,
-            [Picker.name]: Picker
+            [Picker.name]: Picker,
+            fishpondsSelectItem
         }
     }
 </script>
@@ -117,7 +119,6 @@
                 margin-bottom 0.8rem
             .yutang
                 width 100%
-                height 2rem
                 background-color #fff
                 line-height 2rem
                 text-align left
