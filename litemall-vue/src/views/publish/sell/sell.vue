@@ -309,7 +309,6 @@
 
         .goodinfo
             width 100%
-            margin-top 1rem
             padding-top 1rem
             box-sizing border-box
             margin-bottom 2rem
@@ -350,24 +349,4 @@
                 color #ffffff
                 background-color red
 
-    .head
-        position relative
-        background-color #f3f3f3
-        width 100%
-        height 1.6rem
-        display flex
-        justify-content center
-        align-items center
-        .back
-            position absolute
-            left .2rem
-            top .4rem
-            width 1rem
-            height 1rem
-            img
-                width .8rem
-                height .8rem
-        .title
-            font-size .4rem
-            font-weight 700
 </style>
