@@ -14,7 +14,7 @@
                 <input type="number" v-model="sendPrice" placeholder="0.00">
             </div>
         </div>
-        <div class="bottom">
+        <div class="bottom" @click="goSelectFishponds">
             <p class="info">把该宝贝同步到</p>
             <div class="yutang">
                 <span class="big">鱼塘</span>
@@ -38,7 +38,11 @@
                 sendPrice: '',
             }
         },
-        methods: {},
+        methods: {
+            goSelectFishponds() {
+                this.$router.push("/items/fishpondsSelect-list")
+            }
+        },
         components: {
             [Field.name]: Field,
             [Popup.name]: Popup,

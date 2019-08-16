@@ -91,6 +91,12 @@ export default [
     component: () => import('@/views/items/brand-list'),
     props: route => route.query
   },
+    {
+        path: '/items/fishpondsSelect-list',
+        name: 'fishpondsSelect',
+        component: () => import('@/views/items/fishpondsSelect-list'),
+        props: route => route.query
+    },
   {
     path: '/items/topic/:topicId',
     name: 'topic',
