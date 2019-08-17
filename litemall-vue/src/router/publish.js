@@ -64,10 +64,10 @@ export default [
         }
     },
     {
-        path: '/publish/items/publishbatfree',
-        name: 'publishbatfree',
+        path: '/publish/items/publishhead',
+        name: 'publishhead',
         components: {
-            default: () => import('@/views/publish/items/publishbatfree'),
+            default: () => import('@/views/publish/items/publishhead'),
         }
     }
 ];

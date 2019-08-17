@@ -89,7 +89,7 @@
 //                        path: '/publish/sell/batfree/8',
 //                        params: {index: type}
 //                    })
-                    this.$router.push('/publish/items/publishbatfree')
+                    this.$router.push('/publish/items/publishhead')
                 }
                 if (type==1){
                     this.$router.push({
