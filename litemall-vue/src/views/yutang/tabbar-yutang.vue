@@ -122,26 +122,6 @@
             itemClick(id, type) {
                 this.$router.push(`/items/publishdetails/${id}/${type}`);
             },
-            share_data_time() {
-                setTimeout(() => {
-                    this.share_data_time()
-                }, 1000);
-                //毕业时间
-                let BirthDay = new Date("2019-8-20 00:00:00");
-                //获取当前时间
-                let today = new Date();
-                let timeold = (BirthDay.getTime() - today.getTime()); //总豪秒数
-                let secondsold = Math.floor(timeold / 1000);          //总秒数
-                let e_daysold = timeold / (24 * 60 * 60 * 1000);
-                let daysold = Math.floor(e_daysold);                 //相差天数
-                let e_hrsold = (e_daysold - daysold) * 24;
-                let hrsold = Math.floor(e_hrsold);                   //相差小时数
-                let e_minsold = (e_hrsold - hrsold) * 60;
-                let minsold = Math.floor(e_minsold)                   //相差分钟数
-                let seconds = Math.floor((e_minsold - minsold) * 60);  //相差秒数
-                //将所获取的时间拼接到一起，再把值显示到页面
-                console.log("已毕业:" + daysold + "天" + hrsold + "小时" + minsold + "分" + seconds + "秒" + secondsold)
-            }
         },
         components: {
             Head,
@@ -160,7 +140,6 @@
                     console.log(num, deg, '>>>>refreshCircle_$nextTick')
                 })
             })
-            this.share_data_time()
         },
         beforeDestroy() {
             console.log('beforeDestroy', '>>>>YUTANG.vue')

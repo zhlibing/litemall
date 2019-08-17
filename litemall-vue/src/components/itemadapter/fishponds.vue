@@ -20,6 +20,7 @@
                     <span class="issue-no">奖金：</span>
                     <span class="item-cd">{{'￥' + item.activityInfo.reword}}</span>
                 </div>
+                <span class="item-cd">{{countdownTime}}</span>
             </div>
         </a>
         <div class="funs-wrap">
@@ -78,7 +79,8 @@
                 isShowOne: false,
                 isShowTwo: false,
                 isShowThree: false,
-                users: []
+                users: [],
+                countdownTime: ''
             };
         },
         mounted() {
@@ -90,6 +92,7 @@
             if (this.item.joinUsers.length > 0) {
                 this.isShowOne = true
             }
+            this.share_data_time(this.item.activityInfo.activityTime)
         },
         methods: {
             itemClick(id, type) {
@@ -125,6 +128,30 @@
                     this.isShowThree = true
                 }
             },
+            share_data_time(time) {
+                setTimeout(() => {
+                    this.share_data_time(time)
+                }, 1000);
+                //毕业时间
+                let BirthDay = new Date(time);
+                //获取当前时间
+                let today = new Date();
+                let timeold = (BirthDay.getTime() - today.getTime()); //总豪秒数
+                let secondsold = Math.floor(timeold / 1000);          //总秒数
+                let e_daysold = timeold / (24 * 60 * 60 * 1000);
+                let daysold = Math.floor(e_daysold);                 //相差天数
+                let e_hrsold = (e_daysold - daysold) * 24;
+                let hrsold = Math.floor(e_hrsold);                   //相差小时数
+                let e_minsold = (e_hrsold - hrsold) * 60;
+                let minsold = Math.floor(e_minsold)                   //相差分钟数
+                let seconds = Math.floor((e_minsold - minsold) * 60);  //相差秒数
+                //将所获取的时间拼接到一起，再把值显示到页面
+                if (daysold > 0) {
+                    this.countdownTime = ("剩余:" + daysold + "天" + hrsold + "小时" + minsold + "分" + seconds + "秒")
+                } else {
+                    this.countdownTime = ("已结束")
+                }
+            }
         },
         components: {
             linkuser,
@@ -184,13 +211,13 @@
                 }
                 .issue-no {
                     font-size: .7875rem;
-                    color: #666;
+                    color: red;
                 }
                 .item-cd {
                     font-size: .7875rem;
                     color: red;
                     margin-right: 5px;
-                    margin-top: 5px;
+                    margin-top: 20px;
                 }
             }
             .nums {
