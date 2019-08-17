@@ -94,6 +94,7 @@
                 if (this.itemf.FishPondsInfo != undefined) {
                     obj.fishpondsId = this.itemf.FishPondsInfo.id
                 }
+                obj.rule = JSON.stringify(this.$refs.batfree.attlist)
                 obj.type = this.$refs.batfree.type
                     || this.$refs.batpk.type
                     || this.$refs.batchallenge.type

@@ -17,7 +17,7 @@ public class LitemallActivityService {
     Column[] columns = new Column[]{
             Column.id, Column.title, Column.description, Column.picUrls, Column.status,
             Column.reword, Column.type, Column.userId, Column.addTime, Column.activityTime, Column.reword, Column.currentPeople,
-            Column.collectioncount, Column.fee};
+            Column.collectioncount, Column.fee,Column.rule};
     @Resource
     private LitemallActivityMapper activityMapper;
 
