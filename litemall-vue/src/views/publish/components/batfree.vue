@@ -26,13 +26,13 @@
                 <div class="coustominputprice">
                     <img src="../../../assets/images/删除.png" @click="deleteCustom(index)"/>
                     <label for="">{{item.label}}</label>
-                    <input type="text" v-model="activityTime" placeholder="请添加属性值">
+                    <textarea type="text" v-model="item.model" placeholder="请添加属性值"/>
                 </div>
             </div>
             <div class="addpop" v-if="isShowPop">
                 <input type="text" v-model="customInput" placeholder="请添加属性名称">
             </div>
-            <div class="inputprice" style="background-color: white;padding: 5px 0" @click="addPop">
+            <div class="inputprice" style="background-color: white;padding: 5px 0" @click="addPop(attlist.length)">
                 <label for="">添加自定义选项</label>
                 <img src="../../../assets/images/add.png" v-if="!isShowPop"/>
                 <img src="../../../assets/images/confirm.png" v-else=""/>
@@ -85,14 +85,14 @@
             showSelectFishponds() {
                 this.$emit('showSelect')
             },
-            addPop() {
+            addPop(i) {
                 if (this.isShowPop) {
                     this.isShowPop = false
                     if (this.customInput) {
                         this.attlist.push({
                             label: this.customInput,
                             type: 'text',
-                            model: '',
+                            model: 'customInput' + i,
                             placeholder: '请添加属性值',
                         })
                         console.log(this.attlist)
@@ -141,12 +141,12 @@
             .coustominputprice
                 width 100%
                 display flex
-                align-items left
+                align-items center
                 justify-content space-between
                 margin-bottom 10px
                 label
                     flex 4
-                input
+                textarea
                     flex 13
                     outline none
                     border none
