@@ -194,12 +194,10 @@
                 });
             },
             selectItem(item) {
-                console.log(item, '-------232')
                 this.itemf = item
                 this.isShowSelect = false
             },
             showSelect() {
-                console.log('-------showSelect')
                 if (this.isShowSelect) {
                     this.isShowSelect = false
                 } else {

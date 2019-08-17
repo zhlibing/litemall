@@ -24,7 +24,7 @@
             <div v-for="(item, index) in attlist"
                  :key="index">
                 <div class="coustominputprice">
-                    <img src="../../../assets/images/store_default.png"/>
+                    <img src="../../../assets/images/删除.png" @click="deleteCustom(index)"/>
                     <label for="">{{item.label}}</label>
                     <input type="text" v-model="activityTime" placeholder="请添加属性值">
                 </div>
@@ -89,7 +89,6 @@
                 if (this.isShowPop) {
                     this.isShowPop = false
                     if (this.customInput) {
-                        console.log('有输入')
                         this.attlist.push({
                             label: this.customInput,
                             type: 'text',
@@ -97,13 +96,14 @@
                             placeholder: '请添加属性值',
                         })
                         console.log(this.attlist)
-                    } else {
-                        console.log('没有输入')
                     }
                     this.customInput = ''
                 } else {
                     this.isShowPop = true
                 }
+            },
+            deleteCustom(index) {
+                this.attlist.splice(index, 1)
             }
         },
         components: {
