@@ -49,6 +49,7 @@
         questionSave
     } from '@/api/api'
     import {EventBus} from '../../../utils/event-bus'
+    import _ from 'lodash';
     import batfree from '../components/batfree.vue'
     import fishpondsSelect from '../../../views/items/fishpondsSelect-list/indexSelect.vue'
 
@@ -60,7 +61,8 @@
                 hasPhoto: true,
                 imgUrls: [],
                 itemf: {},
-                isShowSelect: false
+                isShowSelect: false,
+                index: '',
             }
         },
         watch: {
@@ -205,6 +207,9 @@
             }
         },
         mounted() {
+            if (_.has(this.$route.params, 'index')) {
+                this.index = this.$route.params.index;
+            }
         },
         components: {
             appbar,
