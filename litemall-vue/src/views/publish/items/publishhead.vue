@@ -28,7 +28,7 @@
                 </ul>
             </div>
             <div class="goodinfo">
-                <batfree :item="itemf" ref="batfree" @showSelect="showSelect"></batfree>
+                <batfree :item="itemf" ref="batfree" @showSelect="showSelect" v-if="index==0"></batfree>
             </div>
             <div class="footer">
                 <button class="fabu" @click="publish">确定发布</button>
