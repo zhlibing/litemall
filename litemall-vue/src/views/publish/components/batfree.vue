@@ -2,16 +2,28 @@
     <div class="pricebox">
         <div class="price">
             <div class="inputprice">
-                <label for="">价格</label>
-                <input type="number" v-model="newPrice" placeholder="0.00">
+                <label for="">报名费用：</label>
+                <input type="number" v-model="newPrice" placeholder="默认50元">
             </div>
             <div class="inputprice">
-                <label for="">原价</label>
-                <input type="number" v-model="oldPrice" placeholder="0.00">
+                <label for="">人数限制：</label>
+                <input type="number" v-model="oldPrice" placeholder="默认5人">
             </div>
             <div class="inputprice">
-                <label for="">运费</label>
-                <input type="number" v-model="sendPrice" placeholder="0.00">
+                <label for="">奖金分成：</label>
+                <input type="number" v-model="sendPrice" placeholder="默认总报名费的80%">
+            </div>
+            <div class="inputprice">
+                <label for="">信用要求：</label>
+                <input type="number" v-model="sendPrice" placeholder="默认600分以上">
+            </div>
+            <div class="inputprice">
+                <label for="">比赛时间：</label>
+                <input type="number" v-model="sendPrice" placeholder="默认600分以上">
+            </div>
+            <div class="inputprice" style="background-color: white;padding: 5px 0">
+                <label for="">添加自定义选项</label>
+                <img src="../../../assets/images/add.png"/>
             </div>
         </div>
         <div class="bottom" @click="showSelectFishponds">
@@ -67,7 +79,6 @@
         padding 1em
         .price
             width 100%
-            height 6rem
             padding-left 1rem
             padding-right 1rem
             display flex
@@ -80,12 +91,20 @@
                 width 100%
                 display flex
                 align-items left
-                justify-content left
+                justify-content space-between
+                margin-bottom 10px
+                label
+                    flex 2
                 input
+                    flex 5
                     outline none
                     border none
-                    margin-left 1rem
+                    margin-left 0rem
                     box-sizing border-box
+                img
+                    width 20px
+                    height 20px
+
         .categorybox
             width 100%
             border-top 1px solid #f3f3f3
