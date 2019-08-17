@@ -20,7 +20,7 @@
                     <span class="issue-no">奖金：</span>
                     <span class="item-cd">{{'￥' + item.activityInfo.reword}}</span>
                 </div>
-                <span class="item-cd">{{countdownTime}}</span>
+                <span>{{countdownTime}}</span>
             </div>
         </a>
         <div class="funs-wrap">
@@ -217,7 +217,7 @@
                     font-size: .7875rem;
                     color: red;
                     margin-right: 5px;
-                    margin-top: 20px;
+                    margin: 10px 0;
                 }
             }
             .nums {
