@@ -8,10 +8,25 @@
                 <div class="txt">{{item.FishPondsInfo.title}}</div>
                 <div class="line"></div>
                 <div class="price">{{'￥' + item.FishPondsInfo.reword}}元起</div>
+                <div class="activity">
+                    <div class="acinfo">
+                        <img :src="item.publishUser.user.avatar"/>
+                    </div>
+                    <div class="acinfo">
+                        <img :src="item.publishUser.user.avatar"/>
+                    </div>
+                    <div class="acinfo">
+                        <img :src="item.publishUser.user.avatar"/>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="desc">
-            {{item.FishPondsInfo.description}}
+            <img :src="item.publishUser.user.avatar"/>
+            <div class="loc">
+                <span>{{item.FishPondsInfo.description}}</span>
+                <span class="span2">北京市黄埔屯中大街888号人民大会堂一楼888室VIP回踏</span>
+            </div>
         </div>
     </div>
 </template>
@@ -37,17 +52,18 @@
 </script>
 <style lang="scss" scoped>
     .brand-info {
+        padding: 0 15px;
+        background-color: #fff;
         .name {
             width: 100%;
-            height: 180px;
+            height: 140px;
             position: relative;
-
             .img {
                 position: absolute;
                 top: 0;
                 left: 0;
                 width: 100%;
-                height: 180px;
+                height: 140px;
                 object-fit: cover;
             }
 
@@ -56,7 +72,7 @@
                 top: 0;
                 left: 0;
                 width: 100%;
-                height: 180px;
+                height: 140px;
                 text-align: center;
                 display: flex;
                 justify-content: center;
@@ -65,9 +81,9 @@
                 background-color: rgba(0, 0, 0, 0.4);
 
                 .txt {
-                    margin-top: 60px;
-                    height: 25px;
-                    font-size: 25px;
+                    margin-top: 10px;
+                    height: 20px;
+                    font-size: 20px;
                     color: #fff;
                 }
 
@@ -80,22 +96,62 @@
                     background: #fff;
                 }
                 .price {
-                    height: 25px;
-                    font-size: 25px;
+                    height: 15px;
+                    font-size: 15px;
                     color: #fff;
+                }
+                .activity {
+                    width: 100%;
+                    display: flex;
+                    margin-top: 15px;
+                    .acinfo {
+                        flex: 1;
+                        img {
+                            height: 3rem;
+                            width: 3rem;
+                            border-radius: 10%;
+                        }
+                    }
                 }
             }
         }
         .desc {
+            display: flex;
             background: #fff;
             width: 100%;
             height: auto;
             overflow: hidden;
-            padding: 25px 20px;
-            font-size: 20px;
+            padding: 10px 10px;
+            font-size: 15px;
             color: #666;
             line-height: 20px;
-            text-align: center;
+            text-align: left;
+            img {
+                width: 3rem;
+                height: 3rem;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+            .loc {
+                display: flex;
+                flex-direction: column;
+                span {
+                    height: 20px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 1;
+                }
+                .span2 {
+                    color: #1e6abc;
+                    font-size: 13px;
+                    margin-top: 10px;
+                    background: url('../../assets/images/定位.png') no-repeat;
+                    background-size: 1.1rem 1.1rem;
+                    padding-left: 20px;
+                }
+            }
         }
     }
 </style>

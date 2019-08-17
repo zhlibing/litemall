@@ -181,11 +181,11 @@
             align-items: center;
             margin-left: 5px;
             img {
-                width: 5rem;
+                width: 5.5rem;
                 height: 7rem;
             }
             .layerchird {
-                width: 5rem;
+                width: 5.5rem;
                 height: 7rem;
                 background-color: #000;
                 filter: Alpha(Opacity=60);
@@ -214,7 +214,7 @@
                 justify-content: space-between;
                 align-items: center;
                 .lottery-name {
-                    font-size: .94rem;
+                    font-size: 15px;
                     font-weight: 400;
                     overflow: hidden;
                     text-overflow: ellipsis;
@@ -250,8 +250,8 @@
                 -webkit-line-clamp: 2;
                 margin-right: 10px;
                 span {
-                    font-size: .9rem;
-                    color: #888;
+                    font-size: 13px;
+                    color: #666;
                     padding-right: .1875rem;
                 }
             }
