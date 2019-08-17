@@ -3,27 +3,31 @@
         <div class="price">
             <div class="inputprice">
                 <label for="">报名费用：</label>
-                <input type="number" v-model="newPrice" placeholder="默认50元">
+                <input type="number" v-model="fee" placeholder="默认50元">
             </div>
             <div class="inputprice">
                 <label for="">人数限制：</label>
-                <input type="number" v-model="oldPrice" placeholder="默认5人">
+                <input type="number" v-model="limited" placeholder="默认5人">
             </div>
             <div class="inputprice">
                 <label for="">奖金分成：</label>
-                <input type="number" v-model="sendPrice" placeholder="默认总报名费的80%">
+                <input type="number" v-model="reword" placeholder="默认总报名费的80%">
             </div>
             <div class="inputprice">
                 <label for="">信用要求：</label>
-                <input type="number" v-model="sendPrice" placeholder="默认600分以上">
+                <input type="number" v-model="credit" placeholder="默认600分以上">
             </div>
             <div class="inputprice">
                 <label for="">比赛时间：</label>
-                <input type="number" v-model="sendPrice" placeholder="默认600分以上">
+                <input type="datetime-local" v-model="activityTime">
             </div>
-            <div class="inputprice" style="background-color: white;padding: 5px 0">
+            <div class="addpop" v-if="isShowPop">
+                <input type="text" v-model="customInput" placeholder="请添加属性名称">
+            </div>
+            <div class="inputprice" style="background-color: white;padding: 5px 0" @click="addPop">
                 <label for="">添加自定义选项</label>
-                <img src="../../../assets/images/add.png"/>
+                <img src="../../../assets/images/add.png" v-if="!isShowPop"/>
+                <img src="../../../assets/images/confirm.png" v-else=""/>
             </div>
         </div>
         <div class="bottom" @click="showSelectFishponds">
@@ -32,7 +36,7 @@
                 <span class="little">钓鱼比赛需要选择鱼塘进行哦</span>
             </div>
             <fishpondsSelectItem :item="item" v-if="item.FishPondsInfo!=undefined"
-                                 style="background-color: white;margin-bottom: 20px"></fishpondsSelectItem>
+                                 style="background-color: white;margin-bottom: 70px"></fishpondsSelectItem>
         </div>
     </div>
 </template>
@@ -48,10 +52,14 @@
         },
         data() {
             return {
-                oldPrice: '',
-                newPrice: '',
-                sendPrice: '',
-                type: 8
+                fee: '',
+                limited: '',
+                reword: '',
+                credit: '',
+                activityTime: '',
+                customInput: '',
+                type: 8,
+                isShowPop: false
             }
         },
         mounted() {
@@ -62,6 +70,19 @@
             showSelectFishponds() {
                 this.$emit('showSelect')
             },
+            addPop() {
+                if (this.isShowPop) {
+                    this.isShowPop = false
+                    if (this.customInput) {
+                        console.log('有输入')
+                    } else {
+                        console.log('没有输入')
+                    }
+                    this.customInput = ''
+                } else {
+                    this.isShowPop = true
+                }
+            }
         },
         components: {
             [Field.name]: Field,
@@ -104,6 +125,18 @@
                 img
                     width 20px
                     height 20px
+            .addpop
+                width 100%
+                display flex
+                align-items left
+                justify-content space-between
+                margin-bottom 10px
+                input
+                    flex 5
+                    outline none
+                    border none
+                    margin-left 0rem
+                    box-sizing border-box
 
         .categorybox
             width 100%
