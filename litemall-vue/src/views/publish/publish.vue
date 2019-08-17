@@ -18,19 +18,19 @@
             </ul>
         </div>
         <div class="content">
-            <div class="type" @click="tosell(0)">
+            <div class="type" @click="tosell(0,'自由场')">
                 <div class="image">
                     <img src="../../assets/images/收纳盒.png" alt="">
                 </div>
                 <p class="explain">自由场</p>
             </div>
-            <div class="type" @click="tosell(1)">
+            <div class="type" @click="tosell(1,'PK赛')">
                 <div class="image">
                     <img src="../../assets/images/房子.png" alt="">
                 </div>
                 <p class="explain">PK赛</p>
             </div>
-            <div class="type" @click="tosell(2)">
+            <div class="type" @click="tosell(2,'挑战赛')">
                 <div class="image">
                     <img src="../../assets/images/头像.png" alt="">
                 </div>
@@ -38,19 +38,19 @@
             </div>
         </div>
         <div class="content">
-            <div class="type" @click="tosell(3)">
+            <div class="type" @click="tosell(3,'渔场')">
                 <div class="image">
                     <img src="../../assets/images/收纳盒.png" alt="">
                 </div>
                 <p class="explain">渔场</p>
             </div>
-            <div class="type" @click="tosell(4)">
+            <div class="type" @click="tosell(4,'心情')">
                 <div class="image">
                     <img src="../../assets/images/房子.png" alt="">
                 </div>
                 <p class="explain">心情</p>
             </div>
-            <div class="type" @click="tosell(5)">
+            <div class="type" @click="tosell(5,'问答')">
                 <div class="image">
                     <img src="../../assets/images/头像.png" alt="">
                 </div>
@@ -58,7 +58,7 @@
             </div>
         </div>
         <div class="content">
-            <div class="type" @click="tosell(6)">
+            <div class="type" @click="tosell(6,'战队')">
                 <div class="image">
                     <img src="../../assets/images/收纳盒.png" alt="">
                 </div>
@@ -83,7 +83,7 @@
             this.active = false
         },
         methods: {
-            tosell(type) {
+            tosell(type,title) {
 //                if (type==0){
 //                    this.$router.push({
 //                        path: '/publish/sell/batfree/8',
@@ -91,7 +91,7 @@
 //                    })
                     this.$router.push({
                         name: 'publishhead',// 一定要写name,params必须用name来识别路径
-                        params: {index: type}
+                        params: {index: type,title:title}
                     })
 //                }
 //                if (type==1){

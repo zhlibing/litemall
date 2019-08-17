@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div v-show="!isShowSelect">
-            <appbar titleText="发布"></appbar>
+            <appbar :titleText="appbartitle"></appbar>
             <div class="inputcontainer">
                 <div class="inputtitle border-1px">
                     <input type="text" v-model="title" placeholder="标题 品类品牌型号都是买家喜欢搜索的">
@@ -56,6 +56,7 @@
     export default {
         data() {
             return {
+                appbartitle: '',
                 title: '',
                 desc: '',
                 hasPhoto: true,
@@ -209,6 +210,7 @@
         mounted() {
             if (_.has(this.$route.params, 'index')) {
                 this.index = this.$route.params.index;
+                this.appbartitle = "发布" + this.$route.params.title;
             }
         },
         components: {
