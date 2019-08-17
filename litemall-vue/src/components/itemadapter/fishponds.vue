@@ -5,6 +5,9 @@
             <div class="lottery-logo">
                 <img :src="item.activityInfo.picUrls[0]"
                      style="object-fit: cover">
+                <div class="layerchird" v-if="countdownTime=='已结束'">
+                    <span>已结束</span>
+                </div>
             </div>
             <div class="item-info">
                 <div class="info-row">
@@ -176,10 +179,26 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-left: 10px;
             img {
                 width: 4rem;
                 height: 4rem;
-                margin-left: 10px;
+            }
+            .layerchird {
+                width: 4rem;
+                height: 4rem;
+                background-color: #000;
+                filter: Alpha(Opacity=60);
+                opacity: 0.6;
+                position: absolute;
+                text-align: center;
+                span {
+                    height: 4rem;
+                    color: #fff;
+                    line-height: 4rem;
+                    font-size: 1rem;
+                    font-weight: 600;
+                }
             }
         }
         .item-info {
