@@ -2,24 +2,32 @@
     <div class="pricebox">
         <div class="price">
             <div class="inputprice">
-                <label for="">报名费用：</label>
+                <label for="">报名费用</label>
                 <input type="number" v-model="fee" placeholder="默认50元">
             </div>
             <div class="inputprice">
-                <label for="">人数限制：</label>
+                <label for="">人数限制</label>
                 <input type="number" v-model="limited" placeholder="默认5人">
             </div>
             <div class="inputprice">
-                <label for="">奖金分成：</label>
+                <label for="">奖金分成</label>
                 <input type="number" v-model="reword" placeholder="默认总报名费的80%">
             </div>
             <div class="inputprice">
-                <label for="">信用要求：</label>
+                <label for="">信用要求</label>
                 <input type="number" v-model="credit" placeholder="默认600分以上">
             </div>
             <div class="inputprice">
-                <label for="">比赛时间：</label>
+                <label for="">比赛时间</label>
                 <input type="datetime-local" v-model="activityTime">
+            </div>
+            <div v-for="(item, index) in attlist"
+                 :key="index">
+                <div class="coustominputprice">
+                    <img src="../../../assets/images/store_default.png"/>
+                    <label for="">{{item.label}}</label>
+                    <input type="text" v-model="activityTime" placeholder="请添加属性值">
+                </div>
             </div>
             <div class="addpop" v-if="isShowPop">
                 <input type="text" v-model="customInput" placeholder="请添加属性名称">
@@ -59,7 +67,14 @@
                 activityTime: '',
                 customInput: '',
                 type: 8,
-                isShowPop: false
+                isShowPop: false,
+                inputatt: {
+                    label: '',
+                    type: '',
+                    model: '',
+                    placeholder: '',
+                },
+                attlist: [],
             }
         },
         mounted() {
@@ -75,6 +90,13 @@
                     this.isShowPop = false
                     if (this.customInput) {
                         console.log('有输入')
+                        this.attlist.push({
+                            label: this.customInput,
+                            type: 'text',
+                            model: '',
+                            placeholder: '请添加属性值',
+                        })
+                        console.log(this.attlist)
                     } else {
                         console.log('没有输入')
                     }
@@ -99,15 +121,6 @@
         width 100%
         padding 1em
         .price
-            width 100%
-            padding-left 1rem
-            padding-right 1rem
-            display flex
-            align-items center
-            justify-content flex-start
-            font-size 0.9rem
-            flex-wrap wrap
-            flex 1
             .inputprice
                 width 100%
                 display flex
@@ -125,6 +138,23 @@
                 img
                     width 20px
                     height 20px
+            .coustominputprice
+                width 100%
+                display flex
+                align-items left
+                justify-content space-between
+                margin-bottom 10px
+                label
+                    flex 4
+                input
+                    flex 13
+                    outline none
+                    border none
+                    margin-left 0rem
+                    box-sizing border-box
+                img
+                    width 20px
+                    height 100%
             .addpop
                 width 100%
                 display flex
@@ -156,7 +186,6 @@
             width 100%
             height 5rem
             background-color #f3f3f3
-            padding 1rem
             box-sizing border-box
             .info
                 font-size 0.9rem
