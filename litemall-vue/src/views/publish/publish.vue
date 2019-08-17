@@ -85,10 +85,11 @@
         methods: {
             tosell(type) {
                 if (type==0){
-                    this.$router.push({
-                        path: '/publish/sell/batfree/8',
-                        params: {index: type}
-                    })
+//                    this.$router.push({
+//                        path: '/publish/sell/batfree/8',
+//                        params: {index: type}
+//                    })
+                    this.$router.push('/publish/items/publishbatfree')
                 }
                 if (type==1){
                     this.$router.push({

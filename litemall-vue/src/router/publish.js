@@ -62,5 +62,12 @@ export default [
         components: {
             default: () => import('@/views/publish/sell/publishcomment'),
         }
+    },
+    {
+        path: '/publish/items/publishbatfree',
+        name: 'publishbatfree',
+        components: {
+            default: () => import('@/views/publish/items/publishbatfree'),
+        }
     }
 ];

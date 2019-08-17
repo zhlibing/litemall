@@ -1,50 +1,46 @@
 <template>
     <div class="container">
-        <appbar titleText="发布"></appbar>
-        <div class="inputcontainer">
-            <div class="inputtitle border-1px">
-                <input type="text" v-model="title" placeholder="标题 品类品牌型号都是买家喜欢搜索的">
+        <div v-show="!isShowSelect">
+            <appbar titleText="发布"></appbar>
+            <div class="inputcontainer">
+                <div class="inputtitle border-1px">
+                    <input type="text" v-model="title" placeholder="标题 品类品牌型号都是买家喜欢搜索的">
+                </div>
+                <div class="inputdetail border-1px">
+                    <textarea type="text" v-model="desc" placeholder="内容 描述一下你的活动吧"></textarea>
+                </div>
             </div>
-            <div class="inputdetail border-1px">
-                <textarea type="text" v-model="desc" placeholder="内容 描述一下你的闲置"></textarea>
+            <div class="image-list">
+                <div class="list-img" @click="addPic" v-show="hasPhoto">
+                    <img src="../../../assets/images/相机.png" alt="">
+                    <span class="choosephoto">请选择或者拍照上传照片</span>
+                    <input ref="file" type="file" hidden accept="image/jpeg,image/jpg,image/png" capture="camera"
+                           @change="fileInput">
+                </div>
+                <ul class="list-ul" v-show="!hasPhoto">
+                    <li class="list-li" v-for="(url, index) in imgUrls" :key="index">
+                        <img :src="url" alt="">
+                        <span class="cancelimg" @click="delImage(index)"></span>
+                    </li>
+                    <li class="list-li-add">
+                        <span class="add-img" @click.stop="addPic"></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="goodinfo">
+                <batfree :item="itemf" ref="batfree" @showSelect="showSelect"></batfree>
+            </div>
+            <div class="footer">
+                <button class="fabu" @click="publish">确定发布</button>
             </div>
         </div>
-        <div class="image-list">
-            <div class="list-img" @click="addPic" v-show="hasPhoto">
-                <img src="../../../assets/images/相机.png" alt="">
-                <span class="choosephoto">请选择或者拍照上传照片</span>
-                <input ref="file" type="file" hidden accept="image/jpeg,image/jpg,image/png" capture="camera"
-                       @change="fileInput">
-            </div>
-            <ul class="list-ul" v-show="!hasPhoto">
-                <li class="list-li" v-for="(url, index) in imgUrls" :key="index">
-                    <img :src="url" alt="">
-                    <span class="cancelimg" @click="delImage(index)"></span>
-                </li>
-                <li class="list-li-add">
-                    <span class="add-img" @click.stop="addPic"></span>
-                </li>
-            </ul>
-        </div>
-        <div class="goodinfo">
-            <router-view :type="type" ref="batfree" v-if="index==0"></router-view>
-            <router-view :type="type" ref="batpk" v-if="index==1"></router-view>
-            <router-view :type="type" ref="batchallenge" v-if="index==2"></router-view>
-            <router-view :type="type" ref="publishfishponds" v-if="index==3"></router-view>
-            <router-view :type="type" ref="publishcircle" v-if="index==4"></router-view>
-            <router-view :type="type" ref="publishquestion" v-if="index==5"></router-view>
-            <router-view :type="type" ref="publishgroup" v-if="index==6"></router-view>
-        </div>
-        <div class="footer">
-            <button class="fabu" @click="publish">确定发布</button>
-        </div>
+        <fishpondsSelect @selectItem="selectItem" v-show="isShowSelect"></fishpondsSelect>
     </div>
 </template>
 
 <script>
     import appbar from '@/components/head/appbar'
     import {
-        typeObjList,
         circleSave,
         storageUpload,
         activitySave,
@@ -53,7 +49,8 @@
         questionSave
     } from '@/api/api'
     import {EventBus} from '../../../utils/event-bus'
-    import _ from 'lodash';
+    import batfree from '../components/batfree.vue'
+    import fishpondsSelect from '../../../views/items/fishpondsSelect-list/indexSelect.vue'
 
     export default {
         data() {
@@ -62,10 +59,8 @@
                 desc: '',
                 hasPhoto: true,
                 imgUrls: [],
-                type: '',
-                fishpondsId: '',
-                index: '',
-                item: Object
+                itemf: {},
+                isShowSelect: false
             }
         },
         watch: {
@@ -89,12 +84,12 @@
                 obj.limited = '1'
                 obj.km = '1'
                 obj.picUrls = this.imgUrls
-//                if (this.item.FishPondsInfo==undefined){
-//                    this.$toast('请选择一个鱼塘吧')
-//                    return
-//                }
-                if (this.item.FishPondsInfo!=undefined){
-                    obj.fishpondsId = this.item.FishPondsInfo.id
+                if (this.itemf.FishPondsInfo == undefined) {
+                    this.$toast('请选择一个鱼塘吧')
+                    return
+                }
+                if (this.itemf.FishPondsInfo != undefined) {
+                    obj.fishpondsId = this.itemf.FishPondsInfo.id
                 }
                 obj.type = this.$refs.batfree.type
                     || this.$refs.batpk.type
@@ -195,32 +190,26 @@
                     }
                 });
             },
+            selectItem(item) {
+                console.log(item, '-------232')
+                this.itemf = item
+                this.isShowSelect = false
+            },
+            showSelect() {
+                console.log('-------showSelect')
+                if (this.isShowSelect) {
+                    this.isShowSelect = false
+                } else {
+                    this.isShowSelect = true
+                }
+            }
         },
         mounted() {
-            typeObjList().then(res => {
-                if (res.status === 200) {
-                    // this.orgtypes = res.data.data.list;
-                    // this.types.clear
-                    // for (var i = 0; i < res.data.data.list.length; i++) {
-                    //     this.types.push(res.data.data.list[i].name)
-                    // }
-                }
-            }).catch(err => {
-                console.log(err)
-            })
-            if (_.has(this.$route.params, 'index')) {
-                this.index = this.$route.params.index;
-            }
-            EventBus.$on("selectItem", ({item}) => {
-                this.$nextTick(() => {
-                    Object.assign(this.item, item)//浅拷贝
-                    // this.item = JSON.parse(JSON.stringify(this.item))//深拷贝
-                    console.log(this.item)
-                })
-            })
         },
         components: {
             appbar,
+            batfree,
+            fishpondsSelect
         }
     }
 </script>
