@@ -9,16 +9,16 @@
             <div class="item-info">
                 <div class="info-row">
                     <p class="lottery-name">
-                        {{item.activityInfo.title||item.FishPondsInfo.title||item.GroupInfo.title}}
+                        {{item.activityInfo.title || item.FishPondsInfo.title || item.GroupInfo.title}}
                     </p>
                     <img src="../../assets/images/right.png" class="arrow-right"/>
                 </div>
                 <div class="nums">
-                    <span>{{item.activityInfo.description||item.FishPondsInfo.description||item.GroupInfo.description}}</span>
+                    <span>{{item.activityInfo.description || item.FishPondsInfo.description || item.GroupInfo.description}}</span>
                 </div>
                 <div class="info-row">
                     <span class="issue-no">奖金：</span>
-                    <span class="item-cd">{{'￥'+item.activityInfo.reword}}</span>
+                    <span class="item-cd">{{'￥' + item.activityInfo.reword}}</span>
                 </div>
             </div>
         </a>
@@ -57,7 +57,9 @@
             </div>
         </div>
         <div class="fun-info" v-show="isShowTwo">
-            <span>玩法介绍玩法介绍玩法介绍玩法介绍玩法介绍玩法介绍玩法介绍玩法介绍玩法介绍玩法介绍</span>
+            <div v-for="(itemc,index) in JSON.parse(item.activityInfo.rule)" :key="index">
+                <span>{{itemc.label + itemc.model}}</span>
+            </div>
         </div>
         <div class="fun-info" v-show="isShowThree">
             <span>排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜</span>
