@@ -37,7 +37,7 @@
         padding-bottom: 0.4rem;
         border-bottom: 1px solid #f7f7f7;
         .title {
-            font-size: 0.9rem;
+            font-size: 15px;
             font-weight: 400;
         }
         .answer {
@@ -61,11 +61,12 @@
             .text {
                 vertical-align: middle;
                 flex: 1;
+                font-size: 13px;
                 font-weight: 500;
                 line-height: 1.2rem;
             }
             img {
-                width: 4rem;
+                width: 6rem;
                 height: 4rem;
                 margin-left: 0.3em;
             }

@@ -19,7 +19,7 @@
             <div class="focuse" v-else>已关注</div>
             <div class="focuseinfo">{{"粉丝："+user.collectCount}}</div>
         </div>
-        <div v-for="(item,index) in circles" :key="index" style="margin-left: 20px;margin-right: 20px;margin-top: 20px">
+        <div v-for="(item,index) in circles" :key="index" style="margin-left: 15px;margin-right: 15px;margin-top: 20px">
             <circleItem :item="item"></circleItem>
         </div>
         <is-empty v-if="circles.length === 0">TA很懒，啥都没写~</is-empty>

@@ -269,19 +269,22 @@
                     background: #ffffff;
                     .imgbig {
                         width: 100%;
-                        height: 4rem;
+                        height: 5rem;
                         margin-bottom: 0.2rem;
                         object-fit: cover;
                     }
                     .name {
                         color: #000000;
-                        font-size: 0.6em;
-                        font-weight: 600;
+                        font-size: 15px;
+                        font-weight: 400;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                         margin-bottom: 0.2rem;
                     }
                     .desc {
                         color: #888888;
-                        font-size: 0.4rem;
+                        font-size: 13px;
                         font-weight: 400;
                         white-space: nowrap;
                         overflow: hidden;
@@ -290,7 +293,7 @@
                     }
                     .img {
                         width: 100%;
-                        height: 4rem;
+                        height: 5rem;
                         margin-bottom: 0.2em;
                         object-fit: cover;
                     }

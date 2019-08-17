@@ -47,14 +47,14 @@
         .layer {
             position: relative;
             .image {
-                width: 4rem;
-                height: 4rem;
+                width: 7rem;
+                height: 5rem;
                 object-fit: cover;
                 position: absolute;
             }
             .layerchird {
-                width: 4rem;
-                height: 4rem;
+                width: 7rem;
+                height: 5rem;
                 background-color: #000;
                 filter: Alpha(Opacity=60);
                 opacity: 0.6;
@@ -71,11 +71,11 @@
         }
         .info {
             flex: 1;
-            margin-left: 4.6rem;
+            margin-left: 7.6rem;
             .head {
                 display: flex;
                 .tit {
-                    font-size: 0.9rem;
+                    font-size: 15px;
                     font-weight: 400;
                     flex: 1;
                     margin-top: 0px;
@@ -96,7 +96,7 @@
             .text {
                 max-height: 50px;
                 margin-top: -15px;
-                font-size: 0.8rem;
+                font-size: 13px;
                 font-weight: 200;
                 line-height: 1.2rem;
                 overflow: hidden;

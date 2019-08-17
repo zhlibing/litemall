@@ -71,9 +71,10 @@
                 line-height: 1.2rem;
             }
             img {
-                width: 3rem;
+                width: 5rem;
                 height: 3rem;
                 margin-left: 0.3em;
+                object-fit: cover;
             }
         }
         .bottom {

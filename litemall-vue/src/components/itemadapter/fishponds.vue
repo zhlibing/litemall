@@ -181,12 +181,12 @@
             align-items: center;
             margin-left: 5px;
             img {
-                width: 5.5rem;
-                height: 7rem;
+                width: 10rem;
+                height: 6.5rem;
             }
             .layerchird {
-                width: 5.5rem;
-                height: 7rem;
+                width: 10rem;
+                height: 6.5rem;
                 background-color: #000;
                 filter: Alpha(Opacity=60);
                 opacity: 0.6;

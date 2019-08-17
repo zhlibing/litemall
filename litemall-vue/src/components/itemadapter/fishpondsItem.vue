@@ -56,14 +56,14 @@
         background-color: #fff;
         .name {
             width: 100%;
-            height: 140px;
+            height: 130px;
             position: relative;
             .img {
                 position: absolute;
                 top: 0;
                 left: 0;
                 width: 100%;
-                height: 140px;
+                height: 130px;
                 object-fit: cover;
             }
 
@@ -72,7 +72,7 @@
                 top: 0;
                 left: 0;
                 width: 100%;
-                height: 140px;
+                height: 130px;
                 text-align: center;
                 display: flex;
                 justify-content: center;
@@ -83,13 +83,13 @@
                 .txt {
                     margin-top: 10px;
                     height: 20px;
-                    font-size: 20px;
+                    font-size: 15px;
                     color: #fff;
                 }
 
                 .line {
                     margin: 0 auto;
-                    margin-top: 16px;
+                    margin-top: 10px;
                     display: block;
                     height: 2px;
                     width: 300px;
@@ -97,13 +97,14 @@
                 }
                 .price {
                     height: 15px;
-                    font-size: 15px;
+                    font-size: 13px;
+                    margin-top: 10px;
                     color: #fff;
                 }
                 .activity {
                     width: 100%;
                     display: flex;
-                    margin-top: 15px;
+                    margin-top: 10px;
                     .acinfo {
                         flex: 1;
                         img {
@@ -127,8 +128,8 @@
             line-height: 20px;
             text-align: left;
             img {
-                width: 3rem;
-                height: 3rem;
+                width: 40px;
+                height: 40px;
                 border-radius: 50%;
                 margin-right: 10px;
             }
@@ -137,6 +138,7 @@
                 flex-direction: column;
                 span {
                     height: 20px;
+                    font-size: 13px;
                     overflow: hidden;
                     text-overflow: ellipsis;
                     display: -webkit-box;
@@ -146,7 +148,7 @@
                 .span2 {
                     color: #1e6abc;
                     font-size: 13px;
-                    margin-top: 10px;
+                    margin-top: 5px;
                     background: url('../../assets/images/定位.png') no-repeat;
                     background-size: 1.1rem 1.1rem;
                     padding-left: 20px;
