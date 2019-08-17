@@ -95,6 +95,7 @@
                     obj.fishpondsId = this.itemf.FishPondsInfo.id
                 }
                 obj.rule = JSON.stringify(this.$refs.batfree.attlist)
+                obj.activityTime = (this.$refs.batfree.activityTime).replace(/T/, ' ') + ":00"
                 obj.type = this.$refs.batfree.type
                     || this.$refs.batpk.type
                     || this.$refs.batchallenge.type
