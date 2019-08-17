@@ -179,19 +179,20 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-left: 10px;
+            margin-left: 5px;
             img {
-                width: 4rem;
-                height: 4rem;
+                width: 5rem;
+                height: 7rem;
             }
             .layerchird {
-                width: 4rem;
-                height: 4rem;
+                width: 5rem;
+                height: 7rem;
                 background-color: #000;
                 filter: Alpha(Opacity=60);
                 opacity: 0.6;
                 position: absolute;
                 text-align: center;
+                padding-top: 20px;
                 span {
                     height: 4rem;
                     color: #fff;
@@ -205,7 +206,7 @@
             display: flex;
             flex: 1;
             flex-direction: column;
-            padding: 0 .625rem;
+            padding-left: 0.625rem;
             .info-row {
                 display: flex;
                 flex: 1;
@@ -225,7 +226,6 @@
                 .arrow-right {
                     width: .5625rem;
                     height: .9375rem;
-                    margin-right: 5px;
                 }
                 .issue-no {
                     font-size: .7875rem;

@@ -1,66 +1,17 @@
 <template>
-    <div class="lobby-item" v-if="item!==undefined">
-        <a class="item-content"
-           @click="itemClick(item.FishPondsInfo.id,item.FishPondsInfo.type)">
-            <div class="lottery-logo">
-                <img :src="item.FishPondsInfo.picUrls[0]"
-                     style="object-fit: cover">
-            </div>
-            <div class="item-info">
-                <div class="info-row">
-                    <p class="lottery-name">
-                        {{item.FishPondsInfo.title}}
-                    </p>
-                    <img src="../../assets/images/right.png" class="arrow-right"/>
-                </div>
-                <div class="nums">
-                    <span>{{item.FishPondsInfo.description}}</span>
-                </div>
-                <div class="info-row">
-                    <span class="issue-no">奖金：</span>
-                    <span class="item-cd">{{'￥'+item.FishPondsInfo.reword}}</span>
-                </div>
-            </div>
-        </a>
-        <div class="funs-wrap">
-            <div class="funs-list">
-                <div class="fun" @click="showOne">
-                    <img src="../../assets/images/trend.png" class="fun-logo"/>
-                    <span>头号玩家</span>
-                </div>
-                <div class="fun" @click="showTwo">
-                    <img src="../../assets/images/rule.png" class="fun-logo"/>
-                    <span>玩法规则</span>
-                </div>
-                <div class="fun" @click="showThree">
-                    <img src="../../assets/images/shouCang.png" class="fun-logo"/>
-                    <span>加入收藏</span>
-                </div>
+    <div class="brand-info" v-if="item!==undefined" @click="itemClick(item.FishPondsInfo.id,item.FishPondsInfo.type)">
+        <div class="name">
+            <img class="img"
+                 :src="item.FishPondsInfo.picUrls[0]"
+                 background-size="cover"/>
+            <div class="info-box">
+                <div class="txt">{{item.FishPondsInfo.title}}</div>
+                <div class="line"></div>
+                <div class="price">{{'￥' + item.FishPondsInfo.reword}}元起</div>
             </div>
         </div>
-        <div class="arrow-wrap">
-            <div class="arrow-list">
-                <div class="arrow">
-                    <img src="../../assets/images/下箭头red.png" class="fun-logo" v-show="isShowOne"/>
-                </div>
-                <div class="arrow">
-                    <img src="../../assets/images/下箭头red.png" class="fun-logo" v-show="isShowTwo"/>
-                </div>
-                <div class="arrow">
-                    <img src="../../assets/images/下箭头red.png" class="fun-logo" v-show="isShowThree"/>
-                </div>
-            </div>
-        </div>
-        <div class="fun-info" v-show="isShowOne">
-            <div v-for="(itemc,index) in users" :key="index">
-                <linkuser :item="itemc"></linkuser>
-            </div>
-        </div>
-        <div class="fun-info" v-show="isShowTwo">
-            <span>玩法介绍玩法介绍玩法介绍玩法介绍玩法介绍玩法介绍玩法介绍玩法介绍玩法介绍玩法介绍</span>
-        </div>
-        <div class="fun-info" v-show="isShowThree">
-            <span>排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜排行榜</span>
+        <div class="desc">
+            {{item.FishPondsInfo.description}}
         </div>
     </div>
 </template>
@@ -72,194 +23,79 @@
             item: Object,
         },
         data() {
-            return {
-                isShowOne: false,
-                isShowTwo: false,
-                isShowThree: false,
-                users: []
-            };
+            return {};
         },
         mounted() {
-            let keyUser = {}
-            keyUser = this.item.publishUser
-            keyUser.key = true;
-            this.users.push(keyUser);
-            this.users.push(...this.item.joinUsers);
-            if (this.item.joinUsers.length > 0) {
-                this.isShowOne = true
-            }
         },
         methods: {
             itemClick(id, type) {
                 this.$router.push(`/items/publishdetails/${id}/${type}`);
             },
-            showOne() {
-                this.$emit('onShowClick')
-                if (this.isShowOne) {
-                    this.isShowOne = false
-                } else {
-                    this.isShowOne = true
-                    this.isShowTwo = false
-                    this.isShowThree = false
-                }
-            },
-            showTwo() {
-                this.$emit('onShowClick')
-                if (this.isShowTwo) {
-                    this.isShowTwo = false
-                } else {
-                    this.isShowOne = false
-                    this.isShowTwo = true
-                    this.isShowThree = false
-                }
-            },
-            showThree() {
-                this.$emit('onShowClick')
-                if (this.isShowThree) {
-                    this.isShowThree = false
-                } else {
-                    this.isShowOne = false
-                    this.isShowTwo = false
-                    this.isShowThree = true
-                }
-            },
         },
-        components: {
-            linkuser,
-        }
+        components: {}
     }
 </script>
 <style lang="scss" scoped>
-    .lobby-item {
-        /*min-height: 7.8125rem;*/
-        background-color: #fff;
-        display: flex;
-        flex-direction: column;
-    }
+    .brand-info {
+        .name {
+            width: 100%;
+            height: 180px;
+            position: relative;
 
-    .item-content {
-        display: flex;
-        flex-direction: row;
-        flex: 1;
-        border-bottom: .0625rem solid #f7f7f7;
-        padding: 0 .625rem;
-        .lottery-logo {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            img {
-                width: 4rem;
-                height: 4rem;
-                margin-left: 10px;
+            .img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 180px;
+                object-fit: cover;
             }
-        }
-        .item-info {
-            display: flex;
-            flex: 1;
-            flex-direction: column;
-            padding: .625rem 0 .625rem .625rem;
-            .info-row {
+
+            .info-box {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 180px;
+                text-align: center;
                 display: flex;
-                flex: 1;
-                flex-direction: row;
-                justify-content: space-between;
+                justify-content: center;
                 align-items: center;
-                margin-top: 5px;
-                .lottery-name {
-                    font-size: .94rem;
-                    font-weight: 400;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    display: -webkit-box;
-                    -webkit-box-orient: vertical;
-                    -webkit-line-clamp: 2;
-                    margin-right: 10px;
+                display: block;
+                background-color: rgba(0, 0, 0, 0.4);
+
+                .txt {
+                    margin-top: 60px;
+                    height: 25px;
+                    font-size: 25px;
+                    color: #fff;
                 }
-                .arrow-right {
-                    width: .5625rem;
-                    height: .9375rem;
-                    margin-right: 5px;
+
+                .line {
+                    margin: 0 auto;
+                    margin-top: 16px;
+                    display: block;
+                    height: 2px;
+                    width: 300px;
+                    background: #fff;
                 }
-                .issue-no {
-                    font-size: .7875rem;
-                    color: #666;
-                }
-                .item-cd {
-                    font-size: .7875rem;
-                    color: red;
-                    margin-right: 5px;
-                    margin-top: 5px;
-                }
-            }
-            .nums {
-                margin-top: -5px;
-                display: flex;
-                flex-direction: row;
-                justify-content: flex-start;
-                span {
-                    font-size: .9rem;
-                    color: #888;
-                    padding-right: .1875rem;
+                .price {
+                    height: 25px;
+                    font-size: 25px;
+                    color: #fff;
                 }
             }
         }
-    }
-
-    .lobby-item .funs-wrap .funs-list .fun + .fun {
-        border-left: .0625rem solid #f7f7f7;
-    }
-
-    .funs-wrap {
-        padding: .5rem;
-        background-color: #ffffff;
-    }
-
-    .funs-list {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-    }
-
-    .fun {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        .fun-logo {
-            height: .9375rem;
-            width: .9375rem;
+        .desc {
+            background: #fff;
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            padding: 25px 20px;
+            font-size: 20px;
+            color: #666;
+            line-height: 20px;
+            text-align: center;
         }
-        span {
-            font-size: .75rem;
-            color: #333;
-            padding-left: .5rem;
-        }
-    }
-
-    .arrow-wrap {
-        background-color: #ffffff;
-    }
-
-    .arrow-list {
-        flex: 1;
-        display: flex;
-    }
-
-    .arrow {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        .fun-logo {
-            padding: 0;
-            height: 1rem;
-            width: 1rem;
-        }
-    }
-
-    .fun-info {
-        padding: 5px 20px;
-        font-size: .9rem;
-        font-weight: 400;
-        line-height: 25px;
-        z-index: 99;
     }
 </style>
