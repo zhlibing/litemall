@@ -205,14 +205,13 @@
             display: flex;
             flex: 1;
             flex-direction: column;
-            padding: .625rem 0 .625rem .625rem;
+            padding: 0 .625rem;
             .info-row {
                 display: flex;
                 flex: 1;
                 flex-direction: row;
                 justify-content: space-between;
                 align-items: center;
-                margin-top: 5px;
                 .lottery-name {
                     font-size: .94rem;
                     font-weight: 400;
@@ -220,7 +219,7 @@
                     text-overflow: ellipsis;
                     display: -webkit-box;
                     -webkit-box-orient: vertical;
-                    -webkit-line-clamp: 2;
+                    -webkit-line-clamp: 1;
                     margin-right: 10px;
                 }
                 .arrow-right {
@@ -244,6 +243,12 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: flex-start;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                margin-right: 10px;
                 span {
                     font-size: .9rem;
                     color: #888;

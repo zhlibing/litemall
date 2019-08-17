@@ -6,7 +6,7 @@
                       :finished="finished"
                       :immediate-check="false"
                       finished-text="没有更多了"
-                      @load="getActivityListall" v-show="index==0" style="margin-top: 20px">
+                      @load="getActivityListall" v-show="index==0" style="margin-top: 30px">
                 <div v-for="(item, index) in list"
                      :key="index">
                     <lotteryList :item="item" @onShowClick="onShowClick"
@@ -19,7 +19,7 @@
                       :finished="finished1"
                       :immediate-check="false"
                       finished-text="没有更多了"
-                      @load="getFishpondsListall" v-show="index==1" style="margin-top: 10px">
+                      @load="getFishpondsListall" v-show="index==1" style="margin-top: 20px">
                 <div v-for="(item, index) in list1"
                      :key="index">
                     <fishpondsItem :item="item" @onShowClick="onShowClick"
