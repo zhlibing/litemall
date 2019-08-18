@@ -121,7 +121,29 @@ public class WxGroupController {
             collectListVo.put("data", collectVo);
             return collectListVo;
         };
-
+        // 加入列表
+        Callable<List<Map<String, Object>>> joinListCallable = () -> {
+            List<LitemallGroupUser> litemallGroupUsers = GroupUserService.queryGroupUser(id, 0, 100);
+            List<Map<String, Object>> usersVo = new ArrayList<>(litemallGroupUsers.size());
+            for (LitemallGroupUser litemallGroupUser : litemallGroupUsers) {
+                LitemallUser GroupUser = userService.findDetailById(litemallGroupUser.getUserId());
+                Map<String, Object> c = new HashMap<>();
+                c.put("user", GroupUser);
+                // 用户收藏
+                Random rand = new Random();
+                int random = rand.nextInt(9999) + 9999;
+                int userHasCollect = 0;
+                int collectCount = 0;
+                if (GroupUser.getId() != null & userId != null) {
+                    userHasCollect = collectService.count(userId, GroupUser.getId(), 10);
+                }
+                collectCount = collectService.countCollect(GroupUser.getId(), 10);
+                c.put("userHasCollect", userHasCollect);
+                c.put("collectCount", collectCount + 0);
+                usersVo.add(c);
+            }
+            return usersVo;
+        };
         // 用户收藏
         int userHasCollect = 0;
         if (userId != null) {
@@ -158,9 +180,11 @@ public class WxGroupController {
 
         FutureTask<Map> commentsCallableTsk = new FutureTask<>(commentsCallable);
         FutureTask<Map> collectListCallableTsk = new FutureTask<>(collectListCallable);
+        FutureTask<List<Map<String, Object>>> joinListCallableTsk = new FutureTask<>(joinListCallable);
 
         executorService.submit(commentsCallableTsk);
         executorService.submit(collectListCallableTsk);
+        executorService.submit(joinListCallableTsk);
 
         Map<String, Object> data = new HashMap<>();
 
@@ -173,6 +197,7 @@ public class WxGroupController {
             data.put("publishUser", userVo);
             data.put("comment", commentsCallableTsk.get());
             data.put("collect", collectListCallableTsk.get());
+            data.put("joinUsers", joinListCallableTsk.get());
         } catch (Exception e) {
             e.printStackTrace();
         }
