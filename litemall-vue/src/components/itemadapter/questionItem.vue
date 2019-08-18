@@ -1,14 +1,14 @@
 <template>
-    <div class="quesbox" v-if="item!==undefined">
+    <div class="quesbox" v-if="item!==undefined" @click="itemClick(item.id,item.type)">
         <div class="title">{{item.title || "暂无标题"}}</div>
-        <div class="answer" @click="itemClick(item.id,item.type)">
+        <div class="answer">
             <span class="da">答</span>
             <div class="text">{{item.content || item.description}}</div>
             <div v-if="item.picUrls !== undefined&&item.picUrls.length>0">
-                <img :src="item.picUrls[0]" alt="">
                 <div class="layerchird">
                     <span v-if="item.picUrls.length-1>0">+{{item.picUrls.length - 1}}</span>
                 </div>
+                <img :src="item.picUrls[0]" alt="">
             </div>
         </div>
         <div class="bottom">
@@ -71,13 +71,13 @@
             img {
                 width: 7rem;
                 height: 5rem;
+                margin-top: -2.7rem;
                 margin-left: 0.3em;
             }
             .layerchird {
                 width: 2.5rem;
                 height: 2.5rem;
-                margin-top: -3rem;
-                margin-left: 0.4rem;
+                margin-left: 4.4rem;
                 border-radius: 50%;
                 background-color: #000;
                 filter: Alpha(Opacity=60);
