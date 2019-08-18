@@ -73,4 +73,7 @@
 </script>
 
 <style lang="scss" scoped>
+    .user_collect {
+        background-color: white;
+    }
 </style>

@@ -7,13 +7,13 @@
                   finished-text="没有更多了"
                   @load="getCollectList">
             <div v-for="(itemc,index) in list" :key="index" style="margin: 15px">
-                <linkuser :item="itemc"></linkuser>
                 <div class="footer">
                     <van-button size="mini"
                                 icon="lajitong"
-                                @click.stop="cancelCollect($event, i,item)">删除
+                                @click.stop="cancelCollect($event, index,itemc)">删除
                     </van-button>
                 </div>
+                <linkuser :item="itemc"></linkuser>
             </div>
         </van-list>
 
@@ -86,14 +86,11 @@
 </script>
 
 <style lang="scss" scoped>
+    .user_collect {
+        background-color: white;
+    }
+
     .footer {
-        width: 120px;
-        color: $font-color-gray;
-        border: 1px solid $font-color-gray;
-        margin: 0 auto;
-        text-align: center;
-        padding: 5px 3px;
-        margin-top: 20px;
-        border-radius: 3px;
+        text-align: right;
     }
 </style>
