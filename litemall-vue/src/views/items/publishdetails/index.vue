@@ -178,6 +178,7 @@
                             console.log(res, '>>>fishpondsJoin')
                             if (res.status === 200 && res.data.errno == 0) {
                                 this.userHasJoin = 1
+                                this.news.joinUsers.splice(0, 0, {"user": {"id": this.userId, "avatar": this.avatar}})
                                 this.$toast({
                                     message: '加入成功',
                                     duration: 1500
@@ -189,6 +190,12 @@
                             console.log(res, '>>>fishpondsQuit')
                             if (res.status === 200 && res.data.errno == 0) {
                                 this.userHasJoin = 0
+                                let index = -1
+                                for (var i = 0; i < this.news.joinUsers.length; i++) {
+                                    if (this.news.joinUsers[i].user.id == this.userId)
+                                        index = i
+                                }
+                                this.news.joinUsers.splice(index, 1)
                                 this.$toast({
                                     message: '退出成功',
                                     duration: 1500
@@ -218,6 +225,7 @@
                             console.log(res, '>>>groupJoin')
                             if (res.status === 200 && res.data.errno == 0) {
                                 this.userHasJoin = 1
+                                this.news.joinUsers.splice(0, 0, {"user": {"id": this.userId, "avatar": this.avatar}})
                                 this.$toast({
                                     message: '加入成功',
                                     duration: 1500
@@ -229,6 +237,12 @@
                             console.log(res, '>>>groupQuit')
                             if (res.status === 200 && res.data.errno == 0) {
                                 this.userHasJoin = 0
+                                let index = -1
+                                for (var i = 0; i < this.news.joinUsers.length; i++) {
+                                    if (this.news.joinUsers[i].user.id == this.userId)
+                                        index = i
+                                }
+                                this.news.joinUsers.splice(index, 1)
                                 this.$toast({
                                     message: '退出成功',
                                     duration: 1500
@@ -245,6 +259,7 @@
                             console.log(res, '>>>activityJoin')
                             if (res.status === 200 && res.data.errno == 0) {
                                 this.userHasJoin = 1
+                                this.news.joinUsers.splice(0, 0, {"user": {"id": this.userId, "avatar": this.avatar}})
                                 this.$toast({
                                     message: '加入成功',
                                     duration: 1500
@@ -256,6 +271,12 @@
                             console.log(res, '>>>activityQuit')
                             if (res.status === 200 && res.data.errno == 0) {
                                 this.userHasJoin = 0
+                                let index = -1
+                                for (var i = 0; i < this.news.joinUsers.length; i++) {
+                                    if (this.news.joinUsers[i].user.id == this.userId)
+                                        index = i
+                                }
+                                this.news.joinUsers.splice(index, 1)
                                 this.$toast({
                                     message: '退出成功',
                                     duration: 1500
