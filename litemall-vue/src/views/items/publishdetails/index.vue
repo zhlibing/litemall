@@ -26,6 +26,25 @@
                     <img :src="picUrl" alt="">
                 </a>
             </div>
+            <CircleProgress v-if="false"
+                            ref="$circle"
+                            class="progress"
+                            key="animation-model"
+                            :isAnimation="true"
+                            :isRound="true"
+                            :width="width"
+                            :radius="radius"
+                            :progress="progress"
+                            :barColor="barColor"
+                            :duration="duration"
+                            :delay="delay"
+                            :timeFunction="timeFunction"
+                            :backgroundColor="backgroundColor"/>
+            <horProgress :label="label"
+                         :text="text"
+                         :height="10"
+                         :color="barColor"
+                         :percentage="50"/>
             <div>
                 <div class="jion" v-for="(item,index) in news.joinUsers" :key="index">
                     <linkuser :item="item" style="margin-left: -30px"></linkuser>
@@ -90,6 +109,8 @@
     } from '@/api/api';
     import {getLocalStorage} from '@/utils/local-storage';
     import linkuser from '../../../components/itemadapter/linkuser'
+    import CircleProgress from '../../../components/progress-bar/circle-progress.vue'
+    import horProgress from '../../../components/progress-bar/progress-bar.vue'
 
     export default {
         props: {
@@ -103,6 +124,21 @@
                 title: '详情',
                 userId: '',
                 avatar: '',
+
+                label: "当前1人",
+                text: "5人开始",
+
+                width: 200,
+                radius: 20,
+                progress: 70,
+                duration: 1000,
+                delay: 20,
+                barColor: '#F2AE57',
+                backgroundColor: '#FFE8CC',
+                timeFunction: 'cubic-bezier(0.99, 0.01, 0.22, 0.94)',
+                intervalTimer: null, // 持续模式，循环计时器
+                currentTime: 0, // 当前时间
+                durationTime: 60, // 持续模式总时长
             }
         },
         methods: {
@@ -340,7 +376,9 @@
         components: {
             appbar,
             commentItem,
-            linkuser
+            linkuser,
+            CircleProgress,
+            horProgress
         }
     }
 </script>
