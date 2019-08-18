@@ -13,7 +13,8 @@
             <span class="da" v-if="item.key!=undefined">{{"发起人"}}</span>
         </div>
         <div class="bottom">
-            <div class="yutang">{{"人气" + item.collectCount}}</div>
+            <div class="yutang" v-if="item.key==undefined" style="margin-left: 30px">{{"人气" + item.collectCount}}</div>
+            <div class="yutang" v-else="">{{"人气" + item.collectCount}}</div>
             <div class="toanswer" v-if="item.key==undefined" @click="addCollect">
                 <span v-if="item.userHasCollect==0">关注一下</span>
                 <span v-else>已关注</span>
@@ -61,6 +62,7 @@
         margin-top: 0.5rem;
         margin-left: 0.2rem;
         margin-right: 0.2rem;
+        padding-bottom: 0.5rem;
         border-bottom: 1px solid #f7f7f7;
         .answer {
             display: flex;

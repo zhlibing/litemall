@@ -26,6 +26,11 @@
                     <img :src="picUrl" alt="">
                 </a>
             </div>
+            <div>
+                <div class="jion" v-for="(item,index) in news.joinUsers" :key="index">
+                    <linkuser :item="item" style="margin-left: -30px"></linkuser>
+                </div>
+            </div>
             <div class="collect" v-if="news.collectCount>0">
                 <div>{{"人气：" + news.collectCount}}</div>
                 <img src="../../../assets/images/赞1.png">
@@ -84,6 +89,7 @@
         questionRefresh
     } from '@/api/api';
     import {getLocalStorage} from '@/utils/local-storage';
+    import linkuser from '../../../components/itemadapter/linkuser'
 
     export default {
         props: {
@@ -313,6 +319,7 @@
         components: {
             appbar,
             commentItem,
+            linkuser
         }
     }
 </script>
