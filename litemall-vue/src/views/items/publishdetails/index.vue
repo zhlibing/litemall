@@ -11,7 +11,7 @@
                     <div class="ta">{{news.info.addTime + ' '}}{{"等级:" + news.publishUser.user.userLevel}}</div>
                 </div>
                 <div class="focuseinfobox">
-                    <div class="focuseinfo">{{"粉丝："+news.publishUser.collectCount}}</div>
+                    <div class="focuseinfo">{{"粉丝：" + news.publishUser.collectCount}}</div>
                     <div class="focuse"
                          v-if="news.publishUser.userHasCollect==0||news.publishUser.userHasCollect==undefined">关注
                     </div>
@@ -27,7 +27,7 @@
                 </a>
             </div>
             <div class="collect" v-if="news.collectCount>0">
-                <div>{{"人气："+news.collectCount}}</div>
+                <div>{{"人气：" + news.collectCount}}</div>
                 <img src="../../../assets/images/赞1.png">
                 <div class="collect" v-for="(item,index) in news.collect.data" :key="index"
                      @click="goUserDetails(item.user.id)">
@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="messagebox">
-            <p class="msg border-1px">{{'留言 '+news.comment.data.length+' 条'}}</p>
+            <p class="msg border-1px">{{'留言 ' + news.comment.data.length + ' 条'}}</p>
             <div class="list2n" v-for="(comment,index) in news.comment.data" :key="index"
                  v-show="news.comment.data!=undefined&&news.comment.data.length>0">
                 <commentItem :comment="comment" :userId="userId" @deleteComment="deleteComment(index)"></commentItem>
@@ -95,7 +95,8 @@
                 userHasJoin: -1,
                 news: {},
                 title: '详情',
-                userId: ''
+                userId: '',
+                avatar: '',
             }
         },
         methods: {
@@ -108,9 +109,11 @@
             },
             getUserInfo() {
                 const infoData = getLocalStorage(
-                    'userId'
+                    'userId',
+                    'avatar'
                 );
                 this.userId = infoData.userId || "";
+                this.avatar = infoData.avatar || "";
                 console.log(infoData, '>>>>>>userId')
             },
             addCollect() {
@@ -118,9 +121,23 @@
                     if (this.news.userHasCollect === 1) {
                         this.news.userHasCollect = 0;
                         this.news.collectCount -= 1;
+                        Array.prototype.indexOf = function (val) {
+                            for (var i = 0; i < this.length; i++) {
+                                if (this[i] == val) return i;
+                            }
+                            return -1;
+                        };
+                        Array.prototype.remove = function(val) {
+                            var index = this.indexOf(val);
+                            if (index > -1) {
+                                this.splice(index, 1);
+                            }
+                        };
+                        this.news.collect.data.splice(0, 1)
                     } else {
                         this.news.userHasCollect = 1;
                         this.news.collectCount += 1;
+                        this.news.collect.data.splice(0, 0, {"user": {"id": this.userId, "avatar": this.avatar}})
                         this.$toast({
                             message: '收藏成功',
                             duration: 1500
