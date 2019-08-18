@@ -28,7 +28,7 @@
     import {Card, Search, List} from 'vant';
     import scrollFixed from '@/mixin/scroll-fixed';
     import appbar from '@/components/head/appbar'
-    import linkuser from '../../../components/itemadapter/linkuser'
+    import linkuser from '../../../components/itemadapter/linkuser2'
 
     export default {
         mixins: [scrollFixed],
