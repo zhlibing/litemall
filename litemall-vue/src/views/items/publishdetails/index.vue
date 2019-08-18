@@ -402,7 +402,7 @@
             background-color #fff
             padding .3rem 0rem
             .msg
-                font-size 0.9rem
+                font-size 15px
                 color #000000
                 font-weight 600
                 padding-left 1rem
