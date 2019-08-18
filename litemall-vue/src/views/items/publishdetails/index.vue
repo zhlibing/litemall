@@ -40,11 +40,12 @@
                             :delay="delay"
                             :timeFunction="timeFunction"
                             :backgroundColor="backgroundColor"/>
-            <horProgress :label="label"
+            <horProgress v-if="news.joinUsers!=undefined&&news.joinUsers.length>0"
+                         :label="label"
                          :text="text"
                          :height="10"
                          :color="barColor"
-                         :percentage="50"/>
+                         :percentage="news.joinUsers.length * 100 / 5"/>
             <div>
                 <div class="jion" v-for="(item,index) in news.joinUsers" :key="index">
                     <linkuser :item="item" style="margin-left: -30px"></linkuser>
@@ -125,8 +126,9 @@
                 userId: '',
                 avatar: '',
 
-                label: "当前1人",
+                label: "",
                 text: "5人开始",
+                percentage: 0,
 
                 width: 200,
                 radius: 20,
@@ -343,6 +345,7 @@
                     this.news = res.data.data;
                     this.userHasCollect = res.data.data.userHasCollect
                     this.userHasJoin = res.data.data.userHasJoin
+                    this.label = "当前" + this.news.joinUsers.length + '人'
                 });
             }
             if (this.type == 6) {
@@ -359,6 +362,7 @@
                     this.news = res.data.data;
                     this.userHasCollect = res.data.data.userHasCollect
                     this.userHasJoin = res.data.data.userHasJoin
+                    this.label = "当前" + this.news.joinUsers.length + '人'
                 });
             }
             if (this.type == 8) {
@@ -367,6 +371,7 @@
                     this.news = res.data.data;
                     this.userHasCollect = res.data.data.userHasCollect
                     this.userHasJoin = res.data.data.userHasJoin
+                    this.label = "当前" + this.news.joinUsers.length + '人'
                 });
             }
         },
