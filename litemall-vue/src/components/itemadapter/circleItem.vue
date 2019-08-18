@@ -53,8 +53,8 @@
                 position: absolute;
             }
             .layerchird {
-                left: 0;
-                bottom: 10px;
+                left: 5px;
+                bottom: 15px;
                 width: 2.5rem;
                 height: 2.5rem;
                 border-radius: 50%;

@@ -4,8 +4,11 @@
         <div class="answer" @click="itemClick(item.id,item.type)">
             <span class="da">答</span>
             <div class="text">{{item.content || item.description}}</div>
-            <div class="imgshow" v-if="item.picUrls !== undefined&&item.picUrls.length>0">
+            <div v-if="item.picUrls !== undefined&&item.picUrls.length>0">
                 <img :src="item.picUrls[0]" alt="">
+                <div class="layerchird">
+                    <span v-if="item.picUrls.length-1>0">+{{item.picUrls.length - 1}}</span>
+                </div>
             </div>
         </div>
         <div class="bottom">
@@ -66,9 +69,27 @@
                 line-height: 1.2rem;
             }
             img {
-                width: 6rem;
-                height: 4rem;
+                width: 7rem;
+                height: 5rem;
                 margin-left: 0.3em;
+            }
+            .layerchird {
+                width: 2.5rem;
+                height: 2.5rem;
+                margin-top: -3rem;
+                margin-left: 0.4rem;
+                border-radius: 50%;
+                background-color: #000;
+                filter: Alpha(Opacity=60);
+                opacity: 0.6;
+                text-align: center;
+                span {
+                    height: 2.5rem;
+                    color: white;
+                    line-height: 2.5rem;
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                }
             }
         }
         .bottom {
