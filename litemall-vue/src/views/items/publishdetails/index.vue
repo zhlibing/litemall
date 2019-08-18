@@ -52,7 +52,7 @@
                 </div>
             </div>
             <div class="collect" v-if="news.collectCount>0">
-                <div>{{"人气：" + news.collectCount}}</div>
+                <div>{{news.collectCount + "人喜欢"}}</div>
                 <img src="../../../assets/images/赞1.png">
                 <div class="collect" v-for="(item,index) in news.collect.data" :key="index"
                      @click="goUserDetails(item.user.id)">

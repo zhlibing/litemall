@@ -3,7 +3,7 @@
         <div class="layer">
             <img :src="item.picUrls!=undefined?item.picUrls[0]:default_avatar" alt="" class="image">
             <div class="layerchird">
-                <span>{{'+'+item.picUrls.length}}</span>
+                <span v-if="item.picUrls.length-1>0">+{{item.picUrls.length - 1}}</span>
             </div>
         </div>
         <div class="info" @click="itemClick(item.id,item.type)">
@@ -53,17 +53,20 @@
                 position: absolute;
             }
             .layerchird {
-                width: 7rem;
-                height: 5rem;
+                left: 0;
+                bottom: 10px;
+                width: 2.5rem;
+                height: 2.5rem;
+                border-radius: 50%;
                 background-color: #000;
                 filter: Alpha(Opacity=60);
                 opacity: 0.6;
                 position: absolute;
                 text-align: center;
                 span {
-                    height: 4rem;
+                    height: 2.5rem;
                     color: white;
-                    line-height: 4rem;
+                    line-height: 2.5rem;
                     font-size: 1.5rem;
                     font-weight: 600;
                 }
