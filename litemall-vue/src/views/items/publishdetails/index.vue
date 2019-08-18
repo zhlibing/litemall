@@ -127,13 +127,18 @@
                             }
                             return -1;
                         };
-                        Array.prototype.remove = function(val) {
+                        Array.prototype.remove = function (val) {
                             var index = this.indexOf(val);
                             if (index > -1) {
                                 this.splice(index, 1);
                             }
                         };
-                        this.news.collect.data.splice(0, 1)
+                        let index = -1
+                        for (var i = 0; i < this.news.collect.data.length; i++) {
+                            if (this.news.collect.data[i].user.id == this.userId)
+                                index = i
+                        }
+                        this.news.collect.data.splice(index, 1)
                     } else {
                         this.news.userHasCollect = 1;
                         this.news.collectCount += 1;
