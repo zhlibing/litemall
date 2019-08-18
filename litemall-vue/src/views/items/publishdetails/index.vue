@@ -398,9 +398,9 @@
                     height 25px
                     border-radius 50%
         .messagebox
-            margin-top 0.3rem
+            margin-top 5px
             background-color #fff
-            padding .3rem 0rem
+            padding .1rem 0rem
             .msg
                 font-size 15px
                 color #000000
