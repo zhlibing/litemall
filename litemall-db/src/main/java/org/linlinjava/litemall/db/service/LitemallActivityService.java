@@ -17,7 +17,7 @@ public class LitemallActivityService {
     Column[] columns = new Column[]{
             Column.id, Column.title, Column.description, Column.picUrls, Column.status,
             Column.reword, Column.type, Column.userId, Column.addTime, Column.activityTime, Column.reword, Column.currentPeople,
-            Column.collectioncount, Column.fee,Column.rule};
+            Column.collectioncount, Column.fee, Column.rule, Column.latitude, Column.longitude};
     @Resource
     private LitemallActivityMapper activityMapper;
 
@@ -34,7 +34,7 @@ public class LitemallActivityService {
         return activityMapper.selectByExampleSelective(example, columns);
     }
 
-    public List<LitemallActivity> queryActivityByUser(Integer id,int offset, int limit) {
+    public List<LitemallActivity> queryActivityByUser(Integer id, int offset, int limit) {
         LitemallActivityExample example = new LitemallActivityExample();
         example.or().andDeletedEqualTo(false).andUserIdEqualTo(id);
         example.setOrderByClause("add_time desc");

@@ -14,7 +14,8 @@ import java.util.List;
 
 @Service
 public class LitemallGroupService {
-    Column[] columns = new Column[]{Column.id, Column.age, Column.description, Column.picUrls, Column.status, Column.currentPeople,Column.type,Column.userId};
+    Column[] columns = new Column[]{Column.id, Column.age, Column.description
+            , Column.picUrls, Column.status, Column.currentPeople, Column.type, Column.userId, Column.latitude, Column.longitude};
     @Resource
     private LitemallGroupMapper groupMapper;
 
@@ -84,7 +85,7 @@ public class LitemallGroupService {
         return (int) groupMapper.countByExample(example);
     }
 
-      public List<LitemallGroup> queryByIds(Integer[] ids) {
+    public List<LitemallGroup> queryByIds(Integer[] ids) {
         LitemallGroupExample example = new LitemallGroupExample();
         example.or().andIdIn(Arrays.asList(ids)).andDeletedEqualTo(false);
         return groupMapper.selectByExampleSelective(example, columns);

@@ -14,7 +14,8 @@ import java.util.List;
 
 @Service
 public class LitemallFishPondsService {
-    Column[] columns = new Column[]{Column.id, Column.title, Column.description, Column.picUrls, Column.level, Column.currentPeople, Column.fee, Column.reword,Column.type,Column.userId};
+    Column[] columns = new Column[]{Column.id, Column.title, Column.description
+            , Column.picUrls, Column.level, Column.currentPeople, Column.fee, Column.reword, Column.type, Column.userId, Column.latitude, Column.longitude};
     @Resource
     private LitemallFishPondsMapper fishPondsMapper;
 
