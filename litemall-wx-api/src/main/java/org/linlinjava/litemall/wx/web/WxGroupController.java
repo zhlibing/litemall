@@ -84,7 +84,7 @@ public class WxGroupController {
                 if (userId != null) {
                     userVo.put("userHasCollect", collectService.count(userId, user.getId(), 10));
                 }
-                userVo.put("collectCount", collectService.countCollect(user.getId(), 10));
+                userVo.put("collectCount", collectService.countCollectMe(user.getId(), 10));
                 c.put("publishUser", userVo);
                 // 用户收藏
                 Random rand = new Random();
@@ -94,7 +94,7 @@ public class WxGroupController {
                 if (comment.getId() != null & userId != null) {
                     userHasCollect = collectService.count(userId, comment.getId(), 9);
                 }
-                collectCount = collectService.countCollect(comment.getId(), 9);
+                collectCount = collectService.countCollectMe(comment.getId(), 9);
                 c.put("userHasCollect", userHasCollect);
                 c.put("collectCount", collectCount + 0);
                 commentsVo.add(c);
@@ -137,7 +137,7 @@ public class WxGroupController {
                 if (GroupUser.getId() != null & userId != null) {
                     userHasCollect = collectService.count(userId, GroupUser.getId(), 10);
                 }
-                collectCount = collectService.countCollect(GroupUser.getId(), 10);
+                collectCount = collectService.countCollectMe(GroupUser.getId(), 10);
                 c.put("userHasCollect", userHasCollect);
                 c.put("collectCount", collectCount + 0);
                 usersVo.add(c);
@@ -176,7 +176,7 @@ public class WxGroupController {
         if (userId != null) {
             userVo.put("userHasCollect", collectService.count(userId, user.getId(), 10));
         }
-        userVo.put("collectCount", collectService.countCollect(user.getId(), 10));
+        userVo.put("collectCount", collectService.countCollectMe(user.getId(), 10));
 
         FutureTask<Map> commentsCallableTsk = new FutureTask<>(commentsCallable);
         FutureTask<Map> collectListCallableTsk = new FutureTask<>(collectListCallable);
@@ -191,7 +191,7 @@ public class WxGroupController {
         try {
             data.put("info", info);
             data.put("userHasCollect", userHasCollect);
-            data.put("collectCount", collectService.countCollect(id, this.type));
+            data.put("collectCount", collectService.countCollectMe(id, this.type));
             data.put("userHasJoin", userHasJoin);
             data.put("share", SystemConfig.isAutoCreateShareImage());
             data.put("publishUser", userVo);
@@ -229,7 +229,7 @@ public class WxGroupController {
             if (userId != null) {
                 GroupVo.put("userHasCollect", collectService.count(userId, Group.getId(), this.type));
             }
-            GroupVo.put("collectCount", collectService.countCollect(Group.getId(), this.type));
+            GroupVo.put("collectCount", collectService.countCollectMe(Group.getId(), this.type));
 
             Map<String, Object> userVo = new HashMap<>();
             LitemallUser user = userService.findDetailById(Group.getUserId());
@@ -237,7 +237,7 @@ public class WxGroupController {
             if (userId != null) {
                 userVo.put("userHasCollect", collectService.count(userId, user.getId(), 10));
             }
-            userVo.put("collectCount", collectService.countCollect(user.getId(), 10));
+            userVo.put("collectCount", collectService.countCollectMe(user.getId(), 10));
             GroupVo.put("publishUser", userVo);
 
             List<LitemallGroupUser> litemallGroupUsers = GroupUserService.queryGroupUser(Group.getId(), 0, 100);
@@ -254,7 +254,7 @@ public class WxGroupController {
                 if (GroupUser.getId() != null & userId != null) {
                     userHasCollect = collectService.count(userId, GroupUser.getId(), 10);
                 }
-                collectCount = collectService.countCollect(GroupUser.getId(), 10);
+                collectCount = collectService.countCollectMe(GroupUser.getId(), 10);
                 c.put("userHasCollect", userHasCollect);
                 c.put("collectCount", collectCount + 0);
                 usersVo.add(c);

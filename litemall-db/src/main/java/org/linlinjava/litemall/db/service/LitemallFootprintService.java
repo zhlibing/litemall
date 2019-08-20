@@ -16,6 +16,18 @@ public class LitemallFootprintService {
     @Resource
     private LitemallFootprintMapper footprintMapper;
 
+    public int countViewMe(Integer gid, int type) {
+        LitemallFootprintExample example = new LitemallFootprintExample();
+        example.or().andTypeEqualTo((byte) type).andGoodsIdEqualTo(gid).andDeletedEqualTo(false);
+        return (int) footprintMapper.countByExample(example);
+    }
+
+    public int countMeView(Integer userId, int type) {
+        LitemallFootprintExample example = new LitemallFootprintExample();
+        example.or().andTypeEqualTo((byte) type).andUserIdEqualTo(userId).andDeletedEqualTo(false);
+        return (int) footprintMapper.countByExample(example);
+    }
+
     public List<LitemallFootprint> queryByAddTime(Integer userId, Integer page, Integer size) {
         LitemallFootprintExample example = new LitemallFootprintExample();
         example.or().andUserIdEqualTo(userId).andDeletedEqualTo(false);

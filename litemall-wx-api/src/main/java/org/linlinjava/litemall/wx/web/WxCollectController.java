@@ -72,12 +72,12 @@ public class WxCollectController {
             if (type == 0) {
                 LitemallGoods goods = goodsService.findById(collect.getValueId());
                 c.put("goods", goods);
-                c.put("collectCount", collectService.countCollect(goods.getId(), type));
+                c.put("collectCount", collectService.countCollectMe(goods.getId(), type));
             }
             if (type == 10) {
                 LitemallUser user = litemallUserService.findDetailById(collect.getValueId());
                 c.put("user", user);
-                c.put("collectCount", collectService.countCollect(user.getId(), type));
+                c.put("collectCount", collectService.countCollectMe(user.getId(), type));
             }
 
             collects.add(c);
@@ -109,7 +109,7 @@ public class WxCollectController {
             if (type == 10) {
                 LitemallUser user = litemallUserService.findDetailById(collect.getUserId());
                 c.put("user", user);
-                c.put("collectCount", collectService.countCollect(user.getId(), type));
+                c.put("collectCount", collectService.countCollectMe(user.getId(), type));
             }
 
             collects.add(c);

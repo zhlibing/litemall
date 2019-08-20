@@ -154,7 +154,7 @@ public class WxCommentController {
             if (userId != null) {
                 userVo.put("userHasCollect", collectService.count(userId, litemallUser.getId(), 10));
             }
-            userVo.put("collectCount", collectService.countCollect(litemallUser.getId(), 10));
+            userVo.put("collectCount", collectService.countCollectMe(litemallUser.getId(), 10));
             commentVo.put("publishUser", userVo);
 
             String reply = commentService.queryReply(comment.getId());
@@ -168,7 +168,7 @@ public class WxCommentController {
             if (comment.getId() != null & userId != null) {
                 userHasCollect = collectService.count(userId, comment.getId(), this.type);
             }
-            collectCount = collectService.countCollect(comment.getId(), this.type);
+            collectCount = collectService.countCollectMe(comment.getId(), this.type);
             commentVo.put("userHasCollect", userHasCollect);
             commentVo.put("collectCount", collectCount + 0);
 
@@ -196,7 +196,7 @@ public class WxCommentController {
             if (userId != null) {
                 userVo.put("userHasCollect", collectService.count(userId, litemallUser.getId(), 10));
             }
-            userVo.put("collectCount", collectService.countCollect(litemallUser.getId(), 10));
+            userVo.put("collectCount", collectService.countCollectMe(litemallUser.getId(), 10));
             commentVo.put("publishUser", userVo);
 
             String reply = commentService.queryReply(comment.getId());
@@ -210,7 +210,7 @@ public class WxCommentController {
             if (comment.getId() != null & userId != null) {
                 userHasCollect = collectService.count(userId, comment.getId(), this.type);
             }
-            collectCount = collectService.countCollect(comment.getId(), this.type);
+            collectCount = collectService.countCollectMe(comment.getId(), this.type);
             commentVo.put("userHasCollect", userHasCollect);
             commentVo.put("collectCount", collectCount + 0);
 

@@ -22,9 +22,15 @@ public class LitemallCollectService {
         return (int) collectMapper.countByExample(example);
     }
 
-    public int countCollect(Integer gid, int type) {
+    public int countCollectMe(Integer gid, int type) {
         LitemallCollectExample example = new LitemallCollectExample();
         example.or().andTypeEqualTo((byte) type).andValueIdEqualTo(gid).andDeletedEqualTo(false);
+        return (int) collectMapper.countByExample(example);
+    }
+
+    public int countMeCollect(Integer userId, int type) {
+        LitemallCollectExample example = new LitemallCollectExample();
+        example.or().andTypeEqualTo((byte) type).andUserIdEqualTo(userId).andDeletedEqualTo(false);
         return (int) collectMapper.countByExample(example);
     }
 

@@ -84,7 +84,7 @@ public class WxFishPondsController {
                 if (userId != null) {
                     userVo.put("userHasCollect", collectService.count(userId, user.getId(), 10));
                 }
-                userVo.put("collectCount", collectService.countCollect(user.getId(), 10));
+                userVo.put("collectCount", collectService.countCollectMe(user.getId(), 10));
                 c.put("publishUser", userVo);
                 // 用户收藏
                 Random rand = new Random();
@@ -94,7 +94,7 @@ public class WxFishPondsController {
                 if (comment.getId() != null & userId != null) {
                     userHasCollect = collectService.count(userId, comment.getId(), 9);
                 }
-                collectCount = collectService.countCollect(comment.getId(), 9);
+                collectCount = collectService.countCollectMe(comment.getId(), 9);
                 c.put("userHasCollect", userHasCollect);
                 c.put("collectCount", collectCount + 0);
                 commentsVo.add(c);
@@ -137,7 +137,7 @@ public class WxFishPondsController {
                 if (FishPondsUser.getId() != null & userId != null) {
                     userHasCollect = collectService.count(userId, FishPondsUser.getId(), 10);
                 }
-                collectCount = collectService.countCollect(FishPondsUser.getId(), 10);
+                collectCount = collectService.countCollectMe(FishPondsUser.getId(), 10);
                 c.put("userHasCollect", userHasCollect);
                 c.put("collectCount", collectCount + 0);
                 usersVo.add(c);
@@ -176,7 +176,7 @@ public class WxFishPondsController {
         if (userId != null) {
             userVo.put("userHasCollect", collectService.count(userId, user.getId(), 10));
         }
-        userVo.put("collectCount", collectService.countCollect(user.getId(), 10));
+        userVo.put("collectCount", collectService.countCollectMe(user.getId(), 10));
 
         FutureTask<Map> commentsCallableTsk = new FutureTask<>(commentsCallable);
         FutureTask<Map> collectListCallableTsk = new FutureTask<>(collectListCallable);
@@ -191,7 +191,7 @@ public class WxFishPondsController {
         try {
             data.put("info", info);
             data.put("userHasCollect", userHasCollect);
-            data.put("collectCount", collectService.countCollect(id, this.type));
+            data.put("collectCount", collectService.countCollectMe(id, this.type));
             data.put("userHasJoin", userHasJoin);
             data.put("share", SystemConfig.isAutoCreateShareImage());
             data.put("publishUser", userVo);
@@ -229,7 +229,7 @@ public class WxFishPondsController {
             if (userId != null) {
                 FishPondsVo.put("userHasCollect", collectService.count(userId, FishPonds.getId(), this.type));
             }
-            FishPondsVo.put("collectCount", collectService.countCollect(FishPonds.getId(), this.type));
+            FishPondsVo.put("collectCount", collectService.countCollectMe(FishPonds.getId(), this.type));
 
             Map<String, Object> userVo = new HashMap<>();
             LitemallUser user = userService.findDetailById(FishPonds.getUserId());
@@ -237,7 +237,7 @@ public class WxFishPondsController {
             if (userId != null) {
                 userVo.put("userHasCollect", collectService.count(userId, user.getId(), 10));
             }
-            userVo.put("collectCount", collectService.countCollect(user.getId(), 10));
+            userVo.put("collectCount", collectService.countCollectMe(user.getId(), 10));
             FishPondsVo.put("publishUser", userVo);
 
             List<LitemallFishPondsUser> litemallFishPondsUsers = FishPondsUserService.queryFishPondsUser(FishPonds.getId(), 0, 100);
@@ -254,7 +254,7 @@ public class WxFishPondsController {
                 if (FishPondsUser.getId() != null & userId != null) {
                     userHasCollect = collectService.count(userId, FishPondsUser.getId(), 10);
                 }
-                collectCount = collectService.countCollect(FishPondsUser.getId(), 10);
+                collectCount = collectService.countCollectMe(FishPondsUser.getId(), 10);
                 c.put("userHasCollect", userHasCollect);
                 c.put("collectCount", collectCount + 0);
                 usersVo.add(c);

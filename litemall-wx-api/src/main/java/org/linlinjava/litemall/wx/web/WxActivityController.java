@@ -87,7 +87,7 @@ public class WxActivityController {
                 if (userId != null) {
                     userVo.put("userHasCollect", collectService.count(userId, user.getId(), 10));
                 }
-                userVo.put("collectCount", collectService.countCollect(user.getId(), 10));
+                userVo.put("collectCount", collectService.countCollectMe(user.getId(), 10));
                 c.put("publishUser", userVo);
                 // 用户收藏
                 Random rand = new Random();
@@ -97,7 +97,7 @@ public class WxActivityController {
                 if (comment.getId() != null & userId != null) {
                     userHasCollect = collectService.count(userId, comment.getId(), 9);
                 }
-                collectCount = collectService.countCollect(comment.getId(), 9);
+                collectCount = collectService.countCollectMe(comment.getId(), 9);
                 c.put("userHasCollect", userHasCollect);
                 c.put("collectCount", collectCount + 0);
                 commentsVo.add(c);
@@ -140,7 +140,7 @@ public class WxActivityController {
                 if (ActivityUser.getId() != null & userId != null) {
                     userHasCollect = collectService.count(userId, ActivityUser.getId(), 10);
                 }
-                collectCount = collectService.countCollect(ActivityUser.getId(), 10);
+                collectCount = collectService.countCollectMe(ActivityUser.getId(), 10);
                 c.put("userHasCollect", userHasCollect);
                 c.put("collectCount", collectCount + 0);
                 usersVo.add(c);
@@ -179,7 +179,7 @@ public class WxActivityController {
         if (userId != null) {
             userVo.put("userHasCollect", collectService.count(userId, user.getId(), 10));
         }
-        userVo.put("collectCount", collectService.countCollect(user.getId(), 10));
+        userVo.put("collectCount", collectService.countCollectMe(user.getId(), 10));
 
         FutureTask<Map> commentsCallableTsk = new FutureTask<>(commentsCallable);
         FutureTask<Map> collectListCallableTsk = new FutureTask<>(collectListCallable);
@@ -194,7 +194,7 @@ public class WxActivityController {
         try {
             data.put("info", info);
             data.put("userHasCollect", userHasCollect);
-            data.put("collectCount", collectService.countCollect(id, this.type));
+            data.put("collectCount", collectService.countCollectMe(id, this.type));
             data.put("userHasJoin", userHasJoin);
             data.put("share", SystemConfig.isAutoCreateShareImage());
             data.put("publishUser", userVo);
@@ -232,7 +232,7 @@ public class WxActivityController {
             if (userId != null) {
                 activityVo.put("userHasCollect", collectService.count(userId, activity.getId(), this.type));
             }
-            activityVo.put("collectCount", collectService.countCollect(activity.getId(), this.type));
+            activityVo.put("collectCount", collectService.countCollectMe(activity.getId(), this.type));
 
             Map<String, Object> userVo = new HashMap<>();
             LitemallUser user = userService.findDetailById(activity.getUserId());
@@ -240,7 +240,7 @@ public class WxActivityController {
             if (userId != null) {
                 userVo.put("userHasCollect", collectService.count(userId, user.getId(), 10));
             }
-            userVo.put("collectCount", collectService.countCollect(user.getId(), 10));
+            userVo.put("collectCount", collectService.countCollectMe(user.getId(), 10));
             activityVo.put("publishUser", userVo);
 
             List<LitemallActivityUser> litemallActivityUsers = activityUserService.queryActivityUser(activity.getId(), 0, 100);
@@ -257,7 +257,7 @@ public class WxActivityController {
                 if (ActivityUser.getId() != null & userId != null) {
                     userHasCollect = collectService.count(userId, ActivityUser.getId(), 10);
                 }
-                collectCount = collectService.countCollect(ActivityUser.getId(), 10);
+                collectCount = collectService.countCollectMe(ActivityUser.getId(), 10);
                 c.put("userHasCollect", userHasCollect);
                 c.put("collectCount", collectCount + 0);
                 usersVo.add(c);

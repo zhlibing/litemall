@@ -14,10 +14,11 @@ import org.linlinjava.litemall.core.util.ResponseUtil;
 import org.linlinjava.litemall.core.util.bcrypt.BCryptPasswordEncoder;
 import org.linlinjava.litemall.db.domain.LitemallUser;
 import org.linlinjava.litemall.db.service.CouponAssignService;
+import org.linlinjava.litemall.db.service.LitemallCollectService;
+import org.linlinjava.litemall.db.service.LitemallFootprintService;
 import org.linlinjava.litemall.db.service.LitemallUserService;
 import org.linlinjava.litemall.wx.annotation.LoginUser;
 import org.linlinjava.litemall.wx.dto.UserInfo;
-import org.linlinjava.litemall.wx.dto.UserToken;
 import org.linlinjava.litemall.wx.dto.WxLoginInfo;
 import org.linlinjava.litemall.wx.service.CaptchaCodeManager;
 import org.linlinjava.litemall.wx.service.UserTokenManager;
@@ -55,6 +56,12 @@ public class WxAuthController {
 
     @Autowired
     private CouponAssignService couponAssignService;
+
+    @Autowired
+    private LitemallCollectService litemallCollectService;
+
+    @Autowired
+    private LitemallFootprintService footprintService;
 
     /**
      * 账号登录
@@ -105,6 +112,10 @@ public class WxAuthController {
         Map<Object, Object> result = new HashMap<Object, Object>();
         result.put("token", token);
         result.put("userInfo", userInfo);
+        result.put("collectMeCount", litemallCollectService.countCollectMe(userInfo.getUserId(), 10));
+        result.put("meCollectCount", litemallCollectService.countMeCollect(userInfo.getUserId(), 10));
+        result.put("viewMeCount", footprintService.countViewMe(userInfo.getUserId(), 10));
+        result.put("meViewCount", footprintService.countMeView(userInfo.getUserId(), 10));
         return ResponseUtil.ok(result);
     }
 
@@ -177,7 +188,7 @@ public class WxAuthController {
 
     /**
      * 请求注册验证码
-     *
+     * <p>
      * TODO
      * 这里需要一定机制防止短信验证码被滥用
      *
@@ -313,7 +324,7 @@ public class WxAuthController {
 
         // token
         String token = UserTokenManager.generateToken(user.getId());
-        
+
         Map<Object, Object> result = new HashMap<Object, Object>();
         result.put("token", token);
         result.put("userInfo", userInfo);
@@ -323,7 +334,7 @@ public class WxAuthController {
 
     /**
      * 请求验证码
-     *
+     * <p>
      * TODO
      * 这里需要一定机制防止短信验证码被滥用
      *
@@ -332,7 +343,7 @@ public class WxAuthController {
      */
     @PostMapping("captcha")
     public Object captcha(@LoginUser Integer userId, @RequestBody String body) {
-        if(userId == null){
+        if (userId == null) {
             return ResponseUtil.unlogin();
         }
         String phoneNumber = JacksonUtil.parseString(body, "mobile");
@@ -431,7 +442,7 @@ public class WxAuthController {
      */
     @PostMapping("resetPhone")
     public Object resetPhone(@LoginUser Integer userId, @RequestBody String body, HttpServletRequest request) {
-        if(userId == null){
+        if (userId == null) {
             return ResponseUtil.unlogin();
         }
         String password = JacksonUtil.parseString(body, "password");
@@ -484,7 +495,7 @@ public class WxAuthController {
      */
     @PostMapping("profile")
     public Object profile(@LoginUser Integer userId, @RequestBody String body, HttpServletRequest request) {
-        if(userId == null){
+        if (userId == null) {
             return ResponseUtil.unlogin();
         }
         String avatar = JacksonUtil.parseString(body, "avatar");
@@ -492,13 +503,13 @@ public class WxAuthController {
         String nickname = JacksonUtil.parseString(body, "nickName");
 
         LitemallUser user = userService.findById(userId);
-        if(!StringUtils.isEmpty(avatar)){
+        if (!StringUtils.isEmpty(avatar)) {
             user.setAvatar(avatar);
         }
-        if(gender != null){
+        if (gender != null) {
             user.setGender(gender);
         }
-        if(!StringUtils.isEmpty(nickname)){
+        if (!StringUtils.isEmpty(nickname)) {
             user.setNickname(nickname);
         }
 
@@ -518,10 +529,10 @@ public class WxAuthController {
      */
     @PostMapping("bindPhone")
     public Object bindPhone(@LoginUser Integer userId, @RequestBody String body) {
-    	if (userId == null) {
+        if (userId == null) {
             return ResponseUtil.unlogin();
         }
-    	LitemallUser user = userService.findById(userId);
+        LitemallUser user = userService.findById(userId);
         String encryptedData = JacksonUtil.parseString(body, "encryptedData");
         String iv = JacksonUtil.parseString(body, "iv");
         WxMaPhoneNumberInfo phoneNumberInfo = this.wxService.getUserService().getPhoneNoInfo(user.getSessionKey(), encryptedData, iv);

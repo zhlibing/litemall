@@ -135,7 +135,7 @@ public class WxGoodsController {
                 if (userId != null) {
                     userVo.put("userHasCollect", collectService.count(userId, user.getId(), 10));
                 }
-                userVo.put("collectCount", collectService.countCollect(user.getId(), 10));
+                userVo.put("collectCount", collectService.countCollectMe(user.getId(), 10));
                 c.put("publishUser", userVo);
                 // 用户收藏
                 Random rand = new Random();
@@ -145,7 +145,7 @@ public class WxGoodsController {
                 if (comment.getId() != null & userId != null) {
                     userHasCollect = collectService.count(userId, comment.getId(), 9);
                 }
-                collectCount = collectService.countCollect(comment.getId(), 9);
+                collectCount = collectService.countCollectMe(comment.getId(), 9);
                 c.put("userHasCollect", userHasCollect);
                 c.put("collectCount", collectCount + 0);
                 commentsVo.add(c);
@@ -215,7 +215,7 @@ public class WxGoodsController {
         try {
             data.put("info", info);
             data.put("userHasCollect", userHasCollect);
-            data.put("collectCount", collectService.countCollect(id, this.type));
+            data.put("collectCount", collectService.countCollectMe(id, this.type));
             data.put("issue", issueCallableTask.get());
             data.put("comment", commentsCallableTsk.get());
             data.put("specificationList", objectCallableTask.get());
