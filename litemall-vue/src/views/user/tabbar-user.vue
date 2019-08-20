@@ -35,10 +35,10 @@
             this.getLoginStatus();
             userRefresh().then(res => {
                 if (res.status === 200) {
-                    this.meViewCountp = res.data.data.meViewCount || '';
-                    this.meCollectCountp = res.data.data.meCollectCount || '';
-                    this.collectMeCountp = res.data.data.collectMeCount || '';
-                    this.viewMeCountp = res.data.data.viewMeCount || '';
+                    this.meViewCountp = res.data.data.meViewCount || '0';
+                    this.meCollectCountp = res.data.data.meCollectCount || '0';
+                    this.collectMeCountp = res.data.data.collectMeCount || '0';
+                    this.viewMeCountp = res.data.data.viewMeCount || '0';
                 }
             }).catch(err => {
                 console.log(err)
