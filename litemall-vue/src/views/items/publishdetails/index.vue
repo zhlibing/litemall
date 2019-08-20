@@ -125,6 +125,7 @@
                 title: '详情',
                 userId: '',
                 avatar: '',
+                nickName: '',
 
                 label: "",
                 text: "5人开始",
@@ -154,10 +155,12 @@
             getUserInfo() {
                 const infoData = getLocalStorage(
                     'userId',
-                    'avatar'
+                    'avatar',
+                    'nickName'
                 );
                 this.userId = infoData.userId || "";
                 this.avatar = infoData.avatar || "";
+                this.nickName = infoData.nickName || "";
                 console.log(infoData, '>>>>>>userId')
             },
             addCollect() {
@@ -186,7 +189,7 @@
                     } else {
                         this.news.userHasCollect = 1;
                         this.news.collectCount += 1;
-                        this.news.collect.data.splice(0, 0, {"user": {"id": this.userId, "avatar": this.avatar}})
+                        this.news.collect.data.splice(0, 0, {"user": {"id": this.userId, "avatar": this.avatar,"nickname":this.nickName}})
                         this.$toast({
                             message: '收藏成功',
                             duration: 1500
@@ -216,7 +219,7 @@
                             console.log(res, '>>>fishpondsJoin')
                             if (res.status === 200 && res.data.errno == 0) {
                                 this.userHasJoin = 1
-                                this.news.joinUsers.splice(0, 0, {"user": {"id": this.userId, "avatar": this.avatar}})
+                                this.news.joinUsers.splice(0, 0, {"user": {"id": this.userId, "avatar": this.avatar,"nickname":this.nickName}})
                                 this.label = "当前" + this.news.joinUsers.length + '人'
                                 this.$toast({
                                     message: '加入成功',
@@ -265,7 +268,7 @@
                             console.log(res, '>>>groupJoin')
                             if (res.status === 200 && res.data.errno == 0) {
                                 this.userHasJoin = 1
-                                this.news.joinUsers.splice(0, 0, {"user": {"id": this.userId, "avatar": this.avatar}})
+                                this.news.joinUsers.splice(0, 0, {"user": {"id": this.userId, "avatar": this.avatar,"nickname":this.nickName}})
                                 this.label = "当前" + this.news.joinUsers.length + '人'
                                 this.$toast({
                                     message: '加入成功',
@@ -301,7 +304,7 @@
                             console.log(res, '>>>activityJoin')
                             if (res.status === 200 && res.data.errno == 0) {
                                 this.userHasJoin = 1
-                                this.news.joinUsers.splice(0, 0, {"user": {"id": this.userId, "avatar": this.avatar}})
+                                this.news.joinUsers.splice(0, 0, {"user": {"id": this.userId, "avatar": this.avatar,"nickname":this.nickName}})
                                 this.label = "当前" + this.news.joinUsers.length + '人'
                                 this.$toast({
                                     message: '加入成功',
