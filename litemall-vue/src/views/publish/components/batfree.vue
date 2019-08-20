@@ -60,10 +60,10 @@
         },
         data() {
             return {
-                fee: '',
-                limited: '',
-                reword: '',
-                credit: '',
+                fee: '50',
+                limited: '5',
+                reword: '200',
+                credit: '600',
                 activityTime: '',
                 customInput: '',
                 type: 8,

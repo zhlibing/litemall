@@ -94,6 +94,10 @@
                 if (this.itemf.FishPondsInfo != undefined) {
                     obj.fishpondsId = this.itemf.FishPondsInfo.id
                 }
+                obj.fee = this.$refs.batfree.fee
+                obj.limited = this.$refs.batfree.limited
+                obj.reword = this.$refs.batfree.reword
+                obj.credit = this.$refs.batfree.credit
                 obj.rule = JSON.stringify(this.$refs.batfree.attlist)
                 obj.activityTime = (this.$refs.batfree.activityTime).replace(/T/, ' ') + ":00"
                 obj.type = this.$refs.batfree.type
