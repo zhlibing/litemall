@@ -821,4 +821,55 @@ INSERT INTO `litemall_type_obj` VALUES (
 '2019-06-13 22:49:32',
 '0'
 );
--- ////circle/scatter/ad_rent/擦亮-刷新
+
+DROP TABLE IF EXISTS `litemall_credit`;
+CREATE TABLE `litemall_credit` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `value_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户或鱼塘表的ID',
+  `type` tinyint(3) NOT NULL DEFAULT '8' COMMENT '类型',
+  `event` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0减小，1增加',
+  `name` varchar(100) NOT NULL COMMENT '事件名称',
+  `credit` int(11) NOT NULL DEFAULT '600' COMMENT '用户信用值',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
+  PRIMARY KEY (`id`),
+  KEY `value_id` (`value_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='信用表';
+
+DROP TABLE IF EXISTS `litemall_score`;
+CREATE TABLE `litemall_score` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `value_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户或鱼塘表的ID',
+  `type` tinyint(3) NOT NULL DEFAULT '8' COMMENT '类型',
+  `event` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0减小，1增加',
+  `name` varchar(100) NOT NULL COMMENT '事件名称',
+  `score` int(11) NOT NULL DEFAULT '600' COMMENT '用户积分值',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
+  PRIMARY KEY (`id`),
+  KEY `value_id` (`value_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='积分表';
+
+DROP TABLE IF EXISTS `litemall_user_event`;
+CREATE TABLE `litemall_user_event` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户或鱼塘表的ID',
+  `type` tinyint(3) NOT NULL DEFAULT '8' COMMENT '类型',
+  `name` varchar(100) NOT NULL COMMENT '事件名称',
+  `latitude` decimal (10,6) DEFAULT NULL,
+  `longitude` decimal (10,6) DEFAULT NULL,
+  `ip` varchar(100) DEFAULT NULL COMMENT '回答内容',
+  `imei` varchar(100) DEFAULT NULL COMMENT '回答内容',
+  `channel_id` varchar(100) DEFAULT NULL COMMENT '回答内容',
+  `app_version` varchar(100) DEFAULT NULL COMMENT '回答内容',
+  `app_id` varchar(100) DEFAULT NULL COMMENT '回答内容',
+  `city` varchar(100) DEFAULT NULL COMMENT '回答内容',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='积分表';
+-- ////circle/scatter/ad_rent/擦亮-刷新/信用表
