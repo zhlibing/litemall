@@ -37,8 +37,12 @@
         props: {
             isLogin: {
                 type: Boolean,
-                default: false
-            }
+                default: false,
+            },
+            viewMeCount: 0,
+            meViewCount: 0,
+            collectMeCount: 0,
+            meCollectCount: 0,
         },
 
         data() {
@@ -47,10 +51,6 @@
                 avatar: avatar_default,
                 userId: '',
                 background_image: bg_default,
-                viewMeCount: '0',
-                meViewCount: '0',
-                collectMeCount: '0',
-                meCollectCount: '0',
             };
         },
 
@@ -64,18 +64,10 @@
                     'nickName',
                     'avatar',
                     'userId',
-                    'meViewCount',
-                    'meCollectCount',
-                    'collectMeCount',
-                    'viewMeCount',
                 );
                 this.avatar = infoData.avatar || avatar_default;
                 this.nickName = infoData.nickName || '昵称';
                 this.userId = infoData.userId || '';
-                this.meViewCount = infoData.meViewCount || '';
-                this.meCollectCount = infoData.meCollectCount || '';
-                this.collectMeCount = infoData.collectMeCount || '';
-                this.viewMeCount = infoData.viewMeCount || '';
             },
             toSetting() {
                 this.$router.push({name: 'user-information'});

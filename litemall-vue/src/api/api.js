@@ -490,6 +490,15 @@ export function userDetails(query) {
     })
 }
 
+const UserRefresh='wx/user/refresh'; //个人页面用户相关信息
+export function userRefresh(query) {
+    return request({
+        url: UserRefresh,
+        method: 'get',
+        params: query
+    })
+}
+
 const IssueList='wx/issue/list'; //帮助信息
 export function issueList() {
   return request({
