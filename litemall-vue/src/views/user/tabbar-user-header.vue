@@ -7,19 +7,19 @@
         <div class="user_name">{{nickName}}</div>
         <div class="count">
             <div class="numbox">
-                <span class="num">{{'100'}}</span>
+                <span class="num">{{viewMeCount}}</span>
                 <span class="numname">访客数</span>
             </div>
             <div class="numbox">
-                <span class="num">{{'45'}}</span>
-                <span class="numname">被赞数</span>
+                <span class="num">{{meViewCount}}</span>
+                <span class="numname">访问数</span>
             </div>
             <div class="numbox" @click="toCollectUser(userId)">
-                <span class="num">{{'23'}}</span>
+                <span class="num">{{meCollectCount}}</span>
                 <span class="numname">关注数</span>
             </div>
             <div class="numbox" @click="toCollectUserMe(userId)">
-                <span class="num">{{'123'}}</span>
+                <span class="num">{{collectMeCount}}</span>
                 <span class="numname">粉丝数</span>
             </div>
         </div>
@@ -46,7 +46,11 @@
                 nickName: '昵称',
                 avatar: avatar_default,
                 userId: '',
-                background_image: bg_default
+                background_image: bg_default,
+                viewMeCount: '0',
+                meViewCount: '0',
+                collectMeCount: '0',
+                meCollectCount: '0',
             };
         },
 
@@ -59,11 +63,19 @@
                 const infoData = getLocalStorage(
                     'nickName',
                     'avatar',
-                    'userId'
+                    'userId',
+                    'meViewCount',
+                    'meCollectCount',
+                    'collectMeCount',
+                    'viewMeCount',
                 );
                 this.avatar = infoData.avatar || avatar_default;
                 this.nickName = infoData.nickName || '昵称';
                 this.userId = infoData.userId || '';
+                this.meViewCount = infoData.meViewCount || '';
+                this.meCollectCount = infoData.meCollectCount || '';
+                this.collectMeCount = infoData.collectMeCount || '';
+                this.viewMeCount = infoData.viewMeCount || '';
             },
             toSetting() {
                 this.$router.push({name: 'user-information'});
@@ -71,10 +83,10 @@
             goUserDetails(id) {
                 this.$router.push(`/items/userdetails/${id}`);
             },
-            toCollectUser(id){
+            toCollectUser(id) {
                 this.$router.push(`/user/collectUser/${id}`);
             },
-            toCollectUserMe(id){
+            toCollectUserMe(id) {
                 this.$router.push(`/user/collectUserMe/${id}`);
             }
         }

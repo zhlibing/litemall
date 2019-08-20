@@ -89,10 +89,14 @@ export default {
       authLoginByAccount(loginData).then(res => {
         this.userInfo = res.data.data.userInfo;
         setLocalStorage({
-          Authorization: res.data.data.token,
-          avatar: this.userInfo.avatarUrl,
-          nickName: this.userInfo.nickName,
-          userId: this.userInfo.userId
+            Authorization: res.data.data.token,
+            avatar: this.userInfo.avatarUrl,
+            nickName: this.userInfo.nickName,
+            userId: this.userInfo.userId,
+            viewMeCount: res.data.data.viewMeCount,
+            collectMeCount: res.data.data.collectMeCount,
+            meCollectCount: res.data.data.meCollectCount,
+            meViewCount: res.data.data.meViewCount,
         });
 
         this.routerRedirect();
