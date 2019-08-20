@@ -101,6 +101,12 @@ public class LitemallCircleService {
         return (int) circleMapper.countByExample(example);
     }
 
+    public int countByUser(Integer userId) {
+        LitemallCircleExample example = new LitemallCircleExample();
+        example.or().andUserIdEqualTo(userId).andDeletedEqualTo(false);
+        return (int) circleMapper.countByExample(example);
+    }
+
     public List<LitemallCircle> queryByIds(Integer[] ids) {
         LitemallCircleExample example = new LitemallCircleExample();
         example.or().andIdIn(Arrays.asList(ids)).andDeletedEqualTo(false);

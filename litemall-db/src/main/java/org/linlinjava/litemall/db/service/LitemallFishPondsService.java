@@ -95,6 +95,12 @@ public class LitemallFishPondsService {
         return (int) fishPondsMapper.countByExample(example);
     }
 
+    public int countByUser(Integer userId) {
+        LitemallFishPondsExample example = new LitemallFishPondsExample();
+        example.or().andUserIdEqualTo(userId).andDeletedEqualTo(false);
+        return (int) fishPondsMapper.countByExample(example);
+    }
+
     public boolean checkExistByName(String name) {
         LitemallFishPondsExample example = new LitemallFishPondsExample();
         example.or().andTitleEqualTo(name).andDeletedEqualTo(false);

@@ -92,4 +92,22 @@ public class WxUserController {
         }
         return ResponseUtil.ok(data);
     }
+
+    @GetMapping("refresh")
+    public Object refresh(@LoginUser Integer userId) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        Map<Object, Object> data = new HashMap<Object, Object>();
+        data.put("collectMeCount", litemallCollectService.countCollectMe(userId, 10));
+        data.put("meCollectCount", litemallCollectService.countMeCollect(userId, 10));
+        data.put("viewMeCount", footprintService.countViewMe(userId, 10));
+        data.put("meViewCount", footprintService.countMeView(userId, 10));
+        data.put("publishActivityCount", litemallActivityService.countByUser(userId));
+        data.put("publishQuestionCount", litemallQuestionService.countByUser(userId));
+        data.put("publishFishpondsCount", litemallFishPondsService.countByUser(userId));
+        data.put("publishCircleCount", litemallCircleService.countByUser(userId));
+        data.put("publishGroupCount", litemallGroupService.countByUser(userId));
+        return ResponseUtil.ok(data);
+    }
 }

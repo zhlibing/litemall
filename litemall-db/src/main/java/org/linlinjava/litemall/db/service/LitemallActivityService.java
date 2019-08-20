@@ -95,6 +95,12 @@ public class LitemallActivityService {
         return (int) activityMapper.countByExample(example);
     }
 
+    public int countByUser(Integer userId) {
+        LitemallActivityExample example = new LitemallActivityExample();
+        example.or().andUserIdEqualTo(userId).andDeletedEqualTo(false);
+        return (int) activityMapper.countByExample(example);
+    }
+
     public boolean checkExistByName(String name) {
         LitemallActivityExample example = new LitemallActivityExample();
         example.or().andTitleEqualTo(name).andDeletedEqualTo(false);

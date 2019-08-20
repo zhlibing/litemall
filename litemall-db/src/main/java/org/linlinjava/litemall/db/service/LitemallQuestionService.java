@@ -93,6 +93,12 @@ public class LitemallQuestionService {
         return (int) questionMapper.countByExample(example);
     }
 
+    public int countByUser(Integer userId) {
+        LitemallQuestionExample example = new LitemallQuestionExample();
+        example.or().andUserIdEqualTo(userId).andDeletedEqualTo(false);
+        return (int) questionMapper.countByExample(example);
+    }
+
     public boolean checkExistByName(String name) {
         LitemallQuestionExample example = new LitemallQuestionExample();
         example.or().andTitleEqualTo(name).andDeletedEqualTo(false);

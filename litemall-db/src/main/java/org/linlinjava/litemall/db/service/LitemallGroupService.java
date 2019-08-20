@@ -85,6 +85,12 @@ public class LitemallGroupService {
         return (int) groupMapper.countByExample(example);
     }
 
+    public int countByUser(Integer userId) {
+        LitemallGroupExample example = new LitemallGroupExample();
+        example.or().andUserIdEqualTo(userId).andDeletedEqualTo(false);
+        return (int) groupMapper.countByExample(example);
+    }
+
     public List<LitemallGroup> queryByIds(Integer[] ids) {
         LitemallGroupExample example = new LitemallGroupExample();
         example.or().andIdIn(Arrays.asList(ids)).andDeletedEqualTo(false);
