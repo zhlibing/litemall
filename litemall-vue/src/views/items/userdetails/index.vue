@@ -153,7 +153,7 @@
                 background-color #7dc5eb
                 border: 0.04rem solid #7dc5eb;
             .focuseinfo
-                color red
+                color #581868
                 font-size 0.8rem
                 font-weight 400
                 margin-top 0.6rem

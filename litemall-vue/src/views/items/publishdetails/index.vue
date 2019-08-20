@@ -444,7 +444,7 @@
                     display flex
                     flex-direction column
                     .focuseinfo
-                        color red
+                        color #581868
                         font-size 0.8rem
                         font-weight 400
                         margin-bottom 0.4rem
