@@ -182,6 +182,19 @@ public class WxCircleController {
         return ResponseUtil.ok(entity);
     }
 
+    @GetMapping("listByUser")
+    public Object listByUser(@NotNull Integer userId, @RequestParam(defaultValue = "1") Integer page,
+                             @RequestParam(defaultValue = "10") Integer limit) {
+        List<LitemallCircle> circles = CircleService.queryCircleByUser(userId, page, limit);
+        List<Map<String, Object>> circleVoList = new ArrayList<>(circles.size());
+        for (LitemallCircle litemallCircle : circles) {
+            Map<String, Object> circleVo = new HashMap<>();
+            circleVo.put("circleInfo", litemallCircle);
+            circleVoList.add(circleVo);
+        }
+        return ResponseUtil.okList(circleVoList, circles);
+    }
+
     /**
      * @return 在售的鱼塘总数
      */

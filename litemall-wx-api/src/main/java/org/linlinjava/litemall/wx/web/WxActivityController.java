@@ -308,6 +308,19 @@ public class WxActivityController {
         }
     }
 
+    @GetMapping("listByUser")
+    public Object listByUser(@NotNull Integer userId, @RequestParam(defaultValue = "1") Integer page,
+                             @RequestParam(defaultValue = "10") Integer limit) {
+        List<LitemallActivity> activityes = ActivityService.queryActivityByUser(userId, page, limit);
+        List<Map<String, Object>> activityVoList = new ArrayList<>(activityes.size());
+        for (LitemallActivity litemallActivity : activityes) {
+            Map<String, Object> circleVo = new HashMap<>();
+            circleVo.put("activityInfo", litemallActivity);
+            activityVoList.add(circleVo);
+        }
+        return ResponseUtil.okList(activityVoList, activityes);
+    }
+
     /**
      * @return 在售的鱼塘总数
      */

@@ -305,6 +305,19 @@ public class WxGroupController {
         }
     }
 
+    @GetMapping("listByUser")
+    public Object listByUser(@NotNull Integer userId, @RequestParam(defaultValue = "1") Integer page,
+                             @RequestParam(defaultValue = "10") Integer limit) {
+        List<LitemallGroup> groups = GroupService.queryGroupByUser(userId, page, limit);
+        List<Map<String, Object>> groupVoList = new ArrayList<>(groups.size());
+        for (LitemallGroup litemallGroup : groups) {
+            Map<String, Object> groupVo = new HashMap<>();
+            groupVo.put("GroupInfo", litemallGroup);
+            groupVoList.add(groupVo);
+        }
+        return ResponseUtil.okList(groupVoList, groups);
+    }
+
     /**
      * @return 在售的鱼塘总数
      */

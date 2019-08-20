@@ -32,6 +32,14 @@ public class LitemallGroupService {
         return groupMapper.selectByExampleSelective(example, columns);
     }
 
+    public List<LitemallGroup> queryGroupByUser(Integer id, int offset, int limit) {
+        LitemallGroupExample example = new LitemallGroupExample();
+        example.or().andDeletedEqualTo(false).andUserIdEqualTo(id);
+        example.setOrderByClause("add_time desc");
+        PageHelper.startPage(offset, limit);
+        return groupMapper.selectByExampleSelective(example, columns);
+    }
+
     /**
      * @param id
      * @return

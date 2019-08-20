@@ -182,6 +182,19 @@ public class WxQuestionController {
         return ResponseUtil.ok(entity);
     }
 
+    @GetMapping("listByUser")
+    public Object listByUser(@NotNull Integer userId, @RequestParam(defaultValue = "1") Integer page,
+                             @RequestParam(defaultValue = "10") Integer limit) {
+        List<LitemallQuestion> questions = QuestionService.queryQuestionByUser(userId, page, limit);
+        List<Map<String, Object>> questionVoList = new ArrayList<>(questions.size());
+        for (LitemallQuestion litemallQuestion : questions) {
+            Map<String, Object> questionVo = new HashMap<>();
+            questionVo.put("questionInfo", litemallQuestion);
+            questionVoList.add(questionVo);
+        }
+        return ResponseUtil.okList(questionVoList, questions);
+    }
+
     /**
      * @return 在售的鱼塘总数
      */

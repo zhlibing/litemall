@@ -34,6 +34,14 @@ public class LitemallFishPondsService {
         return fishPondsMapper.selectByExampleSelective(example, columns);
     }
 
+    public List<LitemallFishPonds> queryFishpondsByUser(Integer id, int offset, int limit) {
+        LitemallFishPondsExample example = new LitemallFishPondsExample();
+        example.or().andDeletedEqualTo(false).andUserIdEqualTo(id);
+        example.setOrderByClause("add_time desc");
+        PageHelper.startPage(offset, limit);
+        return fishPondsMapper.selectByExampleSelective(example, columns);
+    }
+
     /**
      * 获取某个鱼塘信息,包含完整信息
      *

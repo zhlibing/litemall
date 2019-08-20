@@ -33,6 +33,14 @@ public class LitemallQuestionService {
         return questionMapper.selectByExampleSelective(example, columns);
     }
 
+    public List<LitemallQuestion> queryQuestionByUser(Integer id, int offset, int limit) {
+        LitemallQuestionExample example = new LitemallQuestionExample();
+        example.or().andDeletedEqualTo(false).andUserIdEqualTo(id);
+        example.setOrderByClause("add_time desc");
+        PageHelper.startPage(offset, limit);
+        return questionMapper.selectByExampleSelective(example, columns);
+    }
+
     /**
      * @param id
      * @return

@@ -305,6 +305,19 @@ public class WxFishPondsController {
         }
     }
 
+    @GetMapping("listByUser")
+    public Object listByUser(@NotNull Integer userId, @RequestParam(defaultValue = "1") Integer page,
+                             @RequestParam(defaultValue = "10") Integer limit) {
+        List<LitemallFishPonds> fishPonds = fishPondsService.queryFishpondsByUser(userId, page, limit);
+        List<Map<String, Object>> fishpondsVoList = new ArrayList<>(fishPonds.size());
+        for (LitemallFishPonds litemallFishPonds : fishPonds) {
+            Map<String, Object> fishpondsVo = new HashMap<>();
+            fishpondsVo.put("FishPondsInfo", litemallFishPonds);
+            fishpondsVoList.add(fishpondsVo);
+        }
+        return ResponseUtil.okList(fishpondsVoList, fishPonds);
+    }
+
     /**
      * @return 在售的鱼塘总数
      */
