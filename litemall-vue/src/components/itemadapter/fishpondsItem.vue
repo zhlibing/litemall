@@ -8,7 +8,7 @@
                 <div class="txt">{{item.FishPondsInfo.title}}</div>
                 <div class="line"></div>
                 <div class="price">{{'￥' + item.FishPondsInfo.reword}}元起</div>
-                <div class="activity">
+                <div class="activity" v-if="item.publishUser!=undefined">
                     <div class="acinfo">
                         <img :src="item.publishUser.user.avatar"/>
                     </div>
@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        <div class="desc">
+        <div class="desc" v-if="item.publishUser!=undefined">
             <img :src="item.publishUser.user.avatar"/>
             <div class="loc">
                 <span>{{item.FishPondsInfo.description}}</span>

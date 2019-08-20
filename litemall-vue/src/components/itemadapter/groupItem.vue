@@ -80,12 +80,14 @@
             };
         },
         mounted() {
-            let keyUser = {}
-            keyUser = this.item.publishUser
-            keyUser.key = true;
-            this.users.push(keyUser);
-            this.users.push(...this.item.joinUsers);
-            if (this.item.joinUsers.length > 0) {
+            if (this.item.publishUser != undefined) {
+                let keyUser = {}
+                keyUser = this.item.publishUser
+                keyUser.key = true;
+                this.users.push(keyUser);
+                this.users.push(...this.item.joinUsers);
+            }
+            if (this.item.joinUsers != undefined && this.item.joinUsers.length > 0) {
                 this.isShowOne = true
             }
         },

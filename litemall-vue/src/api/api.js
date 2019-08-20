@@ -490,6 +490,51 @@ export function userDetails(query) {
     })
 }
 
+const UserCircleListByUser='wx/circle/listByUser'; //个人页面用户相关信息
+export function userCircleListByUser(query) {
+    return request({
+        url: UserCircleListByUser,
+        method: 'get',
+        params: query
+    })
+}
+
+const UserFishpondsListByUser='wx/fishponds/listByUser'; //个人页面用户相关信息
+export function userFishpondsListByUser(query) {
+    return request({
+        url: UserFishpondsListByUser,
+        method: 'get',
+        params: query
+    })
+}
+
+const UserQuestionListByUser='wx/question/listByUser'; //个人页面用户相关信息
+export function userQuestionListByUser(query) {
+    return request({
+        url: UserQuestionListByUser,
+        method: 'get',
+        params: query
+    })
+}
+
+const UserActivityListByUser='wx/activity/listByUser'; //个人页面用户相关信息
+export function userActivityListByUser(query) {
+    return request({
+        url: UserActivityListByUser,
+        method: 'get',
+        params: query
+    })
+}
+
+const UserGroupListByUser='wx/group/listByUser'; //个人页面用户相关信息
+export function userGroupListByUser(query) {
+    return request({
+        url: UserGroupListByUser,
+        method: 'get',
+        params: query
+    })
+}
+
 const UserRefresh='wx/user/refresh'; //个人页面用户相关信息
 export function userRefresh(query) {
     return request({
