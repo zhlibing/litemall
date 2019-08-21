@@ -80,6 +80,12 @@ public class LitemallActivityService {
         activityMapper.logicalDeleteByPrimaryKey(id);
     }
 
+    public void deleteByFishpondsId(Integer fishpondsId) {
+        LitemallActivityExample example = new LitemallActivityExample();
+        example.or().andFishpondsIdEqualTo(fishpondsId);
+        activityMapper.logicalDeleteByExample(example);
+    }
+
     public void add(LitemallActivity Activity) {
         Activity.setAddTime(LocalDateTime.now());
         Activity.setUpdateTime(LocalDateTime.now());
