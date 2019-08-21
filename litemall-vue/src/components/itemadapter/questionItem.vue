@@ -5,8 +5,8 @@
             <span class="da">答</span>
             <div class="text">{{item.content || item.description}}</div>
             <div v-if="item.picUrls !== undefined&&item.picUrls.length>0">
-                <div class="layerchird">
-                    <span v-if="item.picUrls.length-1>0">+{{item.picUrls.length - 1}}</span>
+                <div class="layerchird" v-if="item.picUrls.length-1>0">
+                    <span>+{{item.picUrls.length - 1}}</span>
                 </div>
                 <img :src="item.picUrls[0]" alt="">
             </div>

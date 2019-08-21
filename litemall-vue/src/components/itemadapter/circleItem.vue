@@ -2,8 +2,8 @@
     <div class="list" v-if="item!==undefined">
         <div class="layer">
             <img :src="item.picUrls!=undefined?item.picUrls[0]:default_avatar" alt="" class="image">
-            <div class="layerchird">
-                <span v-if="item.picUrls.length-1>0">+{{item.picUrls.length - 1}}</span>
+            <div class="layerchird" v-if="item.picUrls.length-1>0">
+                <span>+{{item.picUrls.length - 1}}</span>
             </div>
         </div>
         <div class="info" @click="itemClick(item.id,item.type)">

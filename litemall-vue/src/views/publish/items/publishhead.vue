@@ -87,27 +87,26 @@
                 obj.limited = '1'
                 obj.km = '1'
                 obj.picUrls = this.imgUrls
-                if (this.itemf.info == undefined) {
-                    this.$toast('请选择一个鱼塘吧')
-                    return
+                if (this.index < 3) {
+                    if (this.itemf.info == undefined) {
+                        this.$toast('请选择一个鱼塘吧')
+                        return
+                    }
+                    if (this.itemf.info != undefined) {
+                        obj.fishpondsId = this.itemf.info.id
+                    }
+                    obj.fee = this.$refs.batfree.fee
+                    obj.limited = this.$refs.batfree.limited
+                    obj.reword = this.$refs.batfree.reword
+                    obj.credit = this.$refs.batfree.credit
+                    obj.rule = JSON.stringify(this.$refs.batfree.attlist)
+                    obj.activityTime = (this.$refs.batfree.activityTime).replace(/T/, ' ') + ":00"
+                    obj.type = this.$refs.batfree.type
                 }
                 if (this.itemf.info != undefined) {
                     obj.fishpondsId = this.itemf.info.id
                 }
-                obj.fee = this.$refs.batfree.fee
-                obj.limited = this.$refs.batfree.limited
-                obj.reword = this.$refs.batfree.reword
-                obj.credit = this.$refs.batfree.credit
-                obj.rule = JSON.stringify(this.$refs.batfree.attlist)
-                obj.activityTime = (this.$refs.batfree.activityTime).replace(/T/, ' ') + ":00"
-                obj.type = this.$refs.batfree.type
-                    || this.$refs.batpk.type
-                    || this.$refs.batchallenge.type
-                    || this.$refs.publishquestion.type
-                    || this.$refs.publishcircle.type
-                    || this.$refs.publishgroup.type
-                    || this.$refs.publishfishponds.type
-                if (obj.type == 4) {
+                if (this.index == 4) {
                     circleSave(obj).then(res => {
                         if (res.status === 200) {
                             this.goBack()
@@ -118,7 +117,7 @@
                         }
                     });
                 }
-                if (obj.type == 5) {
+                if (this.index == 3) {
                     fishpondsSave(obj).then(res => {
                         if (res.status === 200) {
                             this.goBack()
@@ -129,7 +128,7 @@
                         }
                     });
                 }
-                if (obj.type == 6) {
+                if (this.index == 5) {
                     questionSave(obj).then(res => {
                         if (res.status === 200) {
                             this.goBack()
@@ -140,7 +139,7 @@
                         }
                     });
                 }
-                if (obj.type == 7) {
+                if (this.index == 6) {
                     groupSave(obj).then(res => {
                         if (res.status === 200) {
                             this.goBack()
@@ -151,7 +150,7 @@
                         }
                     });
                 }
-                if (obj.type == 8) {
+                if (this.index < 3) {
                     activitySave(obj).then(res => {
                         if (res.status === 200) {
                             this.goBack()
