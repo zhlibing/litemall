@@ -751,7 +751,7 @@ INSERT INTO `litemall_type_obj` VALUES (
 );
 INSERT INTO `litemall_type_obj` VALUES (
 '3',
-'用户',
+'话题',
 '0',
 '2019-06-13 22:49:32',
 '2019-06-13 22:49:32',
@@ -799,7 +799,7 @@ INSERT INTO `litemall_type_obj` VALUES (
 );
 INSERT INTO `litemall_type_obj` VALUES (
 '9',
-'品牌',
+'评论',
 '0',
 '2019-06-13 22:49:32',
 '2019-06-13 22:49:32',
@@ -807,7 +807,7 @@ INSERT INTO `litemall_type_obj` VALUES (
 );
 INSERT INTO `litemall_type_obj` VALUES (
 '10',
-'订单',
+'用户',
 '0',
 '2019-06-13 22:49:32',
 '2019-06-13 22:49:32',
@@ -815,6 +815,22 @@ INSERT INTO `litemall_type_obj` VALUES (
 );
 INSERT INTO `litemall_type_obj` VALUES (
 '11',
+'品牌',
+'0',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32',
+'0'
+);
+INSERT INTO `litemall_type_obj` VALUES (
+'12',
+'订单',
+'0',
+'2019-06-13 22:49:32',
+'2019-06-13 22:49:32',
+'0'
+);
+INSERT INTO `litemall_type_obj` VALUES (
+'13',
 '外链',
 '1',
 '2019-06-13 22:49:32',
