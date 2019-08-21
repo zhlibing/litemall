@@ -88,7 +88,7 @@ public class LitemallActivityFishpondsService {
 
     public void deleteByActivityId(Integer activityId) {
         LitemallActivityFishpondsExample example = new LitemallActivityFishpondsExample();
-        example.or().andFishpondsIdEqualTo(activityId);
+        example.or().andActivityIdEqualTo(activityId);
         ActivityFishpondsMapper.logicalDeleteByExample(example);
     }
 

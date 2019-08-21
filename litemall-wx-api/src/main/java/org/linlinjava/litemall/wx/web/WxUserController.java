@@ -135,6 +135,7 @@ public class WxUserController {
         if (type == 4) {
             litemallCircleService.deleteById(valueId);
             litemallCommentService.deleteByTypeAndValueId(type, valueId);
+            litemallCollectService.deleteByTypeAndValueId(type, valueId);
         }
         if (type == 5) {
             litemallFishPondsService.deleteById(valueId);
@@ -142,21 +143,25 @@ public class WxUserController {
             litemallActivityFishpondsService.deleteByFishpondsId(valueId);
             litemallFishPondsUserService.deleteByValueId(valueId);
             litemallActivityService.deleteByFishpondsId(valueId);
+            litemallCollectService.deleteByTypeAndValueId(type, valueId);
         }
         if (type == 6) {
             litemallQuestionService.deleteById(valueId);
             litemallCommentService.deleteByTypeAndValueId(type, valueId);
+            litemallCollectService.deleteByTypeAndValueId(type, valueId);
         }
         if (type == 7) {
             litemallGroupService.deleteById(valueId);
             litemallCommentService.deleteByTypeAndValueId(type, valueId);
             litemallGroupUserService.deleteByValueId(valueId);
+            litemallCollectService.deleteByTypeAndValueId(type, valueId);
         }
         if (type == 8) {
             litemallActivityService.deleteById(valueId);
             litemallCommentService.deleteByTypeAndValueId(type, valueId);
             litemallActivityFishpondsService.deleteByActivityId(valueId);
             litemallActivityUserService.deleteByActivityId(valueId);
+            litemallCollectService.deleteByTypeAndValueId(type, valueId);
         }
         return ResponseUtil.ok();
     }

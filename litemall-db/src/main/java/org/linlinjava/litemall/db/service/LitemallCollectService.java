@@ -104,6 +104,12 @@ public class LitemallCollectService {
         collectMapper.logicalDeleteByPrimaryKey(id);
     }
 
+    public void deleteByTypeAndValueId(byte type, Integer id) {
+        LitemallCollectExample example = new LitemallCollectExample();
+        example.or().andTypeEqualTo(type).andValueIdEqualTo(id);
+        collectMapper.logicalDeleteByExample(example);
+    }
+
     public int add(LitemallCollect collect) {
         collect.setAddTime(LocalDateTime.now());
         collect.setUpdateTime(LocalDateTime.now());
