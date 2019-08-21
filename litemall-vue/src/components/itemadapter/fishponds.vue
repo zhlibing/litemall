@@ -1,9 +1,9 @@
 <template>
     <div class="lobby-item" v-if="item!==undefined">
         <a class="item-content"
-           @click="itemClick(item.activityInfo.id||item.FishPondsInfo.id||item.GroupInfo.id,item.activityInfo.type||item.FishPondsInfo.type||item.GroupInfo.type)">
+           @click="itemClick(item.info.id,item.info.type)">
             <div class="lottery-logo">
-                <img :src="item.activityInfo.picUrls[0]"
+                <img :src="item.info.picUrls[0]"
                      style="object-fit: cover">
                 <div class="layerchird" v-if="countdownTime=='已结束'">
                     <span>已结束</span>
@@ -12,16 +12,16 @@
             <div class="item-info">
                 <div class="info-row">
                     <p class="lottery-name">
-                        {{item.activityInfo.title || item.FishPondsInfo.title || item.GroupInfo.title}}
+                        {{item.info.title}}
                     </p>
                     <img src="../../assets/images/right.png" class="arrow-right"/>
                 </div>
                 <div class="nums">
-                    <span>{{item.activityInfo.description || item.FishPondsInfo.description || item.GroupInfo.description}}</span>
+                    <span>{{item.info.description}}</span>
                 </div>
                 <div class="info-row">
                     <span class="issue-no">奖金：</span>
-                    <span class="item-cd">{{'￥' + item.activityInfo.reword}}</span>
+                    <span class="item-cd">{{'￥' + item.info.reword}}</span>
                 </div>
                 <span>{{countdownTime}}</span>
             </div>
@@ -61,7 +61,7 @@
             </div>
         </div>
         <div class="fun-info" v-show="isShowTwo">
-            <div v-for="(itemc,index) in JSON.parse(item.activityInfo.rule)" :key="index">
+            <div v-for="(itemc,index) in JSON.parse(item.info.rule)" :key="index">
                 <span>{{itemc.label + itemc.model}}</span>
             </div>
         </div>
@@ -97,7 +97,7 @@
             if (this.item.joinUsers != undefined && this.item.joinUsers.length > 0) {
                 this.isShowOne = true
             }
-            this.share_data_time(this.item.activityInfo.activityTime)
+            this.share_data_time(this.item.info.activityTime)
         },
         methods: {
             itemClick(id, type) {

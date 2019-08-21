@@ -16,7 +16,7 @@
                               @load="getCircleList">
                         <div v-for="(item,index) in list0" :key="index"
                              style="margin-top: 5px">
-                            <circleItem :item="item.circle"></circleItem>
+                            <circleItem :item="item.info"></circleItem>
                         </div>
                     </van-list>
                     <is-empty v-if="list0.length==0">TA很懒，啥都没写~</is-empty>
@@ -29,7 +29,7 @@
                               @load="getQuestionList">
                         <div v-for="(item,index) in list1" :key="index"
                              style="margin-top: 5px">
-                            <questionItem :item="item.question"></questionItem>
+                            <questionItem :item="item.info"></questionItem>
                         </div>
                     </van-list>
                     <is-empty v-if="list1.length==0">TA很懒，啥都没写~</is-empty>

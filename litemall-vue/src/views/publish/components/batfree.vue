@@ -40,10 +40,10 @@
         </div>
         <div class="bottom" @click="showSelectFishponds">
             <p class="info">请选择或者添加鱼塘</p>
-            <div class="yutang" v-if="item.FishPondsInfo==undefined">
+            <div class="yutang" v-if="item.info==undefined">
                 <span class="little">钓鱼比赛需要选择鱼塘进行哦</span>
             </div>
-            <fishpondsSelectItem :item="item" v-if="item.FishPondsInfo!=undefined"
+            <fishpondsSelectItem :item="item" v-if="item.info!=undefined"
                                  style="background-color: white;margin-bottom: 70px"></fishpondsSelectItem>
         </div>
     </div>

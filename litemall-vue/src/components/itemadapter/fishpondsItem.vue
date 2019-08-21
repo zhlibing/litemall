@@ -1,13 +1,13 @@
 <template>
-    <div class="brand-info" v-if="item!==undefined" @click="itemClick(item.FishPondsInfo.id,item.FishPondsInfo.type)">
+    <div class="brand-info" v-if="item!==undefined" @click="itemClick(item.info.id,item.info.type)">
         <div class="name">
             <img class="img"
-                 :src="item.FishPondsInfo.picUrls[0]"
+                 :src="item.info.picUrls[0]"
                  background-size="cover"/>
             <div class="info-box">
-                <div class="txt">{{item.FishPondsInfo.title}}</div>
+                <div class="txt">{{item.info.title}}</div>
                 <div class="line"></div>
-                <div class="price">{{'￥' + item.FishPondsInfo.reword}}元起</div>
+                <div class="price">{{'￥' + item.info.reword}}元起</div>
                 <div class="activity" v-if="item.publishUser!=undefined">
                     <div class="acinfo">
                         <img :src="item.publishUser.user.avatar"/>
@@ -24,7 +24,7 @@
         <div class="desc" v-if="item.publishUser!=undefined">
             <img :src="item.publishUser.user.avatar"/>
             <div class="loc">
-                <span>{{item.FishPondsInfo.description}}</span>
+                <span>{{item.info.description}}</span>
                 <span class="span2">北京市黄埔屯中大街888号人民大会堂一楼888室VIP回踏</span>
             </div>
         </div>

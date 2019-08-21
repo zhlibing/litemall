@@ -1,24 +1,24 @@
 <template>
     <div class="lobby-item" v-if="item!==undefined">
         <a class="item-content"
-           @click="itemClick(item.GroupInfo.id,item.GroupInfo.type)">
+           @click="itemClick(item.info.id,item.info.type)">
             <div class="lottery-logo">
-                <img :src="item.GroupInfo.picUrls[0]"
+                <img :src="item.info.picUrls[0]"
                      style="object-fit: cover">
             </div>
             <div class="item-info">
                 <div class="info-row">
                     <p class="lottery-name">
-                        {{item.GroupInfo.description}}
+                        {{item.info.description}}
                     </p>
                     <img src="../../assets/images/right.png" class="arrow-right"/>
                 </div>
                 <div class="nums">
-                    <span>{{"当前人数："+item.GroupInfo.currentPeople}}</span>
+                    <span>{{"当前人数："+item.info.currentPeople}}</span>
                 </div>
                 <div class="info-row">
                     <span class="issue-no">奖金：</span>
-                    <span class="item-cd">{{'￥'+item.GroupInfo.age}}</span>
+                    <span class="item-cd">{{'￥'+item.info.age}}</span>
                 </div>
             </div>
         </a>

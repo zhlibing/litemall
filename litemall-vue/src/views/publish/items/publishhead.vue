@@ -87,12 +87,12 @@
                 obj.limited = '1'
                 obj.km = '1'
                 obj.picUrls = this.imgUrls
-                if (this.itemf.FishPondsInfo == undefined) {
+                if (this.itemf.info == undefined) {
                     this.$toast('请选择一个鱼塘吧')
                     return
                 }
-                if (this.itemf.FishPondsInfo != undefined) {
-                    obj.fishpondsId = this.itemf.FishPondsInfo.id
+                if (this.itemf.info != undefined) {
+                    obj.fishpondsId = this.itemf.info.id
                 }
                 obj.fee = this.$refs.batfree.fee
                 obj.limited = this.$refs.batfree.limited

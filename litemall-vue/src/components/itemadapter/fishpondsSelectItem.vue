@@ -1,18 +1,18 @@
 <template>
-    <div class="list" v-if="item!==undefined&&item.FishPondsInfo!=undefined">
+    <div class="list" v-if="item!==undefined&&item.info!=undefined">
         <div class="layer">
-            <img :src="item.FishPondsInfo.picUrls!=undefined?item.FishPondsInfo.picUrls[0]:default_avatar" alt=""
+            <img :src="item.info.picUrls!=undefined?item.info.picUrls[0]:default_avatar" alt=""
                  class="image">
         </div>
         <div class="info" @click="itemClick(item)">
             <div class="head">
-                <p class="tit">{{item.FishPondsInfo.description.substring(0, 8) + '...'}}</p>
+                <p class="tit">{{item.info.description.substring(0, 8) + '...'}}</p>
                 <img class="select" type="checkbox" src="../../assets/images/selected_yes.png"
                      v-if="selectedIndex==index">
                 <img class="select" type="checkbox" src="../../assets/images/selected_no.png" v-else>
             </div>
             <div class="text">
-                <p class="desc">{{item.FishPondsInfo.description}}</p>
+                <p class="desc">{{item.info.description}}</p>
             </div>
             <div class="hot">
                 <span>可容纳：{{1000}}人</span>
