@@ -7,12 +7,8 @@ import org.linlinjava.litemall.core.util.JacksonUtil;
 import org.linlinjava.litemall.core.util.ResponseUtil;
 import org.linlinjava.litemall.core.validator.Order;
 import org.linlinjava.litemall.core.validator.Sort;
-import org.linlinjava.litemall.db.domain.LitemallCollect;
-import org.linlinjava.litemall.db.domain.LitemallGoods;
-import org.linlinjava.litemall.db.domain.LitemallUser;
-import org.linlinjava.litemall.db.service.LitemallCollectService;
-import org.linlinjava.litemall.db.service.LitemallGoodsService;
-import org.linlinjava.litemall.db.service.LitemallUserService;
+import org.linlinjava.litemall.db.domain.*;
+import org.linlinjava.litemall.db.service.*;
 import org.linlinjava.litemall.wx.annotation.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -39,6 +35,18 @@ public class WxCollectController {
     private LitemallGoodsService goodsService;
     @Autowired
     private LitemallUserService litemallUserService;
+    @Autowired
+    private LitemallActivityService litemallActivityService;
+    @Autowired
+    private LitemallCircleService litemallCircleService;
+    @Autowired
+    private LitemallFishPondsService litemallFishPondsService;
+    @Autowired
+    private LitemallQuestionService litemallQuestionService;
+    @Autowired
+    private LitemallGroupService litemallGroupService;
+    @Autowired
+    private LitemallCommentService litemallCommentService;
 
     /**
      * 用户收藏列表
@@ -80,34 +88,34 @@ public class WxCollectController {
                 c.put("collectCount", collectService.countCollectMe(user.getId(), type));
             }
             if (type == 4) {
-                LitemallUser user = litemallUserService.findDetailById(collect.getValueId());
-                c.put("user", user);
-                c.put("collectCount", collectService.countCollectMe(user.getId(), type));
+                LitemallCircle circle = litemallCircleService.findById(collect.getValueId());
+                c.put("circle", circle);
+                c.put("collectCount", collectService.countCollectMe(circle.getId(), type));
             }
             if (type == 5) {
-                LitemallUser user = litemallUserService.findDetailById(collect.getValueId());
-                c.put("user", user);
-                c.put("collectCount", collectService.countCollectMe(user.getId(), type));
+                LitemallFishPonds fishPonds = litemallFishPondsService.findById(collect.getValueId());
+                c.put("fishponds", fishPonds);
+                c.put("collectCount", collectService.countCollectMe(fishPonds.getId(), type));
             }
             if (type == 6) {
-                LitemallUser user = litemallUserService.findDetailById(collect.getValueId());
-                c.put("user", user);
-                c.put("collectCount", collectService.countCollectMe(user.getId(), type));
+                LitemallQuestion question = litemallQuestionService.findById(collect.getValueId());
+                c.put("question", question);
+                c.put("collectCount", collectService.countCollectMe(question.getId(), type));
             }
             if (type == 7) {
-                LitemallUser user = litemallUserService.findDetailById(collect.getValueId());
-                c.put("user", user);
-                c.put("collectCount", collectService.countCollectMe(user.getId(), type));
+                LitemallGroup group = litemallGroupService.findById(collect.getValueId());
+                c.put("group", group);
+                c.put("collectCount", collectService.countCollectMe(group.getId(), type));
             }
             if (type == 8) {
-                LitemallUser user = litemallUserService.findDetailById(collect.getValueId());
-                c.put("user", user);
-                c.put("collectCount", collectService.countCollectMe(user.getId(), type));
+                LitemallActivity activity = litemallActivityService.findById(collect.getValueId());
+                c.put("activity", activity);
+                c.put("collectCount", collectService.countCollectMe(activity.getId(), type));
             }
             if (type == 9) {
-                LitemallUser user = litemallUserService.findDetailById(collect.getValueId());
-                c.put("user", user);
-                c.put("collectCount", collectService.countCollectMe(user.getId(), type));
+                LitemallComment comment = litemallCommentService.findById(collect.getValueId());
+                c.put("comment", comment);
+                c.put("collectCount", collectService.countCollectMe(comment.getId(), type));
             }
 
             collects.add(c);
