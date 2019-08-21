@@ -225,7 +225,7 @@ public class WxGroupController {
         List<Map<String, Object>> GroupVoList = new ArrayList<>(GroupList.size());
         for (LitemallGroup Group : GroupList) {
             Map<String, Object> GroupVo = new HashMap<>();
-            GroupVo.put("GroupInfo", Group);
+            GroupVo.put("info", Group);
             if (userId != null) {
                 GroupVo.put("userHasCollect", collectService.count(userId, Group.getId(), this.type));
             }
@@ -312,7 +312,7 @@ public class WxGroupController {
         List<Map<String, Object>> groupVoList = new ArrayList<>(groups.size());
         for (LitemallGroup litemallGroup : groups) {
             Map<String, Object> groupVo = new HashMap<>();
-            groupVo.put("GroupInfo", litemallGroup);
+            groupVo.put("info", litemallGroup);
             groupVoList.add(groupVo);
         }
         return ResponseUtil.okList(groupVoList, groups);

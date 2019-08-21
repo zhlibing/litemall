@@ -89,27 +89,27 @@ public class WxCollectController {
             }
             if (type == 4) {
                 LitemallCircle circle = litemallCircleService.findById(collect.getValueId());
-                c.put("circle", circle);
+                c.put("info", circle);
                 c.put("collectCount", collectService.countCollectMe(circle.getId(), type));
             }
             if (type == 5) {
                 LitemallFishPonds fishPonds = litemallFishPondsService.findById(collect.getValueId());
-                c.put("FishPondsInfo", fishPonds);
+                c.put("info", fishPonds);
                 c.put("collectCount", collectService.countCollectMe(fishPonds.getId(), type));
             }
             if (type == 6) {
                 LitemallQuestion question = litemallQuestionService.findById(collect.getValueId());
-                c.put("question", question);
+                c.put("info", question);
                 c.put("collectCount", collectService.countCollectMe(question.getId(), type));
             }
             if (type == 7) {
                 LitemallGroup group = litemallGroupService.findById(collect.getValueId());
-                c.put("GroupInfo", group);
+                c.put("info", group);
                 c.put("collectCount", collectService.countCollectMe(group.getId(), type));
             }
             if (type == 8) {
                 LitemallActivity activity = litemallActivityService.findById(collect.getValueId());
-                c.put("activityInfo", activity);
+                c.put("info", activity);
                 c.put("collectCount", collectService.countCollectMe(activity.getId(), type));
             }
             if (type == 9) {

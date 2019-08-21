@@ -189,7 +189,7 @@ public class WxCircleController {
         List<Map<String, Object>> circleVoList = new ArrayList<>(circles.size());
         for (LitemallCircle litemallCircle : circles) {
             Map<String, Object> circleVo = new HashMap<>();
-            circleVo.put("circleInfo", litemallCircle);
+            circleVo.put("info", litemallCircle);
             circleVoList.add(circleVo);
         }
         return ResponseUtil.okList(circleVoList, circles);

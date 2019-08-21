@@ -189,7 +189,7 @@ public class WxQuestionController {
         List<Map<String, Object>> questionVoList = new ArrayList<>(questions.size());
         for (LitemallQuestion litemallQuestion : questions) {
             Map<String, Object> questionVo = new HashMap<>();
-            questionVo.put("questionInfo", litemallQuestion);
+            questionVo.put("info", litemallQuestion);
             questionVoList.add(questionVo);
         }
         return ResponseUtil.okList(questionVoList, questions);

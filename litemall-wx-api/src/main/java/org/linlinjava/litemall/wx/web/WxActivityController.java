@@ -228,7 +228,7 @@ public class WxActivityController {
         List<Map<String, Object>> activityVoList = new ArrayList<>(activityList.size());
         for (LitemallActivity activity : activityList) {
             Map<String, Object> activityVo = new HashMap<>();
-            activityVo.put("activityInfo", activity);
+            activityVo.put("info", activity);
             if (userId != null) {
                 activityVo.put("userHasCollect", collectService.count(userId, activity.getId(), this.type));
             }
@@ -315,7 +315,7 @@ public class WxActivityController {
         List<Map<String, Object>> activityVoList = new ArrayList<>(activityes.size());
         for (LitemallActivity litemallActivity : activityes) {
             Map<String, Object> circleVo = new HashMap<>();
-            circleVo.put("activityInfo", litemallActivity);
+            circleVo.put("info", litemallActivity);
             activityVoList.add(circleVo);
         }
         return ResponseUtil.okList(activityVoList, activityes);

@@ -225,7 +225,7 @@ public class WxFishPondsController {
         List<Map<String, Object>> FishPondsVoList = new ArrayList<>(FishPondsList.size());
         for (LitemallFishPonds FishPonds : FishPondsList) {
             Map<String, Object> FishPondsVo = new HashMap<>();
-            FishPondsVo.put("FishPondsInfo", FishPonds);
+            FishPondsVo.put("info", FishPonds);
             if (userId != null) {
                 FishPondsVo.put("userHasCollect", collectService.count(userId, FishPonds.getId(), this.type));
             }
@@ -312,7 +312,7 @@ public class WxFishPondsController {
         List<Map<String, Object>> fishpondsVoList = new ArrayList<>(fishPonds.size());
         for (LitemallFishPonds litemallFishPonds : fishPonds) {
             Map<String, Object> fishpondsVo = new HashMap<>();
-            fishpondsVo.put("FishPondsInfo", litemallFishPonds);
+            fishpondsVo.put("info", litemallFishPonds);
             fishpondsVoList.add(fishpondsVo);
         }
         return ResponseUtil.okList(fishpondsVoList, fishPonds);
