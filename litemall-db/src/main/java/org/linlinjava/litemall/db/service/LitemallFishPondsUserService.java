@@ -88,6 +88,12 @@ public class LitemallFishPondsUserService {
         FishPondsUserMapper.deleteByPrimaryKey(id);
     }
 
+    public void deleteByValueId(Integer id) {
+        LitemallFishPondsUserExample example = new LitemallFishPondsUserExample();
+        example.or().andFishPondsIdEqualTo(id);
+        FishPondsUserMapper.logicalDeleteByExample(example);
+    }
+
     public void quiteById(Integer userId, Integer id) {
         LitemallFishPondsUserExample example = new LitemallFishPondsUserExample();
         example.or().andFishPondsIdEqualTo(id).andUserIdEqualTo(userId);

@@ -88,6 +88,12 @@ public class LitemallGroupUserService {
         GroupUserMapper.deleteByPrimaryKey(id);
     }
 
+    public void deleteByValueId(Integer id) {
+        LitemallGroupUserExample example = new LitemallGroupUserExample();
+        example.or().andGroupIdEqualTo(id);
+        GroupUserMapper.logicalDeleteByExample(example);
+    }
+
     public void quiteById(Integer userId, Integer id) {
         LitemallGroupUserExample example = new LitemallGroupUserExample();
         example.or().andGroupIdEqualTo(id).andUserIdEqualTo(userId);

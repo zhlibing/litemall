@@ -55,6 +55,18 @@ public class WxUserController {
     @Autowired
     private LitemallCommentService litemallCommentService;
 
+    @Autowired
+    private LitemallActivityUserService litemallActivityUserService;
+
+    @Autowired
+    private LitemallFishPondsUserService litemallFishPondsUserService;
+
+    @Autowired
+    private LitemallGroupUserService litemallGroupUserService;
+
+    @Autowired
+    private LitemallActivityFishpondsService litemallActivityFishpondsService;
+
     private int type = 10;
 
     /**
@@ -127,6 +139,7 @@ public class WxUserController {
         if (type == 5) {
             litemallFishPondsService.deleteById(valueId);
             litemallCommentService.deleteByTypeAndValueId(type, valueId);
+            litemallActivityFishpondsService.deleteByFishpondsId(valueId);
         }
         if (type == 6) {
             litemallQuestionService.deleteById(valueId);
@@ -135,10 +148,13 @@ public class WxUserController {
         if (type == 7) {
             litemallGroupService.deleteById(valueId);
             litemallCommentService.deleteByTypeAndValueId(type, valueId);
+            litemallGroupUserService.deleteByValueId(valueId);
         }
         if (type == 8) {
             litemallActivityService.deleteById(valueId);
             litemallCommentService.deleteByTypeAndValueId(type, valueId);
+            litemallActivityFishpondsService.deleteByActivityId(valueId);
+            litemallActivityUserService.deleteByActivityId(valueId);
         }
         return ResponseUtil.ok();
     }

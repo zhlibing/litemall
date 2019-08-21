@@ -80,6 +80,18 @@ public class LitemallActivityFishpondsService {
         ActivityFishpondsMapper.deleteByPrimaryKey(id);
     }
 
+    public void deleteByFishpondsId(Integer fishpondsId) {
+        LitemallActivityFishpondsExample example = new LitemallActivityFishpondsExample();
+        example.or().andFishpondsIdEqualTo(fishpondsId);
+        ActivityFishpondsMapper.logicalDeleteByExample(example);
+    }
+
+    public void deleteByActivityId(Integer activityId) {
+        LitemallActivityFishpondsExample example = new LitemallActivityFishpondsExample();
+        example.or().andFishpondsIdEqualTo(activityId);
+        ActivityFishpondsMapper.logicalDeleteByExample(example);
+    }
+
     public void quiteById(Integer fishpondsId, Integer id) {
         LitemallActivityFishpondsExample example = new LitemallActivityFishpondsExample();
         example.or().andActivityIdEqualTo(id).andFishpondsIdEqualTo(fishpondsId);

@@ -88,6 +88,12 @@ public class LitemallActivityUserService {
         ActivityUserMapper.deleteByPrimaryKey(id);
     }
 
+    public void deleteByActivityId(Integer activityId) {
+        LitemallActivityUserExample example = new LitemallActivityUserExample();
+        example.or().andActivityIdEqualTo(activityId);
+        ActivityUserMapper.logicalDeleteByExample(example);
+    }
+
     public void quiteById(Integer userId, Integer id) {
         LitemallActivityUserExample example = new LitemallActivityUserExample();
         example.or().andActivityIdEqualTo(id).andUserIdEqualTo(userId);
