@@ -3,6 +3,7 @@ const UserCollect = () => import('@/views/user/module-collect');
 const UserCollectUser = () => import('@/views/user/module-collect-user');
 const UserCollectUserMe = () => import('@/views/user/module-collect-user-me');
 const UserUserZan = () => import('@/views/user/module-zan');
+const UserUserJoin = () => import('@/views/user/module-join');
 const UserAddress = () => import('@/views/user/module-address');
 const UserAddressEdit = () => import('@/views/user/module-address-edit');
 const UserServer = () => import('@/views/user/module-server');
@@ -60,6 +61,14 @@ export default [
             login: true
         },
         component: UserUserZan
+    },
+    {
+        path: '/user/join',
+        name: 'userJoin',
+        meta: {
+            login: true
+        },
+        component: UserUserJoin
     },
   {
     path: '/user/address',
