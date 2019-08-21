@@ -116,6 +116,15 @@ public class WxCollectController {
                 LitemallComment comment = litemallCommentService.findById(collect.getValueId());
                 c.put("comment", comment);
                 c.put("collectCount", collectService.countCollectMe(comment.getId(), type));
+
+                Map<String, Object> userVo = new HashMap<>();
+                LitemallUser litemallUser = litemallUserService.findDetailById(comment.getUserId());
+                userVo.put("user", litemallUser);
+                if (userId != null) {
+                    userVo.put("userHasCollect", collectService.count(userId, litemallUser.getId(), 10));
+                }
+                userVo.put("collectCount", collectService.countCollectMe(litemallUser.getId(), 10));
+                c.put("publishUser", userVo);
             }
 
             collects.add(c);
