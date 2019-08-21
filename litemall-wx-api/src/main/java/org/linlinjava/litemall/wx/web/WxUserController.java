@@ -140,6 +140,7 @@ public class WxUserController {
             litemallFishPondsService.deleteById(valueId);
             litemallCommentService.deleteByTypeAndValueId(type, valueId);
             litemallActivityFishpondsService.deleteByFishpondsId(valueId);
+            litemallFishPondsUserService.deleteByValueId(valueId);
         }
         if (type == 6) {
             litemallQuestionService.deleteById(valueId);
