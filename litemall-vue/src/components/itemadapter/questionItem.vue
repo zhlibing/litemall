@@ -39,7 +39,8 @@
         padding-top: 0.4rem;
         padding-bottom: 0.4rem;
         border-bottom: 1px solid #f7f7f7;
-        padding: 0 15px;
+        padding: 15px 15px;
+        background-color: #ffffff;
         .title {
             font-size: 15px;
             font-weight: 400;
