@@ -5,7 +5,8 @@
                   :finished="finished"
                   :immediate-check="false"
                   finished-text="没有更多了"
-                  @load="getCollectList">
+                  @load="getCollectList"
+                  v-if="list.length>0">
             <div v-for="(itemc,index) in list" :key="index" style="margin: 15px">
                 <div class="footer">
                     <van-button size="mini"

@@ -5,7 +5,8 @@
                   :finished="finished"
                   :immediate-check="false"
                   finished-text="没有更多了"
-                  @load="getCollectMeList">
+                  @load="getCollectMeList"
+                  v-if="list.length>0">
             <div v-for="(itemc,index) in list" :key="index" style="margin: 15px">
                 <linkuser :item="itemc"></linkuser>
             </div>

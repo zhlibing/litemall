@@ -6,46 +6,49 @@
                       :finished="finished"
                       :immediate-check="false"
                       finished-text="没有更多了"
-                      @load="getActivityListall" v-show="index==0" style="margin-top: 30px">
+                      @load="getActivityListall" v-show="list.length>0&&index==0" style="margin-top: 30px">
                 <div v-for="(item, index) in list"
                      :key="index">
                     <lotteryList :item="item" @onShowClick="onShowClick"
                                  style="margin-top: 5px"></lotteryList>
                 </div>
             </van-list>
+            <is-empty v-if="list.length==0&&index==0">很遗憾，啥都没有~</is-empty>
         </van-pull-refresh>
         <van-pull-refresh v-model="loading1" @refresh="onRefresh" style="margin-top: 10px">
             <van-list v-model="loading1"
                       :finished="finished1"
                       :immediate-check="false"
                       finished-text="没有更多了"
-                      @load="getFishpondsListall" v-show="index==1" style="margin-top: 30px">
+                      @load="getFishpondsListall" v-show="list1.length>0&&index==1" style="margin-top: 30px">
                 <div v-for="(item, index) in list1"
                      :key="index">
                     <fishpondsItem :item="item" @onShowClick="onShowClick"
                                    style="margin-top: 5px"></fishpondsItem>
                 </div>
             </van-list>
+            <is-empty v-if="list1.length==0&&index==1">很遗憾，啥都没有~</is-empty>
         </van-pull-refresh>
         <van-pull-refresh v-model="loading2" @refresh="onRefresh" style="margin-top: 10px">
             <van-list v-model="loading2"
                       :finished="finished2"
                       :immediate-check="false"
                       finished-text="没有更多了"
-                      @load="getGroupListall" v-show="index==2" style="margin-top: 10px">
+                      @load="getGroupListall" v-show="list2.length>0&&index==2" style="margin-top: 10px">
                 <div v-for="(item, index) in list2"
                      :key="index">
                     <groupItem :item="item" @onShowClick="onShowClick"
                                style="margin-top: 5px"></groupItem>
                 </div>
             </van-list>
+            <is-empty v-if="list2.length==0&&index==2">很遗憾，啥都没有~</is-empty>
         </van-pull-refresh>
         <van-pull-refresh v-model="loading3" @refresh="onRefresh" style="margin-top: 10px">
             <van-list v-model="loading3"
                       :finished="finished3"
                       :immediate-check="false"
                       finished-text="没有更多了"
-                      @load="getCommentListall" v-show="index==3" style="margin-top: 0px">
+                      @load="getCommentListall" v-show="list3.length>0&&index==3" style="margin-top: 0px">
                 <div v-for="(comment, index) in list3"
                      :key="index"
                      style="background-color: #ffffff;margin-top: 5px">
@@ -53,6 +56,7 @@
                     <linkobj :item="comment.info"></linkobj>
                 </div>
             </van-list>
+            <is-empty v-if="list3.length==0&&index==3">很遗憾，啥都没有~</is-empty>
         </van-pull-refresh>
         <is-empty v-if="index>3">暂无内容</is-empty>
         <floatbutton></floatbutton>

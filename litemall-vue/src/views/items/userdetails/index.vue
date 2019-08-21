@@ -42,7 +42,8 @@
                               :finished="finished0"
                               :immediate-check="false"
                               finished-text="没有更多了"
-                              @load="getCircleList">
+                              @load="getCircleList"
+                              v-if="list0.length>0">
                         <div v-for="(item,index) in list0" :key="index"
                              style="margin-top: 5px">
                             <circleItem :item="item.info"></circleItem>
@@ -61,7 +62,8 @@
                               :finished="finished1"
                               :immediate-check="false"
                               finished-text="没有更多了"
-                              @load="getQuestionList">
+                              @load="getQuestionList"
+                              v-if="list1.length>0">
                         <div v-for="(item,index) in list1" :key="index"
                              style="margin-top: 5px">
                             <questionItem :item="item.info"></questionItem>
@@ -80,7 +82,8 @@
                               :finished="finished2"
                               :immediate-check="false"
                               finished-text="没有更多了"
-                              @load="getActivityList">
+                              @load="getActivityList"
+                              v-if="list2.length>0">
                         <div v-for="(item,index) in list2" :key="index"
                              style="margin-top: 5px">
                             <activityItem :item="item"></activityItem>
@@ -99,7 +102,8 @@
                               :finished="finished3"
                               :immediate-check="false"
                               finished-text="没有更多了"
-                              @load="getFishpondsList">
+                              @load="getFishpondsList"
+                              v-if="list3.length>0">
                         <div v-for="(item,index) in list3" :key="index"
                              style="margin-top: 5px">
                             <fishpondsItem :item="item"></fishpondsItem>
@@ -118,7 +122,8 @@
                               :finished="finished4"
                               :immediate-check="false"
                               finished-text="没有更多了"
-                              @load="getGroupList">
+                              @load="getGroupList"
+                              v-if="list4.length>0">
                         <div v-for="(item,index) in list4" :key="index"
                              style="margin-top: 5px">
                             <groupItem :item="item"></groupItem>

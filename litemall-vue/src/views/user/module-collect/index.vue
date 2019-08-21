@@ -5,7 +5,8 @@
               :finished="finished"
               :immediate-check="false"
               finished-text="没有更多了"
-              @load="getCollectList">
+              @load="getCollectList"
+              v-if="list.length>0">
       <van-card v-for="(item, i) in list"
                 :key="i"
                 :desc="item.brief"

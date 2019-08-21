@@ -18,6 +18,7 @@
                     </div>
                 </div>
             </div>
+            <is-empty v-if="interests.length==0">很遗憾，啥都没有~</is-empty>
         </div>
         <div class="questions">
             <div class="titlebox">
@@ -27,6 +28,7 @@
             <div v-for="(item,index) in questions" :key="index">
                 <question :item="item"></question>
             </div>
+            <is-empty v-if="questions.length==0">很遗憾，啥都没有~</is-empty>
             <div class="more">
                 <span class="gomore">更多</span>
             </div>
@@ -49,6 +51,7 @@
                     </div>
                 </div>
             </div>
+            <is-empty v-if="tuhao.length==0">很遗憾，啥都没有~</is-empty>
         </div>
         <div class="interest">
             <div class="titlebox">
@@ -68,6 +71,7 @@
                     </div>
                 </div>
             </div>
+            <is-empty v-if="china.length==0">很遗憾，啥都没有~</is-empty>
         </div>
         <div class="interest bottom2 questions">
             <div class="titlebox">
@@ -76,6 +80,7 @@
             <div v-for="(item,index) in lists" :key="index">
                 <circleItem :item="item"></circleItem>
             </div>
+            <is-empty v-if="lists.length==0">很遗憾，啥都没有~</is-empty>
             <div class="more">
                 <span class="gomore">更多</span>
             </div>
@@ -93,6 +98,7 @@
     import {EventBus} from '../../utils/event-bus'
     import question from '../../components/itemadapter/questionItem.vue'
     import circleItem from '../../components/itemadapter/circleItem.vue'
+    import IsEmpty from '@/components/is-empty/';
 
     export default {
         data() {
@@ -128,7 +134,8 @@
             floatbutton,
             avatar,
             question,
-            circleItem
+            circleItem,
+            [IsEmpty.name]: IsEmpty,
         },
         mounted() {
             window.addEventListener('scroll', this.handleScroll)
