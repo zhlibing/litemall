@@ -490,6 +490,15 @@ export function userDetails(query) {
     })
 }
 
+const UserDeleteItem='wx/user/deleteItem'; //个人页面用户相关信息
+export function userDeleteItem(query) {
+    return request({
+        url: UserDeleteItem,
+        method: 'get',
+        params: query
+    })
+}
+
 const UserCircleListByUser='wx/circle/listByUser'; //个人页面用户相关信息
 export function userCircleListByUser(query) {
     return request({

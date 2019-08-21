@@ -46,6 +46,12 @@
                         <div v-for="(item,index) in list0" :key="index"
                              style="margin-top: 5px">
                             <circleItem :item="item.info"></circleItem>
+                            <div class="delete" slot="footer" v-if="userId!=undefined&&userId==loginUserId">
+                                <van-button size="mini"
+                                            icon="lajitong"
+                                            @click.stop="deleteItem($event, index,item.info)">删除
+                                </van-button>
+                            </div>
                         </div>
                     </van-list>
                     <is-empty v-if="list0.length==0">TA很懒，啥都没写~</is-empty>
@@ -59,6 +65,12 @@
                         <div v-for="(item,index) in list1" :key="index"
                              style="margin-top: 5px">
                             <questionItem :item="item.info"></questionItem>
+                            <div class="delete" slot="footer" v-if="userId!=undefined&&userId==loginUserId">
+                                <van-button size="mini"
+                                            icon="lajitong"
+                                            @click.stop="deleteItem($event, index,item.info)">删除
+                                </van-button>
+                            </div>
                         </div>
                     </van-list>
                     <is-empty v-if="list1.length==0">TA很懒，啥都没写~</is-empty>
@@ -72,6 +84,12 @@
                         <div v-for="(item,index) in list2" :key="index"
                              style="margin-top: 5px">
                             <activityItem :item="item"></activityItem>
+                            <div class="delete" slot="footer" v-if="userId!=undefined&&userId==loginUserId">
+                                <van-button size="mini"
+                                            icon="lajitong"
+                                            @click.stop="deleteItem($event, index,item.info)">删除
+                                </van-button>
+                            </div>
                         </div>
                     </van-list>
                     <is-empty v-if="list2.length==0">TA很懒，啥都没写~</is-empty>
@@ -85,6 +103,12 @@
                         <div v-for="(item,index) in list3" :key="index"
                              style="margin-top: 5px">
                             <fishpondsItem :item="item"></fishpondsItem>
+                            <div class="delete" slot="footer" v-if="userId!=undefined&&userId==loginUserId">
+                                <van-button size="mini"
+                                            icon="lajitong"
+                                            @click.stop="deleteItem($event, index,item.info)">删除
+                                </van-button>
+                            </div>
                         </div>
                     </van-list>
                     <is-empty v-if="list3.length==0">TA很懒，啥都没写~</is-empty>
@@ -98,6 +122,12 @@
                         <div v-for="(item,index) in list4" :key="index"
                              style="margin-top: 5px">
                             <groupItem :item="item"></groupItem>
+                            <div class="delete" slot="footer" v-if="userId!=undefined&&userId==loginUserId">
+                                <van-button size="mini"
+                                            icon="lajitong"
+                                            @click.stop="deleteItem($event, index,item.info)">删除
+                                </van-button>
+                            </div>
                         </div>
                     </van-list>
                     <is-empty v-if="list4.length==0">TA很懒，啥都没写~</is-empty>
@@ -117,6 +147,7 @@
         userFishpondsListByUser,
         userDetails,
         collectAddOrDelete,
+        userDeleteItem
     } from '@/api/api';
     import {getLocalStorage} from '@/utils/local-storage';
     import fishpondsItem from '../../../components/itemadapter/fishpondsItem.vue'
@@ -171,6 +202,27 @@
             }
         },
         methods: {
+            deleteItem(event, i, item) {
+                this.$dialog.confirm({message: '是否删除？'}).then(() => {
+                    userDeleteItem({valueId: item.id, type: item.type}).then(res => {
+                        if (item.type == 4) {
+                            this.list0.splice(i, 1);
+                        }
+                        if (item.type == 5) {
+                            this.list3.splice(i, 1);
+                        }
+                        if (item.type == 6) {
+                            this.list1.splice(i, 1);
+                        }
+                        if (item.type == 7) {
+                            this.list4.splice(i, 1);
+                        }
+                        if (item.type == 8) {
+                            this.list2.splice(i, 1);
+                        }
+                    });
+                });
+            },
             init0() {
                 this.page0 = 0;
                 this.list0 = [];
@@ -409,5 +461,9 @@
 
         .creditinfo
             margin-top 1px
-
+        .delete
+            background-color white
+            padding-right 10px
+            margin-top 5px
+            text-align right
 </style>
