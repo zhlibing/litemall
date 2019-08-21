@@ -526,6 +526,33 @@ export function userActivityListByUser(query) {
     })
 }
 
+const UserActivityListjoin = 'wx/activity/listjoin'; //个人页面用户相关信息
+export function userActivityListjoin(query) {
+    return request({
+        url: UserActivityListjoin,
+        method: 'get',
+        params: query
+    })
+}
+
+const UserFishpondsListjoin = 'wx/fishponds/listjoin'; //个人页面用户相关信息
+export function userFishpondsListjoin(query) {
+    return request({
+        url: UserFishpondsListjoin,
+        method: 'get',
+        params: query
+    })
+}
+
+const UserGroupListjoin = 'wx/group/listjoin'; //个人页面用户相关信息
+export function userGroupListjoin(query) {
+    return request({
+        url: UserGroupListjoin,
+        method: 'get',
+        params: query
+    })
+}
+
 const UserGroupListByUser='wx/group/listByUser'; //个人页面用户相关信息
 export function userGroupListByUser(query) {
     return request({

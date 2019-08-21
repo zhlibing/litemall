@@ -55,7 +55,9 @@
 <script>
     import appbar from '@/components/head/appbar'
     import {
-        collectList,
+        userActivityListjoin,
+        userGroupListjoin,
+        userFishpondsListjoin,
         collectAddOrDelete,
     } from '@/api/api';
     import {getLocalStorage} from '@/utils/local-storage';
@@ -152,7 +154,7 @@
                 });
             },
             getActivityList() {
-                collectList({
+                userActivityListjoin({
                     userId: this.userId,
                     page: this.page2,
                     limit: this.limit,
@@ -165,7 +167,7 @@
                 });
             },
             getFishpondsList() {
-                collectList({
+                userFishpondsListjoin({
                     userId: this.userId,
                     page: this.page3,
                     limit: this.limit,
@@ -178,7 +180,7 @@
                 });
             },
             getGroupList() {
-                collectList({
+                userGroupListjoin({
                     userId: this.userId,
                     page: this.page4,
                     limit: this.limit,
