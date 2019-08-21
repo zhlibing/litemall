@@ -73,6 +73,19 @@
                     </van-list>
                     <is-empty v-if="list4.length==0">TA很懒，啥都没写~</is-empty>
                 </van-pull-refresh>
+                <van-pull-refresh v-model="loading5" @refresh="onRefresh(tabIndex)" v-if="tabIndex==5">
+                    <van-list v-model="loading5"
+                              :finished="finished5"
+                              :immediate-check="false"
+                              finished-text="没有更多了"
+                              @load="getCommentList">
+                        <div v-for="(item,index) in list5" :key="index"
+                             style="margin-top: 5px">
+                            <commentItem :comment="item"></commentItem>
+                        </div>
+                    </van-list>
+                    <is-empty v-if="list5.length==0">TA很懒，啥都没写~</is-empty>
+                </van-pull-refresh>
             </van-tab>
         </van-tabs>
     </div>
@@ -90,6 +103,7 @@
     import groupItem from '../../../components/itemadapter/groupItem.vue'
     import questionItem from '../../../components/itemadapter/questionItem.vue'
     import circleItem from '../../../components/itemadapter/circleItem.vue'
+    import commentItem from '../../../components/itemadapter/commentSimpleItem.vue'
     import IsEmpty from '@/components/is-empty/';
     import {Tab, Tabs, Panel, Card, List, PullRefresh} from 'vant';
 
@@ -107,7 +121,7 @@
                 title: '个人空间',
                 loginUserId: '',
                 activeIndex: Number(this.active),
-                tabTitles: ['心情', '问答', '活动', '鱼塘', '战队'],
+                tabTitles: ['心情', '问答', '活动', '鱼塘', '战队', '评论'],
                 limit: 10,
 
                 list0: [],
@@ -133,7 +147,12 @@
                 list4: [],
                 page4: 0,
                 loading4: false,
-                finished4: false
+                finished4: false,
+
+                list5: [],
+                page5: 0,
+                loading5: false,
+                finished5: false
             }
         },
         methods: {
@@ -162,6 +181,11 @@
                 this.list4 = [];
                 this.getGroupList();
             },
+            init5() {
+                this.page5 = 0;
+                this.list5 = [];
+                this.getCommentList();
+            },
             //下拉刷新
             onRefresh(index) {
                 setTimeout(() => {
@@ -179,6 +203,9 @@
                     }
                     if (index == 4) {
                         this.init4()
+                    }
+                    if (index == 5) {
+                        this.init5()
                     }
                 }, 500);
             },
@@ -269,6 +296,19 @@
                     this.finished4 = res.data.data.page >= res.data.data.pages;
                 });
             },
+            getCommentList() {
+                collectList({
+                    userId: this.userId,
+                    page: this.page5,
+                    limit: this.limit,
+                    type: 9
+                }).then(res => {
+                    console.log(res, '>>>userListByUser')
+                    this.list5.push(...res.data.data.list)
+                    this.loading5 = false;
+                    this.finished5 = res.data.data.page >= res.data.data.pages;
+                });
+            },
             handleTabClick() {
                 console.log(this.activeIndex)
             },
@@ -282,6 +322,7 @@
             this.init2()
             this.init3()
             this.init4()
+            this.init5()
         },
         mounted() {
             document.documentElement.scrollTop = document.body.scrollTop = 0
@@ -293,6 +334,7 @@
             fishpondsItem,
             activityItem,
             questionItem,
+            commentItem,
             [IsEmpty.name]: IsEmpty,
             [Tab.name]: Tab,
             [Tabs.name]: Tabs,
