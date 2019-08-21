@@ -137,6 +137,7 @@
         background-color: #fff;
         display: flex;
         flex-direction: column;
+        padding: 0 15px;
     }
 
     .item-content {
@@ -144,7 +145,6 @@
         flex-direction: row;
         flex: 1;
         border-bottom: .0625rem solid #f7f7f7;
-        padding: 0 .625rem;
         .lottery-logo {
             display: flex;
             justify-content: center;
@@ -152,7 +152,6 @@
             img {
                 width: 4rem;
                 height: 4rem;
-                margin-left: 10px;
             }
         }
         .item-info {
@@ -180,7 +179,6 @@
                 .arrow-right {
                     width: .5625rem;
                     height: .9375rem;
-                    margin-right: 5px;
                 }
                 .issue-no {
                     font-size: .7875rem;

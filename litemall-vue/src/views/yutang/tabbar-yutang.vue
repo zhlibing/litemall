@@ -236,12 +236,12 @@
             margin-top: 5px;
             background-color: #fff;
             width: 100%;
-            padding: 1rem 1rem;
             box-sizing: border-box;
             .titlebox {
                 box-sizing: border-box;
                 width: 100%;
                 display: flex;
+                padding: 15px 15px;
                 .title {
                     flex: 1;
                     font-size: 0.9rem;
@@ -259,6 +259,7 @@
                 }
             }
             .swiper-container {
+                margin: 0px 15px;
                 .item {
                     width: 100%;
                     height: auto;
@@ -323,7 +324,7 @@
             .more {
                 width: 100%;
                 text-align: right;
-                margin-top: 5px;
+                padding: 15px;
                 .gomore {
                     font-size: 0.6rem;
                     font-weight: 700;

@@ -169,6 +169,7 @@
         background-color: #fff;
         display: flex;
         flex-direction: column;
+        padding: 0 15px;
     }
 
     .item-content {
@@ -176,12 +177,10 @@
         flex-direction: row;
         flex: 1;
         border-bottom: .0625rem solid #f7f7f7;
-        padding: 0 .625rem;
         .lottery-logo {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-left: 5px;
             img {
                 width: 10rem;
                 height: 6.5rem;

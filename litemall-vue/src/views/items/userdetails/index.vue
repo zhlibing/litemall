@@ -44,7 +44,7 @@
                               finished-text="没有更多了"
                               @load="getCircleList">
                         <div v-for="(item,index) in list0" :key="index"
-                             style="margin-left: 15px;margin-right: 15px;margin-top: 20px">
+                             style="margin-top: 20px">
                             <circleItem :item="item.circleInfo"></circleItem>
                         </div>
                     </van-list>
@@ -57,7 +57,7 @@
                               finished-text="没有更多了"
                               @load="getQuestionList">
                         <div v-for="(item,index) in list1" :key="index"
-                             style="margin-left: 15px;margin-right: 15px;margin-top: 20px">
+                             style="margin-top: 20px">
                             <questionItem :item="item.questionInfo"></questionItem>
                         </div>
                     </van-list>
@@ -70,7 +70,7 @@
                               finished-text="没有更多了"
                               @load="getActivityList">
                         <div v-for="(item,index) in list2" :key="index"
-                             style="margin-left: 15px;margin-right: 15px;margin-top: 20px">
+                             style="margin-top: 20px">
                             <activityItem :item="item"></activityItem>
                         </div>
                     </van-list>
@@ -83,7 +83,7 @@
                               finished-text="没有更多了"
                               @load="getFishpondsList">
                         <div v-for="(item,index) in list3" :key="index"
-                             style="margin-left: 15px;margin-right: 15px;margin-top: 20px">
+                             style="margin-top: 20px">
                             <fishpondsItem :item="item"></fishpondsItem>
                         </div>
                     </van-list>
@@ -96,7 +96,7 @@
                               finished-text="没有更多了"
                               @load="getGroupList">
                         <div v-for="(item,index) in list4" :key="index"
-                             style="margin-left: 15px;margin-right: 15px;margin-top: 20px">
+                             style="margin-top: 20px">
                             <groupItem :item="item"></groupItem>
                         </div>
                     </van-list>

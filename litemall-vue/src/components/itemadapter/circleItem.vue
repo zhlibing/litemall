@@ -44,6 +44,7 @@
         padding-bottom: .5rem;
         display: flex;
         border-bottom: 1px solid #f7f7f7;
+        padding: 0 15px;
         .layer {
             position: relative;
             .image {
