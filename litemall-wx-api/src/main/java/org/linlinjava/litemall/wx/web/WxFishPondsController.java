@@ -266,6 +266,24 @@ public class WxFishPondsController {
         return ResponseUtil.okList(FishPondsVoList, FishPondsList);
     }
 
+    @GetMapping("listjoin")
+    public Object listjoin(@LoginUser Integer userId, @RequestParam(defaultValue = "1") Integer page,
+                           @RequestParam(defaultValue = "10") Integer limit) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+
+        List<LitemallFishPondsUser> userfishponds = FishPondsUserService.queryUserFishponds(userId, page, limit);
+        List<Map<String, Object>> fishpondsVoList = new ArrayList<>(userfishponds.size());
+        for (LitemallFishPondsUser litemallFishPondsUser : userfishponds) {
+            Map<String, Object> fishpondsVo = new HashMap<>();
+            LitemallFishPonds litemallFishPonds = fishPondsService.findById(litemallFishPondsUser.getFishPondsId());
+            fishpondsVo.put("info", litemallFishPonds);
+            fishpondsVoList.add(fishpondsVo);
+        }
+        return ResponseUtil.okList(fishpondsVoList, userfishponds);
+    }
+
     @PostMapping("join")
     public Object join(@LoginUser Integer userId, @RequestBody LitemallFishPonds litemallFishPonds) {
         if (userId == null) {

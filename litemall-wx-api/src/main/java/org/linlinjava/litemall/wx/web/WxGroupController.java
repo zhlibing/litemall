@@ -287,6 +287,24 @@ public class WxGroupController {
         }
     }
 
+    @GetMapping("listjoin")
+    public Object listjoin(@LoginUser Integer userId, @RequestParam(defaultValue = "1") Integer page,
+                           @RequestParam(defaultValue = "10") Integer limit) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+
+        List<LitemallGroupUser> usergroup = GroupUserService.queryUserGroup(userId, page, limit);
+        List<Map<String, Object>> groupVoList = new ArrayList<>(usergroup.size());
+        for (LitemallGroupUser litemallGroupUser : usergroup) {
+            Map<String, Object> groupVo = new HashMap<>();
+            LitemallGroup litemallGroup = GroupService.findById(litemallGroupUser.getGroupId());
+            groupVo.put("info", litemallGroup);
+            groupVoList.add(groupVo);
+        }
+        return ResponseUtil.okList(groupVoList, usergroup);
+    }
+
     @PostMapping("quit")
     public Object quit(@LoginUser Integer userId, @RequestBody LitemallGroup litemallGroup) {
         if (userId == null) {

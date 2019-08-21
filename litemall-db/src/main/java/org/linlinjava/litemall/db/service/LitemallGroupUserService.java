@@ -42,6 +42,14 @@ public class LitemallGroupUserService {
         return GroupUserMapper.selectByExampleSelective(example);
     }
 
+    public List<LitemallGroupUser> queryUserGroup(int userId, int offset, int limit) {
+        LitemallGroupUserExample example = new LitemallGroupUserExample();
+        example.or().andDeletedEqualTo(false).andUserIdEqualTo(userId);
+        example.setOrderByClause("add_time desc");
+        PageHelper.startPage(offset, limit);
+        return GroupUserMapper.selectByExampleSelective(example);
+    }
+
     /**
      * @param id
      * @return

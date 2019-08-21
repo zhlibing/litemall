@@ -42,6 +42,14 @@ public class LitemallFishPondsUserService {
         return FishPondsUserMapper.selectByExampleSelective(example);
     }
 
+    public List<LitemallFishPondsUser> queryUserFishponds(int userId, int offset, int limit) {
+        LitemallFishPondsUserExample example = new LitemallFishPondsUserExample();
+        example.or().andDeletedEqualTo(false).andUserIdEqualTo(userId);
+        example.setOrderByClause("add_time desc");
+        PageHelper.startPage(offset, limit);
+        return FishPondsUserMapper.selectByExampleSelective(example);
+    }
+
     /**
      * @param id
      * @return
