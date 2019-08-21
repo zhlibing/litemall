@@ -52,6 +52,9 @@ public class WxUserController {
     @Autowired
     private LitemallFootprintService footprintService;
 
+    @Autowired
+    private LitemallCommentService litemallCommentService;
+
     private int type = 10;
 
     /**
@@ -109,5 +112,34 @@ public class WxUserController {
         data.put("publishCircleCount", litemallCircleService.countByUser(userId));
         data.put("publishGroupCount", litemallGroupService.countByUser(userId));
         return ResponseUtil.ok(data);
+    }
+
+    @GetMapping("deleteItem")
+    public Object deleteItem(@LoginUser Integer userId, @NotNull Byte type,
+                             @NotNull Integer valueId) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        if (type == 4) {
+            litemallCircleService.deleteById(valueId);
+            litemallCommentService.deleteByTypeAndValueId(type, valueId);
+        }
+        if (type == 5) {
+            litemallFishPondsService.deleteById(valueId);
+            litemallCommentService.deleteByTypeAndValueId(type, valueId);
+        }
+        if (type == 6) {
+            litemallQuestionService.deleteById(valueId);
+            litemallCommentService.deleteByTypeAndValueId(type, valueId);
+        }
+        if (type == 7) {
+            litemallGroupService.deleteById(valueId);
+            litemallCommentService.deleteByTypeAndValueId(type, valueId);
+        }
+        if (type == 8) {
+            litemallActivityService.deleteById(valueId);
+            litemallCommentService.deleteByTypeAndValueId(type, valueId);
+        }
+        return ResponseUtil.ok();
     }
 }

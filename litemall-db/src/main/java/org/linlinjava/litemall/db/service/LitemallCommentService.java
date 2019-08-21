@@ -91,6 +91,12 @@ public class LitemallCommentService {
         commentMapper.logicalDeleteByPrimaryKey(id);
     }
 
+    public void deleteByTypeAndValueId(byte type, Integer id) {
+        LitemallCommentExample example = new LitemallCommentExample();
+        example.or().andTypeEqualTo(type).andValueIdEqualTo(id);
+        commentMapper.logicalDeleteByExample(example);
+    }
+
     public String queryReply(Integer id) {
         LitemallCommentExample example = new LitemallCommentExample();
         example.or().andTypeEqualTo((byte) 2).andValueIdEqualTo(id);
