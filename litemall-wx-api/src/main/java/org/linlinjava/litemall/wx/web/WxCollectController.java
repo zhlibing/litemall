@@ -79,6 +79,36 @@ public class WxCollectController {
                 c.put("user", user);
                 c.put("collectCount", collectService.countCollectMe(user.getId(), type));
             }
+            if (type == 4) {
+                LitemallUser user = litemallUserService.findDetailById(collect.getValueId());
+                c.put("user", user);
+                c.put("collectCount", collectService.countCollectMe(user.getId(), type));
+            }
+            if (type == 5) {
+                LitemallUser user = litemallUserService.findDetailById(collect.getValueId());
+                c.put("user", user);
+                c.put("collectCount", collectService.countCollectMe(user.getId(), type));
+            }
+            if (type == 6) {
+                LitemallUser user = litemallUserService.findDetailById(collect.getValueId());
+                c.put("user", user);
+                c.put("collectCount", collectService.countCollectMe(user.getId(), type));
+            }
+            if (type == 7) {
+                LitemallUser user = litemallUserService.findDetailById(collect.getValueId());
+                c.put("user", user);
+                c.put("collectCount", collectService.countCollectMe(user.getId(), type));
+            }
+            if (type == 8) {
+                LitemallUser user = litemallUserService.findDetailById(collect.getValueId());
+                c.put("user", user);
+                c.put("collectCount", collectService.countCollectMe(user.getId(), type));
+            }
+            if (type == 9) {
+                LitemallUser user = litemallUserService.findDetailById(collect.getValueId());
+                c.put("user", user);
+                c.put("collectCount", collectService.countCollectMe(user.getId(), type));
+            }
 
             collects.add(c);
         }
@@ -88,11 +118,11 @@ public class WxCollectController {
 
     @GetMapping("listme")
     public Object listme(@LoginUser Integer userId,
-                       @NotNull Byte type,
-                       @RequestParam(defaultValue = "1") Integer page,
-                       @RequestParam(defaultValue = "10") Integer limit,
-                       @Sort @RequestParam(defaultValue = "add_time") String sort,
-                       @Order @RequestParam(defaultValue = "desc") String order) {
+                         @NotNull Byte type,
+                         @RequestParam(defaultValue = "1") Integer page,
+                         @RequestParam(defaultValue = "10") Integer limit,
+                         @Sort @RequestParam(defaultValue = "add_time") String sort,
+                         @Order @RequestParam(defaultValue = "desc") String order) {
         if (userId == null) {
             return ResponseUtil.unlogin();
         }
