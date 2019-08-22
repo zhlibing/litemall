@@ -8,7 +8,10 @@ import org.linlinjava.litemall.db.domain.LitemallActivityExample;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.Arrays;
 import java.util.List;
 
@@ -125,9 +128,53 @@ public class LitemallActivityService {
         return activityMapper.selectByExampleSelective(example, columns);
     }
 
+    public List<LitemallActivity> queryNoStart() {
+        LitemallActivityExample example = new LitemallActivityExample();
+        example.or().andStatusEqualTo(0)
+                .andStartTimeGreaterThan(LocalDateTime.now())
+                .andDeletedEqualTo(false);
+        return activityMapper.selectByExample(example);
+    }
+
+    public List<LitemallActivity> queryOngoing() {
+        LitemallActivityExample example = new LitemallActivityExample();
+        example.or().andStatusEqualTo(0)
+                .andStartTimeLessThan(LocalDateTime.now())
+                .andEndTimeGreaterThan(LocalDateTime.now())
+                .andDeletedEqualTo(false);
+        return activityMapper.selectByExample(example);
+    }
+
+    public List<LitemallActivity> queryJustice() {
+        LitemallActivityExample example = new LitemallActivityExample();
+        example.or().andStatusEqualTo(1)
+                .andEndTimeGreaterThan(addTmp(LocalDateTime.now(), -1 * 1 * 60 * 1000))
+                .andEndTimeLessThan(addTmp(LocalDateTime.now(), 1 * 1 * 60 * 1000))
+                .andDeletedEqualTo(false);
+        return activityMapper.selectByExample(example);
+    }
+
     public List<LitemallActivity> queryExpired() {
         LitemallActivityExample example = new LitemallActivityExample();
-        example.or().andStatusEqualTo(0).andEndTimeLessThan(LocalDateTime.now()).andDeletedEqualTo(false);
+        example.or().andStatusEqualTo(2)
+                .andEndTimeLessThan(addTmp(LocalDateTime.now(), -2 * 1 * 60 * 1000))
+                .andDeletedEqualTo(false);
         return activityMapper.selectByExample(example);
+    }
+
+    public LocalDateTime timestamToDatetime(long timestamp) {
+        Instant instant = Instant.ofEpochMilli(timestamp);
+        return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+    }
+
+    public long datatimeToTimestamp(LocalDateTime ldt) {
+        long timestamp = ldt.toInstant(ZoneOffset.of("+8")).toEpochMilli();
+        return timestamp;
+    }
+
+    public LocalDateTime addTmp(LocalDateTime localDateTime, long tmp) {
+        long start = datatimeToTimestamp(localDateTime);
+        long end = start + tmp;
+        return timestamToDatetime(end);
     }
 }
