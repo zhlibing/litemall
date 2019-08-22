@@ -209,19 +209,19 @@
                 });
             },
             getActivityList(index) {
-                userActivityListjoin({
-                    userId: this.userId,
-                    page: this.page0,
-                    limit: this.limit,
-                    status: index,
-                    type: 8
-                }).then(res => {
-                    if (index == 0) {
+                if (index == 0) {
+                    userActivityListjoin({
+                        userId: this.userId,
+                        page: this.page0,
+                        limit: this.limit,
+                        status: index,
+                        type: 8
+                    }).then(res => {
                         this.list0.push(...res.data.data.list)
                         this.loading0 = false;
                         this.finished0 = res.data.data.page >= res.data.data.pages;
-                    }
-                });
+                    });
+                }
             },
             handleTabClick() {
                 console.log(this.activeIndex)
