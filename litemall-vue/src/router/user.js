@@ -65,8 +65,9 @@ export default [
         component: UserUserZan
     },
     {
-        path: '/user/join',
+        path: '/user/join/:active',
         name: 'userJoin',
+        props: true,
         meta: {
             login: true
         },

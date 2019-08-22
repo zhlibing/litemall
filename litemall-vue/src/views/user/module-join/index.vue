@@ -110,7 +110,7 @@
                 title: '个人空间',
                 loginUserId: '',
                 activeIndex: Number(this.active),
-                tabTitles: ['全部', '未开始', '进行中', '已过期', '已完成'],
+                tabTitles: ['全部', '未开始', '进行中', '裁判中', '已完成'],
                 limit: 10,
 
                 list0: [],
@@ -209,19 +209,19 @@
                 });
             },
             getActivityList(index) {
-                if (index == 0) {
-                    userActivityListjoin({
-                        userId: this.userId,
-                        page: this.page0,
-                        limit: this.limit,
-                        type: 8
-                    }).then(res => {
-                        console.log(res, '>>>userListByUser')
+                userActivityListjoin({
+                    userId: this.userId,
+                    page: this.page0,
+                    limit: this.limit,
+                    status: index,
+                    type: 8
+                }).then(res => {
+                    if (index == 0) {
                         this.list0.push(...res.data.data.list)
                         this.loading0 = false;
                         this.finished0 = res.data.data.page >= res.data.data.pages;
-                    });
-                }
+                    }
+                });
             },
             handleTabClick() {
                 console.log(this.activeIndex)

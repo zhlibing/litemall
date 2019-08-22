@@ -2,7 +2,6 @@
     <div class="user_module">
         <van-cell-group>
             <van-cell icon="cart" title="购物车" to="/order" isLink/>
-            <van-cell icon="shoucang" title="我的活动" to="/user/join" isLink/>
             <van-cell icon="shoucang" title="我的鱼塘" to="/user/fishponds" isLink/>
             <van-cell icon="shoucang" title="我的战队" to="/user/group" isLink/>
             <van-cell icon="shoucang" title="我的点赞" to="/user/zan" isLink/>

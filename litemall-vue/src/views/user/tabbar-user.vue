@@ -6,6 +6,7 @@
                      :meCollectCount="meCollectCountp"
                      :isLogin="isLogin"/>
         <order-group/>
+        <activity-group/>
         <coupon-group/>
         <user-module/>
         <floatbutton></floatbutton>
@@ -15,6 +16,7 @@
 <script>
     import userHeader from './tabbar-user-header';
     import orderGroup from './tabbar-user-order';
+    import activityGroup from './tabbar-user-activity';
     import couponGroup from './tabbar-user-coupon';
     import userModule from './tabbar-user-module';
     import floatbutton from '@/components/head/floatbutton'
@@ -55,6 +57,7 @@
         components: {
             floatbutton,
             [userHeader.name]: userHeader,
+            [activityGroup.name]: activityGroup,
             [orderGroup.name]: orderGroup,
             [couponGroup.name]: couponGroup,
             [userModule.name]: userModule
