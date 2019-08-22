@@ -13,7 +13,7 @@
                               :finished="finished0"
                               :immediate-check="false"
                               finished-text="没有更多了"
-                              @load="getActivityList"
+                              @load="getActivityList(0)"
                               v-if="list0.length>0">
                         <div v-for="(item,index) in list0" :key="index"
                              style="margin-top: 5px">
@@ -27,7 +27,7 @@
                               :finished="finished1"
                               :immediate-check="false"
                               finished-text="没有更多了"
-                              @load="getActivityList"
+                              @load="getActivityList(1)"
                               v-if="list1.length>0">
                         <div v-for="(item,index) in list1" :key="index"
                              style="margin-top: 5px">
@@ -41,7 +41,7 @@
                               :finished="finished2"
                               :immediate-check="false"
                               finished-text="没有更多了"
-                              @load="getActivityList"
+                              @load="getActivityList(2)"
                               v-if="list0.length>0">
                         <div v-for="(item,index) in list2" :key="index"
                              style="margin-top: 5px">
@@ -55,7 +55,7 @@
                               :finished="finished3"
                               :immediate-check="false"
                               finished-text="没有更多了"
-                              @load="getFishpondsList"
+                              @load="getActivityList(3)"
                               v-if="list3.length>0">
                         <div v-for="(item,index) in list3" :key="index"
                              style="margin-top: 5px">
@@ -69,7 +69,7 @@
                               :finished="finished4"
                               :immediate-check="false"
                               finished-text="没有更多了"
-                              @load="getGroupList"
+                              @load="getActivityList(4)"
                               v-if="list4.length>0">
                         <div v-for="(item,index) in list4" :key="index"
                              style="margin-top: 5px">
@@ -178,10 +178,10 @@
                     if (index == 2) {
                         this.init2()
                     }
-                    if (index == 1) {
+                    if (index == 3) {
                         this.init3()
                     }
-                    if (index == 2) {
+                    if (index == 4) {
                         this.init4()
                     }
                 }, 500);
@@ -220,6 +220,58 @@
                         this.list0.push(...res.data.data.list)
                         this.loading0 = false;
                         this.finished0 = res.data.data.page >= res.data.data.pages;
+                    });
+                }
+                if (index == 1) {
+                    userActivityListjoin({
+                        userId: this.userId,
+                        page: this.page1,
+                        limit: this.limit,
+                        status: index,
+                        type: 8
+                    }).then(res => {
+                        this.list1.push(...res.data.data.list)
+                        this.loading1 = false;
+                        this.finished1 = res.data.data.page >= res.data.data.pages;
+                    });
+                }
+                if (index == 2) {
+                    userActivityListjoin({
+                        userId: this.userId,
+                        page: this.page2,
+                        limit: this.limit,
+                        status: index,
+                        type: 8
+                    }).then(res => {
+                        this.list2.push(...res.data.data.list)
+                        this.loading2 = false;
+                        this.finished2 = res.data.data.page >= res.data.data.pages;
+                    });
+                }
+                if (index == 3) {
+                    userActivityListjoin({
+                        userId: this.userId,
+                        page: this.page3,
+                        limit: this.limit,
+                        status: index,
+                        type: 8
+                    }).then(res => {
+                        this.list3.push(...res.data.data.list)
+                        this.loading3 = false;
+                        this.finished3 = res.data.data.page >= res.data.data.pages;
+                    });
+                }
+                if (index == 4) {
+                    userActivityListjoin({
+                        userId: this.userId,
+                        page: this.page4,
+                        limit: this.limit,
+                        status: index,
+                        type: 8
+                    }).then(res => {
+                        this.list4.push(...res.data.data.list)
+                        this.loading4 = false;
+                        this.finished4 = res.data.data.page >= res.data.data.pages;
                     });
                 }
             },
