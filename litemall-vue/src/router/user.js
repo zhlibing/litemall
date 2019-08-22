@@ -4,6 +4,8 @@ const UserCollectUser = () => import('@/views/user/module-collect-user');
 const UserCollectUserMe = () => import('@/views/user/module-collect-user-me');
 const UserUserZan = () => import('@/views/user/module-zan');
 const UserUserJoin = () => import('@/views/user/module-join');
+const UserUserGroup = () => import('@/views/user/module-group');
+const UserUserFishponds = () => import('@/views/user/module-fishponds');
 const UserAddress = () => import('@/views/user/module-address');
 const UserAddressEdit = () => import('@/views/user/module-address-edit');
 const UserServer = () => import('@/views/user/module-server');
@@ -69,6 +71,22 @@ export default [
             login: true
         },
         component: UserUserJoin
+    },
+    {
+        path: '/user/fishponds',
+        name: 'userFishponds',
+        meta: {
+            login: true
+        },
+        component: UserUserFishponds
+    },
+    {
+        path: '/user/group',
+        name: 'userGroup',
+        meta: {
+            login: true
+        },
+        component: UserUserGroup
     },
   {
     path: '/user/address',
