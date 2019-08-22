@@ -270,7 +270,7 @@ public class WxActivityController {
     }
 
     @GetMapping("listjoin")
-    public Object listjoin(@LoginUser Integer userId, @RequestParam(defaultValue = "1") Integer page,
+    public Object listjoin(@LoginUser Integer userId, @NotNull Integer status, @RequestParam(defaultValue = "1") Integer page,
                            @RequestParam(defaultValue = "10") Integer limit) {
         if (userId == null) {
             return ResponseUtil.unlogin();
@@ -280,7 +280,12 @@ public class WxActivityController {
         List<Map<String, Object>> activityVoList = new ArrayList<>(userActivitys.size());
         for (LitemallActivityUser litemallActivityUser : userActivitys) {
             Map<String, Object> activityVo = new HashMap<>();
-            LitemallActivity litemallActivity = ActivityService.findById(litemallActivityUser.getActivityId());
+            LitemallActivity litemallActivity;
+            if (status == 0) {
+                litemallActivity = ActivityService.findById(litemallActivityUser.getActivityId());
+            } else {
+                litemallActivity = ActivityService.findByIdAndStatus(litemallActivityUser.getActivityId(), status - 1);
+            }
             activityVo.put("info", litemallActivity);
             activityVoList.add(activityVo);
         }

@@ -52,6 +52,12 @@ public class LitemallActivityService {
         return activityMapper.selectOneByExample(example);
     }
 
+    public LitemallActivity findByIdAndStatus(Integer id, Integer status) {
+        LitemallActivityExample example = new LitemallActivityExample();
+        example.or().andIdEqualTo(id).andStatusEqualTo(status).andDeletedEqualTo(false);
+        return activityMapper.selectOneByExample(example);
+    }
+
     /**
      * @param id
      * @return
