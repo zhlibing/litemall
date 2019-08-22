@@ -136,9 +136,17 @@ public class LitemallActivityService {
         return activityMapper.selectByExample(example);
     }
 
-    public List<LitemallActivity> queryOngoing() {
+    public List<LitemallActivity> queryPrepare() {
         LitemallActivityExample example = new LitemallActivityExample();
         example.or().andStatusEqualTo(0)
+                .andStartTimeLessThan(addTmp(LocalDateTime.now(), 2 * 60 * 60 * 1000))
+                .andDeletedEqualTo(false);
+        return activityMapper.selectByExample(example);
+    }
+
+    public List<LitemallActivity> queryOngoing() {
+        LitemallActivityExample example = new LitemallActivityExample();
+        example.or().andStatusEqualTo(1)
                 .andStartTimeLessThan(LocalDateTime.now())
                 .andEndTimeGreaterThan(LocalDateTime.now())
                 .andDeletedEqualTo(false);
@@ -147,7 +155,7 @@ public class LitemallActivityService {
 
     public List<LitemallActivity> queryJustice() {
         LitemallActivityExample example = new LitemallActivityExample();
-        example.or().andStatusEqualTo(1)
+        example.or().andStatusEqualTo(2)
                 .andEndTimeGreaterThan(addTmp(LocalDateTime.now(), -1 * 60 * 60 * 1000))
                 .andEndTimeLessThan(addTmp(LocalDateTime.now(), 1 * 60 * 60 * 1000))
                 .andDeletedEqualTo(false);
@@ -156,7 +164,7 @@ public class LitemallActivityService {
 
     public List<LitemallActivity> queryExpired() {
         LitemallActivityExample example = new LitemallActivityExample();
-        example.or().andStatusEqualTo(2)
+        example.or().andStatusEqualTo(3)
                 .andEndTimeLessThan(addTmp(LocalDateTime.now(), -2 * 60 * 60 * 1000))
                 .andDeletedEqualTo(false);
         return activityMapper.selectByExample(example);
