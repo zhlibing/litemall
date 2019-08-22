@@ -37,12 +37,23 @@ public class ActivityJob {
     }
 
     @Scheduled(fixedDelay = 1 * 60 * 1000)
+    public void checkActivityPrepare() {
+        logger.info("系统开启任务比赛活动是否正在准备");
+
+        List<LitemallActivity> litemallActivities = litemallActivityService.queryPrepare();
+        for (LitemallActivity litemallActivity : litemallActivities) {
+            litemallActivity.setStatus(1);
+            litemallActivityService.updateById(litemallActivity);
+        }
+    }
+
+    @Scheduled(fixedDelay = 1 * 60 * 1000)
     public void checkActivityOngoing() {
         logger.info("系统开启任务比赛活动是否正在进行");
 
         List<LitemallActivity> litemallActivities = litemallActivityService.queryOngoing();
         for (LitemallActivity litemallActivity : litemallActivities) {
-            litemallActivity.setStatus(1);
+            litemallActivity.setStatus(2);
             litemallActivityService.updateById(litemallActivity);
         }
     }
@@ -53,7 +64,7 @@ public class ActivityJob {
 
         List<LitemallActivity> litemallActivities = litemallActivityService.queryJustice();
         for (LitemallActivity litemallActivity : litemallActivities) {
-            litemallActivity.setStatus(2);
+            litemallActivity.setStatus(3);
             litemallActivityService.updateById(litemallActivity);
         }
     }
@@ -64,7 +75,7 @@ public class ActivityJob {
 
         List<LitemallActivity> litemallActivities = litemallActivityService.queryExpired();
         for (LitemallActivity litemallActivity : litemallActivities) {
-            litemallActivity.setStatus(3);
+            litemallActivity.setStatus(4);
             litemallActivityService.updateById(litemallActivity);
         }
     }
