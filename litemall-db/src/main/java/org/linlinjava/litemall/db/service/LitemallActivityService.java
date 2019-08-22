@@ -148,8 +148,8 @@ public class LitemallActivityService {
     public List<LitemallActivity> queryJustice() {
         LitemallActivityExample example = new LitemallActivityExample();
         example.or().andStatusEqualTo(1)
-                .andEndTimeGreaterThan(addTmp(LocalDateTime.now(), -1 * 1 * 60 * 1000))
-                .andEndTimeLessThan(addTmp(LocalDateTime.now(), 1 * 1 * 60 * 1000))
+                .andEndTimeGreaterThan(addTmp(LocalDateTime.now(), -1 * 60 * 60 * 1000))
+                .andEndTimeLessThan(addTmp(LocalDateTime.now(), 1 * 60 * 60 * 1000))
                 .andDeletedEqualTo(false);
         return activityMapper.selectByExample(example);
     }
@@ -157,7 +157,7 @@ public class LitemallActivityService {
     public List<LitemallActivity> queryExpired() {
         LitemallActivityExample example = new LitemallActivityExample();
         example.or().andStatusEqualTo(2)
-                .andEndTimeLessThan(addTmp(LocalDateTime.now(), -2 * 1 * 60 * 1000))
+                .andEndTimeLessThan(addTmp(LocalDateTime.now(), -2 * 60 * 60 * 1000))
                 .andDeletedEqualTo(false);
         return activityMapper.selectByExample(example);
     }
