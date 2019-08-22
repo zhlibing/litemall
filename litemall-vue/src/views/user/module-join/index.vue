@@ -8,13 +8,41 @@
             <van-tab v-for="(tabTitle, tabIndex) in tabTitles"
                      :title="tabTitle"
                      :key="tabIndex">
-                <van-pull-refresh v-model="loading2" @refresh="onRefresh(tabIndex)" v-if="tabIndex==0">
+                <van-pull-refresh v-model="loading0" @refresh="onRefresh(tabIndex)" v-if="tabIndex==0">
+                    <van-list v-model="loading0"
+                              :finished="finished0"
+                              :immediate-check="false"
+                              finished-text="没有更多了"
+                              @load="getActivityList"
+                              v-if="list0.length>0">
+                        <div v-for="(item,index) in list0" :key="index"
+                             style="margin-top: 5px">
+                            <activityItem :item="item"></activityItem>
+                        </div>
+                    </van-list>
+                    <is-empty v-if="list0.length==0">TA很懒，啥都没写~</is-empty>
+                </van-pull-refresh>
+                <van-pull-refresh v-model="loading1" @refresh="onRefresh(tabIndex)" v-if="tabIndex==1">
+                    <van-list v-model="loading1"
+                              :finished="finished1"
+                              :immediate-check="false"
+                              finished-text="没有更多了"
+                              @load="getActivityList"
+                              v-if="list1.length>0">
+                        <div v-for="(item,index) in list1" :key="index"
+                             style="margin-top: 5px">
+                            <activityItem :item="item"></activityItem>
+                        </div>
+                    </van-list>
+                    <is-empty v-if="list1.length==0">TA很懒，啥都没写~</is-empty>
+                </van-pull-refresh>
+                <van-pull-refresh v-model="loading2" @refresh="onRefresh(tabIndex)" v-if="tabIndex==2">
                     <van-list v-model="loading2"
                               :finished="finished2"
                               :immediate-check="false"
                               finished-text="没有更多了"
                               @load="getActivityList"
-                              v-if="list2.length>0">
+                              v-if="list0.length>0">
                         <div v-for="(item,index) in list2" :key="index"
                              style="margin-top: 5px">
                             <activityItem :item="item"></activityItem>
@@ -22,7 +50,7 @@
                     </van-list>
                     <is-empty v-if="list2.length==0">TA很懒，啥都没写~</is-empty>
                 </van-pull-refresh>
-                <van-pull-refresh v-model="loading3" @refresh="onRefresh(tabIndex)" v-if="tabIndex==1">
+                <van-pull-refresh v-model="loading3" @refresh="onRefresh(tabIndex)" v-if="tabIndex==3">
                     <van-list v-model="loading3"
                               :finished="finished3"
                               :immediate-check="false"
@@ -31,12 +59,12 @@
                               v-if="list3.length>0">
                         <div v-for="(item,index) in list3" :key="index"
                              style="margin-top: 5px">
-                            <fishpondsItem :item="item"></fishpondsItem>
+                            <activityItem :item="item"></activityItem>
                         </div>
                     </van-list>
                     <is-empty v-if="list3.length==0">TA很懒，啥都没写~</is-empty>
                 </van-pull-refresh>
-                <van-pull-refresh v-model="loading4" @refresh="onRefresh(tabIndex)" v-if="tabIndex==2">
+                <van-pull-refresh v-model="loading4" @refresh="onRefresh(tabIndex)" v-if="tabIndex==4">
                     <van-list v-model="loading4"
                               :finished="finished4"
                               :immediate-check="false"
@@ -45,7 +73,7 @@
                               v-if="list4.length>0">
                         <div v-for="(item,index) in list4" :key="index"
                              style="margin-top: 5px">
-                            <groupItem :item="item"></groupItem>
+                            <activityItem :item="item"></activityItem>
                         </div>
                     </van-list>
                     <is-empty v-if="list4.length==0">TA很懒，啥都没写~</is-empty>
@@ -64,9 +92,7 @@
         collectAddOrDelete,
     } from '@/api/api';
     import {getLocalStorage} from '@/utils/local-storage';
-    import fishpondsItem from '../../../components/itemadapter/fishpondsItem.vue'
     import activityItem from '../../../components/itemadapter/fishponds.vue'
-    import groupItem from '../../../components/itemadapter/groupItem.vue'
     import IsEmpty from '@/components/is-empty/';
     import {Tab, Tabs, Panel, Card, List, PullRefresh} from 'vant';
 
@@ -87,6 +113,16 @@
                 tabTitles: ['全部', '未开始', '进行中', '已过期', '已完成'],
                 limit: 10,
 
+                list0: [],
+                page0: 0,
+                loading0: false,
+                finished0: false,
+
+                list1: [],
+                page1: 0,
+                loading1: false,
+                finished1: false,
+
                 list2: [],
                 page2: 0,
                 loading2: false,
@@ -105,25 +141,41 @@
             }
         },
         methods: {
+            init0() {
+                this.page0 = 0;
+                this.list0 = [];
+                this.getActivityList(0);
+            },
+            init1() {
+                this.page1 = 0;
+                this.list1 = [];
+                this.getActivityList(1);
+            },
             init2() {
                 this.page2 = 0;
                 this.list2 = [];
-                this.getActivityList();
+                this.getActivityList(2);
             },
             init3() {
                 this.page3 = 0;
                 this.list3 = [];
-                this.getFishpondsList();
+                this.getActivityList(3);
             },
             init4() {
                 this.page4 = 0;
                 this.list4 = [];
-                this.getGroupList();
+                this.getActivityList(4);
             },
             //下拉刷新
             onRefresh(index) {
                 setTimeout(() => {
                     if (index == 0) {
+                        this.init0()
+                    }
+                    if (index == 1) {
+                        this.init1()
+                    }
+                    if (index == 2) {
                         this.init2()
                     }
                     if (index == 1) {
@@ -156,44 +208,20 @@
                     }
                 });
             },
-            getActivityList() {
-                userActivityListjoin({
-                    userId: this.userId,
-                    page: this.page2,
-                    limit: this.limit,
-                    type: 8
-                }).then(res => {
-                    console.log(res, '>>>userListByUser')
-                    this.list2.push(...res.data.data.list)
-                    this.loading2 = false;
-                    this.finished2 = res.data.data.page >= res.data.data.pages;
-                });
-            },
-            getFishpondsList() {
-                userFishpondsListjoin({
-                    userId: this.userId,
-                    page: this.page3,
-                    limit: this.limit,
-                    type: 5
-                }).then(res => {
-                    console.log(res, '>>>userListByUser')
-                    this.list3.push(...res.data.data.list)
-                    this.loading3 = false;
-                    this.finished3 = res.data.data.page >= res.data.data.pages;
-                });
-            },
-            getGroupList() {
-                userGroupListjoin({
-                    userId: this.userId,
-                    page: this.page4,
-                    limit: this.limit,
-                    type: 7
-                }).then(res => {
-                    console.log(res, '>>>userListByUser')
-                    this.list4.push(...res.data.data.list)
-                    this.loading4 = false;
-                    this.finished4 = res.data.data.page >= res.data.data.pages;
-                });
+            getActivityList(index) {
+                if (index == 0) {
+                    userActivityListjoin({
+                        userId: this.userId,
+                        page: this.page0,
+                        limit: this.limit,
+                        type: 8
+                    }).then(res => {
+                        console.log(res, '>>>userListByUser')
+                        this.list0.push(...res.data.data.list)
+                        this.loading0 = false;
+                        this.finished0 = res.data.data.page >= res.data.data.pages;
+                    });
+                }
             },
             handleTabClick() {
                 console.log(this.activeIndex)
@@ -203,6 +231,8 @@
         created() {
             console.log(this.userId, '>>>>>>loginUserId')
             this.getUserInfo();
+            this.init0()
+            this.init1()
             this.init2()
             this.init3()
             this.init4()
@@ -212,8 +242,6 @@
         },
         components: {
             appbar,
-            groupItem,
-            fishpondsItem,
             activityItem,
             [IsEmpty.name]: IsEmpty,
             [Tab.name]: Tab,
