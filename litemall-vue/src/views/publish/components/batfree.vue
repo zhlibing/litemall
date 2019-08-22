@@ -21,6 +21,10 @@
                 <label for="">比赛时间</label>
                 <input type="datetime-local" v-model="activityTime">
             </div>
+            <div class="inputprice">
+                <label for="">比赛时长（小时）</label>
+                <input type="number" v-model="duration">
+            </div>
             <div v-for="(item, index) in attlist"
                  :key="index">
                 <div class="coustominputprice">
@@ -65,6 +69,7 @@
                 reword: '200',
                 credit: '600',
                 activityTime: '',
+                duration: '6',
                 customInput: '',
                 type: 8,
                 isShowPop: false,
@@ -128,7 +133,7 @@
                 justify-content space-between
                 margin-bottom 10px
                 label
-                    flex 2
+                    flex 3
                 input
                     flex 5
                     outline none
