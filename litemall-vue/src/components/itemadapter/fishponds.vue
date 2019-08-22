@@ -97,7 +97,7 @@
             if (this.item.joinUsers != undefined && this.item.joinUsers.length > 0) {
                 this.isShowOne = true
             }
-            this.share_data_time(this.item.info.activityTime)
+            this.share_data_time(this.item.info.startTime)
         },
         methods: {
             itemClick(id, type) {
@@ -151,7 +151,7 @@
                 let minsold = Math.floor(e_minsold)                   //相差分钟数
                 let seconds = Math.floor((e_minsold - minsold) * 60);  //相差秒数
                 //将所获取的时间拼接到一起，再把值显示到页面
-                if (daysold > 0) {
+                if (daysold >= 0) {
                     this.countdownTime = ("剩余:" + daysold + "天" + hrsold + "小时" + minsold + "分" + seconds + "秒")
                 } else {
                     this.countdownTime = ("已结束")

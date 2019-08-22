@@ -18,12 +18,12 @@
                 <input type="number" v-model="credit" placeholder="默认600分以上">
             </div>
             <div class="inputprice">
-                <label for="">比赛时间</label>
-                <input type="datetime-local" v-model="activityTime">
+                <label for="">开始时间</label>
+                <input type="datetime-local" v-model="startTime">
             </div>
             <div class="inputprice">
-                <label for="">比赛时长（小时）</label>
-                <input type="number" v-model="duration">
+                <label for="">结束时间</label>
+                <input type="datetime-local" v-model="endTime">
             </div>
             <div v-for="(item, index) in attlist"
                  :key="index">
@@ -68,8 +68,8 @@
                 limited: '5',
                 reword: '200',
                 credit: '600',
-                activityTime: '',
-                duration: '6',
+                startTime: '',
+                endTime: '',
                 customInput: '',
                 type: 8,
                 isShowPop: false,

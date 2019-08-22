@@ -100,8 +100,8 @@
                     obj.reword = this.$refs.batfree.reword
                     obj.credit = this.$refs.batfree.credit
                     obj.rule = JSON.stringify(this.$refs.batfree.attlist)
-                    obj.activityTime = (this.$refs.batfree.activityTime).replace(/T/, ' ') + ":00"
-                    obj.duration = this.$refs.batfree.duration * 3600
+                    obj.startTime = (this.$refs.batfree.startTime).replace(/T/, ' ') + ":00"
+                    obj.endTime = (this.$refs.batfree.endTime).replace(/T/, ' ') + ":00"
                     obj.type = this.$refs.batfree.type
                 }
                 if (this.itemf.info != undefined) {
