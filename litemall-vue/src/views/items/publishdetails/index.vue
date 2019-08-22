@@ -43,6 +43,10 @@
                     <span>已结束...</span>
                 </div>
             </div>
+            <div class="timeinfo">
+                <span>{{'开始时间：'+news.info.startTime}}</span>
+                <span>{{'结束时间：'+news.info.endTime}}</span>
+            </div>
             <CircleProgress v-if="false"
                             ref="$circle"
                             class="progress"
@@ -69,7 +73,7 @@
                 </div>
             </div>
             <div class="collect" v-if="news.collectCount>0">
-                <div>{{news.collectCount + "人喜欢"}}</div>
+                <div style="color: #581868">{{news.collectCount + "人喜欢"}}</div>
                 <img src="../../../assets/images/赞1.png">
                 <div class="collect" v-for="(item,index) in news.collect.data" :key="index"
                      @click="goUserDetails(item.user.id)">
@@ -503,7 +507,7 @@
                 width 100%
                 margin-top 3rem
                 .desc
-                    font-size 0.9rem
+                    font-size 15px
                     color #000000
                     line-height 1rem
                     font-weight 500
@@ -513,13 +517,19 @@
                 span
                     font-size 30px
                     color red
+            .timeinfo
+                display flex
+                flex-direction column
+                span
+                    font-size 14px
+                    margin-top 5px
             .img
                 width 100%
                 margin-top 0.4rem
                 img
                     width 100%
             .collect
-                margin-top 0.4rem
+                margin-top 0.6rem
                 display inline-block
                 span
                     color #666
