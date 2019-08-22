@@ -5,7 +5,16 @@
             <div class="lottery-logo">
                 <img :src="item.info.picUrls[0]"
                      style="object-fit: cover">
-                <div class="layerchird" v-if="countdownTime=='已结束'">
+                <div class="layerchird" v-if="item.info.status==0">
+                    <span>未开始</span>
+                </div>
+                <div class="layerchird" v-if="item.info.status==1">
+                    <span>进行中</span>
+                </div>
+                <div class="layerchird" v-if="item.info.status==2">
+                    <span>裁判中</span>
+                </div>
+                <div class="layerchird" v-if="item.info.status==3">
                     <span>已结束</span>
                 </div>
             </div>
@@ -154,7 +163,18 @@
                 if (daysold >= 0) {
                     this.countdownTime = ("剩余:" + daysold + "天" + hrsold + "小时" + minsold + "分" + seconds + "秒")
                 } else {
-                    this.countdownTime = ("已结束")
+                    if (this.item.info.status == 0) {
+                        this.countdownTime = ("未开始")
+                    }
+                    if (this.item.info.status == 1) {
+                        this.countdownTime = ("进行中")
+                    }
+                    if (this.item.info.status == 2) {
+                        this.countdownTime = ("裁判中")
+                    }
+                    if (this.item.info.status == 3) {
+                        this.countdownTime = ("已结束")
+                    }
                 }
             }
         },
