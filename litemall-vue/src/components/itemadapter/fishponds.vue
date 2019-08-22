@@ -9,12 +9,15 @@
                     <span>未开始</span>
                 </div>
                 <div class="layerchird" v-if="item.info.status==1">
-                    <span>进行中</span>
+                    <span>准备中</span>
                 </div>
                 <div class="layerchird" v-if="item.info.status==2">
-                    <span>裁判中</span>
+                    <span>进行中</span>
                 </div>
                 <div class="layerchird" v-if="item.info.status==3">
+                    <span>裁判中</span>
+                </div>
+                <div class="layerchird" v-if="item.info.status==4">
                     <span>已结束</span>
                 </div>
             </div>
@@ -167,12 +170,15 @@
                         this.countdownTime = ("未开始")
                     }
                     if (this.item.info.status == 1) {
-                        this.countdownTime = ("进行中")
+                        this.countdownTime = ("准备中")
                     }
                     if (this.item.info.status == 2) {
-                        this.countdownTime = ("裁判中")
+                        this.countdownTime = ("进行中")
                     }
                     if (this.item.info.status == 3) {
+                        this.countdownTime = ("裁判中")
+                    }
+                    if (this.item.info.status == 4) {
                         this.countdownTime = ("已结束")
                     }
                 }

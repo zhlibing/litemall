@@ -26,6 +26,23 @@
                     <img :src="picUrl" alt="">
                 </a>
             </div>
+            <div class="status" v-if="type==8">
+                <div class="status" v-if="news.info.status==0">
+                    <span>未开始...</span>
+                </div>
+                <div class="status" v-if="news.info.status==1">
+                    <span>准备中...</span>
+                </div>
+                <div class="status" v-if="news.info.status==2">
+                    <span>进行中...</span>
+                </div>
+                <div class="status" v-if="news.info.status==3">
+                    <span>裁判中...</span>
+                </div>
+                <div class="status" v-if="news.info.status==4">
+                    <span>已结束...</span>
+                </div>
+            </div>
             <CircleProgress v-if="false"
                             ref="$circle"
                             class="progress"
@@ -83,8 +100,12 @@
                 <span class="star">收藏</span>
             </div>
             <div class="buy" @click="join" v-if="userHasJoin==-1">帮他擦一擦</div>
-            <div class="buy" @click="join" v-else-if="userHasJoin==0">加入</div>
-            <div class="buy" @click="join" v-else>退出</div>
+            <div class="buy" @click="join" v-else-if="userHasJoin==0&&news.info.status==0">加入</div>
+            <div class="buy" style="background-color: #999999" v-else-if="userHasJoin==0&&news.info.status!=0">无法加入
+            </div>
+            <div class="buy" @click="join" v-else-if="userHasJoin==1&&news.info.status==0">退出</div>
+            <div class="buy" style="background-color: #999999" v-else-if="userHasJoin==1&&news.info.status!=0">无法退出
+            </div>
         </div>
     </div>
 </template>
@@ -189,7 +210,13 @@
                     } else {
                         this.news.userHasCollect = 1;
                         this.news.collectCount += 1;
-                        this.news.collect.data.splice(0, 0, {"user": {"id": this.userId, "avatar": this.avatar,"nickname":this.nickName}})
+                        this.news.collect.data.splice(0, 0, {
+                            "user": {
+                                "id": this.userId,
+                                "avatar": this.avatar,
+                                "nickname": this.nickName
+                            }
+                        })
                         this.$toast({
                             message: '收藏成功',
                             duration: 1500
@@ -219,7 +246,13 @@
                             console.log(res, '>>>fishpondsJoin')
                             if (res.status === 200 && res.data.errno == 0) {
                                 this.userHasJoin = 1
-                                this.news.joinUsers.splice(0, 0, {"user": {"id": this.userId, "avatar": this.avatar,"nickname":this.nickName}})
+                                this.news.joinUsers.splice(0, 0, {
+                                    "user": {
+                                        "id": this.userId,
+                                        "avatar": this.avatar,
+                                        "nickname": this.nickName
+                                    }
+                                })
                                 this.label = "当前" + this.news.joinUsers.length + '人'
                                 this.$toast({
                                     message: '加入成功',
@@ -268,7 +301,13 @@
                             console.log(res, '>>>groupJoin')
                             if (res.status === 200 && res.data.errno == 0) {
                                 this.userHasJoin = 1
-                                this.news.joinUsers.splice(0, 0, {"user": {"id": this.userId, "avatar": this.avatar,"nickname":this.nickName}})
+                                this.news.joinUsers.splice(0, 0, {
+                                    "user": {
+                                        "id": this.userId,
+                                        "avatar": this.avatar,
+                                        "nickname": this.nickName
+                                    }
+                                })
                                 this.label = "当前" + this.news.joinUsers.length + '人'
                                 this.$toast({
                                     message: '加入成功',
@@ -304,7 +343,13 @@
                             console.log(res, '>>>activityJoin')
                             if (res.status === 200 && res.data.errno == 0) {
                                 this.userHasJoin = 1
-                                this.news.joinUsers.splice(0, 0, {"user": {"id": this.userId, "avatar": this.avatar,"nickname":this.nickName}})
+                                this.news.joinUsers.splice(0, 0, {
+                                    "user": {
+                                        "id": this.userId,
+                                        "avatar": this.avatar,
+                                        "nickname": this.nickName
+                                    }
+                                })
                                 this.label = "当前" + this.news.joinUsers.length + '人'
                                 this.$toast({
                                     message: '加入成功',
@@ -462,6 +507,12 @@
                     color #000000
                     line-height 1rem
                     font-weight 500
+            .status
+                width 100%
+                text-align center
+                span
+                    font-size 30px
+                    color red
             .img
                 width 100%
                 margin-top 0.4rem

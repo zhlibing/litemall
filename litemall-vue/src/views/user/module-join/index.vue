@@ -78,6 +78,20 @@
                     </van-list>
                     <is-empty v-if="list4.length==0">TA很懒，啥都没写~</is-empty>
                 </van-pull-refresh>
+                <van-pull-refresh v-model="loading5" @refresh="onRefresh(tabIndex)" v-if="tabIndex==5">
+                    <van-list v-model="loading5"
+                              :finished="finished5"
+                              :immediate-check="false"
+                              finished-text="没有更多了"
+                              @load="getActivityList(5)"
+                              v-if="list5.length>0">
+                        <div v-for="(item,index) in list5" :key="index"
+                             style="margin-top: 5px">
+                            <activityItem :item="item"></activityItem>
+                        </div>
+                    </van-list>
+                    <is-empty v-if="list5.length==0">TA很懒，啥都没写~</is-empty>
+                </van-pull-refresh>
             </van-tab>
         </van-tabs>
     </div>
@@ -110,7 +124,7 @@
                 title: '个人空间',
                 loginUserId: '',
                 activeIndex: Number(this.active),
-                tabTitles: ['全部', '未开始', '进行中', '裁判中', '已完成'],
+                tabTitles: ['全部', '未开始', '准备中', '进行中', '裁判中', '已完成'],
                 limit: 10,
 
                 list0: [],
@@ -138,6 +152,10 @@
                 loading4: false,
                 finished4: false,
 
+                list5: [],
+                page5: 0,
+                loading5: false,
+                finished5: false,
             }
         },
         methods: {
@@ -166,6 +184,11 @@
                 this.list4 = [];
                 this.getActivityList(4);
             },
+            init5() {
+                this.page5 = 0;
+                this.list5 = [];
+                this.getActivityList(5);
+            },
             //下拉刷新
             onRefresh(index) {
                 setTimeout(() => {
@@ -183,6 +206,9 @@
                     }
                     if (index == 4) {
                         this.init4()
+                    }
+                    if (index == 5) {
+                        this.init5()
                     }
                 }, 500);
             },
@@ -274,6 +300,19 @@
                         this.finished4 = res.data.data.page >= res.data.data.pages;
                     });
                 }
+                if (index == 5) {
+                    userActivityListjoin({
+                        userId: this.userId,
+                        page: this.page5,
+                        limit: this.limit,
+                        status: index,
+                        type: 8
+                    }).then(res => {
+                        this.list5.push(...res.data.data.list)
+                        this.loading5 = false;
+                        this.finished5 = res.data.data.page >= res.data.data.pages;
+                    });
+                }
             },
             handleTabClick() {
                 console.log(this.activeIndex)
@@ -288,6 +327,7 @@
             this.init2()
             this.init3()
             this.init4()
+            this.init5()
         },
         mounted() {
             document.documentElement.scrollTop = document.body.scrollTop = 0
