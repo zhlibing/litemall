@@ -5,6 +5,7 @@ import org.apache.commons.logging.LogFactory;
 import org.linlinjava.litemall.core.system.SystemConfig;
 import org.linlinjava.litemall.db.domain.LitemallOrder;
 import org.linlinjava.litemall.db.domain.LitemallOrderGoods;
+import org.linlinjava.litemall.db.service.LitemallActivityService;
 import org.linlinjava.litemall.db.service.LitemallGoodsProductService;
 import org.linlinjava.litemall.db.service.LitemallOrderGoodsService;
 import org.linlinjava.litemall.db.service.LitemallOrderService;
@@ -30,6 +31,8 @@ public class OrderJob {
     private LitemallOrderService orderService;
     @Autowired
     private LitemallGoodsProductService productService;
+    @Autowired
+    private LitemallActivityService activityService;
 
     /**
      * 自动取消订单
@@ -58,10 +61,19 @@ public class OrderJob {
             Integer orderId = order.getId();
             List<LitemallOrderGoods> orderGoodsList = orderGoodsService.queryByOid(orderId);
             for (LitemallOrderGoods orderGoods : orderGoodsList) {
-                Integer productId = orderGoods.getProductId();
-                Short number = orderGoods.getNumber();
-                if (productService.addStock(productId, number) == 0) {
-                    throw new RuntimeException("商品货品库存增加失败");
+                if (orderGoods.getType() == 0) {
+                    Integer productId = orderGoods.getProductId();
+                    Short number = orderGoods.getNumber();
+                    if (productService.addStock(productId, number) == 0) {
+                        throw new RuntimeException("商品货品库存增加失败");
+                    }
+                }
+                if (orderGoods.getType() == 8) {
+                    Integer productId = orderGoods.getGoodsId();
+                    Short number = orderGoods.getNumber();
+                    if (activityService.reduceStock(productId, number) == 0) {
+                        throw new RuntimeException("商品货品库存增加失败");
+                    }
                 }
             }
             logger.info("订单 ID" + order.getId() + " 已经超期自动取消订单");

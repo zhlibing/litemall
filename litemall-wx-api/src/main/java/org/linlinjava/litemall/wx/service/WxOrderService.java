@@ -45,14 +45,14 @@ import static org.linlinjava.litemall.wx.util.WxResponseCode.*;
 
 /**
  * 订单服务
- *
+ * <p>
  * <p>
  * 订单状态：
  * 101 订单生成，未支付；102，下单后未支付用户取消；103，下单后未支付超时系统自动取消
  * 201 支付完成，商家未发货；202，订单生产，已付款未发货，但是退款取消；
  * 301 商家发货，用户未确认；
  * 401 用户确认收货； 402 用户没有确认收货超过一定时间，系统自动确认收货；
- *
+ * <p>
  * <p>
  * 用户操作：
  * 当101用户未付款时，此时用户可以进行的操作是取消订单，或者付款操作
@@ -60,7 +60,7 @@ import static org.linlinjava.litemall.wx.util.WxResponseCode.*;
  * 当301商家已发货时，此时用户可以有确认收货的操作
  * 当401用户确认收货以后，此时用户可以进行的操作是删除订单，评价商品，或者再次购买
  * 当402系统自动确认收货以后，此时用户可以删除订单，评价商品，或者再次购买
- *
+ * <p>
  * <p>
  * 注意：目前不支持订单退货和售后服务
  */
@@ -82,6 +82,8 @@ public class WxOrderService {
     private LitemallRegionService regionService;
     @Autowired
     private LitemallGoodsProductService productService;
+    @Autowired
+    private LitemallActivityService activityService;
     @Autowired
     private WxPayService wxPayService;
     @Autowired
@@ -116,7 +118,7 @@ public class WxOrderService {
      *                 3，待收货；
      *                 4，待评价。
      * @param page     分页页数
-     * @param limit     分页大小
+     * @param limit    分页大小
      * @return 订单列表
      */
     public Object list(Integer userId, Integer showType, Integer page, Integer limit, String sort, String order) {
@@ -366,6 +368,7 @@ public class WxOrderService {
             orderGoods.setNumber(cartGoods.getNumber());
             orderGoods.setSpecifications(cartGoods.getSpecifications());
             orderGoods.setAddTime(LocalDateTime.now());
+            orderGoods.setType(cartGoods.getType());
 
             orderGoodsService.add(orderGoods);
         }
@@ -375,15 +378,26 @@ public class WxOrderService {
 
         // 商品货品数量减少
         for (LitemallCart checkGoods : checkedGoodsList) {
-            Integer productId = checkGoods.getProductId();
-            LitemallGoodsProduct product = productService.findById(productId);
-
-            Integer remainNumber = product.getNumber() - checkGoods.getNumber();
-            if (remainNumber < 0) {
-                throw new RuntimeException("下单的商品货品数量大于库存量");
+            if (checkGoods.getType() == 0) {
+                Integer productId = checkGoods.getProductId();
+                LitemallGoodsProduct product = productService.findById(productId);
+                Integer remainNumber = product.getNumber() - checkGoods.getNumber();
+                if (remainNumber < 0) {
+                    throw new RuntimeException("下单的商品货品数量大于库存量");
+                }
+                if (productService.reduceStock(productId, checkGoods.getNumber()) == 0) {
+                    throw new RuntimeException("商品货品库存减少失败");
+                }
             }
-            if (productService.reduceStock(productId, checkGoods.getNumber()) == 0) {
-                throw new RuntimeException("商品货品库存减少失败");
+            if (checkGoods.getType() == 8) {
+                LitemallActivity litemallActivity = activityService.findById(checkGoods.getGoodsId());
+                Integer remainNumber = litemallActivity.getLimited() - litemallActivity.getCurrentPeople() - checkGoods.getNumber();
+                if (remainNumber < 0) {
+                    throw new RuntimeException("下单的商品货品数量大于库存量");
+                }
+                if (activityService.addStock(litemallActivity.getId(), checkGoods.getNumber()) == 0) {
+                    throw new RuntimeException("商品货品库存减少失败");
+                }
             }
         }
 
@@ -473,10 +487,19 @@ public class WxOrderService {
         // 商品货品数量增加
         List<LitemallOrderGoods> orderGoodsList = orderGoodsService.queryByOid(orderId);
         for (LitemallOrderGoods orderGoods : orderGoodsList) {
-            Integer productId = orderGoods.getProductId();
-            Short number = orderGoods.getNumber();
-            if (productService.addStock(productId, number) == 0) {
-                throw new RuntimeException("商品货品库存增加失败");
+            if (orderGoods.getType() == 0) {
+                Integer productId = orderGoods.getProductId();
+                Short number = orderGoods.getNumber();
+                if (productService.addStock(productId, number) == 0) {
+                    throw new RuntimeException("商品货品库存增加失败");
+                }
+            }
+            if (orderGoods.getType() == 8) {
+                Integer productId = orderGoods.getGoodsId();
+                Short number = orderGoods.getNumber();
+                if (activityService.reduceStock(productId, number) == 0) {
+                    throw new RuntimeException("商品货品库存增加失败");
+                }
             }
         }
 
@@ -585,11 +608,11 @@ public class WxOrderService {
         try {
             result = wxPayService.parseOrderNotifyResult(xmlResult);
 
-            if(!WxPayConstants.ResultCode.SUCCESS.equals(result.getResultCode())){
+            if (!WxPayConstants.ResultCode.SUCCESS.equals(result.getResultCode())) {
                 logger.error(xmlResult);
                 throw new WxPayException("微信通知支付失败！");
             }
-            if(!WxPayConstants.ResultCode.SUCCESS.equals(result.getReturnCode())){
+            if (!WxPayConstants.ResultCode.SUCCESS.equals(result.getReturnCode())) {
                 logger.error(xmlResult);
                 throw new WxPayException("微信通知支付失败！");
             }
