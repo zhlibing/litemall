@@ -3,7 +3,7 @@
     <div class="time_down payment_group">
       请在
       <span class="red">半小时内</span>
-      完成付款，否则系统自动取消订单
+      完成付款，否则系统自动取消订单哦
     </div>
 
     <van-cell-group class="payment_group">
@@ -26,7 +26,7 @@
           <van-cell>
             <template slot="title">
               <img src="../../../assets/images/wx_pay.png" alt="微信支付" width="113" height="23">
-            </template>            
+            </template>
             <van-radio name="wx"/>
           </van-cell>
         </van-cell-group>
@@ -68,7 +68,7 @@ export default {
       });
     },
     pay() {
-      
+
       // Dialog.alert({
       //   message: '你选择了' + (this.payWay === 'wx' ? '微信支付' : '支付宝支付')
       // }).then(() => {
@@ -81,11 +81,26 @@ export default {
       //   });
       // });
 
-      // 利用weixin-js-sdk调用微信支付
-      orderPrepay({orderId: this.orderId}).then(res => {
-          console.log(res,'>>>>>>>>>payparm')
-        var payParams = res.data.data;
-      });
+      if (this.payWay==='wx'){
+          console.log('wxpay')
+          // 利用weixin-js-sdk调用微信支付
+          orderPrepay({orderId: this.orderId}).then(res => {
+              console.log(res,'>>>>>>>>>payparm')
+              var payParams = res.data.data;
+          });
+      } else {
+          console.log('alipay')
+          let result = '哈哈哈'
+          const payDiv = document.getElementById('payDiv');
+          if (payDiv) {
+              document.body.removeChild(payDiv);
+          }
+          const div = document.createElement('div');
+          div.id = 'payDiv';
+          div.innerHTML = result;
+          document.body.appendChild(div);
+          document.getElementById('payDiv').getElementsByTagName('form')[0].submit();
+      }
     }
   },
 
