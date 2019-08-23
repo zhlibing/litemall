@@ -43,7 +43,7 @@
                     <span>已结束...</span>
                 </div>
             </div>
-            <div class="timeinfo">
+            <div class="timeinfo" v-if="type==8">
                 <span>{{'开始时间：'+news.info.startTime}}</span>
                 <span>{{'结束时间：'+news.info.endTime}}</span>
             </div>
