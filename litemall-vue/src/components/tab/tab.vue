@@ -19,7 +19,7 @@
                         <span @click="changeLottery(2)" :class="{selected:lotteryCode==2}">推荐</span>
                     </div>
                     <div class="item">
-                        <span @click="changeLottery(3)" :class="{selected:lotteryCode==3}">新手村</span>
+                        <span @click="changeLottery(3)" :class="{selected:lotteryCode==3}">热评</span>
                         <span @click="changeLottery(4)" :class="{selected:lotteryCode==4}">入门</span>
                         <span @click="changeLottery(5)" :class="{selected:lotteryCode==5}">进阶</span>
                     </div>
