@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" @scroll="scrollGet($event)">
         <Head></Head>
         <floatbutton></floatbutton>
         <div class="interest" style="margin-top: 40px">
@@ -113,8 +113,9 @@
             }
         },
         methods: {
-            handleScroll() {
-                this.scroll = document.documentElement && document.documentElement.scrollTop
+            scrollGet(e) {
+                console.log(e.srcElement.scrollTop, e.target.scrollTop)
+                this.scroll = e.srcElement.scrollTop
             },
             refreshCircle() {
                 circleList().then(res => {
@@ -144,8 +145,6 @@
             [IsEmpty.name]: IsEmpty,
         },
         mounted() {
-            window.addEventListener('scroll', this.handleScroll)
-            console.log('mounted', '>>>>YUTANG.vue')
             EventBus.$on("circleSave", ({num, deg}) => {
                 this.refreshCircle()
                 console.log(num, deg, '>>>>refreshCircle')
@@ -160,15 +159,9 @@
         },
         activated() {
             if (this.scroll >= 0) {
-                window.scrollTo(0, this.scroll);
+                document.querySelector(".container").scrollTo(0, this.scroll);
                 this.scroll = 0;
-                window.addEventListener('scroll', this.handleScroll);
             }
-            console.log('activated', '>>>>YUTANG.vue')
-        },
-        deactivated() {
-            window.removeEventListener('scroll', this.handleScroll);
-            console.log('deactivated', '>>>>YUTANG.vue')
         },
         created() {
             fishPondsList().then(res => {
