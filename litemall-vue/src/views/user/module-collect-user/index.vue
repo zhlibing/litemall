@@ -8,13 +8,13 @@
                   @load="getCollectList"
                   v-if="list.length>0">
             <div v-for="(itemc,index) in list" :key="index" style="margin: 15px">
+                <linkuser :item="itemc"></linkuser>
                 <div class="footer">
                     <van-button size="mini"
                                 icon="lajitong"
                                 @click.stop="cancelCollect($event, index,itemc)">删除
                     </van-button>
                 </div>
-                <linkuser :item="itemc"></linkuser>
             </div>
         </van-list>
 
