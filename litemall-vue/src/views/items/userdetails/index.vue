@@ -1,7 +1,7 @@
 <template>
-    <div class="container" v-if="user.user!==undefined">
-        <appbar :titleText="user.user.nickname||user.user.username||title"></appbar>
-        <div class="details">
+    <div class="container" v-if="user.user!==undefined" @scroll="scrollGet($event)">
+        <appbar :titleText="user.user.nickname||user.user.username||title" :mystyle="mystyle"></appbar>
+        <div class="details" style="margin-top: -50px">
         </div>
         <div class="top">
             <div class="info">
@@ -17,7 +17,7 @@
                  v-if="user.userHasCollect==0||user.userHasCollect==undefined">关注
             </div>
             <div class="focuse" v-else>已关注</div>
-            <div class="focuseinfo">{{"粉丝："+user.collectCount}}</div>
+            <div class="focuseinfo">{{"粉丝：" + user.collectCount}}</div>
             <span class="desc">TA很懒，啥都没写~</span>
         </div>
         <van-cell-group class="creditinfo">
@@ -203,10 +203,22 @@
                 list4: [],
                 page4: 0,
                 loading4: false,
-                finished4: false
+                finished4: false,
+
+                mystyle: {background: `rgba(255, 255, 255,0)`, color: `rgba(0, 0, 0,0)`},
+                opacity: 0,
+                scroll: 0,
             }
         },
         methods: {
+            scrollGet(e) {
+                this.scroll = e.srcElement.scrollTop
+                this.opacity = Math.abs(Math.round(this.scroll)) / 250;
+                this.mystyle = {
+                    background: `rgba(255, 255, 255,${this.opacity})`,
+                    color: `rgba(0, 0, 0,${this.opacity})`
+                }
+            },
             deleteItem(event, i, item) {
                 this.$dialog.confirm({message: '是否删除？'}).then(() => {
                     userDeleteItem({valueId: item.id, type: item.type}).then(res => {
@@ -400,7 +412,7 @@
         background-color #f7f7f7
         .details
             width 100%
-            height 35%
+            height 38%
             padding 1rem 1rem
             box-sizing border-box
             background url('../../../assets/images/grzx2.jpg') no-repeat

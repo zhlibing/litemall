@@ -1,6 +1,6 @@
 <template>
     <nav class="header" v-if="titleText!==undefined">
-        <div class="fixedcontent">
+        <div class="fixedcontent" :style="mystyle">
             <slot name='left' v-show="left!=null">
                 <div class="left" @click='leftclick'>
                     <img :src="left!=null?left:left_url" alt="">
@@ -31,7 +31,8 @@
             //右边配置
             right: String,
             //左默认点击事件
-            overrideleftclick: Boolean
+            overrideleftclick: Boolean,
+            mystyle: {}
         },
         data() {
             return {
@@ -73,7 +74,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        border-bottom: 1px solid #f7f7f7;
+        color: #000000;
     }
 
     .left {
@@ -81,7 +82,6 @@
         display: flex;
         align-items: center;
         padding: 0 .625rem;
-        color: #000000;
         font-size: .875rem;
         img {
             width: 1.5rem;
@@ -103,7 +103,6 @@
 
     .titleText {
         font-size: 1.25rem;
-        color: #000000;
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 1;
@@ -115,7 +114,6 @@
         flex: 1;
         justify-content: flex-end;
         padding: 0 .625rem;
-        color: #000000;
         font-size: .875rem;
         img {
             width: 1.5rem;
