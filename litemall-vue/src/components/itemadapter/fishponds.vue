@@ -215,8 +215,8 @@
                 width: 10rem;
                 height: 6.5rem;
                 background-color: #000;
-                filter: Alpha(Opacity=60);
-                opacity: 0.6;
+                filter: Alpha(Opacity=40);
+                opacity: 0.4;
                 position: absolute;
                 text-align: center;
                 padding-top: 20px;

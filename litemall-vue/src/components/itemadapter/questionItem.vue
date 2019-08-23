@@ -82,8 +82,8 @@
                 margin-left: 4.4rem;
                 border-radius: 50%;
                 background-color: #000;
-                filter: Alpha(Opacity=60);
-                opacity: 0.6;
+                filter: Alpha(Opacity=40);
+                opacity: 0.4;
                 text-align: center;
                 span {
                     height: 2.5rem;
