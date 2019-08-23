@@ -218,7 +218,7 @@ CREATE TABLE `litemall_activity` (
   `type` tinyint(3) NOT NULL DEFAULT '8' COMMENT '类型',
   `rule` varchar(1023) DEFAULT NULL COMMENT '规则',
   `reword` int(11) DEFAULT NULL COMMENT '奖励',
-  `fee` int(11) DEFAULT NULL COMMENT '报名费',
+  `fee` decimal(10,2) DEFAULT '0.00' COMMENT '报名费',
   `limited` int(11) NOT NULL COMMENT '人数限制',
   `collectionCount` int(11) DEFAULT NULL,
   `credit` int(11) DEFAULT NULL,
