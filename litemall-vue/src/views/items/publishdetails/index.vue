@@ -44,8 +44,8 @@
                 </div>
             </div>
             <div class="timeinfo" v-if="type==8">
-                <span>{{'开始时间：'+news.info.startTime}}</span>
-                <span>{{'结束时间：'+news.info.endTime}}</span>
+                <span>{{'开始时间：' + news.info.startTime}}</span>
+                <span>{{'结束时间：' + news.info.endTime}}</span>
             </div>
             <CircleProgress v-if="false"
                             ref="$circle"
@@ -523,6 +523,7 @@
             .status
                 width 100%
                 text-align center
+                margin 20px 0
                 span
                     font-size 30px
                     color red
