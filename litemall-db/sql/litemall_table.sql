@@ -120,6 +120,7 @@ DROP TABLE IF EXISTS `litemall_cart`;
 CREATE TABLE `litemall_cart` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL COMMENT '用户表的用户ID',
+  `type` tinyint(3) NOT NULL DEFAULT '0' COMMENT '收藏类型，如果type=0，则是商品ID；如果type=1，则是专题ID',
   `goods_id` int(11) DEFAULT NULL COMMENT '商品表的商品ID',
   `goods_sn` varchar(63) DEFAULT NULL COMMENT '商品编号',
   `goods_name` varchar(127) DEFAULT NULL COMMENT '商品名称',
