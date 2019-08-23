@@ -508,9 +508,8 @@
                 margin-top 3rem
                 .desc
                     font-size 15px
-                    color #000000
-                    line-height 1rem
-                    font-weight 500
+                    line-height 25px
+                    font-weight 350
             .status
                 width 100%
                 text-align center
