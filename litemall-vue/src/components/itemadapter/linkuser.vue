@@ -85,7 +85,7 @@
                     font-weight: 500;
                     margin-left: 10px;
                     line-height: 1.2rem;
-                    font-size: 0.9rem;
+                    font-size: 15px;
                     color: #7dc5eb;
                 }
                 .score {

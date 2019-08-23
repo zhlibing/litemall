@@ -477,7 +477,7 @@
                     .username
                         max-height: 50px;
                         color #7dc5eb
-                        font-size 0.9rem
+                        font-size 15px
                         font-weight 500
                         margin-bottom 0.4rem
                         overflow: hidden;
