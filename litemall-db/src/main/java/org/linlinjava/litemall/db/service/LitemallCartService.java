@@ -22,6 +22,12 @@ public class LitemallCartService {
         return cartMapper.selectOneByExample(example);
     }
 
+    public LitemallCart queryActivityExist(Integer goodsId, byte type, Integer userId) {
+        LitemallCartExample example = new LitemallCartExample();
+        example.or().andGoodsIdEqualTo(goodsId).andTypeEqualTo(type).andUserIdEqualTo(userId).andDeletedEqualTo(false);
+        return cartMapper.selectOneByExample(example);
+    }
+
     public void add(LitemallCart cart) {
         cart.setAddTime(LocalDateTime.now());
         cart.setUpdateTime(LocalDateTime.now());

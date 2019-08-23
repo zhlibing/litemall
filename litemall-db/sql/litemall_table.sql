@@ -560,6 +560,7 @@ DROP TABLE IF EXISTS `litemall_order_goods`;
 CREATE TABLE `litemall_order_goods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL DEFAULT '0' COMMENT '订单表的订单ID',
+  `type` tinyint(3) NOT NULL DEFAULT '0' COMMENT '行政区域类型，如如1则是省， 如果是2则是市，如果是3则是区县',
   `goods_id` int(11) NOT NULL DEFAULT '0' COMMENT '商品表的商品ID',
   `goods_name` varchar(127) NOT NULL DEFAULT '' COMMENT '商品名称',
   `goods_sn` varchar(63) NOT NULL DEFAULT '' COMMENT '商品编号',

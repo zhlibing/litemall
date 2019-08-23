@@ -1,6 +1,7 @@
 package org.linlinjava.litemall.db.service;
 
 import com.github.pagehelper.PageHelper;
+import org.linlinjava.litemall.db.dao.ActivityLimiteMapper;
 import org.linlinjava.litemall.db.dao.LitemallActivityMapper;
 import org.linlinjava.litemall.db.domain.LitemallActivity;
 import org.linlinjava.litemall.db.domain.LitemallActivity.Column;
@@ -23,6 +24,8 @@ public class LitemallActivityService {
             Column.collectioncount, Column.fee, Column.rule, Column.latitude, Column.longitude};
     @Resource
     private LitemallActivityMapper activityMapper;
+    @Resource
+    private ActivityLimiteMapper activityLimiteMapper;
 
     /**
      * @param offset
@@ -169,6 +172,14 @@ public class LitemallActivityService {
                 .andEndTimeLessThan(addTmp(LocalDateTime.now(), -2 * 60 * 60 * 1000))
                 .andDeletedEqualTo(false);
         return activityMapper.selectByExample(example);
+    }
+
+    public int reduceStock(Integer id, Short num){
+        return activityLimiteMapper.reduceStock(id, num);
+    }
+
+    public int addStock(Integer id, Short num){
+        return activityLimiteMapper.addStock(id, num);
     }
 
     public LocalDateTime timestamToDatetime(long timestamp) {
