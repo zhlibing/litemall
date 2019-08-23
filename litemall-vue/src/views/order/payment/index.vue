@@ -69,23 +69,23 @@ export default {
     },
     pay() {
       
-      Dialog.alert({
-        message: '你选择了' + (this.payWay === 'wx' ? '微信支付' : '支付宝支付')
-      }).then(() => {
-
-        this.$router.push({
-          name: 'paymentStatus',
-          params: {
-            status: 'success'
-          }
-        });
-      });
-
-      // // 利用weixin-js-sdk调用微信支付
-      // orderPrepay({orderId: this.orderId}).then(res => {
-      //   var payParams = res.data.data;
-  
+      // Dialog.alert({
+      //   message: '你选择了' + (this.payWay === 'wx' ? '微信支付' : '支付宝支付')
+      // }).then(() => {
+      //
+      //   this.$router.push({
+      //     name: 'paymentStatus',
+      //     params: {
+      //       status: 'success'
+      //     }
+      //   });
       // });
+
+      // 利用weixin-js-sdk调用微信支付
+      orderPrepay({orderId: this.orderId}).then(res => {
+          console.log(res,'>>>>>>>>>payparm')
+        var payParams = res.data.data;
+      });
     }
   },
 

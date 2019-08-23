@@ -50,7 +50,7 @@
                     type="danger">取消订单</van-button>
         <van-button size="small"
                     v-if="handleOption.pay"
-                    @click="payOrder(orderInfo.id)"
+                    @click="toPay(orderInfo.id)"
                     style=" float:right"
                     round
                     type="danger">去支付</van-button>
@@ -175,7 +175,10 @@ export default {
         this.handleOption = data.orderInfo.handleOption;
         this.expressInfo = data.expressInfo;
       });
-    }
+    },
+      toPay(id) {
+          this.$router.push({ name: 'payment', params: { orderId: id } });
+      },
   },
 
   components: {
