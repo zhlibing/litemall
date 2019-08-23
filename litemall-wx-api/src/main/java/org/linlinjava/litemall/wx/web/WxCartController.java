@@ -47,6 +47,10 @@ public class WxCartController {
     private LitemallCouponUserService couponUserService;
     @Autowired
     private CouponVerifyService couponVerifyService;
+    @Autowired
+    private LitemallActivityService activityService;
+    @Autowired
+    private LitemallActivityUserService activityUserService;
 
     /**
      * 用户购物车信息
@@ -111,7 +115,7 @@ public class WxCartController {
         if (!ObjectUtils.allNotNull(productId, number, goodsId)) {
             return ResponseUtil.badArgument();
         }
-        if(number <= 0){
+        if (number <= 0) {
             return ResponseUtil.badArgument();
         }
 
@@ -180,7 +184,7 @@ public class WxCartController {
         if (!ObjectUtils.allNotNull(productId, number, goodsId)) {
             return ResponseUtil.badArgument();
         }
-        if(number <= 0){
+        if (number <= 0) {
             return ResponseUtil.badArgument();
         }
 
@@ -223,6 +227,60 @@ public class WxCartController {
         return ResponseUtil.ok(existCart != null ? existCart.getId() : cart.getId());
     }
 
+    @PostMapping("fastaddactivity")
+    public Object fastaddactivity(@LoginUser Integer userId, @RequestBody LitemallActivity activity) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        if (activity == null) {
+            return ResponseUtil.badArgument();
+        }
+
+        byte type = activity.getType();
+        Integer number = 1;
+        Integer goodsId = activity.getId();
+        if (!ObjectUtils.allNotNull(type, number, goodsId)) {
+            return ResponseUtil.badArgument();
+        }
+        if (number <= 0) {
+            return ResponseUtil.badArgument();
+        }
+
+        //判断商品是否可以购买
+        activity = activityService.findById(goodsId);
+        if (activity == null || activity.getStatus() != 0) {
+            return ResponseUtil.fail(GOODS_UNSHELVE, "未开始的活动才能包名参加");
+        }
+
+        String[] specifications = {"标准"};
+        //判断购物车中是否存在此规格商品
+        LitemallCart existCart = cartService.queryActivityExist(goodsId, activity.getType(), userId);
+        LitemallCart cart = new LitemallCart();
+        if (existCart == null) {
+            //取得规格的信息,判断规格库存
+            if (activity.getCurrentPeople() >= activity.getLimited()) {
+                return ResponseUtil.fail(GOODS_NO_STOCK, "报名已满");
+            }
+            cart.setId(null);
+            cart.setGoodsName((activity.getTitle()));
+            cart.setGoodsId(activity.getId());
+            cart.setType(activity.getType());
+            cart.setSpecifications(specifications);
+            cart.setNumber((short) 1);
+            if (activity.getPicUrls().length > 0) {
+                cart.setPicUrl(activity.getPicUrls()[0]);
+            }
+            cart.setPrice(activity.getFee());
+            cart.setUserId(userId);
+            cart.setChecked(true);
+            cartService.add(cart);
+        } else {
+            return ResponseUtil.fail(GOODS_NO_STOCK, "不能重复报名参加");
+        }
+
+        return ResponseUtil.ok(existCart != null ? existCart.getId() : cart.getId());
+    }
+
     /**
      * 修改购物车商品货品数量
      *
@@ -245,7 +303,7 @@ public class WxCartController {
         if (!ObjectUtils.allNotNull(id, productId, number, goodsId)) {
             return ResponseUtil.badArgument();
         }
-        if(number <= 0){
+        if (number <= 0) {
             return ResponseUtil.badArgument();
         }
 
@@ -447,14 +505,14 @@ public class WxCartController {
         Integer tmpCouponId = 0;
         int tmpCouponLength = 0;
         List<LitemallCouponUser> couponUserList = couponUserService.queryAll(userId);
-        for(LitemallCouponUser couponUser : couponUserList){
+        for (LitemallCouponUser couponUser : couponUserList) {
             LitemallCoupon coupon = couponVerifyService.checkCoupon(userId, couponUser.getCouponId(), checkedGoodsPrice);
-            if(coupon == null){
+            if (coupon == null) {
                 continue;
             }
 
             tmpCouponLength++;
-            if(tmpCouponPrice.compareTo(coupon.getDiscount()) == -1){
+            if (tmpCouponPrice.compareTo(coupon.getDiscount()) == -1) {
                 tmpCouponPrice = coupon.getDiscount();
                 tmpCouponId = coupon.getId();
             }
@@ -466,21 +524,18 @@ public class WxCartController {
         // 1. 用户不想使用优惠券，则不处理
         // 2. 用户想自动使用优惠券，则选择合适优惠券
         // 3. 用户已选择优惠券，则测试优惠券是否合适
-        if (couponId == null || couponId.equals(-1)){
+        if (couponId == null || couponId.equals(-1)) {
             couponId = -1;
-        }
-        else if (couponId.equals(0)) {
+        } else if (couponId.equals(0)) {
             couponPrice = tmpCouponPrice;
             couponId = tmpCouponId;
-        }
-        else {
+        } else {
             LitemallCoupon coupon = couponVerifyService.checkCoupon(userId, couponId, checkedGoodsPrice);
             // 用户选择的优惠券有问题，则选择合适优惠券，否则使用用户选择的优惠券
-            if(coupon == null){
+            if (coupon == null) {
                 couponPrice = tmpCouponPrice;
                 couponId = tmpCouponId;
-            }
-            else {
+            } else {
                 couponPrice = coupon.getDiscount();
             }
         }
