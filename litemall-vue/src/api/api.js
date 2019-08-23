@@ -159,6 +159,14 @@ export function cartFastAdd(data) {
     data
   })
 }
+const CartFastAddActivity='wx/cart/fastaddactivity'; // 立即购买商品
+export function cartFastAddActivity(data) {
+    return request({
+        url: CartFastAddActivity,
+        method: 'post',
+        data
+    })
+}
 const CartUpdate='wx/cart/update'; // 更新购物车的商品
 export function cartUpdate(data) {
   return request({

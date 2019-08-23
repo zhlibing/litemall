@@ -115,6 +115,7 @@
 </template>
 
 <script>
+    import {setLocalStorage} from '@/utils/local-storage';
     import appbar from '@/components/head/appbar'
     import commentItem from '../../../components/itemadapter/commentItem.vue'
     import {
@@ -131,7 +132,8 @@
         fishpondsJoin,
         fishpondsQuit,
         circleRefresh,
-        questionRefresh
+        questionRefresh,
+        cartFastAddActivity
     } from '@/api/api';
     import {getLocalStorage} from '@/utils/local-storage';
     import linkuser from '../../../components/itemadapter/linkuser'
@@ -343,22 +345,30 @@
                     let obj = {}
                     obj.id = this.itemId
                     if (this.userHasJoin == 0) {
-                        activityJoin(obj).then(res => {
-                            console.log(res, '>>>activityJoin')
+                        // activityJoin(obj).then(res => {
+                        //     console.log(res, '>>>activityJoin')
+                        //     if (res.status === 200 && res.data.errno == 0) {
+                        //         this.userHasJoin = 1
+                        //         this.news.joinUsers.splice(0, 0, {
+                        //             "user": {
+                        //                 "id": this.userId,
+                        //                 "avatar": this.avatar,
+                        //                 "nickname": this.nickName
+                        //             }
+                        //         })
+                        //         this.label = "当前" + this.news.joinUsers.length + '人'
+                        //         this.$toast({
+                        //             message: '加入成功',
+                        //             duration: 1500
+                        //         });
+                        //     }
+                        // });
+                        cartFastAddActivity(this.news.info).then(res => {
+                            console.log(res, '>>>cartFastAddActivity')
                             if (res.status === 200 && res.data.errno == 0) {
-                                this.userHasJoin = 1
-                                this.news.joinUsers.splice(0, 0, {
-                                    "user": {
-                                        "id": this.userId,
-                                        "avatar": this.avatar,
-                                        "nickname": this.nickName
-                                    }
-                                })
-                                this.label = "当前" + this.news.joinUsers.length + '人'
-                                this.$toast({
-                                    message: '加入成功',
-                                    duration: 1500
-                                });
+                                let cartId = res.data.data;
+                                setLocalStorage({CartId: cartId});
+                                this.$router.push('/order/checkout');
                             }
                         });
                     } else {
