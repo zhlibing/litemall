@@ -46,7 +46,7 @@
                               v-if="list0.length>0">
                         <div v-for="(item,index) in list0" :key="index"
                              style="margin-top: 5px">
-                            <circleItem :item="item.info"></circleItem>
+                            <circleItem :item="item"></circleItem>
                             <div class="delete" slot="footer" v-if="userId!=undefined&&userId==loginUserId">
                                 <van-button size="mini"
                                             icon="lajitong"
@@ -66,7 +66,7 @@
                               v-if="list1.length>0">
                         <div v-for="(item,index) in list1" :key="index"
                              style="margin-top: 5px">
-                            <questionItem :item="item.info"></questionItem>
+                            <questionItem :item="item"></questionItem>
                             <div class="delete" slot="footer" v-if="userId!=undefined&&userId==loginUserId">
                                 <van-button size="mini"
                                             icon="lajitong"

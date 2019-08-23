@@ -174,11 +174,31 @@ public class WxCircleController {
      * @return 鱼塘列表
      */
     @GetMapping("list")
-    public Object list() {
+    public Object list(@LoginUser Integer userId) {
         //查询列表数据
-        List<LitemallCircle> Circle = CircleService.queryCircle(0, 5);
+        List<LitemallCircle> CircleList = CircleService.queryCircle(0, 5);
+        List<Map<String, Object>> CircleVoList = new ArrayList<>(CircleList.size());
+        for (LitemallCircle litemallCircle : CircleList) {
+            Map<String, Object> CircleVo = new HashMap<>();
+            CircleVo.put("info", litemallCircle);
+            if (userId != null) {
+                CircleVo.put("userHasCollect", collectService.count(userId, litemallCircle.getId(), this.type));
+            }
+            CircleVo.put("collectCount", collectService.countCollectMe(litemallCircle.getId(), this.type));
+
+            Map<String, Object> userVo = new HashMap<>();
+            LitemallUser user = userService.findDetailById(litemallCircle.getUserId());
+            userVo.put("user", user);
+            if (userId != null) {
+                userVo.put("userHasCollect", collectService.count(userId, user.getId(), 10));
+            }
+            userVo.put("collectCount", collectService.countCollectMe(user.getId(), 10));
+            CircleVo.put("publishUser", userVo);
+
+            CircleVoList.add(CircleVo);
+        }
         Map<String, Object> entity = new HashMap<>();
-        entity.put("list", Circle);
+        entity.put("list", CircleVoList);
         return ResponseUtil.ok(entity);
     }
 

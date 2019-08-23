@@ -10,7 +10,7 @@
                       v-if="list3.length>0">
                 <div v-for="(item,index) in list3" :key="index"
                      style="margin-top: 5px">
-                    <questionItem :item="item.info"></questionItem>
+                    <questionItem :item="item"></questionItem>
                 </div>
             </van-list>
             <is-empty v-if="list3.length==0">很抱歉，啥都没有~</is-empty>

@@ -17,7 +17,7 @@
                               v-if="list0.length>0">
                         <div v-for="(item,index) in list0" :key="index"
                              style="margin-top: 5px">
-                            <circleItem :item="item.info"></circleItem>
+                            <circleItem :item="item"></circleItem>
                         </div>
                     </van-list>
                     <is-empty v-if="list0.length==0">TA很懒，啥都没写~</is-empty>
@@ -31,7 +31,7 @@
                               v-if="list1.length>0">
                         <div v-for="(item,index) in list1" :key="index"
                              style="margin-top: 5px">
-                            <questionItem :item="item.info"></questionItem>
+                            <questionItem :item="item"></questionItem>
                         </div>
                     </van-list>
                     <is-empty v-if="list1.length==0">TA很懒，啥都没写~</is-empty>

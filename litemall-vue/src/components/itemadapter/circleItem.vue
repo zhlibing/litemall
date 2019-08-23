@@ -1,21 +1,21 @@
 <template>
     <div class="list" v-if="item!==undefined">
         <div class="layer">
-            <img :src="item.picUrls!=undefined?item.picUrls[0]:default_avatar" alt="" class="image">
-            <div class="layerchird" v-if="item.picUrls.length-1>0">
-                <span>+{{item.picUrls.length - 1}}</span>
+            <img :src="item.info.picUrls!=undefined?item.info.picUrls[0]:default_avatar" alt="" class="image">
+            <div class="layerchird" v-if="item.info.picUrls.length-1>0">
+                <span>+{{item.info.picUrls.length - 1}}</span>
             </div>
         </div>
-        <div class="info" @click="itemClick(item.id,item.type)">
+        <div class="info" @click="itemClick(item.info.id,item.info.type)">
             <div class="head">
-                <p class="tit">{{item.content.substring(0, 8) + '...'}}</p>
-                <span class="level">{{item.status + '级'}}</span>
+                <p class="tit">{{item.info.content.substring(0, 8) + '...'}}</p>
+                <span class="level">{{item.info.status + '级'}}</span>
             </div>
             <div class="text">
-                <p class="desc">{{item.content}}</p>
+                <p class="desc">{{item.info.content}}</p>
             </div>
             <div class="hot">
-                <span>人气{{item.status}}·发布{{item.addTime}}</span>
+                <span>人气{{item.collectCount}}···发布{{item.info.addTime}}</span>
             </div>
         </div>
     </div>

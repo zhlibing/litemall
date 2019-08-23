@@ -1,18 +1,18 @@
 <template>
-    <div class="quesbox" v-if="item!==undefined" @click="itemClick(item.id,item.type)">
-        <div class="title">{{item.title || "暂无标题"}}</div>
+    <div class="quesbox" v-if="item!==undefined" @click="itemClick(item.info.id,item.info.type)">
+        <div class="title">{{item.info.title || "暂无标题"}}</div>
         <div class="answer">
             <span class="da">答</span>
-            <div class="text">{{item.content || item.description}}</div>
-            <div v-if="item.picUrls !== undefined&&item.picUrls.length>0">
-                <div class="layerchird" v-if="item.picUrls.length-1>0">
-                    <span>+{{item.picUrls.length - 1}}</span>
+            <div class="text">{{item.info.content || item.info.description}}</div>
+            <div v-if="item.info.picUrls !== undefined&&item.info.picUrls.length>0">
+                <div class="layerchird" v-if="item.info.picUrls.length-1>0">
+                    <span>+{{item.info.picUrls.length - 1}}</span>
                 </div>
-                <img :src="item.picUrls[0]" alt="">
+                <img :src="item.info.picUrls[0]" alt="">
             </div>
         </div>
         <div class="bottom">
-            <div class="yutang">{{item.title}}</div>
+            <div class="yutang">{{item.info.title}}</div>
             <div class="toanswer">去回答</div>
         </div>
     </div>

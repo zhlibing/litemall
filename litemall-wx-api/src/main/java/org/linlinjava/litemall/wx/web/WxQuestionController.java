@@ -174,11 +174,31 @@ public class WxQuestionController {
      * @return 鱼塘列表
      */
     @GetMapping("list")
-    public Object list() {
+    public Object list(@LoginUser Integer userId) {
         //查询列表数据
-        List<LitemallQuestion> Question = QuestionService.queryQuestion(0, 5);
+        List<LitemallQuestion> QuestionList = QuestionService.queryQuestion(0, 5);
+        List<Map<String, Object>> QuestionVoList = new ArrayList<>(QuestionList.size());
+        for (LitemallQuestion litemallQuestion : QuestionList) {
+            Map<String, Object> QuestionVo = new HashMap<>();
+            QuestionVo.put("info", litemallQuestion);
+            if (userId != null) {
+                QuestionVo.put("userHasCollect", collectService.count(userId, litemallQuestion.getId(), this.type));
+            }
+            QuestionVo.put("collectCount", collectService.countCollectMe(litemallQuestion.getId(), this.type));
+
+            Map<String, Object> userVo = new HashMap<>();
+            LitemallUser user = userService.findDetailById(litemallQuestion.getUserId());
+            userVo.put("user", user);
+            if (userId != null) {
+                userVo.put("userHasCollect", collectService.count(userId, user.getId(), 10));
+            }
+            userVo.put("collectCount", collectService.countCollectMe(user.getId(), 10));
+            QuestionVo.put("publishUser", userVo);
+
+            QuestionVoList.add(QuestionVo);
+        }
         Map<String, Object> entity = new HashMap<>();
-        entity.put("list", Question);
+        entity.put("list", QuestionVoList);
         return ResponseUtil.ok(entity);
     }
 
