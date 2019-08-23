@@ -735,6 +735,24 @@ export function activityListall(query) {
     })
 }
 
+const QuestionListall='wx/question/listall'; //专题列表
+export function questionListall(query) {
+    return request({
+        url: QuestionListall,
+        method: 'get',
+        params: query
+    })
+}
+
+const CircleListall='wx/circle/listall'; //专题列表
+export function circleListall(query) {
+    return request({
+        url: CircleListall,
+        method: 'get',
+        params: query
+    })
+}
+
 const ActivityJoin='wx/activity/join'; //保存
 export function activityJoin(data) {
     return request({

@@ -182,6 +182,34 @@ public class WxQuestionController {
         return ResponseUtil.ok(entity);
     }
 
+    @GetMapping("listall")
+    public Object listall(@LoginUser Integer userId, @RequestParam(defaultValue = "1") Integer page,
+                          @RequestParam(defaultValue = "10") Integer limit) {
+        List<LitemallQuestion> QuestionList = QuestionService.queryQuestion(page, limit);
+
+        List<Map<String, Object>> QuestionVoList = new ArrayList<>(QuestionList.size());
+        for (LitemallQuestion Question : QuestionList) {
+            Map<String, Object> QuestionVo = new HashMap<>();
+            QuestionVo.put("info", Question);
+            if (userId != null) {
+                QuestionVo.put("userHasCollect", collectService.count(userId, Question.getId(), this.type));
+            }
+            QuestionVo.put("collectCount", collectService.countCollectMe(Question.getId(), this.type));
+
+            Map<String, Object> userVo = new HashMap<>();
+            LitemallUser user = userService.findDetailById(Question.getUserId());
+            userVo.put("user", user);
+            if (userId != null) {
+                userVo.put("userHasCollect", collectService.count(userId, user.getId(), 10));
+            }
+            userVo.put("collectCount", collectService.countCollectMe(user.getId(), 10));
+            QuestionVo.put("publishUser", userVo);
+
+            QuestionVoList.add(QuestionVo);
+        }
+        return ResponseUtil.okList(QuestionVoList, QuestionList);
+    }
+
     @GetMapping("listByUser")
     public Object listByUser(@NotNull Integer userId, @RequestParam(defaultValue = "1") Integer page,
                              @RequestParam(defaultValue = "10") Integer limit) {

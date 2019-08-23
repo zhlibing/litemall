@@ -182,6 +182,34 @@ public class WxCircleController {
         return ResponseUtil.ok(entity);
     }
 
+    @GetMapping("listall")
+    public Object listall(@LoginUser Integer userId, @RequestParam(defaultValue = "1") Integer page,
+                          @RequestParam(defaultValue = "10") Integer limit) {
+        List<LitemallCircle> CircleList = CircleService.queryCircle(page, limit);
+
+        List<Map<String, Object>> CircleVoList = new ArrayList<>(CircleList.size());
+        for (LitemallCircle Circle : CircleList) {
+            Map<String, Object> CircleVo = new HashMap<>();
+            CircleVo.put("info", Circle);
+            if (userId != null) {
+                CircleVo.put("userHasCollect", collectService.count(userId, Circle.getId(), this.type));
+            }
+            CircleVo.put("collectCount", collectService.countCollectMe(Circle.getId(), this.type));
+
+            Map<String, Object> userVo = new HashMap<>();
+            LitemallUser user = userService.findDetailById(Circle.getUserId());
+            userVo.put("user", user);
+            if (userId != null) {
+                userVo.put("userHasCollect", collectService.count(userId, user.getId(), 10));
+            }
+            userVo.put("collectCount", collectService.countCollectMe(user.getId(), 10));
+            CircleVo.put("publishUser", userVo);
+
+            CircleVoList.add(CircleVo);
+        }
+        return ResponseUtil.okList(CircleVoList, CircleList);
+    }
+
     @GetMapping("listByUser")
     public Object listByUser(@NotNull Integer userId, @RequestParam(defaultValue = "1") Integer page,
                              @RequestParam(defaultValue = "10") Integer limit) {

@@ -16,7 +16,7 @@ import java.util.List;
 
 @Service
 public class LitemallCircleService {
-    Column[] columns = new Column[]{Column.id, Column.content, Column.picUrls, Column.status, Column.addTime, Column.type};
+    Column[] columns = new Column[]{Column.id, Column.userId, Column.content, Column.picUrls, Column.status, Column.addTime, Column.type};
     @Resource
     private LitemallCircleMapper circleMapper;
 
@@ -32,6 +32,7 @@ public class LitemallCircleService {
         PageHelper.startPage(offset, limit);
         return circleMapper.selectByExampleSelective(example, columns);
     }
+
     public List<LitemallCircle> queryCircleByUser(Integer id, int offset, int limit) {
         LitemallCircleExample example = new LitemallCircleExample();
         example.or().andDeletedEqualTo(false).andUserIdEqualTo(id);

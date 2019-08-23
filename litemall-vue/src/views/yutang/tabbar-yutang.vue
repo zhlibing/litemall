@@ -29,7 +29,7 @@
                 <question :item="item"></question>
             </div>
             <is-empty v-if="questions.length==0">很遗憾，啥都没有~</is-empty>
-            <div class="more">
+            <div class="more" @click="goQuestionList">
                 <span class="gomore">更多</span>
             </div>
         </div>
@@ -81,7 +81,7 @@
                 <circleItem :item="item"></circleItem>
             </div>
             <is-empty v-if="lists.length==0">很遗憾，啥都没有~</is-empty>
-            <div class="more">
+            <div class="more" @click="goCircleList">
                 <span class="gomore">更多</span>
             </div>
         </div>
@@ -127,6 +127,12 @@
             },
             itemClick(id, type) {
                 this.$router.push(`/items/publishdetails/${id}/${type}`);
+            },
+            goQuestionList() {
+                this.$router.push(`/yutang/question-list`);
+            },
+            goCircleList() {
+                this.$router.push(`/yutang/circle-list`);
             },
         },
         components: {
