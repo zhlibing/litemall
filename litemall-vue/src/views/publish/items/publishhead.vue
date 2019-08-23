@@ -103,6 +103,10 @@
                     obj.startTime = (this.$refs.batfree.startTime).replace(/T/, ' ') + ":00"
                     obj.endTime = (this.$refs.batfree.endTime).replace(/T/, ' ') + ":00"
                     obj.type = this.$refs.batfree.type
+                    if (obj.startTime >= obj.endTime) {
+                        this.$toast('结束时间需大于开始时间')
+                        return
+                    }
                 }
                 if (this.itemf.info != undefined) {
                     obj.fishpondsId = this.itemf.info.id
