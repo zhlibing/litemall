@@ -16,16 +16,22 @@
                 <div class="order_status_icon" @click="$router.push({path: '/user/join/2'})">
                     <van-icon name="daifahuo"/>
                 </div>
-                <div>进行中</div>
+                <div>准备中</div>
             </van-col>
             <van-col span="6">
                 <div class="order_status_icon" @click="$router.push({path: '/user/join/3'})">
+                    <van-icon name="daifahuo"/>
+                </div>
+                <div>进行中</div>
+            </van-col>
+            <van-col span="6">
+                <div class="order_status_icon" @click="$router.push({path: '/user/join/4'})">
                     <van-icon name="wuliu"/>
                 </div>
                 <div>裁判中</div>
             </van-col>
-            <van-col span="6">
-                <div class="order_status_icon" @click="$router.push({path: '/user/join/4'})">
+            <van-col span="6" style="margin-top: 10px">
+                <div class="order_status_icon" @click="$router.push({path: '/user/join/5'})">
                     <van-icon name="shouhouguanli"/>
                 </div>
                 <div>已完成</div>

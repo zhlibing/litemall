@@ -5,8 +5,8 @@
                      :collectMeCount="collectMeCountp"
                      :meCollectCount="meCollectCountp"
                      :isLogin="isLogin"/>
-        <order-group/>
         <activity-group/>
+        <order-group/>
         <coupon-group/>
         <user-module/>
         <floatbutton></floatbutton>
