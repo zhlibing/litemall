@@ -362,6 +362,7 @@ public class WxActivityController {
         if (litemallActivity.getId() == null || litemallActivity.getId().equals(0)) {
             litemallActivity.setId(null);
             litemallActivity.setUserId(userId);
+            litemallActivity.setCurrentPeople(1);
             ActivityService.add(litemallActivity);
         } else {
             litemallActivity.setUserId(userId);
