@@ -8,13 +8,10 @@
                       finished-text="没有更多了"
                       @load="getScoreList"
                       v-if="list.length>0">
-                <van-card v-for="(item, i) in list"
-                          :key="i"
-                          :desc="item.brief"
-                          :title="item.info.name"
-                          :price="item.info.score"
-                          @click="itemClick(item.goods.id)">
-                </van-card>
+                <div v-for="(item, index) in list"
+                     :key="index">
+                    <scoreItem :item="item"></scoreItem>
+                </div>
             </van-list>
             <is-empty v-if="list.length === 0">没有更多</is-empty>
         </van-pull-refresh>
@@ -27,6 +24,7 @@
     import {Card, Search, List, PullRefresh} from 'vant';
     import scrollFixed from '@/mixin/scroll-fixed';
     import appbar from '@/components/head/appbar'
+    import scoreItem from '../../../components/itemadapter/scoreItem.vue'
 
     export default {
         mixins: [scrollFixed],
@@ -79,6 +77,7 @@
             [List.name]: List,
             [Card.name]: Card,
             [PullRefresh.name]: PullRefresh,
+            scoreItem
         }
     };
 </script>

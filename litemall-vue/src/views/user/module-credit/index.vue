@@ -9,13 +9,10 @@ module-collect
                       finished-text="没有更多了"
                       @load="getCreditList"
                       v-if="list.length>0">
-                <van-card v-for="(item, i) in list"
-                          :key="i"
-                          :desc="item.brief"
-                          :title="item.info.name"
-                          :price="item.info.credit"
-                          @click="itemClick(item.goods.id)">
-                </van-card>
+                <div v-for="(item, index) in list"
+                     :key="index">
+                    <creditItem :item="item"></creditItem>
+                </div>
             </van-list>
             <is-empty v-if="list.length === 0">没有更多</is-empty>
         </van-pull-refresh>
@@ -28,6 +25,7 @@ module-collect
     import {Card, Search, List, PullRefresh} from 'vant';
     import scrollFixed from '@/mixin/scroll-fixed';
     import appbar from '@/components/head/appbar'
+    import creditItem from '../../../components/itemadapter/creditItem.vue'
 
     export default {
         mixins: [scrollFixed],
@@ -80,6 +78,7 @@ module-collect
             [List.name]: List,
             [Card.name]: Card,
             [PullRefresh.name]: PullRefresh,
+            creditItem
         }
     };
 </script>
