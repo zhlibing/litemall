@@ -25,7 +25,7 @@
                 <router-link to="" class="text-desc">未认证</router-link>
             </van-cell>
         </van-cell-group>
-        <van-cell-group class="creditinfo">
+        <van-cell-group class="creditinfo" @click="goCredit(user.user.id)">
             <van-cell icon="cart" title="信用分" isLink>
                 <router-link to="" class="text-desc">1000（极好）</router-link>
             </van-cell>
@@ -211,6 +211,10 @@
             }
         },
         methods: {
+            goCredit(id) {
+                console.log(id)
+                this.$router.push(`/user/credit/${id}`);
+            },
             scrollGet(e) {
                 this.scroll = e.srcElement.scrollTop
                 this.opacity = Math.abs(Math.round(this.scroll)) / 250;

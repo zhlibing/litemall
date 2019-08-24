@@ -114,5 +114,15 @@
         <table tableName="litemall_activity_fishponds">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
+
+        <!--表名10-->
+        <table tableName="litemall_credit">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+        <!--表名11-->
+        <table tableName="litemall_score">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
     </context>
 </generatorConfiguration>

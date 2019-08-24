@@ -5,6 +5,8 @@ const UserCollectUserMe = () => import('@/views/user/module-collect-user-me');
 const UserUserZan = () => import('@/views/user/module-zan');
 const UserUserJoin = () => import('@/views/user/module-join');
 const UserUserGroup = () => import('@/views/user/module-group');
+const UserUserCredit = () => import('@/views/user/module-credit');
+const UserUserScore = () => import('@/views/user/module-score');
 const UserUserFishponds = () => import('@/views/user/module-fishponds');
 const UserAddress = () => import('@/views/user/module-address');
 const UserAddressEdit = () => import('@/views/user/module-address-edit');
@@ -89,6 +91,23 @@ export default [
         },
         component: UserUserGroup
     },
+    {
+        path: '/user/credit/:userId',
+        name: 'userCredit',
+        props: true,
+        meta: {
+            login: true
+        },
+        component: UserUserCredit
+    },
+    {
+        path: '/user/score',
+        name: 'userScore',
+        meta: {
+            login: true
+        },
+        component: UserUserScore
+    },
   {
     path: '/user/address',
     name: 'address',
@@ -120,7 +139,7 @@ export default [
     path: '/user/feedback',
     name: 'user-feedback',
     component: UserFeedback
-  },  
+  },
   {
     path: '/user/information',
     name: 'user-information',

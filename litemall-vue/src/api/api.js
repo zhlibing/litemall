@@ -516,6 +516,24 @@ export function userCircleListByUser(query) {
     })
 }
 
+const UserCreditListByUser='wx/credit/listByUser'; //个人页面用户相关信息
+export function userCreditListByUser(query) {
+    return request({
+        url: UserCreditListByUser,
+        method: 'get',
+        params: query
+    })
+}
+
+const UserScoreListByUser='wx/score/listByUser'; //个人页面用户相关信息
+export function userScoreListByUser(query) {
+    return request({
+        url: UserScoreListByUser,
+        method: 'get',
+        params: query
+    })
+}
+
 const UserFishpondsListByUser='wx/fishponds/listByUser'; //个人页面用户相关信息
 export function userFishpondsListByUser(query) {
     return request({
@@ -625,6 +643,24 @@ const FishpondsSave='wx/fishponds/save'; //保存
 export function fishpondsSave(data) {
     return request({
         url: FishpondsSave,
+        method: 'post',
+        data
+    })
+}
+
+const ScoreSave='wx/score/save'; //保存
+export function scoreSave(data) {
+    return request({
+        url: ScoreSave,
+        method: 'post',
+        data
+    })
+}
+
+const CreditSave='wx/credit/save'; //保存
+export function creditSave(data) {
+    return request({
+        url: CreditSave,
         method: 'post',
         data
     })
