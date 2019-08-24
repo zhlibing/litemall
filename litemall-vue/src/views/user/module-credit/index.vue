@@ -1,7 +1,7 @@
 module-collect
 <template>
     <div class="user_collect">
-        <appbar titleText="我的信用"></appbar>
+        <appbar titleText="信用记录"></appbar>
         <van-pull-refresh v-model="loading" @refresh="onRefresh()">
             <van-list v-model="loading"
                       :finished="finished"
@@ -17,7 +17,7 @@ module-collect
                           @click="itemClick(item.goods.id)">
                 </van-card>
             </van-list>
-            <is-empty v-if="list.length === 0">没有商品收藏</is-empty>
+            <is-empty v-if="list.length === 0">没有更多</is-empty>
         </van-pull-refresh>
     </div>
 </template>

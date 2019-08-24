@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,8 +28,12 @@ public class WxScoreController {
     private LitemallScoreService ScoreService;
 
     @GetMapping("listByUser")
-    public Object listByUser(@NotNull Integer userId, @RequestParam(defaultValue = "1") Integer page,
+    public Object listByUser(@LoginUser Integer userId, @RequestParam(defaultValue = "1") Integer page,
                              @RequestParam(defaultValue = "10") Integer limit) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+
         List<LitemallScore> Scores = ScoreService.queryScoreByUser(userId, page, limit);
         List<Map<String, Object>> ScoreVoList = new ArrayList<>(Scores.size());
         for (LitemallScore litemallScore : Scores) {

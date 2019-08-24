@@ -16,7 +16,7 @@
                           @click="itemClick(item.goods.id)">
                 </van-card>
             </van-list>
-            <is-empty v-if="list.length === 0">没有商品收藏</is-empty>
+            <is-empty v-if="list.length === 0">没有更多</is-empty>
         </van-pull-refresh>
     </div>
 </template>
