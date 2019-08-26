@@ -64,9 +64,8 @@ export default [
         }
     },
     {
-        path: '/publish/sell/publishactivityresult/:activityId/:type',
+        path: '/publish/sell/publishactivityresult',
         name: 'publishactivityresult',
-        props: true,
         components: {
             default: () => import('@/views/publish/sell/publishactivityresult'),
         }

@@ -36,7 +36,7 @@
                 <button class="fabu" @click="publish">确定发布</button>
             </div>
         </div>
-        <userSelect @selectItem="selectItem" :activityId="itemId" v-show="isShowSelect"></userSelect>
+        <userSelect @selectItem="selectItem" :itemId="itemId" v-show="isShowSelect"></userSelect>
     </div>
 </template>
 

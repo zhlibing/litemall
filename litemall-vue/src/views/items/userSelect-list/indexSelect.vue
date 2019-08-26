@@ -32,7 +32,7 @@
     Vue.use(PullRefresh)
     export default {
         props: {
-            activityId: String
+            itemId: [String, Number],
         },
         data() {
             return {
@@ -48,7 +48,7 @@
         },
 
         created() {
-            this.init();
+            this.onRefresh()
         },
 
         methods: {
@@ -61,12 +61,12 @@
             onRefresh() {
                 setTimeout(() => {
                     this.init()
-                }, 5000);
+                }, 500);
             },
             getActivityUserList() {
                 this.page++;
                 activityListUserJoin({
-                    id: this.activityId,
+                    id: this.itemId,
                     page: this.page,
                     limit: this.limit
                 }).then(res => {
