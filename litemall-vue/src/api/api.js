@@ -807,6 +807,15 @@ export function activityJoin(data) {
     })
 }
 
+const ActivityJustice='wx/activity/justice'; //保存
+export function activityJustice(data) {
+    return request({
+        url: ActivityJustice,
+        method: 'post',
+        data
+    })
+}
+
 const ActivityQuit='wx/activity/quit'; //保存
 export function activityQuit(data) {
     return request({

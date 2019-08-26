@@ -29,7 +29,7 @@
                 <input type="number" v-model="weight" placeholder="单位斤">
             </div>
             <div class="inputmore">
-                <label for="">我比他（她）</label>
+                <label for="" style="color: red">TA比我</label>
                 <div class="select">
                     <input type="radio" v-model="isWin" value="2"/>多
                     <input type="radio" v-model="isWin" value="1" style="margin-left: 50px"/>少
@@ -37,10 +37,10 @@
             </div>
             <div class="bottom" @click="showSelect">
                 <p class="info">请选择一个参加比赛的选手，不能是自己</p>
-                <div class="yutang" v-if="itemf.info==undefined">
+                <div class="yutang" v-if="itemf.user==undefined">
                     <span class="little">钓鱼比赛需要选择对手进行裁判哦</span>
                 </div>
-                <userSelectItem :item="itemf" v-if="itemf.info!=undefined"
+                <userSelectItem :item="itemf" v-if="itemf.user!=undefined"
                                 style="background-color: white;margin-bottom: 70px"></userSelectItem>
             </div>
             <div class="footer">
@@ -54,6 +54,7 @@
 <script>
     import appbar from '@/components/head/appbar'
     import {
+        activityJustice,
         commentSave,
         storageUpload,
     } from '@/api/api'
@@ -84,19 +85,24 @@
         methods: {
             publish() {
                 if (this.isWin < 0) {
-                    this.$toast('请选择多少哦')
+                    this.$toast('请选择多还是少哦')
                     return
                 }
                 let obj = {}
-                if (this.isWin == 0) {
-                    obj.content = this.desc + '...我输给@' + this.itemf.info.username + '，他太厉害了~'
+                if (this.isWin == 2) {
+                    obj.content = this.desc + '...我输给@' + this.itemf.user.username + '，他太厉害了~'
                 } else {
-                    obj.content = this.desc + '...我赢啦@' + this.itemf.info.username + '，快来挑战吧~'
+                    obj.content = this.desc + '...我赢啦@' + this.itemf.user.username + '，快来挑战吧~'
                 }
                 obj.picUrls = this.imgUrls
                 obj.type = this.type
                 obj.valueId = this.itemId
-                obj.isWin = this.isWin
+
+                let activityUser = {}
+                activityUser.activityId = this.itemId
+                activityUser.userId = this.itemf.user.id
+                activityUser.isWin = this.isWin
+
                 commentSave(obj).then(res => {
                     console.log(res, '>>>>commentSave')
                     if (res.status === 200) {
@@ -105,6 +111,12 @@
                             num: '99',
                             deg: '00'
                         });
+                    }
+                });
+
+                activityJustice(activityUser).then(res => {
+                    console.log(res, '>>>>activityUser')
+                    if (res.status === 200) {
                     }
                 });
             },

@@ -1,21 +1,21 @@
 <template>
-    <div class="list" v-if="item!==undefined&&item.info!=undefined">
+    <div class="list" v-if="item!==undefined&&item.user!=undefined">
         <div class="layer">
-            <img :src="item.info.avatar!=undefined?item.info.avatar:default_avatar" alt=""
+            <img :src="item.user.avatar!=undefined?item.user.avatar:default_avatar" alt=""
                  class="image">
         </div>
         <div class="info" @click="itemClick(item)">
             <div class="head">
-                <p class="tit">{{item.info.username.substring(0, 8) + '...'}}</p>
+                <p class="tit">{{item.user.username.substring(0, 8) + '...'}}</p>
                 <img class="select" type="checkbox" src="../../assets/images/selected_yes.png"
                      v-if="selectedIndex==index">
                 <img class="select" type="checkbox" src="../../assets/images/selected_no.png" v-else>
             </div>
             <div class="text">
-                <p class="desc">{{item.info.nickname}}</p>
+                <p class="desc">{{item.user.nickname}}</p>
             </div>
             <div class="hot">
-                <span>等级：{{item.info.userLevel}}</span>
+                <span>等级：{{item.user.userLevel}}</span>
             </div>
         </div>
     </div>
@@ -34,8 +34,12 @@
         methods: {
             itemClick(item) {
                 console.log(this.userId)
-                if (item.info.id != this.userId) {
-                    this.$emit('onItemSelect', item, this.index)
+                if (item.user.id != this.userId) {
+                    if (item.info.isWin == 0) {
+                        this.$emit('onItemSelect', item, this.index)
+                    } else {
+                        this.$toast('选手已进入裁判，请选择其他人')
+                    }
                 } else {
                     this.$toast('不能选择自己哦！')
                 }
