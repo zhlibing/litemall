@@ -26,17 +26,17 @@
             </div>
             <div class="bottom" @click="showSelect">
                 <p class="info">请选择或者添加鱼塘</p>
-                <div class="yutang" v-if="item==undefined">
+                <div class="yutang" v-if="itemf.info==undefined">
                     <span class="little">钓鱼比赛需要选择鱼塘进行哦</span>
                 </div>
-                <userSelectItem :item="itemf" v-if="itemf!=undefined"
+                <userSelectItem :item="itemf" v-if="itemf.info!=undefined"
                                 style="background-color: white;margin-bottom: 70px"></userSelectItem>
             </div>
             <div class="footer">
                 <button class="fabu" @click="publish">确定发布</button>
             </div>
         </div>
-        <userSelect @selectItem="selectItem" v-show="isShowSelect"></userSelect>
+        <userSelect @selectItem="selectItem" :activityId="itemId" v-show="isShowSelect"></userSelect>
     </div>
 </template>
 
@@ -52,9 +52,7 @@
     import userSelect from '../../../views/items/userSelect-list/indexSelect.vue'
 
     export default {
-        props: {
-            item: Object
-        },
+        props: {},
         data() {
             return {
                 desc: '',
@@ -141,6 +139,7 @@
             if (_.has(this.$route.params, 'type')) {
                 this.type = this.$route.params.type;
                 this.itemId = this.$route.params.itemId;
+                console.log(this.itemId)
             }
         },
         components: {
@@ -238,9 +237,9 @@
                         background-position center
         .bottom
             width 100%
-            height 5rem
             background-color #f3f3f3
             box-sizing border-box
+            padding 0 15px
             .info
                 font-size 0.9rem
                 color #333333

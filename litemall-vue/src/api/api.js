@@ -570,6 +570,15 @@ export function userActivityListjoin(query) {
     })
 }
 
+const ActivityListUserJoin = 'wx/activity/listuserjoin'; //个人页面用户相关信息
+export function activityListUserJoin(query) {
+    return request({
+        url: ActivityListUserJoin,
+        method: 'get',
+        params: query
+    })
+}
+
 const UserFishpondsListjoin = 'wx/fishponds/listjoin'; //个人页面用户相关信息
 export function userFishpondsListjoin(query) {
     return request({
