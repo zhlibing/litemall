@@ -31,8 +31,8 @@
             <div class="inputmore">
                 <label for="">我比他（她）</label>
                 <div class="select">
-                    <input type="radio" v-model="moreorless" value="1"/>多
-                    <input type="radio" v-model="moreorless" value="0" style="margin-left: 50px"/>少
+                    <input type="radio" v-model="isWin" value="2"/>多
+                    <input type="radio" v-model="isWin" value="1" style="margin-left: 50px"/>少
                 </div>
             </div>
             <div class="bottom" @click="showSelect">
@@ -75,7 +75,7 @@
                 itemf: {},
                 isShowSelect: false,
                 weight: '',
-                moreorless: -1,
+                isWin: -1,
             }
         },
         watch: {
@@ -83,12 +83,12 @@
         },
         methods: {
             publish() {
-                if (this.moreorless < 0) {
+                if (this.isWin < 0) {
                     this.$toast('请选择多少哦')
                     return
                 }
                 let obj = {}
-                if (this.moreorless == 0) {
+                if (this.isWin == 0) {
                     obj.content = this.desc + '...我输给@' + this.itemf.info.username + '，他太厉害了~'
                 } else {
                     obj.content = this.desc + '...我赢啦@' + this.itemf.info.username + '，快来挑战吧~'
@@ -96,7 +96,7 @@
                 obj.picUrls = this.imgUrls
                 obj.type = this.type
                 obj.valueId = this.itemId
-                obj.isWin = this.moreorless
+                obj.isWin = this.isWin
                 commentSave(obj).then(res => {
                     console.log(res, '>>>>commentSave')
                     if (res.status === 200) {
