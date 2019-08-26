@@ -306,6 +306,7 @@ public class WxActivityController {
             litemallActivityUser = new LitemallActivityUser();
             litemallActivityUser.setUserId(userId);
             litemallActivityUser.setActivityId(id);
+            litemallActivityUser.setType((byte) 1);
             activityUserService.add(litemallActivityUser);
             return ResponseUtil.ok(litemallActivityUser.getId());
         } else {
@@ -325,7 +326,11 @@ public class WxActivityController {
         LitemallActivityUser litemallActivityUser = activityUserService.findByIdVO(userId, id);
         if (litemallActivityUser == null) {
             return ResponseUtil.fail(1002, "不在该组织内");
-        } else {
+        }
+//        else if (litemallActivityUser != null && litemallActivityUser.getType() == 0) {
+//            return ResponseUtil.fail(1003, "发起人无法退出");
+//        }
+        else {
             activityUserService.deleteById(litemallActivityUser.getId());
             return ResponseUtil.ok();
         }
@@ -364,6 +369,12 @@ public class WxActivityController {
             litemallActivity.setUserId(userId);
             litemallActivity.setCurrentPeople(1);
             ActivityService.add(litemallActivity);
+//            //发起者是否参加
+//            LitemallActivityUser litemallActivityUser = new LitemallActivityUser();
+//            litemallActivityUser.setUserId(userId);
+//            litemallActivityUser.setActivityId(litemallActivity.getId());
+//            litemallActivityUser.setType((byte) 0);
+//            activityUserService.add(litemallActivityUser);
         } else {
             litemallActivity.setUserId(userId);
             if (ActivityService.updateById(litemallActivity) == 0) {
