@@ -88,7 +88,11 @@
                     return
                 }
                 let obj = {}
-                obj.content = this.desc
+                if (this.moreorless == 0) {
+                    obj.content = this.desc + '...我输给@' + this.itemf.info.username + '，他太厉害了~'
+                } else {
+                    obj.content = this.desc + '...我赢啦@' + this.itemf.info.username + '，快来挑战吧~'
+                }
                 obj.picUrls = this.imgUrls
                 obj.type = this.type
                 obj.valueId = this.itemId
