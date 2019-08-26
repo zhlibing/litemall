@@ -301,16 +301,21 @@ public class WxActivityController {
         if (id == null) {
             return ResponseUtil.badArgument();
         }
+        LitemallActivity activity = ActivityService.findById(id);
+        Integer number = activity.getCurrentPeople();
         LitemallActivityUser litemallActivityUser = activityUserService.findByIdVO(userId, id);
-        if (litemallActivityUser == null) {
+        if (litemallActivityUser == null && number < activity.getLimited()) {
             litemallActivityUser = new LitemallActivityUser();
             litemallActivityUser.setUserId(userId);
             litemallActivityUser.setActivityId(id);
             litemallActivityUser.setType((byte) 1);
             activityUserService.add(litemallActivityUser);
+            if (ActivityService.addStock(activity.getId(), (short) 1) == 0) {
+                throw new RuntimeException("增加活动人数失败");
+            }
             return ResponseUtil.ok(litemallActivityUser.getId());
         } else {
-            return ResponseUtil.fail(1001, "不能重复加入");
+            return ResponseUtil.fail(1001, "不能重复加入或人数已满");
         }
     }
 
@@ -324,6 +329,7 @@ public class WxActivityController {
             return ResponseUtil.badArgument();
         }
         LitemallActivityUser litemallActivityUser = activityUserService.findByIdVO(userId, id);
+        LitemallActivity activity = ActivityService.findById(id);
         if (litemallActivityUser == null) {
             return ResponseUtil.fail(1002, "不在该组织内");
         }
@@ -332,6 +338,9 @@ public class WxActivityController {
 //        }
         else {
             activityUserService.deleteById(litemallActivityUser.getId());
+            if (ActivityService.reduceStock(activity.getId(), (short) 1) == 0) {
+                throw new RuntimeException("减小动人数失败");
+            }
             return ResponseUtil.ok();
         }
     }
