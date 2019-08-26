@@ -108,8 +108,10 @@
             <div class="buy" style="background-color: #999999" v-else-if="userHasJoin==0&&news.info.status!=0">无法加入
             </div>
             <div class="buy" @click="join" v-else-if="userHasJoin==1&&news.info.status==0">退出</div>
-            <div class="buy" style="background-color: #999999" v-else-if="userHasJoin==1&&news.info.status!=0">无法退出
+            <div class="buy" style="background-color: #999999"
+                 v-else-if="userHasJoin==1&&news.info.status!=0&&news.info.status!=3">无法退出
             </div>
+            <div class="buy" @click="toPublishActivityResult" v-else-if="userHasJoin==1&&news.info.status==3">上传结果</div>
         </div>
     </div>
 </template>
@@ -394,6 +396,9 @@
             },
             toPublishComment() {
                 this.$router.push({name: 'publishcomment', params: {type: this.type, itemId: this.itemId}})
+            },
+            toPublishActivityResult() {
+                this.$router.push({name: 'publishactivityresult', params: {type: this.type, itemId: this.itemId}})
             }
         },
         computed: {},

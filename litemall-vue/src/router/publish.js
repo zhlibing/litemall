@@ -64,6 +64,13 @@ export default [
         }
     },
     {
+        path: '/publish/publishactivityresult',
+        name: 'publishactivityresult',
+        components: {
+            default: () => import('@/views/publish/sell/publishactivityresult'),
+        }
+    },
+    {
         path: '/publish/items/publishhead',
         name: 'publishhead',
         components: {
