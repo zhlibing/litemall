@@ -1,6 +1,6 @@
 <template>
     <div class="goods_brand_list">
-        <appbar titleText="选择鱼塘"
+        <appbar titleText="选择选手"
                 :right="right_url"
                 :overrideleftclick="true"
                 @leftclick="goBack"
