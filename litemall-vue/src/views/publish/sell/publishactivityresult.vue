@@ -24,6 +24,17 @@
                     </li>
                 </ul>
             </div>
+            <div class="inputweight">
+                <label for="">TA的钓鱼总重量</label>
+                <input type="number" v-model="weight" placeholder="单位斤">
+            </div>
+            <div class="inputmore">
+                <label for="">我比他（她）</label>
+                <div class="select">
+                    <input type="radio" v-model="moreorless" value="1"/>多
+                    <input type="radio" v-model="moreorless" value="0" style="margin-left: 50px"/>少
+                </div>
+            </div>
             <div class="bottom" @click="showSelect">
                 <p class="info">请选择一个参加比赛的选手，不能是自己</p>
                 <div class="yutang" v-if="itemf.info==undefined">
@@ -63,6 +74,8 @@
                 userId: '',
                 itemf: {},
                 isShowSelect: false,
+                weight: '',
+                moreorless: -1,
             }
         },
         watch: {
@@ -70,8 +83,8 @@
         },
         methods: {
             publish() {
-                if (this.desc == '') {
-                    this.$toast('说点啥吧')
+                if (this.moreorless < 0) {
+                    this.$toast('请选择多少哦')
                     return
                 }
                 let obj = {}
@@ -79,6 +92,7 @@
                 obj.picUrls = this.imgUrls
                 obj.type = this.type
                 obj.valueId = this.itemId
+                obj.isWin = this.moreorless
                 commentSave(obj).then(res => {
                     console.log(res, '>>>>commentSave')
                     if (res.status === 200) {
@@ -236,6 +250,44 @@
                         background url('../../../assets/images/add.png') no-repeat
                         background-size 1rem 1rem
                         background-position center
+        .inputweight
+            width 100%
+            display flex
+            align-items left
+            justify-content space-between
+            margin-bottom 10px
+            padding-left 15px
+            label
+                flex 3
+            input
+                flex 5
+                outline none
+                border none
+                margin-left 0rem
+                box-sizing border-box
+            img
+                width 20px
+                height 20px
+        .inputmore
+            width 100%
+            display flex
+            align-items left
+            justify-content space-between
+            margin-bottom 10px
+            padding-left 15px
+            label
+                flex 3
+            .select
+                flex 5
+                display flex
+                input
+                    outline none
+                    border none
+                    margin-left 0rem
+                    box-sizing border-box
+            img
+                width 20px
+                height 20px
         .bottom
             width 100%
             background-color #f3f3f3

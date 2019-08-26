@@ -69,7 +69,7 @@
                     font-size: 0.9rem;
                     font-weight: 400;
                     flex: 1;
-                    margin-top: 0px;
+                    margin-top: -10px;
                 }
                 .select {
                     width: 1.5rem;
@@ -82,7 +82,7 @@
                 margin-top: -15px;
                 font-size: 0.8rem;
                 font-weight: 200;
-                line-height: 1.2rem;
+                line-height: 0.8rem;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 display: -webkit-box;
