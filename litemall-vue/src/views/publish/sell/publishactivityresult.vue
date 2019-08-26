@@ -84,6 +84,10 @@
         },
         methods: {
             publish() {
+                if (!this.weight) {
+                    this.$toast('请输入第一名钓鱼重量')
+                    return
+                }
                 if (this.isWin < 0) {
                     this.$toast('请选择多还是少哦')
                     return
@@ -102,6 +106,7 @@
                 activityUser.activityId = this.itemId
                 activityUser.userId = this.itemf.user.id
                 activityUser.isWin = this.isWin
+                activityUser.weight = this.weight
 
                 commentSave(obj).then(res => {
                     console.log(res, '>>>>commentSave')
