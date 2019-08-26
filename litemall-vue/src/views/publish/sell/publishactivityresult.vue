@@ -25,9 +25,9 @@
                 </ul>
             </div>
             <div class="bottom" @click="showSelect">
-                <p class="info">请选择或者添加鱼塘</p>
+                <p class="info">请选择一个参加比赛的选手，不能是自己</p>
                 <div class="yutang" v-if="itemf.info==undefined">
-                    <span class="little">钓鱼比赛需要选择鱼塘进行哦</span>
+                    <span class="little">钓鱼比赛需要选择对手进行裁判哦</span>
                 </div>
                 <userSelectItem :item="itemf" v-if="itemf.info!=undefined"
                                 style="background-color: white;margin-bottom: 70px"></userSelectItem>
@@ -36,7 +36,7 @@
                 <button class="fabu" @click="publish">确定发布</button>
             </div>
         </div>
-        <userSelect @selectItem="selectItem" :itemId="itemId" v-show="isShowSelect"></userSelect>
+        <userSelect @selectItem="selectItem" :itemId="itemId" :userId="userId" v-show="isShowSelect"></userSelect>
     </div>
 </template>
 
@@ -60,6 +60,7 @@
                 imgUrls: [],
                 type: '',
                 itemId: '',
+                userId: '',
                 itemf: {},
                 isShowSelect: false,
             }
@@ -139,7 +140,7 @@
             if (_.has(this.$route.params, 'type')) {
                 this.type = this.$route.params.type;
                 this.itemId = this.$route.params.itemId;
-                console.log(this.itemId)
+                this.userId = this.$route.params.userId;
             }
         },
         components: {

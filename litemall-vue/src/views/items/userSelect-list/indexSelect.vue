@@ -13,7 +13,7 @@
                       @load="getActivityUserList">
                 <div v-for="(item, index) in list"
                      :key="index">
-                    <userSelectItem :item="item" :index="index" :selectedIndex="selectedIndex"
+                    <userSelectItem :item="item" :index="index" :selectedIndex="selectedIndex" :userId="userId"
                                     @onItemSelect="onItemSelect"></userSelectItem>
                 </div>
             </van-list>
@@ -33,6 +33,7 @@
     export default {
         props: {
             itemId: [String, Number],
+            userId: [String, Number],
         },
         data() {
             return {

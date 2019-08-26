@@ -152,7 +152,7 @@
                 userHasJoin: -1,
                 news: {},
                 title: '详情',
-                userId: '',
+                userId: '',//当前登陆用户
                 avatar: '',
                 nickName: '',
 
@@ -398,7 +398,10 @@
                 this.$router.push({name: 'publishcomment', params: {type: this.type, itemId: this.itemId}})
             },
             toPublishActivityResult() {
-                this.$router.push({name: 'publishactivityresult', params: {type: this.type, itemId: this.itemId}})
+                this.$router.push({
+                    name: 'publishactivityresult',
+                    params: {type: this.type, itemId: this.itemId, userId: this.userId}
+                })
             }
         },
         computed: {},

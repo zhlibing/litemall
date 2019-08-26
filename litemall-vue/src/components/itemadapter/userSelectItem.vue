@@ -25,14 +25,20 @@
         props: {
             item: Object,
             index: 0,
-            selectedIndex: 0
+            selectedIndex: 0,
+            userId: ''
         },
         data() {
             return {}
         },
         methods: {
             itemClick(item) {
-                this.$emit('onItemSelect', item, this.index)
+                console.log(this.userId)
+                if (item.info.id != this.userId) {
+                    this.$emit('onItemSelect', item, this.index)
+                } else {
+                    this.$toast('不能选择自己哦！')
+                }
             }
         },
         components: {}
