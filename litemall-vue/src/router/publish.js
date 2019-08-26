@@ -57,15 +57,16 @@ export default [
         ]
     },
     {
-        path: '/publish/publishcomment',
+        path: '/publish/sell/publishcomment',
         name: 'publishcomment',
         components: {
             default: () => import('@/views/publish/sell/publishcomment'),
         }
     },
     {
-        path: '/publish/publishactivityresult',
+        path: '/publish/sell/publishactivityresult/:activityId/:type',
         name: 'publishactivityresult',
+        props: true,
         components: {
             default: () => import('@/views/publish/sell/publishactivityresult'),
         }
