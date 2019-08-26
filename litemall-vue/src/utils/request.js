@@ -42,6 +42,7 @@ service.interceptors.response.use(
       return Promise.reject('error')
     } else if (res.errno !== 0) {
       // 非5xx的错误属于业务错误，留给具体页面处理
+          Toast.fail(res.errmsg);
       return Promise.reject(response)
     } else {
       return response
