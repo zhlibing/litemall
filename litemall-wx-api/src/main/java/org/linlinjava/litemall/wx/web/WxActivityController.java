@@ -301,7 +301,8 @@ public class WxActivityController {
             Map<String, Object> activityVo = new HashMap<>();
             LitemallUser litemallUser;
             litemallUser = userService.findDetailById(litemallActivityUser.getUserId());
-            activityVo.put("info", litemallUser);
+            activityVo.put("info", litemallActivityUser);
+            activityVo.put("user", litemallUser);
             activityVoList.add(activityVo);
         }
         return ResponseUtil.okList(activityVoList, userActivitys);
@@ -331,6 +332,25 @@ public class WxActivityController {
             return ResponseUtil.ok(litemallActivityUser.getId());
         } else {
             return ResponseUtil.fail(1001, "不能重复加入或人数已满");
+        }
+    }
+
+    @PostMapping("justice")
+    public Object justice(@LoginUser Integer userId, @RequestBody LitemallActivityUser litemallActivityUser) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        Integer id = litemallActivityUser.getActivityId();
+        if (id == null) {
+            return ResponseUtil.badArgument();
+        }
+        if (litemallActivityUser != null) {
+            LitemallActivityUser activityUser = activityUserService.findByIdVO(litemallActivityUser.getUserId(), litemallActivityUser.getActivityId());
+            activityUser.setIsWin(litemallActivityUser.getIsWin());
+            activityUserService.updateById(activityUser);
+            return ResponseUtil.ok(litemallActivityUser.getId());
+        } else {
+            return ResponseUtil.fail(1001, "参数错误");
         }
     }
 
