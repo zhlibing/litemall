@@ -13,7 +13,7 @@
                     <fishpondsItem :item="item"></fishpondsItem>
                 </div>
             </van-list>
-            <is-empty v-if="list3.length==0">TA很懒，啥都没写~</is-empty>
+            <is-empty v-if="list3.length==0">还没有加入鱼塘哦~</is-empty>
         </van-pull-refresh>
     </div>
 </template>

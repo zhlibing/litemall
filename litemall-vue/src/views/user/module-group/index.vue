@@ -13,7 +13,7 @@
                     <groupItem :item="item"></groupItem>
                 </div>
             </van-list>
-            <is-empty v-if="list4.length==0">TA很懒，啥都没写~</is-empty>
+            <is-empty v-if="list4.length==0">还没有加入战队哦~</is-empty>
         </van-pull-refresh>
     </div>
 </template>

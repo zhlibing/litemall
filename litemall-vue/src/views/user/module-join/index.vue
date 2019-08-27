@@ -20,7 +20,7 @@
                             <activityItem :item="item"></activityItem>
                         </div>
                     </van-list>
-                    <is-empty v-if="list0.length==0">TA很懒，啥都没写~</is-empty>
+                    <is-empty v-if="list0.length==0">还没有参加活动哦~</is-empty>
                 </van-pull-refresh>
                 <van-pull-refresh v-model="loading1" @refresh="onRefresh(tabIndex)" v-if="tabIndex==1">
                     <van-list v-model="loading1"
@@ -34,7 +34,7 @@
                             <activityItem :item="item"></activityItem>
                         </div>
                     </van-list>
-                    <is-empty v-if="list1.length==0">TA很懒，啥都没写~</is-empty>
+                    <is-empty v-if="list1.length==0">还没有参加活动哦~</is-empty>
                 </van-pull-refresh>
                 <van-pull-refresh v-model="loading2" @refresh="onRefresh(tabIndex)" v-if="tabIndex==2">
                     <van-list v-model="loading2"
@@ -48,7 +48,7 @@
                             <activityItem :item="item"></activityItem>
                         </div>
                     </van-list>
-                    <is-empty v-if="list2.length==0">TA很懒，啥都没写~</is-empty>
+                    <is-empty v-if="list2.length==0">还没有参加活动哦~</is-empty>
                 </van-pull-refresh>
                 <van-pull-refresh v-model="loading3" @refresh="onRefresh(tabIndex)" v-if="tabIndex==3">
                     <van-list v-model="loading3"
@@ -62,7 +62,7 @@
                             <activityItem :item="item"></activityItem>
                         </div>
                     </van-list>
-                    <is-empty v-if="list3.length==0">TA很懒，啥都没写~</is-empty>
+                    <is-empty v-if="list3.length==0">还没有参加活动哦~</is-empty>
                 </van-pull-refresh>
                 <van-pull-refresh v-model="loading4" @refresh="onRefresh(tabIndex)" v-if="tabIndex==4">
                     <van-list v-model="loading4"
@@ -76,7 +76,7 @@
                             <activityItem :item="item"></activityItem>
                         </div>
                     </van-list>
-                    <is-empty v-if="list4.length==0">TA很懒，啥都没写~</is-empty>
+                    <is-empty v-if="list4.length==0">还没有参加活动哦~</is-empty>
                 </van-pull-refresh>
                 <van-pull-refresh v-model="loading5" @refresh="onRefresh(tabIndex)" v-if="tabIndex==5">
                     <van-list v-model="loading5"
@@ -90,7 +90,7 @@
                             <activityItem :item="item"></activityItem>
                         </div>
                     </van-list>
-                    <is-empty v-if="list5.length==0">TA很懒，啥都没写~</is-empty>
+                    <is-empty v-if="list5.length==0">还没有参加活动哦~</is-empty>
                 </van-pull-refresh>
             </van-tab>
         </van-tabs>
