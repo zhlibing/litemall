@@ -132,6 +132,7 @@ public class WxActivityController {
                 LitemallUser ActivityUser = userService.findDetailById(litemallActivityUser.getUserId());
                 Map<String, Object> c = new HashMap<>();
                 c.put("user", ActivityUser);
+                c.put("info", litemallActivityUser);
                 // 用户收藏
                 Random rand = new Random();
                 int random = rand.nextInt(9999) + 9999;
@@ -249,6 +250,7 @@ public class WxActivityController {
                 LitemallUser ActivityUser = userService.findDetailById(litemallActivityUser.getUserId());
                 Map<String, Object> c = new HashMap<>();
                 c.put("user", ActivityUser);
+                c.put("info", litemallActivityUser);
                 // 用户收藏
                 Random rand = new Random();
                 int random = rand.nextInt(9999) + 9999;
