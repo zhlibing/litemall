@@ -35,9 +35,12 @@
             itemClick(item) {
                 console.log(this.userId)
                 if (item.user.id != this.userId) {
-                    if (item.info.isWin == 0) {
+                    if (item.info.isWin == 0 && item.info.toUserId != this.userId) {
                         this.$emit('onItemSelect', item, this.index)
-                    } else {
+                    } else if (item.info.toUserId == this.userId) {
+                        this.$toast('不能选择已评价自己的人')
+                    }
+                    else {
                         this.$toast('选手已进入裁判，请选择其他人')
                     }
                 } else {
