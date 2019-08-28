@@ -85,7 +85,7 @@
         methods: {
             publish() {
                 if (!this.weight) {
-                    this.$toast('请输入第一名钓鱼重量')
+                    this.$toast('请输入他的钓鱼总重量')
                     return
                 }
                 if (this.isWin < 0) {
@@ -107,6 +107,7 @@
                 activityUser.userId = this.itemf.user.id
                 activityUser.isWin = this.isWin
                 activityUser.weight = this.weight
+                activityUser.fromUserId = this.userId
 
                 commentSave(obj).then(res => {
                     console.log(res, '>>>>commentSave')
