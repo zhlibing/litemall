@@ -25,7 +25,7 @@
                 </ul>
             </div>
             <div class="inputweight">
-                <label for="">TA的钓鱼总重量</label>
+                <label for="" style="color: red">TA的钓鱼总重量</label>
                 <input type="number" v-model="weight" placeholder="单位斤">
             </div>
             <div class="inputmore">
@@ -42,6 +42,10 @@
                 </div>
                 <userSelectItem :item="itemf" v-if="itemf.user!=undefined"
                                 style="background-color: white;margin-bottom: 70px"></userSelectItem>
+            </div>
+            <div style="padding: 15px;line-height: 25px;font-weight: 300;color: red;display: flex;flex-direction: column">
+                <span>1.请认真填写您选择选手的比赛结果，如果因您的输入导致系统无法评判胜负，系统将会扣除您的信用分，以免影响您下次参赛~</span>
+                <span>2.诚信比赛，贵在点滴;予人玫瑰，手留余香~</span>
             </div>
             <div class="footer">
                 <button class="fabu" @click="publish">确定发布</button>
@@ -197,7 +201,6 @@
     .container
         width 100%
         height 100%
-        background-color #ffffff
         .inputcontainer
             width 100%
             .inputdetail
@@ -279,6 +282,7 @@
             justify-content space-between
             margin-bottom 10px
             padding-left 15px
+            padding-top 15px
             label
                 flex 3
             input

@@ -11,6 +11,9 @@
                 <div class="score" v-else>{{'成功举办10场活动'}}</div>
             </div>
             <span class="da" v-if="item.key!=undefined">{{"发起人"}}</span>
+            <div v-if="item.info!=undefined&&item.info.isWin==2">
+                <img src="../../assets/images/champion.png"/>
+            </div>
         </div>
         <div class="bottom">
             <div class="yutang" v-if="item.key==undefined" style="margin-left: 30px">{{"人气" + item.collectCount}}</div>
