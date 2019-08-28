@@ -345,11 +345,16 @@ public class WxActivityController {
             return ResponseUtil.badArgument();
         }
         if (litemallActivityUser != null) {
-            LitemallActivityUser activityUser = activityUserService.findByIdVO(litemallActivityUser.getUserId(), litemallActivityUser.getActivityId());
-            activityUser.setIsWin(litemallActivityUser.getIsWin());
-            activityUser.setWeight(litemallActivityUser.getWeight());
-            activityUser.setFromUserId(userId);
-            activityUserService.updateById(activityUser);
+            LitemallActivityUser activityUserTo = activityUserService.findByIdVO(litemallActivityUser.getUserId(), litemallActivityUser.getActivityId());
+            activityUserTo.setIsWin(litemallActivityUser.getIsWin());
+            activityUserTo.setWeight(litemallActivityUser.getWeight());
+            activityUserTo.setFromUserId(userId);
+            activityUserService.updateById(activityUserTo);
+
+            LitemallActivityUser activityUserFrom = activityUserService.findByIdVO(userId, litemallActivityUser.getActivityId());
+            activityUserFrom.setToUserId(litemallActivityUser.getUserId());
+            activityUserService.updateById(activityUserFrom);
+
             return ResponseUtil.ok(litemallActivityUser.getId());
         } else {
             return ResponseUtil.fail(1001, "参数错误");
