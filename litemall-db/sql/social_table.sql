@@ -328,6 +328,7 @@ DROP TABLE IF EXISTS `litemall_activity_user`;
 CREATE TABLE `litemall_activity_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
+  `from_user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
   `type` tinyint(3) NOT NULL DEFAULT '0' COMMENT '类型,发起人,参与者等',
   `is_win` tinyint(3) NOT NULL DEFAULT '0' COMMENT '类型,胜者',
   `weight` decimal (10,2) DEFAULT NULL,
