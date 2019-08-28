@@ -347,6 +347,8 @@ public class WxActivityController {
         if (litemallActivityUser != null) {
             LitemallActivityUser activityUser = activityUserService.findByIdVO(litemallActivityUser.getUserId(), litemallActivityUser.getActivityId());
             activityUser.setIsWin(litemallActivityUser.getIsWin());
+            activityUser.setWeight(litemallActivityUser.getWeight());
+            activityUser.setFromUserId(userId);
             activityUserService.updateById(activityUser);
             return ResponseUtil.ok(litemallActivityUser.getId());
         } else {
