@@ -64,6 +64,7 @@
                 itemf: {},
                 isShowSelect: false,
                 index: '',
+                isupgrade: false,
             }
         },
         watch: {
@@ -156,15 +157,29 @@
                     });
                 }
                 if (this.index < 3) {
-                    activitySave(obj).then(res => {
-                        if (res.status === 200) {
-                            this.goBack()
-                            EventBus.$emit("circleSave", {
-                                num: '99',
-                                deg: '00'
-                            });
-                        }
-                    });
+                    if (this.isupgrade) {
+                        obj.id = this.itemf.info.id
+                        obj.level = this.itemf.info.level + 1
+                        activitySave(obj).then(res => {
+                            if (res.status === 200) {
+                                this.goBack()
+                                EventBus.$emit("circleSave", {
+                                    num: '99',
+                                    deg: '00'
+                                });
+                            }
+                        });
+                    } else {
+                        activitySave(obj).then(res => {
+                            if (res.status === 200) {
+                                this.goBack()
+                                EventBus.$emit("circleSave", {
+                                    num: '99',
+                                    deg: '00'
+                                });
+                            }
+                        });
+                    }
                 }
                 if (obj.type == 11) {
                 }
@@ -219,6 +234,14 @@
             if (_.has(this.$route.params, 'index')) {
                 this.index = this.$route.params.index;
                 this.appbartitle = "发布" + this.$route.params.title;
+            }
+            if (_.has(this.$route.params, 'itemf')) {
+                this.appbartitle = this.$route.params.title;
+                this.isupgrade = true
+                this.itemf = this.$route.params.itemf
+                this.title = this.itemf.info.title
+                this.desc = this.itemf.info.description
+                this.imgUrls = this.itemf.info.picUrls
             }
         },
         components: {

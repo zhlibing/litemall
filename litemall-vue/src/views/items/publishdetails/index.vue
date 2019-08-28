@@ -109,9 +109,12 @@
             </div>
             <div class="buy" @click="join" v-else-if="userHasJoin==1&&news.info.status==0">退出</div>
             <div class="buy" style="background-color: #999999"
-                 v-else-if="userHasJoin==1&&news.info.status!=0&&news.info.status!=3">无法退出
+                 v-else-if="userHasJoin==1&&news.info.status!=0&&news.info.status!=3&&!isWinner">无法退出
             </div>
             <div class="buy" @click="toPublishActivityResult" v-else-if="userHasJoin==1&&news.info.status==3">上传结果</div>
+            <div class="buy" @click="toUpgrade"
+                 v-else-if="userHasJoin==1&&news.info.status==4&&isWinner">升级
+            </div>
         </div>
     </div>
 </template>
@@ -171,6 +174,8 @@
                 intervalTimer: null, // 持续模式，循环计时器
                 currentTime: 0, // 当前时间
                 durationTime: 60, // 持续模式总时长
+
+                isWinner: false,
             }
         },
         methods: {
@@ -402,6 +407,22 @@
                     name: 'publishactivityresult',
                     params: {type: this.type, itemId: this.itemId, userId: this.userId}
                 })
+            },
+            judgeIsWinner() {
+                console.log(this.news.joinUsers)
+                for (let i = 0; i < this.news.joinUsers.length; i++) {
+                    if (this.userId == this.news.joinUsers[i].user.id) {
+                        if (this.news.joinUsers[i].info.isWin == 2) {
+                            this.isWinner = true
+                        }
+                    }
+                }
+            },
+            toUpgrade(){
+                this.$router.push({
+                    name: 'publishhead',// 一定要写name,params必须用name来识别路径
+                    params: {index: 0,title:'升级',itemf:this.news}
+                })
             }
         },
         computed: {},
@@ -448,6 +469,7 @@
                     this.userHasCollect = res.data.data.userHasCollect
                     this.userHasJoin = res.data.data.userHasJoin
                     this.label = "当前" + this.news.joinUsers.length + '人'
+                    this.judgeIsWinner()
                 });
             }
         },
