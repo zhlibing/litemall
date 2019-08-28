@@ -107,13 +107,13 @@
             <div class="buy" @click="join" v-else-if="userHasJoin==0&&news.info.status==0">加入</div>
             <div class="buy" style="background-color: #999999" v-else-if="userHasJoin==0&&news.info.status!=0">无法加入
             </div>
-            <div class="buy" @click="join" v-else-if="userHasJoin==1&&news.info.status==0">退出</div>
+            <div class="buy" @click="join" v-else-if="userHasJoin>=1&&news.info.status==0">退出</div>
             <div class="buy" style="background-color: #999999"
-                 v-else-if="userHasJoin==1&&news.info.status!=0&&news.info.status!=3&&!isWinner">无法退出
+                 v-else-if="userHasJoin>=1&&news.info.status!=0&&news.info.status!=3&&!isWinner">无法退出
             </div>
-            <div class="buy" @click="toPublishActivityResult" v-else-if="userHasJoin==1&&news.info.status==3">上传结果</div>
+            <div class="buy" @click="toPublishActivityResult" v-else-if="userHasJoin>=1&&news.info.status==3">上传结果</div>
             <div class="buy" @click="toUpgrade"
-                 v-else-if="userHasJoin==1&&news.info.status==4&&isWinner">升级
+                 v-else-if="userHasJoin>=1&&news.info.status==4&&isWinner">升级
             </div>
         </div>
     </div>
@@ -418,10 +418,10 @@
                     }
                 }
             },
-            toUpgrade(){
+            toUpgrade() {
                 this.$router.push({
                     name: 'publishhead',// 一定要写name,params必须用name来识别路径
-                    params: {index: 0,title:'升级',itemf:this.news}
+                    params: {index: 0, title: '升级', itemf: this.news}
                 })
             }
         },
