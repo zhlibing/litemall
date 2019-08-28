@@ -430,6 +430,14 @@ public class WxActivityController {
 //            activityUserService.add(litemallActivityUser);
         } else {
             litemallActivity.setUserId(userId);
+            litemallActivity.setCurrentPeople(1);
+            //升级，发起者是自动参加
+            LitemallActivityUser litemallActivityUser = new LitemallActivityUser();
+            litemallActivityUser.setUserId(userId);
+            litemallActivityUser.setActivityId(litemallActivity.getId());
+            litemallActivityUser.setType((byte) 0);
+            litemallActivityUser.setLevel(litemallActivity.getLevel());
+            activityUserService.add(litemallActivityUser);
             if (ActivityService.updateById(litemallActivity) == 0) {
                 return ResponseUtil.updatedDataFailed();
             }
